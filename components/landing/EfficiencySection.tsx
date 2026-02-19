@@ -1,0 +1,154 @@
+import React from "react";
+
+const comparisonItems = [
+  {
+    oldWay: "Endless outreach to dead domains",
+    newWay: "Access a marketplace of verified active publishers",
+  },
+  {
+    oldWay: "Low response rates from busy editors",
+    newWay: "Guaranteed task acceptance with credits",
+  },
+  {
+    oldWay: "Impossible to verify authority metrics",
+    newWay: "Real-time DR/DA monitoring for every site",
+  },
+  {
+    oldWay: "No visibility into work progress",
+    newWay: "Full workflow dashboard from draft to live",
+  },
+];
+
+const EfficiencySection = () => {
+  return (
+    <section className="py-[100px] px-6 bg-white">
+      <div className="max-w-[1320px] mx-auto">
+        <div className="flex flex-col gap-20 items-start w-full">
+          {/* Section Heading */}
+          <h2 className="font-sora font-semibold text-[48px] leading-[60px] tracking-[-0.96px] text-gray-900 w-[584px] max-w-full">
+            Why build links manually when you can{" "}
+            <span className="text-primary">Backlyst?</span>
+          </h2>
+
+          {/* Content Row */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 w-full">
+            {/* Left: Efficiency Comparison Card */}
+            <div className="lg:col-span-7 bg-[#535862] rounded-[20px] p-8 md:p-[50px] shadow-2xl flex flex-col gap-10 overflow-hidden relative">
+              {/* Decorative Circle */}
+              <div className="absolute -top-20 left-1/2 md:left-[60%] w-[400px] h-[400px] bg-white/5 rounded-full blur-3xl pointer-events-none" />
+
+              <div className="relative z-10 flex flex-col gap-6">
+                <div>
+                  <span className="block font-sora font-semibold text-3xl md:text-[36px] text-white leading-snug mb-2">
+                    Efficiency Comparison
+                  </span>
+                  <h3 className="font-sora font-semibold text-4xl md:text-[48px] leading-tight tracking-tight text-white">
+                    Why waste time and money when you can{" "}
+                    <span className="text-[#fd751f]">Backlyst?</span>
+                  </h3>
+                </div>
+
+                {/* Progress Bars */}
+                <div className="flex flex-col gap-8 w-full mt-4">
+                  <div className="flex flex-col gap-6">
+                    {/* Manual Outreach Bar */}
+                    <div className="flex flex-col gap-3">
+                      <div className="flex items-center justify-between text-sm md:text-base text-white font-medium">
+                        <span>MANUAL OUTREACH</span>
+                        <span className="opacity-80">24 Hours/Link</span>
+                      </div>
+                      <div className="w-full h-2 bg-[#e9eaeb] rounded-full overflow-hidden">
+                        <div className="w-[75%] h-full bg-[#fd751f] rounded-full" />
+                      </div>
+                    </div>
+                    {/* Backlyst Workflow Bar */}
+                    <div className="flex flex-col gap-3">
+                      <div className="flex items-center justify-between text-sm md:text-base text-white font-medium">
+                        <span>BACKLYST WORKFLOW</span>
+                        <span>15 Mins/Link</span>
+                      </div>
+                      <div className="w-full h-2 bg-[#e9eaeb] rounded-full overflow-hidden">
+                        <div className="w-[15%] h-full bg-[#fd751f] rounded-full" />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Testimonial Card */}
+                  <div className="bg-[#717680] rounded-[10px] p-6 md:p-8 flex items-center w-full">
+                    <div className="flex flex-col gap-6 items-start w-full">
+                      <p className="text-[14px] font-medium font-inter text-white leading-[20px]">
+                        &quot;We&apos;ve reduced our link building operational
+                        costs by 74% since migrating our entire outreach team to
+                        the Backlyst marketplace&quot;
+                      </p>
+                      <div className="flex items-center gap-4 w-full">
+                        <img
+                          src="/assets/avatar-sisyphus.svg"
+                          alt="Marcus Throne"
+                          className="w-12 h-12 rounded-full object-cover ring-2 ring-white/10"
+                        />
+                        <div className="flex flex-col gap-0.5">
+                          <span className="text-base font-bold font-sora text-white">
+                            Marcus Throne
+                          </span>
+                          <span className="text-xs font-semibold font-inter text-gray-200 uppercase tracking-wider">
+                            CEO, DIGITAL AUTHORITY AGENCY
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right: Comparison Cards */}
+            <div className="lg:col-span-5 flex flex-col gap-6 h-full justify-between">
+              {/* Old Way Column */}
+              <div className="grid grid-cols-1 gap-4">
+                {comparisonItems.map((item, index) => (
+                  <div
+                    key={`compare-${index}`}
+                    className="grid grid-cols-2 gap-4"
+                  >
+                    {/* Old Way Card */}
+                    <div className="bg-white border border-[#fed4ba] rounded-[10px] p-4 flex flex-col gap-2 shadow-sm h-full">
+                      <div className="flex items-center gap-2 text-[#fd751f]">
+                        <span className="text-auto leading-none font-bold rotate-45">
+                          +
+                        </span>
+                        <span className="text-[16px] font-semibold font-inter uppercase tracking-wide">
+                          THE OLD WAY
+                        </span>
+                      </div>
+                      <p className="text-[16px] font-semibold text-[#535862] leading-snug">
+                        {item.oldWay}
+                      </p>
+                    </div>
+
+                    {/* New Way Card */}
+                    <div className="bg-[#fff1e9] border border-[#fea369] rounded-[10px] p-4 flex flex-col gap-2 shadow-sm h-full">
+                      <div className="flex items-center gap-2 text-[#fd751f]">
+                        <span className="text-auto leading-none font-bold">
+                          +
+                        </span>
+                        <span className="text-[16px] font-semibold font-inter uppercase tracking-wide">
+                          BACKLYST
+                        </span>
+                      </div>
+                      <p className="text-[16px] font-semibold text-[#181d27] leading-snug">
+                        {item.newWay}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default EfficiencySection;
