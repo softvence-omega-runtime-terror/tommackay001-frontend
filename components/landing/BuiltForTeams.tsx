@@ -62,7 +62,7 @@ const BuiltForTeams = () => {
     <section className="py-40 px-4 bg-gray-25/30 overflow-hidden">
       <div className="max-w-[1440px] mx-auto">
         <div className="text-center mb-28">
-          <h2 className="text-[44px] md:text-[56px] font-sora font-black tracking-[-0.05em] leading-none text-gray-900 mb-6">
+          <h2 className="text-3xl md:text-[56px] font-sora font-black tracking-[-0.05em] leading-none text-gray-900 mb-6">
             Built for elite SEO teams
           </h2>
           <p className="text-lg md:text-xl text-gray-400 font-medium font-inter max-w-2xl mx-auto">

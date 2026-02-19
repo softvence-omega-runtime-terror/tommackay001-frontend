@@ -41,10 +41,10 @@ const Features = () => {
       <div className="max-w-[1320px] mx-auto flex flex-col gap-20 items-center justify-center">
         {/* Heading */}
         <div className="flex flex-col gap-5 items-center text-center w-[741px] max-w-full">
-          <h2 className="font-sora font-semibold text-[48px] leading-[60px] tracking-[-0.96px] text-gray-900">
+          <h2 className="font-sora font-semibold text-3xl md:text-[48px] leading-10 md:leading-[60px] tracking-[-0.96px] text-gray-900">
             Built for elite SEO teams
           </h2>
-          <p className="font-inter font-normal text-xl leading-[30px] text-gray-900">
+          <p className="font-inter font-normal md:text-xl leading-[30px] text-gray-900">
             Everything you need to source, track, and scale your backlink
             strategy in one unified ecosystem
           </p>

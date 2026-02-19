@@ -1,3 +1,4 @@
+import { X } from "lucide-react";
 import React from "react";
 
 const comparisonItems = [
@@ -25,7 +26,7 @@ const EfficiencySection = () => {
       <div className="max-w-[1320px] mx-auto">
         <div className="flex flex-col gap-20 items-start w-full">
           {/* Section Heading */}
-          <h2 className="font-sora font-semibold text-[48px] leading-[60px] tracking-[-0.96px] text-gray-900 w-[584px] max-w-full">
+          <h2 className="font-sora font-semibold text-3xl md:text-5xl leading-10 md:leading-15 tracking-[-0.96px] text-gray-900 w-[584px] max-w-full">
             Why build links manually when you can{" "}
             <span className="text-primary">Backlyst?</span>
           </h2>
@@ -39,10 +40,10 @@ const EfficiencySection = () => {
 
               <div className="relative z-10 flex flex-col gap-6">
                 <div>
-                  <span className="block font-sora font-semibold text-3xl md:text-[36px] text-white leading-snug mb-2">
+                  <span className="block font-sora font-semibold text-md md:text-5xl text-white leading-snug mb-4">
                     Efficiency Comparison
                   </span>
-                  <h3 className="font-sora font-semibold text-4xl md:text-[48px] leading-tight tracking-tight text-white">
+                  <h3 className="font-sora font-semibold text-xl md:text-4xl md:text-[48px] leading-tight tracking-tight text-white">
                     Why waste time and money when you can{" "}
                     <span className="text-[#fd751f]">Backlyst?</span>
                   </h3>
@@ -109,13 +110,13 @@ const EfficiencySection = () => {
                 {comparisonItems.map((item, index) => (
                   <div
                     key={`compare-${index}`}
-                    className="grid grid-cols-2 gap-4"
+                    className="grid md:grid-cols-2 gap-4"
                   >
                     {/* Old Way Card */}
                     <div className="bg-white border border-[#fed4ba] rounded-[10px] p-4 flex flex-col gap-2 shadow-sm h-full">
                       <div className="flex items-center gap-2 text-[#fd751f]">
-                        <span className="text-auto leading-none font-bold rotate-45">
-                          +
+                        <span className="text-auto leading-none font-extrabold rotate-90 border-2 rounded-full p-1 border-[#FD751F]!">
+                          <X size={16} className="text-[#FD751F]" />
                         </span>
                         <span className="text-[16px] font-semibold font-inter uppercase tracking-wide">
                           THE OLD WAY
@@ -129,8 +130,8 @@ const EfficiencySection = () => {
                     {/* New Way Card */}
                     <div className="bg-[#fff1e9] border border-[#fea369] rounded-[10px] p-4 flex flex-col gap-2 shadow-sm h-full">
                       <div className="flex items-center gap-2 text-[#fd751f]">
-                        <span className="text-auto leading-none font-bold">
-                          +
+                        <span className="text-auto leading-none font-extrabold rotate-90 border-2 rounded-full p-1 border-[#FD751F]!">
+                          <X size={16} className="text-[#FD751F]" />
                         </span>
                         <span className="text-[16px] font-semibold font-inter uppercase tracking-wide">
                           BACKLYST

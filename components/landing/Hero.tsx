@@ -23,13 +23,17 @@ const Hero = () => {
 
                 {/* Title */}
                 <div className="flex flex-col gap-3 items-center text-center font-sora font-semibold text-[60px] leading-[72px] tracking-[-1.2px] w-full">
-                  <h1 className="text-gray-900">Scale Your Backlinks.</h1>
-                  <h1 className="text-primary">Without The Hassle.</h1>
+                  <h1 className="text-gray-900 text-5xl md:text-6xl ">
+                    Scale Your Backlinks.
+                  </h1>
+                  <h1 className="text-primary text-2xl md:text-6xl">
+                    Without The Hassle.
+                  </h1>
                 </div>
               </div>
 
               {/* Subtitle */}
-              <p className="text-xl font-normal font-inter text-gray-900 leading-[30px] text-center max-w-[926px]">
+              <p className="md:text-xl font-normal font-inter text-gray-900 leading-[30px] text-center max-w-[926px]">
                 Connect with verified publishers, streamline outreach, manage
                 tasks, and grow organic authority with the world&apos;s first
                 automated back link procurement platform.
@@ -37,17 +41,17 @@ const Hero = () => {
             </div>
 
             {/* CTAs */}
-            <div className="flex gap-5 items-center">
+            <div className="grid md:grid-cols-2 gap-5 items-center flex-wrap">
               <Link
                 href="/signup"
-                className="flex gap-2.5 items-center justify-center bg-secondary hover:bg-brand-orange-600 text-white px-[30px] py-3.5 rounded-2xl font-semibold font-inter text-base leading-6 shadow-[0_3px_7px_0_rgba(0,0,0,0.1)] transition-all"
+                className="flex gap-2.5 items-center justify-center bg-secondary hover:bg-brand-orange-600 text-white px-7.5 py-3.5 rounded-2xl font-semibold font-inter text-base leading-6 shadow-[0_3px_7px_0_rgba(0,0,0,0.1)] transition-all"
               >
                 <span>GET STARTED FREE</span>
                 <ArrowRight className="w-6 h-6" />
               </Link>
               <Link
                 href="/how-it-works"
-                className="flex gap-2.5 items-center justify-center bg-white border border-[#FEA369]! text-secondary px-7.5 py-3.5 rounded-2xl font-semibold font-inter text-base leading-6 transition-all hover:bg-brand-orange-50"
+                className="flex gap-2.5  items-center justify-center bg-white border border-[#FEA369]! text-secondary px-7.5 py-3.5 rounded-2xl font-semibold font-inter text-base leading-6 transition-all hover:bg-brand-orange-50"
               >
                 <PlayCircle className="w-6 h-6" />
                 <span>WATCH DEMO</span>
@@ -56,7 +60,7 @@ const Hero = () => {
           </div>
 
           {/* Dashboard Preview */}
-          <div className="w-[874px] max-w-full h-auto overflow-hidden rounded-[20px] shadow-[0_-4px_30px_0_rgba(0,0,0,0.06)] relative">
+          <div className=" w-[874px] max-w-full h-auto overflow-hidden rounded-[20px] shadow-[0_-4px_30px_0_rgba(0,0,0,0.06)] relative">
             <div className="absolute inset-0 bg-white/20 rounded-[20px]" />
             <div className="absolute left-2 top-[7px] flex gap-1 items-center z-10">
               <div className="w-3.5 h-3.5 rounded-full bg-[#fecaca]" />
@@ -69,7 +73,7 @@ const Hero = () => {
               className="w-full h-auto relative"
             />
             {/* Floating Card */}
-            <div className="absolute left-6 top-1/2 -translate-y-1/2 bg-white rounded-2xl shadow-lg p-5 flex gap-2.5 items-start">
+            <div className="hidden md:absolute left-6 top-1/2 -translate-y-1/2 bg-white rounded-2xl shadow-lg p-5 flex gap-2.5 items-start">
               <div className="flex items-center -space-x-1.5 grayscale-0">
                 <div className="w-6 h-6 rounded-full bg-[#fca5a5] border-2 border-white z-0" />
                 <div className="w-6 h-6 rounded-full bg-[#fcd34d] border-2 border-white z-10" />
