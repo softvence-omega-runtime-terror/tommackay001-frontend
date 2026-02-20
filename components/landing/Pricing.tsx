@@ -138,7 +138,7 @@ const PricingCard = ({ tier }: { tier: PricingTier }) => {
       {/* Footer */}
       <div className="px-8 pb-8">
         <Link
-          href="/signup"
+          href="/auth/register"
           className={`block w-full text-center py-4 rounded-xl font-inter font-semibold text-base transition-all ${
             tier.highlighted
               ? "bg-secondary hover:bg-brand-orange-600 text-white"
@@ -181,7 +181,7 @@ const FreePlanCard = () => {
 
       {/* CTA */}
       <Link
-        href="/signup"
+        href="/auth/register"
         className="bg-primary hover:bg-brand-indigo-600 text-white px-10 py-4 rounded-xl font-inter font-semibold text-base transition-all"
       >
         Get started

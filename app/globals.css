@@ -230,3 +230,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   outline: none !important;
   box-shadow: none !important;
 }
+
+.input-focus-border {
+  @apply border border-transparent
+    focus:border-primary
+    focus:ring-0
+    focus:outline-none
+    focus-visible:ring-0
+    focus-visible:outline-none
+    transition-colors duration-200;
+}

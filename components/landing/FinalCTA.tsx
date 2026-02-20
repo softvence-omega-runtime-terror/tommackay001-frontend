@@ -22,7 +22,7 @@ const FinalCTA = () => {
 
           <div className="relative z-10 flex gap-5 items-center mt-4 flex-wrap justify-center">
             <Link
-              href="/signup"
+              href="/auth/register"
               className="flex gap-2.5 items-center justify-center bg-secondary   hover:bg-gray-50 text-white px-7.5 py-3.5 rounded-2xl font-semibold font-inter text-base leading-6 shadow-[0_3px_7px_0_rgba(0,0,0,0.1)] transition-all"
             >
               <FileCheck className="w-6 h-6" />

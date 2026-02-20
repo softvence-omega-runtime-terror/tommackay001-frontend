@@ -43,7 +43,7 @@ const Hero = () => {
             {/* CTAs */}
             <div className="grid md:grid-cols-2 gap-5 items-center flex-wrap">
               <Link
-                href="/signup"
+                href="/auth/register"
                 className="flex gap-2.5 items-center justify-center bg-secondary hover:bg-brand-orange-600 text-white px-7.5 py-3.5 rounded-2xl font-semibold font-inter text-base leading-6 shadow-[0_3px_7px_0_rgba(0,0,0,0.1)] transition-all"
               >
                 <span>GET STARTED FREE</span>

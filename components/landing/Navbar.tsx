@@ -5,15 +5,19 @@ import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import logo from "@/public/backlyst-logo.png";
+import { usePathname } from "next/navigation";
 
 const NAV_LINKS = ["Features", "Process", "Pricing", "FAQ"];
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const location = usePathname();
+
+  const isHidden = location.startsWith("/how-it-works");
 
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-white border-b border-gray-100">
-      <div className="max-w-[1320px] mx-auto h-20 flex items-center justify-between px-6">
+      <div className="max-w-330 mx-auto h-20 flex items-center justify-between px-6">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3">
           <Image
@@ -29,15 +33,25 @@ const Navbar = () => {
 
         {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-10">
-          {NAV_LINKS.map((item) => (
-            <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              className="text-base font-inter text-gray-900 hover:text-primary transition-colors"
+          {isHidden ||
+            NAV_LINKS.map((item) => (
+              <Link
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className="text-base font-inter text-gray-900 hover:text-primary transition-colors"
+              >
+                {item}
+              </Link>
+            ))}
+          {isHidden && (
+            <Link
+              href="/home"
+              onClick={() => setOpen(false)}
+              className="text-base font-inter text-gray-900 hover:text-primary"
             >
-              {item}
-            </a>
-          ))}
+              Home
+            </Link>
+          )}
         </div>
 
         {/* Desktop Auth */}
@@ -49,7 +63,7 @@ const Navbar = () => {
             Log In
           </Link>
           <Link
-            href="/signup"
+            href="/auth/register"
             className="bg-primary hover:bg-brand-indigo-600 text-white px-5 py-3 rounded-2xl font-semibold font-inter transition-all"
           >
             Get Started Free
@@ -70,16 +84,26 @@ const Navbar = () => {
       {open && (
         <div className="md:hidden bg-white border-t border-gray-100 shadow-lg">
           <div className="px-6 py-6 flex flex-col gap-6">
-            {NAV_LINKS.map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
+            {isHidden ||
+              NAV_LINKS.map((item) => (
+                <Link
+                  key={item}
+                  href={`#${item.toLowerCase()}`}
+                  onClick={() => setOpen(false)}
+                  className="text-base font-inter text-gray-900 hover:text-primary"
+                >
+                  {item}
+                </Link>
+              ))}
+            {isHidden && (
+              <Link
+                href="/home"
                 onClick={() => setOpen(false)}
                 className="text-base font-inter text-gray-900 hover:text-primary"
               >
-                {item}
-              </a>
-            ))}
+                Home
+              </Link>
+            )}
 
             <div className="pt-4 border-t border-gray-100 flex flex-col gap-4">
               <Link
@@ -90,7 +114,7 @@ const Navbar = () => {
                 Log In
               </Link>
               <Link
-                href="/signup"
+                href="/auth/register"
                 className="bg-primary text-white py-3 rounded-xl text-center font-semibold font-inter"
                 onClick={() => setOpen(false)}
               >

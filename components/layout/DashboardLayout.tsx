@@ -1,8 +1,5 @@
-"use client";
-
 import React from "react";
-import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { Link, useLocation, Outlet, useNavigate } from "react-router-dom";
 import {
   Search,
   Plus,
@@ -21,18 +18,16 @@ import {
 } from "lucide-react";
 import { useRole } from "@/context/RoleContext";
 
-import NotificationPopover from "./NotificationPopover";
+import NotificationPopover from "../dashboard/NotificationPopover";
 
-const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
-  const pathname = usePathname();
-  const router = useRouter();
+const DashboardLayout = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const { role, setRole } = useRole();
   const [isNotificationsOpen, setIsNotificationsOpen] = React.useState(false);
 
   // Determine current role from URL path
-  const isProviderRoute = pathname.startsWith("/provider");
+  const isProviderRoute = location.pathname.startsWith("/provider");
   const currentRole = isProviderRoute ? "provider" : "requester";
   const basePath = isProviderRoute ? "/provider" : "/requester";
 
@@ -46,14 +41,14 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
   const handleRoleSwitch = (newRole: "requester" | "provider") => {
     if (newRole === currentRole) return;
     setRole(newRole);
-    router.push(newRole === "provider" ? "/provider" : "/requester");
+    navigate(newRole === "provider" ? "/provider" : "/requester");
   };
 
   const handleCreateTask = () => {
     if (currentRole === "requester") {
-      router.push(`${basePath}/tasks/new`);
+      navigate(`${basePath}/tasks/new`);
     } else {
-      router.push(`${basePath}/opportunities`);
+      navigate(`${basePath}/opportunities`);
     }
   };
 
@@ -62,7 +57,7 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const handleLogout = () => {
-    router.push("/auth/login");
+    navigate("/login");
   };
 
   // Dynamic sidebar items based on role
@@ -116,8 +111,8 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
   const activeItem =
     sidebarItems.find(
       (item) =>
-        item.path === pathname ||
-        (item.path !== basePath && pathname.startsWith(item.path)),
+        item.path === location.pathname ||
+        (item.path !== basePath && location.pathname.startsWith(item.path)),
     ) || sidebarItems[0];
 
   return (
@@ -126,12 +121,12 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
       <aside className="w-[280px] bg-white border-r border-gray-100 flex flex-col fixed h-full z-20 shadow-[4px_0_24px_rgba(0,0,0,0.02)]">
         <div className="p-8 pb-12">
           <Link
-            href="/"
+            to="/"
             className="flex items-center gap-3 active:scale-95 transition-all"
           >
-            <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center overflow-hidden shadow-lg shadow-primary/20 p-1">
+            <div className="w-10 h-10 bg-brand-indigo-500 rounded-xl flex items-center justify-center overflow-hidden shadow-lg shadow-brand-indigo-500/20 p-1">
               <img
-                src="/backlyst-logo.png"
+                src="/assets/backlyst-logo.png"
                 alt="Backlyst"
                 className="w-full h-full object-contain brightness-0 invert"
               />
@@ -146,10 +141,10 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
           {sidebarItems.map((item) => (
             <Link
               key={item.label}
-              href={item.path}
+              to={item.path}
               className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-xl transition-all duration-300 group ${
                 activeItem.label === item.label
-                  ? "bg-brand-indigo-50 text-primary font-semibold"
+                  ? "bg-brand-indigo-50 text-brand-indigo-500 font-semibold"
                   : "text-gray-500 hover:bg-gray-50 hover:text-gray-700"
               }`}
             >
@@ -157,7 +152,7 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
                 size={20}
                 className={
                   activeItem.label === item.label
-                    ? "text-primary"
+                    ? "text-brand-indigo-500"
                     : "text-gray-400 group-hover:text-gray-600"
                 }
               />
@@ -173,7 +168,7 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
           >
             <div className="w-10 h-10 rounded-xl overflow-hidden ring-2 ring-white shadow-sm shrink-0 bg-gray-200 flex items-center justify-center">
               <img
-                src="/avatar-sisyphus.svg"
+                src="/assets/avatar-sisyphus.svg"
                 alt="User"
                 className="w-full h-full object-cover"
               />
@@ -216,7 +211,7 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
                 onClick={() => handleRoleSwitch("requester")}
                 className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
                   currentRole === "requester"
-                    ? "bg-primary text-white shadow-md"
+                    ? "bg-brand-indigo-500 text-white shadow-md"
                     : "text-gray-600 hover:text-gray-900"
                 }`}
               >
@@ -227,7 +222,7 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
                 onClick={() => handleRoleSwitch("provider")}
                 className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
                   currentRole === "provider"
-                    ? "bg-primary text-white shadow-md"
+                    ? "bg-brand-indigo-500 text-white shadow-md"
                     : "text-gray-600 hover:text-gray-900"
                 }`}
               >
@@ -238,7 +233,7 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
 
             {/* Credits Display - Clickable to Wallet */}
             <button
-              onClick={() => router.push(`${basePath}/wallet`)}
+              onClick={() => navigate(`${basePath}/wallet`)}
               className="flex items-center gap-2 bg-white border border-gray-200 px-4 py-2.5 rounded-full hover:border-brand-indigo-300 hover:bg-brand-indigo-50 transition-colors"
             >
               <Wallet className="w-4 h-4 text-gray-600" />
@@ -250,7 +245,7 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
             {/* Create Task Button (Requester) or Find Task (Provider) */}
             <button
               onClick={handleCreateTask}
-              className="flex items-center gap-2 bg-primary hover:bg-brand-indigo-600 text-white px-4 py-2.5 rounded-full text-sm font-medium transition-all shadow-md shadow-primary/20"
+              className="flex items-center gap-2 bg-brand-indigo-500 hover:bg-brand-indigo-600 text-white px-4 py-2.5 rounded-full text-sm font-medium transition-all shadow-md shadow-brand-indigo-500/20"
             >
               <Plus className="w-4 h-4" />
               {currentRole === "requester" ? "Create Task" : "Find Task"}
@@ -263,7 +258,7 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
                 className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors"
               >
                 <Bell className="w-5 h-5 text-gray-600" />
-                <span className="absolute top-1 right-1 w-2.5 h-2.5 bg-primary0 rounded-full border-2 border-white" />
+                <span className="absolute top-1 right-1 w-2.5 h-2.5 bg-brand-orange-500 rounded-full border-2 border-white" />
               </button>
               <NotificationPopover
                 isOpen={isNotificationsOpen}
@@ -274,7 +269,9 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
         </header>
 
         {/* Dynamic Content */}
-        <main className="flex-1 p-8">{children}</main>
+        <main className="flex-1 p-8">
+          <Outlet />
+        </main>
 
         {/* Footer */}
         <footer className="h-16 bg-white border-t border-gray-100 flex items-center justify-between px-8 shrink-0">
@@ -289,8 +286,8 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
             ].map((item) => (
               <Link
                 key={item.label}
-                href={item.path}
-                className="text-xs font-medium text-gray-400 hover:text-primary transition-colors"
+                to={item.path}
+                className="text-xs font-medium text-gray-400 hover:text-brand-indigo-500 transition-colors"
               >
                 {item.label}
               </Link>

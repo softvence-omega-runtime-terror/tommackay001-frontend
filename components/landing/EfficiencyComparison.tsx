@@ -65,7 +65,7 @@ const EfficiencyComparison = () => {
               <div className="mt-20 p-8 rounded-[32px] bg-white border border-gray-100 shadow-[0_24px_48px_rgba(0,0,0,0.04)] flex flex-col sm:flex-row items-center gap-6 transform transition-all duration-700 group-hover:scale-[1.03] group-hover:shadow-2xl group-hover:shadow-gray-900/5">
                 <div className="w-16 h-16 rounded-2xl overflow-hidden bg-gray-100 border-[3px] border-white shadow-lg shrink-0">
                   <img
-                    src="/assets/ca269fff9961afb9c6a84bffddcb988a6fad7166.png"
+                    src="/ca269fff9961afb9c6a84bffddcb988a6fad7166.png"
                     alt="User"
                     className="w-full h-full object-cover"
                   />
@@ -130,7 +130,7 @@ const EfficiencyComparison = () => {
               <div className="p-8 rounded-[32px] bg-white/10 border border-white/10 backdrop-blur-3xl flex flex-col sm:flex-row items-center gap-6 mt-auto transform transition-all duration-700 hover:bg-white/15 hover:scale-[1.02]">
                 <div className="w-16 h-16 rounded-2xl overflow-hidden bg-white/10 border-[3px] border-white/20 shadow-2xl shrink-0">
                   <img
-                    src="/assets/67da9fddd372b1b5b44ffef41eed6ceb810ddf8a.png"
+                    src="/67da9fddd372b1b5b44ffef41eed6ceb810ddf8a.png"
                     alt="User"
                     className="w-full h-full object-cover"
                   />

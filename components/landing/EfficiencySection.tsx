@@ -84,7 +84,7 @@ const EfficiencySection = () => {
                       </p>
                       <div className="flex items-center gap-4 w-full">
                         <img
-                          src="/assets/avatar-sisyphus.svg"
+                          src="/avatar-sisyphus.svg"
                           alt="Marcus Throne"
                           className="w-12 h-12 rounded-full object-cover ring-2 ring-white/10"
                         />
