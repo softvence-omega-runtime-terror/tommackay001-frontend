@@ -34,7 +34,7 @@ const InstructionPage = () => {
                 Learn how to use our marketplace filters to find the perfect
                 websites that match your business niche.
               </p>
-              <button className="flex items-center gap-2 text-[#331ffd] font-normal text-[14px] hover:underline group w-fit">
+              <button className="flex items-center gap-2 text-primary font-normal text-[14px] hover:underline group w-fit">
                 Click to watch full session
                 <ChevronRight
                   size={16}
@@ -61,7 +61,7 @@ const InstructionPage = () => {
                 Simple templates to reach out to editors and get your content
                 published effectively.
               </p>
-              <button className="flex items-center gap-2 text-[#331ffd] font-normal text-[14px] hover:underline group w-fit">
+              <button className="flex items-center gap-2 text-primary font-normal text-[14px] hover:underline group w-fit">
                 Click to watch full session
                 <ChevronRight
                   size={16}
@@ -88,7 +88,7 @@ const InstructionPage = () => {
                 Understand the metrics that matter and how to track your new
                 traffic sources.
               </p>
-              <button className="flex items-center gap-2 text-[#331ffd] font-normal text-[14px] hover:underline group w-fit">
+              <button className="flex items-center gap-2 text-primary font-normal text-[14px] hover:underline group w-fit">
                 Click to watch full session
                 <ChevronRight
                   size={16}

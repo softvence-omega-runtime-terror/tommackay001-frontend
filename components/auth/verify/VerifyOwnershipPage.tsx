@@ -144,9 +144,9 @@ const VerifyOwnershipPage = () => {
             >
               <div className="p-0.5 rounded-md">
                 {selectedMethod === "dns" ? (
-                  <Globe className="text-[#331FFD]" size={24} />
+                  <Globe className="text-primary" size={24} />
                 ) : (
-                  <Globe className="text-[#331FFD]" size={24} />
+                  <Globe className="text-primary" size={24} />
                 )}
               </div>
               <div className="flex-1 flex flex-col items-start gap-1">
@@ -197,9 +197,9 @@ const VerifyOwnershipPage = () => {
             >
               <div className="p-0.5 rounded-md">
                 {selectedMethod === "screenshot" ? (
-                  <FileImage className="text-[#331FFD]" size={24} />
+                  <FileImage className="text-primary" size={24} />
                 ) : (
-                  <FileImage className="text-[#331FFD]" size={24} />
+                  <FileImage className="text-primary" size={24} />
                 )}
               </div>
               <div className="flex-1 flex flex-col items-start gap-1">

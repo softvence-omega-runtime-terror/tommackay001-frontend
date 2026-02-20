@@ -137,7 +137,7 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
               href={item.path}
               className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-sm  transition-all duration-300 group ${
                 activeItem.label === item.label
-                  ? "bg-[#EBE9FF] text-[#331FFD]/90 font-semibold border-l-4 border-primary transition-all duration-200"
+                  ? "bg-[#EBE9FF] text-primary/90 font-semibold border-l-4 border-primary transition-all duration-200"
                   : "text-gray-500 hover:bg-gray-50 hover:text-gray-700 pl-2 transition-all duration-200"
               }`}
             >

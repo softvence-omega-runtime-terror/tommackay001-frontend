@@ -61,7 +61,7 @@ const ConnectWebsiteModal: React.FC<ConnectWebsiteModalProps> = ({
   const renderStep1 = () => (
     <>
       <div className="w-12 h-12 bg-[#e0eaff] border-8 border-[#ebe9ff] rounded-xl flex items-center justify-center mx-auto">
-        <ShieldCheck size={24} className="text-[#331ffd]" />
+        <ShieldCheck size={24} className="text-primary" />
       </div>
 
       <div className="text-center space-y-2">
@@ -176,7 +176,7 @@ const ConnectWebsiteModal: React.FC<ConnectWebsiteModalProps> = ({
   const renderStep2 = () => (
     <>
       <div className="w-12 h-12 bg-[#e0eaff] border-8 border-[#ebe9ff] rounded-xl flex items-center justify-center mx-auto">
-        <ShieldCheck size={24} className="text-[#331ffd]" />
+        <ShieldCheck size={24} className="text-primary" />
       </div>
 
       <div className="text-center space-y-2">

@@ -3,7 +3,6 @@
 import {
   Layers,
   CheckCircle,
-  Shield,
   Database,
   Eye,
   MessageSquare,
@@ -61,7 +60,7 @@ const ProviderDashboardHome = () => {
               <h1 className="text-[30px] font-semibold font-sora text-[#181d27] leading-9.5">
                 Welcome back, Alex
               </h1>
-              <span className="px-5 py-2.5 bg-[#ebe9ff] text-[#331ffd] rounded-full text-sm font-medium">
+              <span className="px-5 py-2.5 bg-[#ebe9ff] text-primary rounded-full text-sm font-medium">
                 Provider
               </span>
             </div>
@@ -72,7 +71,7 @@ const ProviderDashboardHome = () => {
           </p>
         </div>
         <div className="flex flex-col gap-5 items-end">
-          <button className="px-5 py-3 bg-[#ebe9ff] text-[#331ffd] rounded-full text-sm font-medium hover:bg-[#ddd8ff] transition-colors">
+          <button className="px-5 py-3 bg-[#ebe9ff] text-primary rounded-full text-sm font-medium hover:bg-[#ddd8ff] transition-colors">
             REFERRALS
           </button>
           <div className="flex items-center gap-5">
@@ -174,7 +173,7 @@ const ProviderDashboardHome = () => {
             </div>
 
             <div className="mt-6 pt-4 border-t border-[#e9eaeb]">
-              <button className="w-full flex items-center justify-between text-sm font-medium text-[#535862] hover:text-[#331ffd]">
+              <button className="w-full flex items-center justify-between text-sm font-medium text-[#535862] hover:text-primary">
                 <span>BADGES & LEVEL</span>
                 <ChevronRight className="w-5 h-5" />
               </button>
@@ -233,10 +232,10 @@ const ProviderDashboardHome = () => {
                     <StatusBadge status={task.status} />
                   </div>
                   <div className="flex items-center justify-end gap-2 ">
-                    <button className="text-[#535862] hover:text-[#331ffd]">
+                    <button className="text-[#535862] hover:text-primary">
                       <Eye className="w-5 h-5" />
                     </button>
-                    <button className="text-[#535862] hover:text-[#331ffd]">
+                    <button className="text-[#535862] hover:text-primary">
                       <MessageSquare className="w-5 h-5" />
                     </button>
                   </div>

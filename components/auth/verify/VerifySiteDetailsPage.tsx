@@ -98,7 +98,7 @@ const VerifySiteDetailsPage = () => {
               <div className="relative group">
                 <Globe
                   size={20}
-                  className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#331FFD]"
+                  className="absolute left-3.5 top-1/2 -translate-y-1/2 text-primary"
                 />
                 <Input
                   id="url"
@@ -124,7 +124,7 @@ const VerifySiteDetailsPage = () => {
                 <div className="relative group">
                   <Layers
                     size={20}
-                    className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#331FFD]"
+                    className="absolute left-3.5 top-1/2 -translate-y-1/2 text-primary"
                   />
                   <select
                     id="industry"
@@ -168,7 +168,7 @@ const VerifySiteDetailsPage = () => {
                 <div className="relative group">
                   <MapPin
                     size={20}
-                    className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#331FFD]"
+                    className="absolute left-3.5 top-1/2 -translate-y-1/2 text-primary"
                   />
                   <select
                     id="country"

@@ -72,7 +72,7 @@ const Pagination: React.FC<PaginationProps> = ({
             typeof item === "string" ? (
               <span
                 key={i}
-                className="px-3 py-1.5 text-sm font-medium text-gray-400 cursor-default"
+                className="px-3 cursor-pointer py-1.5 text-sm font-medium text-gray-400 cursor-default"
               >
                 {item}
               </span>
@@ -80,9 +80,9 @@ const Pagination: React.FC<PaginationProps> = ({
               <button
                 key={i}
                 onClick={() => onPageChange(item)}
-                className={`px-3 py-1.5 text-sm font-medium rounded ${
+                className={`px-3 py-1.5 text-sm  cursor-pointer font-medium rounded ${
                   item === currentPage
-                    ? "bg-[#f9f5ff] text-[#331ffd]"
+                    ? "bg-[#f9f5ff] text-primary"
                     : "text-[#414651] hover:bg-gray-50"
                 }`}
               >
@@ -96,7 +96,7 @@ const Pagination: React.FC<PaginationProps> = ({
         <Button
           variant="outline"
           onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
-          className={`p-1.5 hover:bg-gray-100  border border-[#e9eaeb] flex gap-2 rounded-lg px-4 justify-center items-center ${
+          className={`p-1.5 hover:bg-gray-100 cursor-pointer  border border-[#e9eaeb] flex gap-2 rounded-lg px-4 justify-center items-center ${
             currentPage === totalPages ? "opacity-50 cursor-not-allowed" : ""
           }`}
         >

@@ -34,7 +34,7 @@ const VerifySuccessPage = () => {
           <div className=" flex justify-center items-center w-full h-39.25 bg-[#ebe9ff] border-b border-[#d5d7da] rounded-[22px] relative overflow-hidden shrink-0">
             <ShieldCheck
               size={64}
-              className="text-[#331ffd] w-18 bg-white p-4 rounded-2xl"
+              className="text-primary w-18 bg-white p-4 rounded-2xl"
             />
           </div>
 

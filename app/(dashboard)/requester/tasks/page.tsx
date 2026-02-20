@@ -9,8 +9,6 @@ import {
   Shield,
   ChevronLeft,
   ChevronRight,
-  MessagesSquare,
-  MessagesSquareIcon,
 } from "lucide-react";
 import Pagination from "@/components/ui/Pagination";
 
@@ -24,6 +22,8 @@ interface Job {
   notes: boolean;
   earnings: number;
   status: string;
+  applicants: number;
+  assignedProvider?: string;
 }
 
 const jobs: Job[] = [
@@ -37,6 +37,8 @@ const jobs: Job[] = [
     notes: true,
     earnings: 95,
     status: "COMPLETED",
+    applicants: 3,
+    assignedProvider: "John Smith",
   },
   {
     type: "Backlink Insertion",
@@ -47,7 +49,9 @@ const jobs: Job[] = [
     snapshot: ["DOFOLLOW", "INSERTION ONLY"],
     notes: true,
     earnings: 45,
-    status: "AVAILABLE TO APPLY",
+    status: "WAITING FOR APPLICANTS",
+    applicants: 0,
+    assignedProvider: undefined,
   },
   {
     type: "Guest Post Placement",
@@ -58,7 +62,9 @@ const jobs: Job[] = [
     snapshot: ["DOFOLLOW", "CONTENT INC."],
     notes: false,
     earnings: 80,
-    status: "SUBMITTED",
+    status: "APPLIED",
+    applicants: 5,
+    assignedProvider: "Sarah Johnson",
   },
   {
     type: "Niche Edit",
@@ -69,7 +75,9 @@ const jobs: Job[] = [
     snapshot: ["DOFOLLOW", "INSERTION ONLY"],
     notes: false,
     earnings: 120,
-    status: "APPLIED",
+    status: "IN PROGRESS (PROVIDER WORKING)",
+    applicants: 2,
+    assignedProvider: "Mike Chen",
   },
   {
     type: "Guest Post Placement",
@@ -80,7 +88,9 @@ const jobs: Job[] = [
     snapshot: ["DOFOLLOW", "CONTENT INC."],
     notes: false,
     earnings: 110,
-    status: "IN PROGRESS",
+    status: "IN PROGRESS (PROVIDER WORKING)",
+    applicants: 4,
+    assignedProvider: "Emily Davis",
   },
 ];
 
@@ -108,27 +118,23 @@ const ProviderMyJobs = () => {
     if (!matchesSearch) return false;
 
     if (activeTab === "ALL") return true;
-    if (activeTab === "AVAILABLE") return job.status === "AVAILABLE TO APPLY";
+    if (activeTab === "AVAILABLE")
+      return job.status === "WAITING FOR APPLICANTS";
     if (activeTab === "APPLIED") return job.status === "APPLIED";
-    if (activeTab === "ASSIGNED") return false; // No assigned jobs in demo data
-    if (activeTab === "IN PROGRESS") return job.status === "IN PROGRESS";
-    if (activeTab === "SUBMITTED") return job.status === "SUBMITTED";
+    if (activeTab === "ASSIGNED") return job.assignedProvider !== undefined;
+    if (activeTab === "IN PROGRESS")
+      return job.status === "IN PROGRESS (PROVIDER WORKING)";
+    if (activeTab === "SUBMITTED") return job.status === "COMPLETED";
 
     return true;
   });
 
   const statusStyles: Record<string, string> = {
     COMPLETED: "bg-emerald-100 text-emerald-700",
-    "AVAILABLE TO APPLY": "bg-amber-100 text-amber-700",
-    SUBMITTED: "bg-rose-100 text-rose-700",
+    "WAITING FOR APPLICANTS": "bg-amber-100 text-amber-700",
     APPLIED: "bg-zinc-100 text-zinc-700",
-    "IN PROGRESS": "bg-indigo-100 text-indigo-700",
+    "IN PROGRESS (PROVIDER WORKING)": "bg-indigo-100 text-indigo-700",
   };
-
-  const tagStyle =
-    "px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-medium rounded-full";
-  const notesStyle =
-    "px-3 py-1 bg-emerald-100 text-emerald-700 text-xs font-medium rounded-full";
 
   return (
     <div className="flex flex-col gap-6 font-inter">
@@ -182,19 +188,19 @@ const ProviderMyJobs = () => {
           <thead>
             <tr className="border-b border-[#e2e2e2] ">
               <th className="py-6 px-6 text-left text-xs font-semibold text-[#535862] uppercase tracking-wider">
-                PLACEMENT REQUIREMENTS
+                PLACEMENT DETAILS
               </th>
               <th className="py-6 px-6 text-left text-xs font-semibold text-[#535862] uppercase tracking-wider">
-                REQUIREMENTS SNAPSHOT
+                LIFECYCLE STATUS
+              </th>
+              <th className="py-6 px-6 text-center text-xs font-semibold text-[#535862] uppercase tracking-wider">
+                APPLICANTS
               </th>
               <th className="py-6 px-6 text-left text-xs font-semibold text-[#535862] uppercase tracking-wider">
-                EARNINGS (CR)
+                ASSIGNED PROVIDER
               </th>
-              <th className="py-6 px-6 text-left text-xs font-semibold text-[#535862] uppercase tracking-wider">
-                WORK STATUS
-              </th>
-              <th className="py-6 px-6  text-left text-xs font-semibold text-[#535862] uppercase tracking-wider">
-                Action
+              <th className="py-6 px-6 text-right text-xs font-semibold text-[#535862] uppercase tracking-wider">
+                ACTIONS
               </th>
             </tr>
           </thead>
@@ -205,7 +211,7 @@ const ProviderMyJobs = () => {
                   key={job.id}
                   className="hover:bg-[#fafafa] transition-colors"
                 >
-                  {/* Placement Requirements */}
+                  {/* Placement Details */}
                   <td className="py-7 px-6">
                     <div className="font-semibold text-[#181d27] text-[15px]">
                       {job.type}
@@ -220,35 +226,11 @@ const ProviderMyJobs = () => {
                     </div>
                     <div className="flex items-center gap-1.5 mt-3 text-xs text-[#535862]">
                       <Calendar className="w-4 h-4" />
-                      ID-{job.id} DUE {job.due}
+                      ID-{job.id}
                     </div>
                   </td>
 
-                  {/* Snapshot */}
-                  <td className="py-7 px-6">
-                    <div className="flex flex-wrap gap-2">
-                      {job.snapshot.map((tag, index) => (
-                        <div key={index} className={tagStyle}>
-                          {tag}
-                        </div>
-                      ))}
-                      {job.notes && <div className={notesStyle}>NOTES</div>}
-                    </div>
-                  </td>
-
-                  {/* Earnings */}
-                  <td className="py-7 px-6 ">
-                    <div className="text-gray-800 font-semibold text-2xl tracking-tight">
-                      +{job.earnings}.00
-                    </div>
-                    <div className="text-xs text-[#535862] mt-1 leading-tight">
-                      EARNED ON APPROVAL
-                      <br />
-                      NON-WITHDRAWABLE
-                    </div>
-                  </td>
-
-                  {/* Status */}
+                  {/* Lifecycle Status */}
                   <td className="py-7 px-6">
                     <div
                       className={`inline-flex items-center px-5 py-1.5 rounded-full text-xs font-semibold ${statusStyles[job.status]}`}
@@ -257,14 +239,39 @@ const ProviderMyJobs = () => {
                     </div>
                   </td>
 
+                  {/* Applicants */}
+                  <td className="py-7 px-6 text-center">
+                    <div className="text-[#181d27] font-semibold text-lg">
+                      {job.applicants}
+                    </div>
+                    <div className="text-xs text-[#535862] mt-1">
+                      {job.applicants === 1 ? "applicant" : "applicants"}
+                    </div>
+                  </td>
+
+                  {/* Assigned Provider */}
+                  <td className="py-7 px-6">
+                    {job.assignedProvider ? (
+                      <div>
+                        <div className="text-sm font-medium text-[#181d27]">
+                          {job.assignedProvider}
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="text-sm text-[#9ca3af] italic">
+                        Unassigned
+                      </div>
+                    )}
+                  </td>
+
                   {/* Actions */}
-                  <td className="py-7 px-6 flex  items-baseline">
+                  <td className="py-7 px-6">
                     <div className="flex items-center gap-5 justify-end">
-                      <button className="text-[#2AB516] cursor-pointer hover:text-[#2ad110] transition-colors">
+                      <button className="text-[#535862] hover:text-[#6366f1] transition-colors">
                         <Eye className="w-5 h-5" />
                       </button>
-                      <button className="text-[#9E77ED] cursor-pointer hover:text-[#6366f1] transition-colors">
-                        <MessagesSquareIcon className="w-5 h-5" />
+                      <button className="text-[#535862] hover:text-[#6366f1] transition-colors">
+                        <ExternalLink className="w-5 h-5" />
                       </button>
                     </div>
                   </td>
@@ -293,7 +300,7 @@ const ProviderMyJobs = () => {
 
       {/* Marketplace Governance Note */}
       <div className="bg-[#fff9ed] border border-[#ffe4b3] rounded-2xl p-6 flex gap-4">
-        <Shield className="w-6 h-6 text-[#f59e0b] mt-0.5 shrink-0" />
+        <Shield className="w-6 h-6 text-[#f59e0b] mt-0.5 flex-shrink-0" />
         <div>
           <div className="uppercase text-[#f59e0b] text-xs font-semibold tracking-widest">
             MARKETPLACE GOVERNANCE &amp; FULFILMENT

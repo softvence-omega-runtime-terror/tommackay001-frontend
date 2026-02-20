@@ -120,7 +120,7 @@ const RequesterDashboardHome = () => {
               <h1 className="text-[30px] font-semibold font-sora text-[#181d27] leading-[38px]">
                 Welcome back, Alex
               </h1>
-              <span className="px-5 py-2.5 bg-[#ebe9ff] text-[#331ffd] rounded-full text-sm font-medium">
+              <span className="px-5 py-2.5 bg-[#ebe9ff] text-primary rounded-full text-sm font-medium">
                 REQUESTER
               </span>
             </div>
@@ -131,7 +131,7 @@ const RequesterDashboardHome = () => {
           </p>
         </div>
         <div className="flex flex-col gap-5 items-end">
-          <button className="px-5 py-3 bg-[#ebe9ff] text-[#331ffd] rounded-full text-sm font-medium hover:bg-[#ddd8ff] transition-colors">
+          <button className="px-5 py-3 bg-[#ebe9ff] text-primary rounded-full text-sm font-medium hover:bg-[#ddd8ff] transition-colors">
             REFER A FRIEND
           </button>
           <div className="flex items-center gap-5">
@@ -274,10 +274,10 @@ const RequesterDashboardHome = () => {
                 )}
               </div>
               <div className="flex-1 px-5 py-4 flex items-center justify-center gap-5">
-                <button className="text-[#535862] hover:text-[#331ffd] transition-colors">
+                <button className="text-[#535862] hover:text-primary transition-colors">
                   <Eye className="w-5 h-5" />
                 </button>
-                <button className="text-[#535862] hover:text-[#331ffd] transition-colors">
+                <button className="text-[#535862] hover:text-primary transition-colors">
                   <MessageSquare className="w-5 h-5" />
                 </button>
               </div>
@@ -297,7 +297,7 @@ const RequesterDashboardHome = () => {
                 key={i}
                 className={`w-10 h-10 rounded-lg text-sm font-medium ${
                   page === 1
-                    ? "bg-[#f9f5ff] text-[#331ffd]"
+                    ? "bg-[#f9f5ff] text-primary"
                     : "text-[#414651] hover:bg-gray-100"
                 } transition-colors`}
               >
