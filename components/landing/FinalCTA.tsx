@@ -15,6 +15,7 @@ interface CTASectionProps {
   description: string;
   primaryAction: CTAButton;
   secondaryAction?: CTAButton;
+  className?: string;
 }
 
 const CTASection: React.FC<CTASectionProps> = ({
@@ -22,10 +23,11 @@ const CTASection: React.FC<CTASectionProps> = ({
   description,
   primaryAction,
   secondaryAction,
+  className = "md:max-w-330",
 }) => {
   return (
-    <section className="py-12.5 px-1 md:px-6">
-      <div className="md:max-w-330 mx-auto">
+    <section className={`py-12.5 px-1 md:px-6 `}>
+      <div className={` mx-auto ${className}`}>
         <div className="bg-[#FFF1E9] rounded-2xl p-6 md:p-12 flex flex-col gap-5 items-center text-center relative overflow-hidden">
           {/* Decorative Circles */}
           <div className="absolute -bottom-20 -left-15 w-40 h-40 rounded-full border border-white/20 pointer-events-none bg-[#FED4BA]" />

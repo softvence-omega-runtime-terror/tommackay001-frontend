@@ -18,6 +18,9 @@ import { StatusBadge } from "@/components/ui/common/StatusBadge";
 import ActionLink from "@/components/ui/ActionLink";
 import { Button } from "@/components/ui/Button";
 import Pagination from "@/components/ui/Pagination";
+import checkboxImage from "@/public/dashboard/provider/Checkbox.png";
+import checkboxBaseImage from "@/public/dashboard/provider/_Checkbox base.png";
+import Image from "next/image";
 
 const activeDeliveries = [
   {
@@ -26,6 +29,7 @@ const activeDeliveries = [
     reward: "120 Credits",
     timeLeft: "2h 15m",
     status: "IN PROGRESS",
+    image: checkboxImage,
   },
   {
     title: "Backlink Placement (DA+)",
@@ -33,6 +37,7 @@ const activeDeliveries = [
     reward: "45 Credits",
     timeLeft: "1d 4h",
     status: "AVAILABLE TO APPLY",
+    image: checkboxBaseImage,
   },
   {
     title: "Backlink Placement (DA 70+)",
@@ -40,6 +45,7 @@ const activeDeliveries = [
     reward: "210 Credits",
     timeLeft: "3d 12h",
     status: "IN PROGRESS",
+    image: checkboxImage,
   },
 ];
 
@@ -199,7 +205,11 @@ const ProviderDashboardHome = () => {
                   {/* Placeholder icon / logo */}
                   <div className="flex col-span-2 gap-4">
                     <div className="w-12 h-12  rounded-lg bg-gray-100 flex items-center justify-center text-2xl">
-                      {task.title.charAt(0)}
+                      <Image
+                        src={task.image}
+                        alt={task.title}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                     <div className="flex flex-col">
                       <p className="font-medium text-[#181d27]">{task.title}</p>

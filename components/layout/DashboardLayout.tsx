@@ -19,6 +19,7 @@ import { useRole } from "@/context/RoleContext";
 import DashboardHeader from "./DashboardHeader";
 import logo from "@/public/backlyst-logo.png";
 import Image from "next/image";
+import avatarImage from "@/public/avatar/sisyphus.png";
 
 const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -62,7 +63,7 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
     currentRole === "provider"
       ? [
           { icon: Home, label: "Dashboard", path: basePath },
-          { icon: Layout, label: "My Tasks", path: `${basePath}/tasks` },
+          { icon: Layout, label: "My Job", path: `${basePath}/tasks` },
           {
             icon: Briefcase,
             label: "Opportunity Board",
@@ -115,7 +116,7 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
   return (
     <div className="flex min-h-screen bg-[#F9FAFB] font-inter overflow-x-hidden">
       {/* Sidebar */}
-      <aside className="w-[280px] bg-white border-r border-gray-100 flex flex-col fixed h-full z-20 shadow-[4px_0_24px_rgba(0,0,0,0.02)]">
+      <aside className="w-70 bg-white border-r border-gray-100 flex flex-col fixed h-full z-20 shadow-[4px_0_24px_rgba(0,0,0,0.02)]">
         <div className="p-8 pb-12">
           <Link href="/" className="flex items-center gap-3">
             <Image
@@ -159,9 +160,11 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
             onClick={handleLogout}
             className="flex items-center gap-4 bg-gray-50 p-4 rounded-2xl hover:bg-red-50 transition-colors cursor-pointer group border border-transparent hover:border-red-100"
           >
-            <div className="w-10 h-10 rounded-xl overflow-hidden ring-2 ring-white shadow-sm shrink-0 bg-gray-200 flex items-center justify-center">
-              <img
-                src="/avatar-sisyphus.svg"
+            <div className="w-12 h-12  flex items-center justify-center">
+              <Image
+                width={200}
+                height={200}
+                src={avatarImage}
                 alt="User"
                 className="w-full h-full object-cover"
               />
@@ -183,7 +186,7 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
       </aside>
 
       {/* Main */}
-      <div className="flex-1 ml-[280px] flex flex-col min-h-screen">
+      <div className="flex-1 ml-70 flex flex-col min-h-screen">
         <DashboardHeader
           currentRole={currentRole}
           basePath={basePath}
