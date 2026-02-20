@@ -32,7 +32,7 @@ const NotFoundPage = () => {
             <Link href="javascript:history.back()">
               <Button
                 variant="outline"
-                className="min-w-[160px] md:min-w-[180px] cursor-pointer px-8 py-6 md:py-7 text-base font-semibold rounded-xl md:rounded-2xl border-gray-400 text-gray-800 hover:bg-gray-50 flex items-center gap-2 shadow-sm transition-all"
+                className="min-w-40 md:min-w-45 cursor-pointer px-8 py-6 md:py-7 text-base font-semibold rounded-xl md:rounded-2xl border-gray-400 text-gray-800 hover:bg-gray-50 flex items-center gap-2 shadow-sm transition-all"
               >
                 <ArrowLeft size={18} />
                 Go back
@@ -40,7 +40,7 @@ const NotFoundPage = () => {
             </Link>
 
             <Link href="/">
-              <Button className="min-w-[160px] md:min-w-[180px] cursor-pointer px-8 py-6 md:py-7 text-base font-semibold rounded-xl md:rounded-2xl bg-secondary hover:bg-orange-600/90 text-white flex items-center gap-2 shadow-md shadow-secondary/30 transition-all hover:scale-[1.02]">
+              <Button className="min-w-40 md:min-w-45 cursor-pointer px-8 py-6 md:py-7 text-base font-semibold rounded-xl md:rounded-2xl bg-secondary hover:bg-orange-600/90 text-white flex items-center gap-2 shadow-md shadow-secondary/30 transition-all hover:scale-[1.02]">
                 <Home size={18} />
                 Take me home
               </Button>

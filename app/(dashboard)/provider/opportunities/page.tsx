@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useState } from "react";
@@ -13,27 +14,31 @@ import {
   CircleAlert,
 } from "lucide-react";
 
-import alphaImage from "@/public/dashbaord/provider/opportunity/company-alpha.png";
-import growthImage from "@/public/dashbaord/provider/opportunity/Growth.png";
+import alphaImage from "@/public/dashboard/provider/opportunity/company-alpha.png";
+import growthImage from "@/public/dashboard/provider/opportunity/Growth.png";
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
+import { OpportunityDetailModal } from "@/components/dashboard/provider/opportunity/OpportunityDetailModal";
+import OpportunitySuccessModal from "@/components/dashboard/provider/opportunity/OpportunitySuccessModal";
+import CTASection from "@/components/landing/FinalCTA";
 
-// Mock opportunity data
 const opportunities = [
   {
     id: 1,
     company: "Alpha Brands Inc.",
     logo: alphaImage,
     rating: 4.9,
-    reviews: 124,
+    reviews: 102,
     daysLeft: 5,
     type: "GUEST POST PLACEMENT",
     industry: "TECHNOLOGY",
-    title: "High Authority Saas Guest Post",
-    website: "SaaSFlow.io",
+    title: "Guest Post Placement - 'Startupy.io'",
+    website: "Startupy.io",
     description:
-      '"Looking for a contextually relevant placement on a high-DR technology blog to support our Q4 scaning initiaitve."',
-    credits: "+120.00 CR",
+      '"Looking for a contextually relevant placement on a high-DR technology blog to support our Q4 scanning initiative."',
+    credits: "+10.00 CR",
+    deadline: "Oct 28, 2026",
+    targetUrl: "https://startuply.io.com",
   },
   {
     id: 2,
@@ -49,36 +54,8 @@ const opportunities = [
     description:
       '"Seeking a link insertion into an existing article related to digital strategy and SEO trends."',
     credits: "+45.00 CR",
-  },
-  {
-    id: 3,
-    company: "Web3 Ventures",
-    logo: alphaImage,
-    rating: 4.9,
-    reviews: 124,
-    daysLeft: 3,
-    type: "GUEST POST PLACEMENT",
-    industry: "CRYPTO",
-    title: "High Authority Crypto Guest Post",
-    website: "CryptoTrends.io",
-    description:
-      '"Looking for a contextually relevant placement on a high-DR crypto blog to support our Q1 launch."',
-    credits: "+85.00 CR",
-  },
-  {
-    id: 4,
-    company: "HealthFirst Media",
-    logo: growthImage,
-    rating: 4.8,
-    reviews: 89,
-    daysLeft: 7,
-    type: "LINK INSERT",
-    industry: "HEALTH",
-    title: "Health Blog Link Insertion",
-    website: "HealthDaily.com",
-    description:
-      '"Need a quality link insertion in an existing health and wellness article."',
-    credits: "+55.00 CR",
+    deadline: "Oct 15, 2026",
+    targetUrl: "https://marketingpulse.com",
   },
 ];
 
@@ -102,7 +79,17 @@ const ProviderOpportunityBoard = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCountries, setSelectedCountries] = useState(countries);
   const [selectedIndustries, setSelectedIndustries] = useState(industries);
-  //   const [minDR, setMinDR] = useState(50);
+  const [selectedOpportunity, setSelectedOpportunity] = useState<any>(null);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+
+  const handleApplyForTask = () => {
+    setSelectedOpportunity(null);
+    setShowSuccessModal(true);
+  };
+
+  const handleCloseSuccessModal = () => {
+    setShowSuccessModal(false);
+  };
 
   return (
     <div className="flex flex-col gap-17.5">
@@ -367,7 +354,11 @@ const ProviderOpportunityBoard = () => {
                   </div>
 
                   {/* Apply Button */}
-                  <Button variant="secondary" className="rounded-xl">
+                  <Button
+                    variant="secondary"
+                    className="rounded-xl"
+                    onClick={() => setSelectedOpportunity(opp)}
+                  >
                     VIEW DETAILS & APPLY
                     <ArrowRight className="w-5 h-5" />
                   </Button>
@@ -377,6 +368,32 @@ const ProviderOpportunityBoard = () => {
           </div>
         </div>
       </div>
+
+      <CTASection
+        title="Ready to grow your authority?"
+        className="min-w-340"
+        description="We’ve detected 14 more high-DR opportunities matching your verified domain profiles."
+        primaryAction={{
+          label: "LOAD MORE DISCOVERIES",
+          href: "/auth/register",
+        }}
+      />
+
+      {/* Modal */}
+      {selectedOpportunity && (
+        <OpportunityDetailModal
+          isOpen={!!selectedOpportunity}
+          onClose={() => setSelectedOpportunity(null)}
+          onApply={handleApplyForTask}
+          opportunity={selectedOpportunity}
+        />
+      )}
+
+      {/* Success Modal */}
+      <OpportunitySuccessModal
+        isOpen={showSuccessModal}
+        onClose={handleCloseSuccessModal}
+      />
     </div>
   );
 };
