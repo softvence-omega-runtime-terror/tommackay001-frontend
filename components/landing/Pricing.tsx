@@ -62,10 +62,10 @@ const tiers: PricingTier[] = [
 
 const Pricing = () => {
   return (
-    <section id="pricing" className="py-[100px] px-6 bg-[#fdfdff] ">
+    <section id="pricing" className="py-10 md:py-25 px-6 bg-[#fdfdff] ">
       <div className="max-w-330 mx-auto flex flex-col gap-20 items-center justify-center">
         {/* Heading */}
-        <h2 className="font-sora font-semibold text-3xl leading-12  md:text-[48px] md:leading-[60px] tracking-[-0.96px] text-gray-900 text-center">
+        <h2 className="font-sora font-semibold text-3xl leading-12  md:text-[48px] md:leading-15 tracking-[-0.96px] text-gray-900 text-center">
           Transparent Pricing
         </h2>
 

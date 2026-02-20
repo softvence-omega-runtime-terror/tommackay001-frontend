@@ -22,7 +22,7 @@ const comparisonItems = [
 
 const EfficiencySection = () => {
   return (
-    <section className="py-[100px] px-6 bg-white">
+    <section className="py-10 md:py-25 px-6 bg-white">
       <div className="max-w-[1320px] mx-auto">
         <div className="flex flex-col gap-20 items-start w-full">
           {/* Section Heading */}

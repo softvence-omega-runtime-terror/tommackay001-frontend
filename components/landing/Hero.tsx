@@ -5,15 +5,15 @@ import bannerImage from "@/public/hero-dashboard.jpg";
 
 const Hero = () => {
   return (
-    <section className="pt-[180px] pb-[100px] px-6 bg-[#fdfdff]">
-      <div className="max-w-[1320px] mx-auto flex flex-col items-center">
+    <section className="pt-28 md:pt-45 pb-25 px-6 bg-[#fdfdff]">
+      <div className="max-w-330 mx-auto flex flex-col items-center">
         {/* Content Wrapper */}
-        <div className="flex flex-col gap-[60px] items-center w-full">
+        <div className="flex flex-col gap-15 items-center w-full">
           {/* Text Content */}
-          <div className="flex flex-col gap-[60px] items-center w-[926px] max-w-full">
+          <div className="flex flex-col gap-15 items-center w-231.5 max-w-full">
             {/* Heading Group */}
             <div className="flex flex-col gap-5 items-center justify-center w-full">
-              <div className="flex flex-col gap-5 items-center w-[746px] max-w-full">
+              <div className="flex flex-col gap-5 items-center w-186.5 max-w-full">
                 {/* Tagline */}
                 <div className="inline-flex items-center justify-center bg-[#FFF1E9] border border-[#FEA369] rounded-[30px] px-4 py-2">
                   <span className="text-xs font-medium font-inter text-[#FD751F] leading-4.5">

@@ -24,7 +24,7 @@ const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="py-25 px-6 bg-[#fdfdff]" id="faq">
+    <section className="py-6 md:py-25 px-6 bg-[#fdfdff]" id="faq">
       <div className="max-w-189.25 mx-auto flex flex-col gap-10 items-center justify-center">
         {/* Heading */}
         <h2 className="font-sora font-semibold text-[48px] leading-15 tracking-[-0.96px] text-gray-900 text-center">

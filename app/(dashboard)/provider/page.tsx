@@ -1,232 +1,258 @@
-import {
-  Search,
-  ArrowRight,
-  Clock,
-  CheckCircle2,
-  DollarSign,
-  TrendingUp,
-  Star,
-  Wallet,
-} from "lucide-react";
-import Link from "next/link";
+"use client";
 
-// Mock activity data
-const recentActivity = [
+import {
+  Layers,
+  CheckCircle,
+  Shield,
+  Database,
+  Eye,
+  MessageSquare,
+  PlayCircle,
+  ChevronRight,
+  Award,
+  Clock,
+  Zap,
+  Star,
+} from "lucide-react";
+import { StatCard } from "@/components/ui/common/StatCard";
+import { StatusBadge } from "@/components/ui/common/StatusBadge";
+import ActionLink from "@/components/ui/ActionLink";
+import { Button } from "@/components/ui/Button";
+import Pagination from "@/components/ui/Pagination";
+
+const activeDeliveries = [
   {
-    id: "TASK-7821",
-    title: "High Authority Guest Post on TechCrunch.com",
-    requester: "Alpha Brands Inc.",
-    status: "Submitted",
-    statusColor: "text-[#3538cd] bg-[#eef4ff]",
-    earning: "+120 CR",
-    date: "Oct 25, 2026",
+    title: "Guest Post Placement",
+    requester: "Circoles • circoles.io",
+    reward: "120 Credits",
+    timeLeft: "2h 15m",
+    status: "IN PROGRESS",
   },
   {
-    id: "TASK-7820",
-    title: "Niche Edit on Forbes.com",
-    requester: "Growth Matrix LLC",
-    status: "In Progress",
-    statusColor: "text-[#f79009] bg-[#fffaeb]",
-    earning: "+85 CR",
-    date: "Oct 24, 2026",
+    title: "Backlink Placement (DA+)",
+    requester: "Catalog • catalog.net",
+    reward: "45 Credits",
+    timeLeft: "1d 4h",
+    status: "AVAILABLE TO APPLY",
   },
   {
-    id: "TASK-7819",
-    title: "Content Placement on Mashable",
-    requester: "Web3 Ventures",
-    status: "Approved",
-    statusColor: "text-[#039855] bg-[#d1fadf]",
-    earning: "+95 CR",
-    date: "Oct 23, 2026",
+    title: "Backlink Placement (DA 70+)",
+    requester: "Quotient • quotent.biz",
+    reward: "210 Credits",
+    timeLeft: "3d 12h",
+    status: "IN PROGRESS",
   },
 ];
 
 const ProviderDashboardHome = () => {
   return (
-    <div className="flex flex-col gap-8">
-      {/* Welcome Section */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-[30px] font-semibold text-[#181d27] leading-[38px] font-sora">
-            Welcome back, Provider!
-          </h1>
-          <p className="text-base font-medium text-[#535862] mt-1">
-            Here&apos;s what&apos;s happening with your tasks today.
+    <div className="flex flex-col gap-6 font-inter">
+      {/* Header Section */}
+      <div className="flex items-end justify-between">
+        <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-3">
+            <div className="flex items-center gap-1.5 px-4 py-2 bg-white border border-[#e2e2e2] rounded-full w-fit">
+              <Award className="w-5 h-5 text-[#6366f1]" />
+              <span className="text-xs font-semibold text-[#0f0f0f]">
+                LEVEL - 2
+              </span>
+            </div>
+            <div className="flex items-center gap-5">
+              <h1 className="text-[30px] font-semibold font-sora text-[#181d27] leading-9.5">
+                Welcome back, Alex
+              </h1>
+              <span className="px-5 py-2.5 bg-[#ebe9ff] text-[#331ffd] rounded-full text-sm font-medium">
+                Provider
+              </span>
+            </div>
+          </div>
+          <p className="text-sm font-medium text-[#535862] leading-5">
+            Manage your Backlyst projects, connected domains, and assigned
+            placement providers from your command center.
           </p>
         </div>
-        <Link
-          href="/provider/opportunities"
-          className="flex items-center gap-2 bg-[#fd751f] text-white font-semibold text-sm px-5 py-2.5 rounded-lg"
-        >
-          Browse Opportunities
-          <ArrowRight className="w-5 h-5" />
-        </Link>
+        <div className="flex flex-col gap-5 items-end">
+          <button className="px-5 py-3 bg-[#ebe9ff] text-[#331ffd] rounded-full text-sm font-medium hover:bg-[#ddd8ff] transition-colors">
+            REFERRALS
+          </button>
+          <div className="flex items-center gap-5">
+            <ActionLink
+              variant="outline"
+              href="/how-it-works"
+              label="HOW IT WORKS"
+              icon={<PlayCircle className="w-6 h-6" />}
+              iconPosition="left"
+            />
+            <Button variant="secondary">BUY VISIBILITY CREDIT</Button>
+          </div>
+        </div>
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-4 gap-6">
-        {/* Active Tasks */}
-        <div className="bg-white rounded-[20px] p-6 border border-[#e9eaeb]">
-          <div className="flex items-center justify-between mb-4">
-            <div className="w-12 h-12 bg-[#fff1e9] rounded-xl flex items-center justify-center">
-              <Clock className="w-6 h-6 text-[#fd751f]" />
-            </div>
-            <span className="text-xs font-medium text-[#717680]">
-              This Month
-            </span>
-          </div>
-          <p className="text-3xl font-bold text-[#181d27] font-sora">8</p>
-          <p className="text-sm text-[#717680] mt-1">Active Tasks</p>
-        </div>
-
-        {/* Completed Tasks */}
-        <div className="bg-white rounded-[20px] p-6 border border-[#e9eaeb]">
-          <div className="flex items-center justify-between mb-4">
-            <div className="w-12 h-12 bg-[#d1fadf] rounded-xl flex items-center justify-center">
-              <CheckCircle2 className="w-6 h-6 text-[#039855]" />
-            </div>
-            <span className="text-xs font-medium text-[#717680]">
-              This Month
-            </span>
-          </div>
-          <p className="text-3xl font-bold text-[#181d27] font-sora">24</p>
-          <p className="text-sm text-[#717680] mt-1">Tasks Completed</p>
-        </div>
-
-        {/* Total Earnings */}
-        <div className="bg-white rounded-[20px] p-6 border border-[#e9eaeb]">
-          <div className="flex items-center justify-between mb-4">
-            <div className="w-12 h-12 bg-[#ebffe9] rounded-xl flex items-center justify-center">
-              <Wallet className="w-6 h-6 text-[#2ab516]" />
-            </div>
-            <div className="flex items-center gap-1 text-[#2ab516]">
-              <TrendingUp className="w-4 h-4" />
-              <span className="text-xs font-medium">+12%</span>
-            </div>
-          </div>
-          <p className="text-3xl font-bold text-[#2ab516] font-sora">
-            +1,250 CR
-          </p>
-          <p className="text-sm text-[#717680] mt-1">Total Earnings</p>
-        </div>
-
-        {/* Success Rate */}
-        <div className="bg-white rounded-[20px] p-6 border border-[#e9eaeb]">
-          <div className="flex items-center justify-between mb-4">
-            <div className="w-12 h-12 bg-[#fffaeb] rounded-xl flex items-center justify-center">
-              <Star className="w-6 h-6 text-[#fdb022]" />
-            </div>
-            <span className="text-xs font-medium text-[#717680]">All Time</span>
-          </div>
-          <p className="text-3xl font-bold text-[#181d27] font-sora">98%</p>
-          <p className="text-sm text-[#717680] mt-1">Success Rate</p>
-        </div>
+      <div className="flex gap-4 mt-8">
+        <StatCard
+          icon={Database}
+          label="TOTAL CREDITS EARNED"
+          value="4,250.00"
+          subtext="Updated real-time"
+        />
+        <StatCard
+          icon={CheckCircle}
+          label="ACTIVE ORDERS"
+          value="8"
+          subtext="98% Success Rate"
+        />
+        <StatCard
+          icon={Star}
+          label="AVG. RATING"
+          value="4"
+          subtext="Trust Score: A+"
+        />
+        <StatCard
+          icon={Layers}
+          label="COMPLETED TASKS"
+          value="1,245 Credits"
+          subtext="Next reload: Oct 20"
+        />
       </div>
 
-      {/* Two Column Layout */}
-      <div className="grid grid-cols-3 gap-6">
-        {/* Recent Activity */}
-        <div className="col-span-2 bg-white rounded-[20px] p-6 border border-[#e9eaeb]">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-lg font-semibold text-[#181d27]">
-              Recent Activity
-            </h2>
-            <Link
-              href="/provider/tasks"
-              className="text-sm font-medium text-[#fd751f] flex items-center gap-1"
-            >
-              View All
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-          <div className="flex flex-col gap-4">
-            {recentActivity.map((activity) => (
-              <div
-                key={activity.id}
-                className="flex items-center justify-between p-4 bg-[#fafafa] rounded-xl"
-              >
-                <div className="flex-1">
-                  <div className="flex items-center gap-3 mb-1">
-                    <span className="text-sm font-semibold text-[#331ffd]">
-                      {activity.id}
-                    </span>
-                    <span
-                      className={`text-xs font-semibold px-2 py-0.5 rounded-full ${activity.statusColor}`}
-                    >
-                      {activity.status}
-                    </span>
-                  </div>
-                  <p className="text-sm font-medium text-[#252b37]">
-                    {activity.title}
-                  </p>
-                  <p className="text-xs text-[#717680] mt-1">
-                    {activity.requester} • {activity.date}
-                  </p>
+      {/* Recent Activity Table */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-6 ">
+        {/* Left Column - Provider Info / Stats */}
+        <div className="lg:col-span-3 flex flex-col gap-6 h-full ">
+          {/* Profile Card */}
+          <div className=" border border-[#e9eaeb] rounded-xl p-6 shadow-sm bg-white">
+            <div className="flex items-center gap-3">
+              <div className="w-14 h-14 rounded-full bg-linear-to-br from-[#6366f1] to-[#a78bfa] flex items-center justify-center text-white text-2xl font-bold">
+                S
+              </div>
+              <div>
+                <div className="flex items-center gap-2">
+                  <Zap className="w-5 h-5 text-green-500 fill-green-500" />
+                  <h3 className="font-semibold text-[#181d27] text-lg">
+                    Sisyphus
+                  </h3>
                 </div>
-                <div className="text-right">
-                  <p className="text-lg font-semibold text-[#2ab516]">
-                    {activity.earning}
-                  </p>
+                <div className="flex items-center gap-1.5 mt-1">
+                  <span className="text-xs font-medium text-gray-600">
+                    LEVEL - 2
+                  </span>
+                  <Star className="w-4 h-4 text-amber-500 fill-amber-500" />
+                  <span className="text-sm font-semibold text-[#181d27]">
+                    4.9
+                  </span>
+                  <span className="text-xs text-gray-500">(124)</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-5 flex items-center justify-between">
+              <span className="text-sm font-medium text-[#535862]">
+                Accepting Tasks
+              </span>
+              <label className="relative inline-flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  className="sr-only peer"
+                  defaultChecked
+                />
+                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#6366f1]"></div>
+              </label>
+            </div>
+
+            <div className="mt-6 pt-5 border-t border-[#e9eaeb] space-y-3">
+              <div>
+                <p className="text-sm text-[#535862]">Total Credits Earned</p>
+                <p className="text-xl font-semibold text-[#181d27]">4,250.00</p>
+              </div>
+              <div>
+                <p className="text-sm text-[#535862]">This Month</p>
+                <p className="text-lg font-medium text-[#181d27]">
+                  1,240.00 Credits
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-6 pt-4 border-t border-[#e9eaeb]">
+              <button className="w-full flex items-center justify-between text-sm font-medium text-[#535862] hover:text-[#331ffd]">
+                <span>BADGES & LEVEL</span>
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Column - Active Deliveries */}
+        <div className="lg:col-span-9 flex flex-col h-full gap-5 bg-white  p-4 rounded-2xl">
+          <div className="flex items-center justify-between">
+            <h2 className="text-2xl font-semibold font-sora text-[#181d27]">
+              Active Deliveries (8)
+            </h2>
+          </div>
+
+          <div className="space-y-4">
+            {activeDeliveries.map((task, i) => (
+              <div
+                key={i}
+                className="bg-white border border-[#e9eaeb] rounded-xl p-5 hover:shadow-sm transition-shadow"
+              >
+                <div className="grid grid-cols-[auto_1fr_auto_auto_auto] sm:grid-cols-6 items-center gap-4">
+                  {/* Placeholder icon / logo */}
+                  <div className="flex col-span-2 gap-4">
+                    <div className="w-12 h-12  rounded-lg bg-gray-100 flex items-center justify-center text-2xl">
+                      {task.title.charAt(0)}
+                    </div>
+                    <div className="flex flex-col">
+                      <p className="font-medium text-[#181d27]">{task.title}</p>
+                      <p className="text-sm text-[#535862] mt-0.5">
+                        {task.requester}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Reward */}
+                  <div className="text-right">
+                    <p className="text-sm text-[#535862]">REWARD</p>
+                    <p className="font-semibold text-[#ff6b00]">
+                      {task.reward}
+                    </p>
+                  </div>
+
+                  {/* Time Left */}
+                  <div className="text-right">
+                    <p className="text-sm text-[#535862] flex items-center justify-end gap-1">
+                      <Clock className="w-4 h-4" /> TIME LEFT
+                    </p>
+                    <p className="font-medium text-[#181d27]">
+                      {task.timeLeft}
+                    </p>
+                  </div>
+
+                  {/* Status & Actions */}
+                  <div className="flex items-center justify-end gap-4">
+                    <StatusBadge status={task.status} />
+                  </div>
+                  <div className="flex items-center justify-end gap-2 ">
+                    <button className="text-[#535862] hover:text-[#331ffd]">
+                      <Eye className="w-5 h-5" />
+                    </button>
+                    <button className="text-[#535862] hover:text-[#331ffd]">
+                      <MessageSquare className="w-5 h-5" />
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
-        </div>
 
-        {/* Quick Actions */}
-        <div className="bg-white rounded-[20px] p-6 border border-[#e9eaeb]">
-          <h2 className="text-lg font-semibold text-[#181d27] mb-6">
-            Quick Actions
-          </h2>
-          <div className="flex flex-col gap-4">
-            <Link
-              href="/provider/opportunities"
-              className="flex items-center gap-4 p-4 bg-[#fff1e9] rounded-xl hover:bg-[#fee8d9] transition-colors"
-            >
-              <div className="w-10 h-10 bg-[#fd751f] rounded-lg flex items-center justify-center">
-                <Search className="w-5 h-5 text-white" />
-              </div>
-              <div>
-                <p className="text-sm font-semibold text-[#fd751f]">
-                  Browse Opportunities
-                </p>
-                <p className="text-xs text-[#717680]">
-                  Find new tasks to apply for
-                </p>
-              </div>
-            </Link>
-            <Link
-              href="/provider/tasks"
-              className="flex items-center gap-4 p-4 bg-[#f5f5f5] rounded-xl hover:bg-[#e9eaeb] transition-colors"
-            >
-              <div className="w-10 h-10 bg-[#414651] rounded-lg flex items-center justify-center">
-                <CheckCircle2 className="w-5 h-5 text-white" />
-              </div>
-              <div>
-                <p className="text-sm font-semibold text-[#414651]">
-                  My Active Tasks
-                </p>
-                <p className="text-xs text-[#717680]">
-                  View and manage your tasks
-                </p>
-              </div>
-            </Link>
-            <Link
-              href="/wallet"
-              className="flex items-center gap-4 p-4 bg-[#f5f5f5] rounded-xl hover:bg-[#e9eaeb] transition-colors"
-            >
-              <div className="w-10 h-10 bg-[#2ab516] rounded-lg flex items-center justify-center">
-                <DollarSign className="w-5 h-5 text-white" />
-              </div>
-              <div>
-                <p className="text-sm font-semibold text-[#414651]">
-                  Withdraw Earnings
-                </p>
-                <p className="text-xs text-[#717680]">
-                  Manage your wallet balance
-                </p>
-              </div>
-            </Link>
+          {/* Pagination */}
+          <div className="w-full">
+            <Pagination
+              currentPage={1}
+              totalPages={10}
+              className="w-full "
+              onPageChange={(page) => console.log("Selected page:", page)}
+            />
           </div>
         </div>
       </div>

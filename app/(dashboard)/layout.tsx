@@ -1,4 +1,4 @@
-import DashboardLayout from "@/components/dashboard/DashboardLayout";
+import DashboardLayout from "@/components/layout/DashboardLayout";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -13,7 +13,7 @@ export default function DashboardLayoutPage({
 }>) {
   return (
     <main>
-      <DashboardLayout>{children}</DashboardLayout>{" "}
+      <DashboardLayout>{children}</DashboardLayout>
     </main>
   );
 }
