@@ -66,7 +66,7 @@ const ProviderDashboardHome = () => {
               <h1 className="text-[30px] font-semibold font-sora text-[#181d27] leading-9.5">
                 Welcome back, Alex
               </h1>
-              <span className="px-5 py-2.5 bg-[#ebe9ff] text-primary rounded-full text-sm font-medium">
+              <span className="px-5 py-2.5 bg-indigo text-primary rounded-full text-sm font-medium">
                 Provider
               </span>
             </div>
@@ -77,7 +77,7 @@ const ProviderDashboardHome = () => {
           </p>
         </div>
         <div className="flex flex-col gap-5 items-end">
-          <button className="px-5 py-3 bg-[#ebe9ff] text-primary rounded-full text-sm font-medium hover:bg-[#ddd8ff] transition-colors">
+          <button className="px-5 py-3 bg-indigo text-primary rounded-full text-sm font-medium hover:bg-[#ddd8ff] transition-colors">
             REFERRALS
           </button>
           <div className="flex items-center gap-5">

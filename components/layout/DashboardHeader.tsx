@@ -75,7 +75,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
         {/* Wallet */}
         <Button
           variant="white"
-          className="bg-[#EBE9FF] text-primary"
+          className="bg-indigo text-primary"
           onClick={() => router.push(`${basePath}/wallet`)}
         >
           <Wallet className="w-4 h-4  text-primary" />

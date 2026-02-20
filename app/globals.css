@@ -33,6 +33,8 @@
   --success: #d1fadf;
   --success-foreground: #027a48;
 
+  --indigo: #ebe9ff;
+
   --accent: #fff1e9;
   --accent-foreground: #181d27;
 
@@ -63,6 +65,9 @@
 }
 .bg-secondary-foreground {
   background-color: var(--secondary-foreground);
+}
+.bg-indigo {
+  background-color: var(--indigo);
 }
 .bg-success {
   background-color: var(--success);

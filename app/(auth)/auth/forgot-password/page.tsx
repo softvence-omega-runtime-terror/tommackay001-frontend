@@ -64,7 +64,7 @@ const ForgotPasswordPage = () => {
                 id="email"
                 type="email"
                 placeholder="Enter your email"
-                className="h-12 rounded-xl bg-brand-indigo-50 border-transparent focus:ring-brand-indigo-500 focus:border-brand-indigo-500"
+                className="h-12 rounded-xl bg-brand-indigo-50 border-transparent focus:ring-primary focus:border-primary"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -73,7 +73,7 @@ const ForgotPasswordPage = () => {
 
             <Button
               type="submit"
-              className="w-full bg-primary cursor-pointer hover:bg-brand-indigo-600 text-white h-12 rounded-xl font-semibold text-sm shadow-lg shadow-brand-indigo-500/20 transition-all active:scale-[0.98]"
+              className="w-full bg-primary cursor-pointer hover:bg-brand-indigo-600 text-white h-12 rounded-xl font-semibold text-sm shadow-lg shadow-primary/20 transition-all active:scale-[0.98]"
             >
               Send reset link
             </Button>
