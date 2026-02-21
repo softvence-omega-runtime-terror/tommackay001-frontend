@@ -19,7 +19,7 @@ export default function WebsiteSettings() {
   };
 
   return (
-    <div className=" bg-white ">
+    <div className=" p-8 bg-white rounded-2xl overflow-hidden">
       {/* Header */}
       <div className="">
         <h2 className="text-2xl font-semibold text-gray-900">
@@ -102,15 +102,6 @@ export default function WebsiteSettings() {
               <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
             </label>
           </div>
-        </div>
-
-        {/* Security / Info Note */}
-        <div className="pt-6 border-t border-gray-200 flex items-start gap-3 text-sm text-gray-600">
-          <Info className="w-5 h-5 text-indigo-600 mt-0.5 flex-shrink-0" />
-          <p>
-            These defaults will apply to all newly connected domains and can be
-            overridden per domain or per task.
-          </p>
         </div>
       </div>
 

@@ -69,7 +69,7 @@ export default function AccountInformation() {
 
   return (
     <>
-      <div className="bg-white rounded-2xl overflow-hidden">
+      <div className="p-8 bg-white rounded-2xl overflow-hidden">
         {/* Header */}
         <div className=" ">
           <h2 className="text-2xl font-semibold text-gray-900">

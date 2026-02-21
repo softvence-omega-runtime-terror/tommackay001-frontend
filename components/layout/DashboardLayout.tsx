@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
@@ -14,12 +14,107 @@ import {
   Settings,
   LogOut,
   Briefcase,
+  LucideIcon,
 } from "lucide-react";
 import { useRole } from "@/context/RoleContext";
 import DashboardHeader from "./DashboardHeader";
 import logo from "@/public/backlyst-logo.png";
 import Image from "next/image";
 import avatarImage from "@/public/avatar/sisyphus.png";
+
+import LogoutModal from "../modals/LogoutModal";
+
+// ─── Sidebar content extracted as a standalone component ────────────────────
+
+interface SidebarItem {
+  icon: LucideIcon;
+  label: string;
+  path: string;
+}
+
+interface SidebarContentProps {
+  sidebarItems: SidebarItem[];
+  activeLabel: string;
+  onLinkClick: () => void;
+  onLogoutClick: () => void;
+}
+
+const SidebarContent: React.FC<SidebarContentProps> = ({
+  sidebarItems,
+  activeLabel,
+  onLinkClick,
+  onLogoutClick,
+}) => (
+  <>
+    <div className="p-8 pb-12">
+      <Link href="/" className="flex items-center gap-3" onClick={onLinkClick}>
+        <Image
+          src={logo}
+          alt="Backlyst"
+          className="w-10 h-9 object-contain"
+          priority
+        />
+        <span className="text-2xl font-semibold font-sora text-gray-900">
+          backlyst
+        </span>
+      </Link>
+    </div>
+
+    <nav className="flex-1 px-4 space-y-1">
+      {sidebarItems.map((item) => (
+        <Link
+          key={item.label}
+          href={item.path}
+          onClick={onLinkClick}
+          className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-sm transition-all duration-300 group ${
+            activeLabel === item.label
+              ? "bg-indigo text-primary/90 font-semibold border-l-4 border-primary transition-all duration-200"
+              : "text-gray-500 hover:bg-gray-50 hover:text-gray-700 pl-2 transition-all duration-200"
+          }`}
+        >
+          <item.icon
+            size={20}
+            className={
+              activeLabel === item.label
+                ? "text-primary"
+                : "text-gray-400 group-hover:text-gray-600"
+            }
+          />
+          <span className="text-sm">{item.label}</span>
+        </Link>
+      ))}
+    </nav>
+
+    <div className="p-6 border-t border-gray-100 mt-auto">
+      <div
+        onClick={onLogoutClick}
+        className="flex items-center gap-4 bg-gray-50 p-4 rounded-2xl hover:bg-red-50 transition-colors cursor-pointer group border border-transparent hover:border-red-100"
+      >
+        <div className="w-12 h-12 flex items-center justify-center">
+          <Image
+            width={200}
+            height={200}
+            src={avatarImage}
+            alt="User"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="flex-1 min-w-0">
+          <p className="text-sm font-semibold text-gray-900 leading-tight truncate">
+            Sisyphus
+          </p>
+          <p className="text-xs font-medium text-gray-500 mt-0.5">Pro Member</p>
+        </div>
+        <LogOut
+          size={16}
+          className="text-gray-400 group-hover:text-red-500 transition-colors shrink-0"
+        />
+      </div>
+    </div>
+  </>
+);
+
+// ─── Main layout ─────────────────────────────────────────────────────────────
 
 const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -35,11 +130,31 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
 
   const basePath = isProviderRoute ? "/provider" : "/requester";
 
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
   React.useEffect(() => {
     if (currentRole !== role) {
       setRole(currentRole);
     }
   }, [currentRole, role, setRole]);
+
+  // Close sidebar on route change (mobile)
+  React.useEffect(() => {
+    setIsSidebarOpen(false);
+  }, [pathname]);
+
+  // Prevent body scroll when sidebar is open on mobile
+  React.useEffect(() => {
+    if (isSidebarOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isSidebarOpen]);
 
   const handleRoleSwitch = (newRole: "requester" | "provider") => {
     if (newRole === currentRole) return;
@@ -55,8 +170,8 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
     );
   };
 
-  const handleLogout = () => {
-    router.push("/auth/login");
+  const handleLogoutClick = () => {
+    setShowLogoutModal(true);
   };
 
   const sidebarItems =
@@ -115,87 +230,59 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
 
   return (
     <div className="flex min-h-screen bg-[#F9FAFB] font-inter overflow-x-hidden">
-      {/* Sidebar */}
-      <aside className="w-70 bg-white border-r border-gray-100 flex flex-col fixed h-full z-20 shadow-[4px_0_24px_rgba(0,0,0,0.02)]">
-        <div className="p-8 pb-12">
-          <Link href="/" className="flex items-center gap-3">
-            <Image
-              src={logo}
-              alt="Backlyst"
-              className="w-10 h-9 object-contain"
-              priority
-            />
-            <span className="text-2xl font-semibold font-sora text-gray-900">
-              backlyst
-            </span>
-          </Link>
-        </div>
-
-        <nav className="flex-1 px-4 space-y-1">
-          {sidebarItems.map((item) => (
-            <Link
-              key={item.label}
-              href={item.path}
-              className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-sm  transition-all duration-300 group ${
-                activeItem.label === item.label
-                  ? "bg-indigo text-primary/90 font-semibold border-l-4 border-primary transition-all duration-200"
-                  : "text-gray-500 hover:bg-gray-50 hover:text-gray-700 pl-2 transition-all duration-200"
-              }`}
-            >
-              <item.icon
-                size={20}
-                className={
-                  activeItem.label === item.label
-                    ? "text-primary"
-                    : "text-gray-400 group-hover:text-gray-600"
-                }
-              />
-              <span className="text-sm">{item.label}</span>
-            </Link>
-          ))}
-        </nav>
-
-        <div className="p-6 border-t border-gray-100 mt-auto">
-          <div
-            onClick={handleLogout}
-            className="flex items-center gap-4 bg-gray-50 p-4 rounded-2xl hover:bg-red-50 transition-colors cursor-pointer group border border-transparent hover:border-red-100"
-          >
-            <div className="w-12 h-12  flex items-center justify-center">
-              <Image
-                width={200}
-                height={200}
-                src={avatarImage}
-                alt="User"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-sm font-semibold text-gray-900 leading-tight truncate">
-                Sisyphus
-              </p>
-              <p className="text-xs font-medium text-gray-500 mt-0.5">
-                Pro Member
-              </p>
-            </div>
-            <LogOut
-              size={16}
-              className="text-gray-400 group-hover:text-red-500 transition-colors shrink-0"
-            />
-          </div>
-        </div>
+      {/* Sidebar — desktop: fixed, mobile: off-canvas drawer */}
+      {/* Desktop sidebar */}
+      <aside className="hidden lg:flex w-70 bg-white border-r border-gray-100 flex-col fixed h-full z-20 shadow-[4px_0_24px_rgba(0,0,0,0.02)]">
+        <SidebarContent
+          sidebarItems={sidebarItems}
+          activeLabel={activeItem.label}
+          onLinkClick={() => setIsSidebarOpen(false)}
+          onLogoutClick={handleLogoutClick}
+        />
       </aside>
 
-      {/* Main */}
-      <div className="flex-1 ml-70 flex flex-col min-h-screen">
+      {/* Mobile sidebar overlay */}
+      {isSidebarOpen && (
+        <div
+          className="lg:hidden fixed inset-0 bg-black/40 z-30 transition-opacity"
+          onClick={() => setIsSidebarOpen(false)}
+          aria-label="Close menu overlay"
+        />
+      )}
+
+      {/* Mobile sidebar drawer */}
+      <aside
+        className={`lg:hidden fixed top-0 left-0 h-full w-72 bg-white border-r border-gray-100 flex flex-col z-40 shadow-xl transition-transform duration-300 ease-in-out ${
+          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        <SidebarContent
+          sidebarItems={sidebarItems}
+          activeLabel={activeItem.label}
+          onLinkClick={() => setIsSidebarOpen(false)}
+          onLogoutClick={handleLogoutClick}
+        />
+      </aside>
+
+      {/* Main Content */}
+      <div className="flex-1 lg:ml-70 flex flex-col min-h-screen">
         <DashboardHeader
           currentRole={currentRole}
           basePath={basePath}
           onRoleSwitch={handleRoleSwitch}
           onCreateTask={handleCreateTask}
+          onMenuToggle={() => setIsSidebarOpen((p) => !p)}
+          isSidebarOpen={isSidebarOpen}
         />
 
-        <main className="flex-1 p-8">{children}</main>
+        <main className="flex-1 p-4 lg:p-8">{children}</main>
       </div>
+
+      {/* Logout Confirmation Modal */}
+      <LogoutModal
+        isOpen={showLogoutModal}
+        onClose={() => setShowLogoutModal(false)}
+      />
     </div>
   );
 };

@@ -1,68 +1,134 @@
+"use client";
+
+import { useState } from "react";
 import { Button } from "@/components/ui/Button";
-import { LogOut } from "lucide-react";
-import React from "react";
+import { Save, ChevronDown } from "lucide-react";
 
 export default function OrganizationSettings() {
-  const organizations = [
-    {
-      name: "Alex Thompson",
-      email: "alex@growthlab.net",
-      role: "Owner",
-    },
-    {
-      name: "Sarah Chen",
-      email: "sarah@growthlab.net",
-      role: "Editor",
-    },
-    {
-      name: "Mike Ross",
-      email: "mike@growthlab.net",
-      role: "Viewer",
-    },
-  ];
+  // Form state - in real app, load from user profile / API
+  const [companyName, setCompanyName] = useState("Acme Corporation");
+  const [businessType, setBusinessType] = useState("");
+  const [countryRegion, setCountryRegion] = useState("");
+  const [taxId, setTaxId] = useState("US123456789");
+
+  const handleSave = () => {
+    // In real app: validate + send to backend (billing/compliance update)
+    console.log("Saving organization details:", {
+      companyName,
+      businessType,
+      countryRegion,
+      taxId,
+    });
+    alert("Organization settings saved successfully!");
+  };
+
   return (
-    <div className="space-y-6">
-      <div>
-        <div className="flex items-center justify-between mb-2">
-          <h3 className="text-xl font-bold font-sora text-gray-900">
-            Organization Settings
-          </h3>
-          <Button className="h-10 px-4 bg-primary text-white text-xs font-bold uppercase tracking-wider rounded-lg shadow-lg shadow-primary/20">
-            Invite Member
-          </Button>
-        </div>
-        <p className="text-sm text-gray-500">
-          Manage your organization and team members.
+    <div className="p-8 bg-white rounded-2xl overflow-hidden">
+      {/* Header */}
+      <div className="">
+        <h2 className="text-2xl font-semibold text-gray-900 flex items-center gap-2">
+          Organization Details
+        </h2>
+        <p className="mt-1.5 text-sm text-gray-600">
+          Business identity used for billing and compliance.
         </p>
       </div>
 
-      <div className="space-y-4">
-        {organizations.map((member, i) => (
-          <div
-            key={i}
-            className="flex items-center justify-between p-4 bg-gray-50 rounded-xl"
-          >
-            <div className="flex items-center gap-4">
-              <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center font-bold text-gray-500">
-                {member.name.charAt(0)}
-              </div>
-              <div>
-                <p className="text-sm font-semibold text-gray-900">
-                  {member.name}
-                </p>
-                <p className="text-xs text-gray-500">{member.email}</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-4">
-              <span className="text-xs font-bold uppercase tracking-wider text-gray-500">
-                {member.role}
-              </span>
-              <button className="text-gray-400 hover:text-red-500">
-                <LogOut size={16} />
-              </button>
-            </div>
+      <div className="py-8 space-y-10">
+        {/* Company Name */}
+        <div className="space-y-3">
+          <label className="block text-sm font-medium text-gray-700">
+            Company Name
+          </label>
+          <input
+            type="text"
+            value={companyName}
+            onChange={(e) => setCompanyName(e.target.value)}
+            className="w-full px-4 py-3.5 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
+            placeholder="Enter company name"
+          />
+        </div>
+
+        {/* Business Type */}
+        <div className="space-y-3">
+          <label className="block text-sm font-medium text-gray-700">
+            Business Type
+          </label>
+          <div className="relative">
+            <select
+              value={businessType}
+              onChange={(e) => setBusinessType(e.target.value)}
+              className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-lg appearance-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all cursor-pointer"
+            >
+              <option value="">Select business type...</option>
+              <option value="sole-proprietor">Sole Proprietorship</option>
+              <option value="partnership">Partnership</option>
+              <option value="llc">LLC / Limited Liability Company</option>
+              <option value="corporation">Corporation</option>
+              <option value="non-profit">Non-Profit Organization</option>
+              <option value="other">Other</option>
+            </select>
+            <ChevronDown
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none"
+              size={18}
+            />
           </div>
-        ))}
+        </div>
+
+        {/* Country / Region */}
+        <div className="space-y-3">
+          <label className="block text-sm font-medium text-gray-700">
+            Country / Region
+          </label>
+          <div className="relative">
+            <select
+              value={countryRegion}
+              onChange={(e) => setCountryRegion(e.target.value)}
+              className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-lg appearance-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all cursor-pointer"
+            >
+              <option value="">Select country / region...</option>
+              <option value="US">United States</option>
+              <option value="CA">Canada</option>
+              <option value="GB">United Kingdom</option>
+              <option value="DE">Germany</option>
+              <option value="FR">France</option>
+              <option value="BD">Bangladesh</option>
+              <option value="IN">India</option>
+              {/* Add more countries as needed */}
+              <option value="other">Other</option>
+            </select>
+            <ChevronDown
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none"
+              size={18}
+            />
+          </div>
+        </div>
+
+        {/* VAT / Tax ID (optional) */}
+        <div className="space-y-3">
+          <label className="block text-sm font-medium text-gray-700">
+            VAT / Tax ID{" "}
+            <span className="text-gray-500 font-normal">(optional)</span>
+          </label>
+          <input
+            type="text"
+            value={taxId}
+            onChange={(e) => setTaxId(e.target.value)}
+            className="w-full px-4 py-3.5 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
+            placeholder="e.g. US123456789 or EU VAT number"
+          />
+        </div>
+      </div>
+
+      {/* Footer Actions */}
+      <div className="px-8 py-6  border-t border-gray-100 flex justify-end">
+        <Button
+          onClick={handleSave}
+          className="bg-indigo-600 hover:bg-indigo-700 text-white px-10 py-3 rounded-xl font-medium shadow-md transition-all flex items-center gap-2"
+        >
+          <Save size={18} />
+          Save Organization Settings
+        </Button>
       </div>
     </div>
   );

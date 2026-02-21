@@ -1,15 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import {
-  Calendar,
-  Eye,
-  ExternalLink,
-  Search,
-  Shield,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
+import { Calendar, Eye, ExternalLink, Search, Shield } from "lucide-react";
 import Pagination from "@/components/ui/Pagination";
 
 interface Job {

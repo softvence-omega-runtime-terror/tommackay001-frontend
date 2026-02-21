@@ -40,15 +40,10 @@ const SettingsPage = () => {
     { id: "LEGAL", label: "Legal & Consent", icon: FileText },
   ];
 
-  const handleSignOut = () => {
-    // Clear any auth state here if needed
-    router.push("/login");
-  };
-
   const renderTabContent = () => {
     switch (activeTab) {
       case "ACCOUNT":
-        return <AccountSettings role={role} />;
+        return <AccountSettings />;
 
       case "SECURITY":
         return <SecuritySettings />;
@@ -106,7 +101,7 @@ const SettingsPage = () => {
 
         {/* Content Pane */}
         <div className="lg:col-span-3">
-          <Card className="p-8 bg-white border border-gray-100 rounded-2xl shadow-sm">
+          <Card className="  border-none">
             {renderTabContent()}
           </Card>
         </div>

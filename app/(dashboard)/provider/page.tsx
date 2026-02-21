@@ -51,7 +51,7 @@ const activeDeliveries = [
 
 const ProviderDashboardHome = () => {
   return (
-    <div className="flex flex-col gap-6 font-inter">
+    <div className="flex flex-col gap-6 font-inter max-w-[90vw] ">
       {/* Header Section */}
       <div className="flex items-end justify-between">
         <div className="flex flex-col gap-5">
@@ -161,7 +161,7 @@ const ProviderDashboardHome = () => {
                   className="sr-only peer"
                   defaultChecked
                 />
-                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#6366f1]"></div>
+                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#6366f1]"></div>
               </label>
             </div>
 

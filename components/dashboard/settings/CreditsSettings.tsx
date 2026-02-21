@@ -4,10 +4,10 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/Button";
 
 export default function CreditsWalletPreferences() {
-  const [autoTopupEnabled, setAutoTopupEnabled] = useState(false);
+  const [autoTopUpEnabled, setAutoTopUpEnabled] = useState(false);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 p-8 bg-white rounded-2xl overflow-hidden">
       {/* Header */}
       <div>
         <h3 className="text-xl font-bold font-sora text-gray-900">
@@ -40,14 +40,14 @@ export default function CreditsWalletPreferences() {
         {/* Toggle */}
         <button
           type="button"
-          onClick={() => setAutoTopupEnabled(!autoTopupEnabled)}
+          onClick={() => setAutoTopUpEnabled(!autoTopUpEnabled)}
           className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-            autoTopupEnabled ? "bg-primary" : "bg-gray-300"
+            autoTopUpEnabled ? "bg-primary" : "bg-gray-300"
           }`}
         >
           <span
             className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-              autoTopupEnabled ? "translate-x-6" : "translate-x-1"
+              autoTopUpEnabled ? "translate-x-6" : "translate-x-1"
             }`}
           />
         </button>
@@ -59,7 +59,7 @@ export default function CreditsWalletPreferences() {
           Monthly soft spending limit
         </p>
 
-        <div className="flex items-center gap-3">
+        <div className="flex justify-between items-center gap-3">
           <input
             type="number"
             defaultValue={5000}
@@ -74,7 +74,7 @@ export default function CreditsWalletPreferences() {
       </div>
 
       {/* Footer action */}
-      <div className="flex justify-end pt-4">
+      <div className="flex justify-end pt-4 border-t">
         <Button className="h-11 px-6 rounded-xl bg-primary text-white text-sm font-medium hover:bg-brand-indigo-600">
           Update Wallet Preferences
         </Button>

@@ -22,10 +22,10 @@ export default function ReferralProgram() {
   ];
 
   return (
-    <div className="bg-white ">
+    <div className="p-8 bg-white rounded-2xl overflow-hidden">
       {/* Header */}
-      <div className="">
-        <h2 className="text-2xl font-semibold text-gray-900">
+      <div className="pb-4">
+        <h2 className="text-2xl font-semibold text-gray-900 ">
           Referral Program
         </h2>
         <p className="mt-1.5 text-sm text-gray-600">
