@@ -173,7 +173,7 @@ export default function AccountInformation() {
           {/* Security Note + Save */}
           <div className="pt-6 border-t border-gray-200 flex items-center justify-between">
             <div className="flex items-start gap-3 text-sm text-gray-600">
-              <ShieldCheck className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+              <ShieldCheck className="w-5 h-5 text-blue-600 mt-0.5 shrink-0" />
               <p>All changes are logged for security purposes.</p>
             </div>
 

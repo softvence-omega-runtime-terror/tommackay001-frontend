@@ -109,7 +109,7 @@ const ProviderOpportunityBoard = () => {
 
         {/* Info Banner */}
         <div className="bg-[#f5f5f5] rounded-xl p-2 lg:p-3 flex items-start lg:items-center gap-2.5">
-          <div className="w-6 h-6 lg:w-8 lg:h-8 bg-white rounded-lg flex items-center justify-center flex-shrink-0">
+          <div className="w-6 h-6 lg:w-8 lg:h-8 bg-white rounded-lg flex items-center justify-center shrink-0">
             <CircleAlert className="w-4 h-4 lg:w-5 lg:h-5 text-[#2AB516]" />
           </div>
           <p className="text-xs lg:text-sm text-[#535862]">
@@ -244,7 +244,7 @@ const ProviderOpportunityBoard = () => {
           {/* Search Bar */}
           <div className="bg-white rounded-xl p-2 lg:p-3 flex flex-col lg:flex-row items-start lg:items-center lg:justify-between gap-3">
             <div className="w-full lg:flex-1 bg-[#f5f5f5] border border-[#e9eaeb] rounded p-2 lg:p-3 flex items-center gap-2">
-              <Search className="w-5 h-5 lg:w-6 lg:h-6 text-[#a4a7ae] flex-shrink-0" />
+              <Search className="w-5 h-5 lg:w-6 lg:h-6 text-[#a4a7ae] shrink-0" />
               <input
                 type="text"
                 placeholder="Search by site, ID, or title..."
@@ -273,7 +273,7 @@ const ProviderOpportunityBoard = () => {
                     {/* Header */}
                     <div className="flex items-start justify-between gap-2">
                       <div className="flex items-center gap-2">
-                        <div className="w-9 h-9 lg:w-11 lg:h-11 rounded-lg overflow-hidden bg-gray-200 flex-shrink-0">
+                        <div className="w-9 h-9 lg:w-11 lg:h-11 rounded-lg overflow-hidden bg-gray-200 shrink-0">
                           <Image
                             src={opp.logo}
                             alt={opp.company}
@@ -289,7 +289,7 @@ const ProviderOpportunityBoard = () => {
                             {opp.company}
                           </p>
                           <div className="flex items-center gap-1">
-                            <Star className="w-3 h-3 lg:w-4 lg:h-4 text-[#fbbf24] fill-[#fbbf24] flex-shrink-0" />
+                            <Star className="w-3 h-3 lg:w-4 lg:h-4 text-[#fbbf24] fill-[#fbbf24] shrink-0" />
                             <span className="text-xs font-medium text-[#394554]">
                               {opp.rating}
                             </span>
@@ -299,8 +299,8 @@ const ProviderOpportunityBoard = () => {
                           </div>
                         </div>
                       </div>
-                      <div className="bg-[#f5f5f5] border border-[#e9eaeb] rounded-lg p-1 lg:p-1.5 flex items-center gap-1 flex-shrink-0">
-                        <Clock className="w-3 h-3 lg:w-3.5 lg:h-3.5 text-primary flex-shrink-0" />
+                      <div className="bg-[#f5f5f5] border border-[#e9eaeb] rounded-lg p-1 lg:p-1.5 flex items-center gap-1 shrink-0">
+                        <Clock className="w-3 h-3 lg:w-3.5 lg:h-3.5 text-primary shrink-0" />
                         <span className="text-[9px] lg:text-[10px] text-primary whitespace-nowrap">
                           {opp.daysLeft}d
                         </span>
@@ -325,7 +325,7 @@ const ProviderOpportunityBoard = () => {
                     {/* Description Box */}
                     <div className="bg-[#fafafa] rounded-lg p-2 lg:p-2.5 flex flex-col gap-1.5 lg:gap-2">
                       <div className="flex items-center gap-2">
-                        <Globe className="w-5 h-5 lg:w-6 lg:h-6 text-[#fd751f] flex-shrink-0" />
+                        <Globe className="w-5 h-5 lg:w-6 lg:h-6 text-[#fd751f] shrink-0" />
                         <span className="text-xs lg:text-sm font-medium text-[#fd751f] truncate">
                           {opp.website}
                         </span>

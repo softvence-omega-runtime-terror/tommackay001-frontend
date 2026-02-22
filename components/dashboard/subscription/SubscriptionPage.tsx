@@ -67,7 +67,7 @@ export default function SubscriptionPage() {
 
         {/* Note Banner */}
         <div className="mt-6 inline-flex items-start lg:items-center text-left gap-2 px-3 lg:px-5 py-2.5 bg-white rounded-xl text-sm lg:text-base text-gray-500">
-          <Info className="w-4 h-4 lg:w-5 lg:h-5 flex-shrink-0 mt-0.5 lg:mt-0" />
+          <Info className="w-4 h-4 lg:w-5 lg:h-5 shrink-0 mt-0.5 lg:mt-0" />
           <span>
             These are verified placements from previously completed tasks.
             Sensitive information has been redacted to maintain network

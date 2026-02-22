@@ -70,7 +70,7 @@ export default function RequesterSubscriptionPage() {
 
         {/* Note Banner */}
         <div className="mt-6 inline-flex items-center text-left gap-2 px-4 lg:px-5 py-2.5 bg-white rounded-xl text-sm lg:text-base text-gray-500">
-          <Info className="w-5 h-5 flex-shrink-0" />
+          <Info className="w-5 h-5 shrink-0" />
           <span>
             These are verified placements from previously completed tasks.
             Sensitive information has been redacted to maintain network

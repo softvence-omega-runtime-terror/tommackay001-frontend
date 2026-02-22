@@ -15,6 +15,7 @@ import {
   LogOut,
   Briefcase,
   LucideIcon,
+  RefreshCcw,
 } from "lucide-react";
 import { useRole } from "@/context/RoleContext";
 import DashboardHeader from "./DashboardHeader";
@@ -23,8 +24,6 @@ import Image from "next/image";
 import avatarImage from "@/public/avatar/sisyphus.png";
 
 import LogoutModal from "../modals/LogoutModal";
-
-// ─── Sidebar content extracted as a standalone component ────────────────────
 
 interface SidebarItem {
   icon: LucideIcon;
@@ -114,8 +113,6 @@ const SidebarContent: React.FC<SidebarContentProps> = ({
   </>
 );
 
-// ─── Main layout ─────────────────────────────────────────────────────────────
-
 const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
@@ -192,6 +189,11 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
           { icon: Wallet, label: "Wallet", path: `${basePath}/wallet` },
           { icon: Globe, label: "Websites", path: `${basePath}/websites` },
           {
+            icon: RefreshCcw,
+            label: "Referred Websites",
+            path: `${basePath}/referred`,
+          },
+          {
             icon: Zap,
             label: "Subscription",
             path: `${basePath}/subscription`,
@@ -213,6 +215,11 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
           },
           { icon: Wallet, label: "Wallet", path: `${basePath}/wallet` },
           { icon: Globe, label: "Websites", path: `${basePath}/websites` },
+          {
+            icon: RefreshCcw,
+            label: "Referred Websites",
+            path: `${basePath}/referred`,
+          },
           {
             icon: Zap,
             label: "Subscription",

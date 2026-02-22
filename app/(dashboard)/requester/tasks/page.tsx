@@ -292,7 +292,7 @@ const ProviderMyJobs = () => {
 
       {/* Marketplace Governance Note */}
       <div className="bg-[#fff9ed] border border-[#ffe4b3] rounded-2xl p-6 flex gap-4">
-        <Shield className="w-6 h-6 text-[#f59e0b] mt-0.5 flex-shrink-0" />
+        <Shield className="w-6 h-6 text-[#f59e0b] mt-0.5 shrink-0" />
         <div>
           <div className="uppercase text-[#f59e0b] text-xs font-semibold tracking-widest">
             MARKETPLACE GOVERNANCE &amp; FULFILMENT

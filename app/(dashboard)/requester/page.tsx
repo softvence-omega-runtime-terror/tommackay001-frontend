@@ -16,52 +16,8 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-
-// Stat Card Component
-interface StatCardProps {
-  icon: React.ElementType;
-  label: string;
-  value: string;
-  subtext: string;
-}
-
-const StatCard = ({ icon: Icon, label, value, subtext }: StatCardProps) => (
-  <div className="bg-white border border-[#e9eaeb] rounded-xl p-5 flex items-center gap-5 w-[296px]">
-    <div className="w-[54px] h-[54px] bg-[#f5f5f5] rounded-full flex items-center justify-center shrink-0">
-      <Icon className="w-6 h-6 text-[#535862]" />
-    </div>
-    <div className="flex flex-col gap-1.5 flex-1">
-      <span className="text-sm font-semibold text-[#535862] uppercase leading-5">
-        {label}
-      </span>
-      <span className="text-2xl font-semibold font-sora text-[#181d27] leading-8">
-        {value}
-      </span>
-      <span className="text-sm font-normal text-[#717680] leading-5">
-        {subtext}
-      </span>
-    </div>
-  </div>
-);
-
-// Status Badge Component
-const StatusBadge = ({ status }: { status: string }) => {
-  const styles: Record<string, { bg: string; text: string }> = {
-    "In Progress": { bg: "#f9f5ff", text: "#331ffd" },
-    Completed: { bg: "#ecfdf3", text: "#12b76a" },
-    "Waiting for Applicants": { bg: "#fff1e9", text: "#fd751f" },
-    Applied: { bg: "#fef0c7", text: "#f79009" },
-  };
-  const style = styles[status] || { bg: "#f5f5f5", text: "#535862" };
-  return (
-    <span
-      className="px-2.5 py-1 rounded text-sm font-medium"
-      style={{ backgroundColor: style.bg, color: style.text }}
-    >
-      {status === "Waiting for Applicants" ? "WAITING FOR APPLICANTS" : status}
-    </span>
-  );
-};
+import { StatCard } from "@/components/ui/common/StatCard";
+import { StatusBadge } from "@/components/ui/common/StatusBadge";
 
 // Mock data
 const recentActivity = [

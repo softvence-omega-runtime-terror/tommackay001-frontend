@@ -35,7 +35,7 @@ export default function RequesterWalletPage() {
           </div>
 
           <div className="flex items-center gap-2 px-4 py-2.5 bg-green-50 rounded-lg border border-green-200 w-full">
-            <Clock className="w-5 h-5 text-green-600 flex-shrink-0" />
+            <Clock className="w-5 h-5 text-green-600 shrink-0" />
             <span className="text-sm text-green-600 font-medium">
               Expected launch in Q2 2026
             </span>
