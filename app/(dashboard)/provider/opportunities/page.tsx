@@ -92,15 +92,15 @@ const ProviderOpportunityBoard = () => {
   };
 
   return (
-    <div className="flex flex-col gap-17.5">
+    <div className="flex flex-col gap-8 lg:gap-17.5">
       {/* Header */}
-      <div className="flex flex-col gap-5">
-        <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-4 lg:gap-5">
+        <div className="flex flex-col lg:flex-row items-start lg:items-center lg:justify-between gap-4">
           <div className="flex flex-col gap-2.5">
-            <h1 className="text-[30px] font-semibold text-[#181d27] leading-9.5 font-sora">
+            <h1 className="text-xl lg:text-[30px] font-semibold text-[#181d27] leading-7 lg:leading-9.5 font-sora">
               Opportunity Board
             </h1>
-            <p className="text-base font-medium text-[#535862] leading-6">
+            <p className="text-sm lg:text-base font-medium text-[#535862] leading-5 lg:leading-6">
               Discover and evaluate elite providers to understand quality and
               trust before starting your next campaign.
             </p>
@@ -108,11 +108,11 @@ const ProviderOpportunityBoard = () => {
         </div>
 
         {/* Info Banner */}
-        <div className="bg-[#f5f5f5] rounded-xl p-2 flex items-center gap-2.5">
-          <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
-            <CircleAlert className="w-5 h-5 text-[#2AB516]" />
+        <div className="bg-[#f5f5f5] rounded-xl p-2 lg:p-3 flex items-start lg:items-center gap-2.5">
+          <div className="w-6 h-6 lg:w-8 lg:h-8 bg-white rounded-lg flex items-center justify-center flex-shrink-0">
+            <CircleAlert className="w-4 h-4 lg:w-5 lg:h-5 text-[#2AB516]" />
           </div>
-          <p className="text-xs text-[#535862]">
+          <p className="text-xs lg:text-sm text-[#535862]">
             Browse vetted providers to understand quality and trust before
             creating a placement task. All hiring and fulfillment happens
             exclusively through the task-based workflow.
@@ -121,9 +121,9 @@ const ProviderOpportunityBoard = () => {
       </div>
 
       {/* Main Content */}
-      <div className="flex gap-4">
-        {/* Filters Sidebar */}
-        <div className="w-74 bg-white rounded-[20px] p-5 flex flex-col gap-5 h-fit">
+      <div className="flex flex-col lg:flex-row gap-4 lg:gap-4">
+        {/* Filters Sidebar - Hidden on mobile, visible on lg */}
+        <div className="hidden lg:flex w-74 bg-white rounded-[20px] p-5 flex-col gap-5 h-fit">
           <div className="flex items-center justify-between h-7">
             <div className="flex items-center gap-1.5">
               <Filter className="w-6 h-6 text-[#414651]" />
@@ -242,18 +242,18 @@ const ProviderOpportunityBoard = () => {
         {/* Opportunities Grid */}
         <div className="flex-1 flex flex-col gap-5">
           {/* Search Bar */}
-          <div className="bg-white rounded-xl p-3 flex items-center justify-between">
-            <div className="bg-[#f5f5f5] border border-[#e9eaeb] rounded p-3 flex items-center gap-2">
-              <Search className="w-6 h-6 text-[#a4a7ae]" />
+          <div className="bg-white rounded-xl p-2 lg:p-3 flex flex-col lg:flex-row items-start lg:items-center lg:justify-between gap-3">
+            <div className="w-full lg:flex-1 bg-[#f5f5f5] border border-[#e9eaeb] rounded p-2 lg:p-3 flex items-center gap-2">
+              <Search className="w-5 h-5 lg:w-6 lg:h-6 text-[#a4a7ae] flex-shrink-0" />
               <input
                 type="text"
                 placeholder="Search by site, ID, or title..."
-                className="text-sm font-medium text-[#a4a7ae] bg-transparent outline-none w-60"
+                className="text-xs lg:text-sm font-medium text-[#a4a7ae] bg-transparent outline-none flex-1 min-w-0"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
-            <div className="flex items-center gap-2.5">
+            <div className="hidden lg:flex items-center gap-2.5">
               <span className="text-xs font-medium text-primary">SORT BY:</span>
               <div className="flex items-center gap-1.5">
                 <span className="text-xs font-medium text-primary">
@@ -265,15 +265,15 @@ const ProviderOpportunityBoard = () => {
           </div>
 
           {/* Cards Grid */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-3 lg:gap-4">
             {opportunities.map((opp) => (
-              <div key={opp.id} className="bg-white rounded-[20px] p-5">
-                <div className="flex flex-col gap-7.5">
-                  <div className="flex flex-col gap-5">
+              <div key={opp.id} className="bg-white rounded-[20px] p-3 lg:p-5">
+                <div className="flex flex-col gap-4 lg:gap-7.5">
+                  <div className="flex flex-col gap-3 lg:gap-5">
                     {/* Header */}
-                    <div className="flex items-start justify-between">
-                      <div className="flex items-center gap-2.5">
-                        <div className="w-11 h-11 rounded-lg overflow-hidden bg-gray-200">
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="flex items-center gap-2">
+                        <div className="w-9 h-9 lg:w-11 lg:h-11 rounded-lg overflow-hidden bg-gray-200 flex-shrink-0">
                           <Image
                             src={opp.logo}
                             alt={opp.company}
@@ -284,32 +284,32 @@ const ProviderOpportunityBoard = () => {
                             }}
                           />
                         </div>
-                        <div>
-                          <p className="text-base font-bold text-[#414651]">
+                        <div className="min-w-0">
+                          <p className="text-sm lg:text-base font-bold text-[#414651] truncate">
                             {opp.company}
                           </p>
                           <div className="flex items-center gap-1">
-                            <Star className="w-4 h-4 text-[#fbbf24] fill-[#fbbf24]" />
+                            <Star className="w-3 h-3 lg:w-4 lg:h-4 text-[#fbbf24] fill-[#fbbf24] flex-shrink-0" />
                             <span className="text-xs font-medium text-[#394554]">
                               {opp.rating}
                             </span>
-                            <span className="text-xs text-[#394554]">
+                            <span className="text-xs text-[#394554] hidden sm:inline">
                               ({opp.reviews})
                             </span>
                           </div>
                         </div>
                       </div>
-                      <div className="bg-[#f5f5f5] border border-[#e9eaeb] rounded-lg p-1 flex items-center gap-2">
-                        <Clock className="w-3.5 h-3.5 text-primary" />
-                        <span className="text-[10px] text-primary">
-                          {opp.daysLeft} Days Left
+                      <div className="bg-[#f5f5f5] border border-[#e9eaeb] rounded-lg p-1 lg:p-1.5 flex items-center gap-1 flex-shrink-0">
+                        <Clock className="w-3 h-3 lg:w-3.5 lg:h-3.5 text-primary flex-shrink-0" />
+                        <span className="text-[9px] lg:text-[10px] text-primary whitespace-nowrap">
+                          {opp.daysLeft}d
                         </span>
                       </div>
                     </div>
 
                     {/* Tags */}
-                    <div className="flex gap-2.5">
-                      <span className="bg-[#ebffe9] text-[#196b0d] text-xs px-2 py-1 rounded-lg">
+                    <div className="flex gap-2 flex-wrap">
+                      <span className="bg-[#ebffe9] text-[#196b0d] text-xs px-2 py-1 rounded-lg truncate">
                         {opp.type}
                       </span>
                       <span className="bg-[#f5f5f5] text-[#414651] text-xs px-2 py-1 rounded-lg">
@@ -318,35 +318,35 @@ const ProviderOpportunityBoard = () => {
                     </div>
 
                     {/* Title */}
-                    <p className="text-base font-semibold text-[#535862]">
+                    <p className="text-sm lg:text-base font-semibold text-[#535862] line-clamp-2">
                       {opp.title}
                     </p>
 
                     {/* Description Box */}
-                    <div className="bg-[#fafafa] rounded-lg p-2.5 flex flex-col gap-2">
+                    <div className="bg-[#fafafa] rounded-lg p-2 lg:p-2.5 flex flex-col gap-1.5 lg:gap-2">
                       <div className="flex items-center gap-2">
-                        <Globe className="w-6 h-6 text-[#fd751f]" />
-                        <span className="text-xs font-medium text-[#fd751f]">
+                        <Globe className="w-5 h-5 lg:w-6 lg:h-6 text-[#fd751f] flex-shrink-0" />
+                        <span className="text-xs lg:text-sm font-medium text-[#fd751f] truncate">
                           {opp.website}
                         </span>
                       </div>
-                      <p className="text-xs font-medium text-[#717680]">
+                      <p className="text-xs font-medium text-[#717680] line-clamp-2">
                         {opp.description}
                       </p>
                     </div>
 
                     {/* Credits */}
-                    <div className="flex items-center justify-between">
-                      <div className="flex flex-col gap-2 p-3">
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="flex flex-col gap-1 p-2 lg:p-3">
                         <span className="text-xs text-[#717680]">
                           PROJECT ALLOCATION
                         </span>
-                        <span className="text-lg font-semibold text-[#2ab516]">
+                        <span className="text-base lg:text-lg font-semibold text-[#2ab516]">
                           {opp.credits}
                         </span>
                       </div>
-                      <div className="p-3">
-                        <span className="text-xs text-[#717680] text-right">
+                      <div className="p-2 lg:p-3 text-right">
+                        <span className="text-xs text-[#717680]">
                           EARNED ON APPROVAL
                         </span>
                       </div>
@@ -356,11 +356,11 @@ const ProviderOpportunityBoard = () => {
                   {/* Apply Button */}
                   <Button
                     variant="secondary"
-                    className="rounded-xl"
+                    className="rounded-xl text-xs lg:text-sm w-full"
                     onClick={() => setSelectedOpportunity(opp)}
                   >
                     VIEW DETAILS & APPLY
-                    <ArrowRight className="w-5 h-5" />
+                    <ArrowRight className="w-4 h-4 lg:w-5 lg:h-5" />
                   </Button>
                 </div>
               </div>
