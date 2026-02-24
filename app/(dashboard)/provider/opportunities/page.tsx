@@ -356,7 +356,11 @@ const ProviderOpportunityBoard = () => {
                   {/* Apply Button */}
                   <Button
                     variant="secondary"
+<<<<<<< HEAD
                     className="rounded-xl text-xs lg:text-sm w-full"
+=======
+                    className="rounded-xl"
+>>>>>>> 431dc410af3a4944e0edf571e60eab43d55a800c
                     onClick={() => setSelectedOpportunity(opp)}
                   >
                     VIEW DETAILS & APPLY
