@@ -19,7 +19,6 @@ import {
   AlertCircle,
   Link2,
   FileText,
-  Award,
   List,
   Activity,
   Info,
@@ -35,8 +34,60 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
-// ─── Mock Data ─────────────────────────────────────────────────────────────
-const providers = [
+interface Provider {
+  id: number;
+  name: string;
+  avatar: string;
+  avatarBg: string;
+  verified: boolean;
+  rating: number;
+  reviews: number;
+  website: string;
+  websiteUrl: string;
+  domainRating: number;
+  industryTag: string;
+  tags: string[];
+}
+
+interface Country {
+  name: string;
+  flag: string;
+  checked: boolean;
+}
+
+interface Industry {
+  name: string;
+  checked: boolean;
+}
+
+interface PlacementOption {
+  id: string;
+  icon: React.ReactNode;
+  label: string;
+  desc: string;
+  recommended?: boolean;
+}
+
+interface PublisherCapabilitiesModalProps {
+  onClose: () => void;
+  onCreateTask: () => void;
+}
+
+interface CreateTaskModalProps {
+  onClose: () => void;
+}
+
+interface ProviderProfileModalProps {
+  provider: Provider | null;
+  onClose: () => void;
+}
+
+interface ProviderCardProps {
+  provider: Provider;
+  onViewProfile: (provider: Provider) => void;
+}
+
+const providers: Provider[] = [
   {
     id: 1,
     name: "TechTrends",
@@ -123,7 +174,7 @@ const providers = [
   },
 ];
 
-const countries = [
+const countries: Country[] = [
   { name: "South Korea", flag: "🇰🇷", checked: false },
   { name: "Portugal", flag: "🇵🇹", checked: true },
   { name: "Germany", flag: "🇩🇪", checked: true },
@@ -131,7 +182,7 @@ const countries = [
   { name: "Poland", flag: "🇵🇱", checked: true },
 ];
 
-const industries = [
+const industries: Industry[] = [
   { name: "Technology", checked: true },
   { name: "Marketing", checked: false },
   { name: "News", checked: false },
@@ -139,8 +190,10 @@ const industries = [
   { name: "Business", checked: false },
 ];
 
-// ─── Publisher Capabilities Modal ──────────────────────────────────────────
-function PublisherCapabilitiesModal({ onClose, onCreateTask }) {
+function PublisherCapabilitiesModal({
+  onClose,
+  onCreateTask,
+}: PublisherCapabilitiesModalProps) {
   return (
     <div
       className="fixed inset-0 z-[60] flex items-center justify-center bg-black/50 backdrop-blur-sm"
@@ -269,28 +322,24 @@ function PublisherCapabilitiesModal({ onClose, onCreateTask }) {
           >
             CLOSE CAPABILITY VIEW
           </button>
-          <button
-            onClick={onCreateTask}
-            className="bg-[#fd751f] hover:bg-[#e65c00] transition-colors text-white font-bold text-md px-5 py-2.5 rounded-xl flex items-center gap-2"
-          >
+          <Button variant="secondary" onClick={onCreateTask}>
             CREATE TASK TO INVITE <ArrowRight className="w-4 h-4" />
-          </button>
+          </Button>
         </div>
       </div>
     </div>
   );
 }
 
-// ─── Create Placement Task Modal ───────────────────────────────────────────
-function CreateTaskModal({ onClose }) {
-  const [step, setStep] = useState(1);
-  const [placement, setPlacement] = useState("flexible");
-  const [targetUrl, setTargetUrl] = useState("");
-  const [anchorText, setAnchorText] = useState("");
-  const [deadline, setDeadline] = useState("");
-  const [guidelines, setGuidelines] = useState("");
+function CreateTaskModal({ onClose }: CreateTaskModalProps) {
+  const [step, setStep] = useState<number>(1);
+  const [placement, setPlacement] = useState<string>("flexible");
+  const [targetUrl, setTargetUrl] = useState<string>("");
+  const [anchorText, setAnchorText] = useState<string>("");
+  const [deadline, setDeadline] = useState<string>("");
+  const [guidelines, setGuidelines] = useState<string>("");
 
-  const placementOptions = [
+  const placementOptions: PlacementOption[] = [
     {
       id: "guest",
       icon: <FileText className="w-5 h-5" />,
@@ -314,7 +363,7 @@ function CreateTaskModal({ onClose }) {
 
   return (
     <div
-      className="fixed inset-0 z-[70] flex items-center justify-center bg-black/50 backdrop-blur-sm"
+      className="fixed inset-0 z-70 flex items-center justify-center bg-black/10 backdrop-blur-sm"
       onClick={onClose}
     >
       <div
@@ -323,7 +372,7 @@ function CreateTaskModal({ onClose }) {
       >
         <div className="px-6 pt-6 pb-4 border-b border-gray-100 flex items-start justify-between">
           <div>
-            <h2 className="text-xl font-bold text-[#181d27]">
+            <h2 className="text-2xl font-bold text-[#181d27]">
               Create Placement Task
             </h2>
             <p className="text-md text-[#717680] mt-0.5">
@@ -346,20 +395,24 @@ function CreateTaskModal({ onClose }) {
               { n: 2, label: "REQUIREMENTS" },
               { n: 3, label: "REVIEW" },
             ].map(({ n, label }, i) => (
-              <div key={n} className="flex items-center gap-2">
-                <div className="flex items-center gap-1.5">
+              <div key={n} className="flex items-center gap-2 w-1/3 ">
+                <div className="flex items-center gap-1.5 mx-auto">
                   <div
-                    className={`w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold transition-colors ${step >= n ? "bg-[#fd751f] text-white" : "bg-white border-2 border-[#e9eaeb] text-[#a4a7ae]"}`}
+                    className={`w-7 h-7 rounded-full flex items-center justify-center text-base font-bold transition-colors ${step >= n ? "bg-[#fd751f] text-white" : "bg-white border-2 border-[#e9eaeb] text-secondary"}`}
                   >
                     {n}
                   </div>
                   <span
-                    className={`text-sm font-bold uppercase tracking-wide ${step >= n ? "text-[#fd751f]" : "text-[#a4a7ae]"}`}
+                    className={`text-base font-bold uppercase tracking-wide ${step >= n ? "text-[#fd751f]" : "text-gray-900"}`}
                   >
                     {label}
                   </span>
                 </div>
-                {i < 2 && <ArrowRight className="w-3 h-3 text-[#a4a7ae]" />}
+                {i < 2 && (
+                  <ArrowRight
+                    className={`w-8 h-8  ${step >= n ? "text-[#fd751f]" : "text-gray-900"}`}
+                  />
+                )}
               </div>
             ))}
           </div>
@@ -601,19 +654,13 @@ function CreateTaskModal({ onClose }) {
             <div />
           )}
           {step < 3 ? (
-            <button
-              onClick={() => setStep((s) => s + 1)}
-              className="bg-[#fd751f] hover:bg-[#e65c00] transition-colors text-white font-bold text-md px-5 py-2.5 rounded-xl flex items-center gap-2"
-            >
+            <Button variant="secondary" onClick={() => setStep((s) => s + 1)}>
               CONTINUE TO NEXT STEP <ArrowRight className="w-4 h-4" />
-            </button>
+            </Button>
           ) : (
-            <button
-              onClick={onClose}
-              className="bg-[#fd751f] hover:bg-[#e65c00] transition-colors text-white font-bold text-md px-5 py-2.5 rounded-xl flex items-center gap-2"
-            >
+            <Button variant="secondary" onClick={onClose}>
               CONFIRM & SUBMIT <ArrowRight className="w-4 h-4" />
-            </button>
+            </Button>
           )}
         </div>
       </div>
@@ -621,8 +668,7 @@ function CreateTaskModal({ onClose }) {
   );
 }
 
-// ─── Provider Profile Modal ────────────────────────────────────────────────
-const TABS = [
+const TABS: string[] = [
   "OVERVIEW",
   "PLACEMENT FORMATS",
   "VERIFIED SAMPLES",
@@ -630,14 +676,17 @@ const TABS = [
   "WEBSITE LIST",
 ];
 
-function ProviderProfileModal({ provider, onClose }) {
-  const [activeTab, setActiveTab] = useState("OVERVIEW");
-  const [showCapabilities, setShowCapabilities] = useState(false);
-  const [showCreateTask, setShowCreateTask] = useState(false);
+function ProviderProfileModal({
+  provider,
+  onClose,
+}: ProviderProfileModalProps) {
+  const [activeTab, setActiveTab] = useState<string>("OVERVIEW");
+  const [showCapabilities, setShowCapabilities] = useState<boolean>(false);
+  const [showCreateTask, setShowCreateTask] = useState<boolean>(false);
 
   if (!provider) return null;
 
-  const tabIcons = {
+  const tabIcons: Record<string, React.ReactNode> = {
     OVERVIEW: <Activity className="w-4 h-4" />,
     "PLACEMENT FORMATS": <List className="w-4 h-4" />,
     "VERIFIED SAMPLES": <Eye className="w-4 h-4" />,
@@ -796,7 +845,7 @@ function ProviderProfileModal({ provider, onClose }) {
                         </span>
                       </div>
                       <div className="h-1.5 bg-gray-700 rounded-full">
-                        <div className="h-full w-5/6 bg-gradient-to-r from-[#fd751f] to-[#2ab516] rounded-full" />
+                        <div className="h-full w-5/6 bg-linear-to-r from-[#fd751f] to-[#2ab516] rounded-full" />
                       </div>
                     </div>
                     <p className="text-[10px] text-gray-500 mt-3 leading-relaxed">
@@ -1078,10 +1127,7 @@ function ProviderProfileModal({ provider, onClose }) {
                 <Eye className="w-4 h-4" /> EXPLORE CAPABILITY
               </button>
             </div>
-            <Button
-            variant="secondary"
-              onClick={() => setShowCreateTask(true)}
-            >
+            <Button variant="secondary" onClick={() => setShowCreateTask(true)}>
               <Plus className="w-4 h-4" /> CREATE TASK TO INVITE
             </Button>
           </div>
@@ -1104,7 +1150,7 @@ function ProviderProfileModal({ provider, onClose }) {
   );
 }
 
-function ProviderCard({ provider, onViewProfile }) {
+function ProviderCard({ provider, onViewProfile }: ProviderCardProps) {
   return (
     <div className="bg-white rounded-[20px] p-5 flex flex-col gap-4 hover:shadow-md transition-shadow duration-200">
       <div className="flex items-start justify-between">
@@ -1183,25 +1229,28 @@ function ProviderCard({ provider, onViewProfile }) {
   );
 }
 
-// ─── Main Page ──────────────────────────────────────────────────────────────
 export default function CompanyDirectory() {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCountries, setSelectedCountries] = useState(countries);
-  const [selectedIndustries, setSelectedIndustries] = useState(industries);
-  const [selectedProvider, setSelectedProvider] = useState(null);
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [selectedCountries, setSelectedCountries] =
+    useState<Country[]>(countries);
+  const [selectedIndustries, setSelectedIndustries] =
+    useState<Industry[]>(industries);
+  const [selectedProvider, setSelectedProvider] = useState<Provider | null>(
+    null,
+  );
 
-  const toggleCountry = (idx) =>
+  const toggleCountry = (idx: number) =>
     setSelectedCountries((prev) =>
       prev.map((c, i) => (i === idx ? { ...c, checked: !c.checked } : c)),
     );
-  const toggleIndustry = (idx) =>
+  const toggleIndustry = (idx: number) =>
     setSelectedIndustries((prev) =>
       prev.map((ind, i) =>
         i === idx ? { ...ind, checked: !ind.checked } : ind,
       ),
     );
 
-  const filtered = providers.filter((p) => {
+  const filtered: Provider[] = providers.filter((p) => {
     if (!searchQuery) return true;
     return (
       p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -1212,7 +1261,7 @@ export default function CompanyDirectory() {
 
   return (
     <div className="min-h-screen bg-[#f7f7f7] font-sans">
-      <div className=" px-4 py-8 flex flex-col gap-8">
+      <div className=" px-4 md:py-8 flex flex-col gap-8">
         {/* Page Header */}
         <div className="flex flex-col gap-4">
           <div>
@@ -1405,22 +1454,6 @@ export default function CompanyDirectory() {
               </div>
             )}
           </div>
-        </div>
-
-        {/* CTA */}
-        <div className="bg-[#181d27] rounded-2xl p-6 lg:p-8 flex flex-col lg:flex-row items-center justify-between gap-4">
-          <div>
-            <h2 className="text-white text-xl lg:text-2xl font-semibold">
-              Ready to grow your authority?
-            </h2>
-            <p className="text-[#9ca3af] text-md mt-1">
-              We&apos;ve detected 14 more high-DR opportunities matching your
-              verified domain profiles.
-            </p>
-          </div>
-          <button className="shrink-0 bg-[#fd751f] hover:bg-[#e65c00] transition-colors text-white font-bold text-md px-6 py-3 rounded-xl flex items-center gap-2 whitespace-nowrap">
-            LOAD MORE DISCOVERIES <ArrowRight className="w-4 h-4" />
-          </button>
         </div>
       </div>
 
