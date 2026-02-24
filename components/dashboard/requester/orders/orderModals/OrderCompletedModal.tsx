@@ -16,6 +16,7 @@ import {
   Image as ImageIcon,
 } from "lucide-react";
 import ModalShell from "@/components/dashboard/provider/delivery/modals/ModalShell";
+import { Button } from "@/components/ui/Button";
 import type { OrderItem } from "../OrderCard";
 
 type Tab = "summary" | "submission" | "timeline";
@@ -107,12 +108,9 @@ export default function OrderCompletedModal({ order, open, onClose }: Props) {
 
         {/* Footer – only close button */}
         <div className="shrink-0 px-10 sm:px-16 pb-5 pt-4 border-t border-[#e9eaeb] flex items-center justify-end bg-white">
-          <button
-            onClick={handleClose}
-            className="cursor-pointer bg-[#f2f4f7] hover:bg-[#e9eaeb] text-[#535862] font-semibold text-base px-8 py-3 rounded-lg transition-colors"
-          >
+          <Button variant="white" onClick={handleClose} className="rounded-lg">
             Close Oversight
-          </button>
+          </Button>
         </div>
       </section>
     </ModalShell>

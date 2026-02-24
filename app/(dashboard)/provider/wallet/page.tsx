@@ -1,88 +1,82 @@
-"use client";
-
-import React from "react";
-import { Globe, Link, Clock } from "lucide-react";
+import { PricingCard } from "@/components/dashboard/subscription/PricingCard";
+import CreditStatement from "@/components/dashboard/wallet/CreditStatement";
+import PlanOverview from "@/components/dashboard/wallet/PlanOverview";
+import { PricingTier } from "@/components/landing/Pricing";
 import { Button } from "@/components/ui/Button";
+import { Globe2, ShieldCheck, Star } from "lucide-react";
 
-export default function ProviderWebsitesPage() {
+export default function PlanPage() {
+  const tiers: PricingTier[] = [
+    {
+      name: "Silver",
+      price: "44.99",
+      icon: Globe2,
+      features: [
+        "5 task credits included",
+        "1 active website",
+        "Basic visibility options",
+        "Standard support",
+        "Task history for 30 days",
+        "Email notifications",
+      ],
+    },
+    {
+      name: "Gold",
+      price: "79.99",
+      icon: Star,
+      features: [
+        "15 task credits included",
+        "3 active websites",
+        "Enhanced visibility options",
+        "Priority support",
+        "Task history for 90 days",
+        "Advanced analytics",
+      ],
+      highlighted: true,
+    },
+    {
+      name: "Platinum",
+      price: "139.99",
+      icon: ShieldCheck,
+      features: [
+        "40 task credits included",
+        "10 active websites",
+        "Maximum visibility options",
+        "Dedicated account manager",
+        "Unlimited task history",
+        "Custom reporting",
+      ],
+    },
+  ];
+
   return (
-    <div className="flex flex-col gap-8 font-inter">
-      {/* Header */}
-      <div className="space-y-2">
-        <h1 className="text-2xl lg:text-[30px] font-semibold font-sora text-[#181d27]">
-          Websites & Profiles
-        </h1>
-        <p className="text-sm lg:text-base font-medium text-[#535862]">
-          Manage your website profiles and domain information.
-        </p>
-      </div>
-
-      {/* Coming Soon Content */}
-      <div className="flex flex-col items-center justify-center min-h-[400px] lg:min-h-[500px] bg-white rounded-2xl p-6 lg:p-12">
-        <div className="flex flex-col items-center gap-6 text-center max-w-sm">
-          <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-orange-100 to-red-100 rounded-full flex items-center justify-center">
-            <Globe className="w-8 h-8 lg:w-10 lg:h-10 text-orange-600" />
-          </div>
-
-          <div className="space-y-3">
-            <h2 className="text-xl lg:text-2xl font-semibold text-[#181d27]">
-              Websites Coming Soon
-            </h2>
-            <p className="text-sm lg:text-base text-[#535862] leading-relaxed">
-              Manage all your websites and domain profiles in one centralized
-              dashboard.
-            </p>
-          </div>
-
-          <div className="flex items-center gap-2 px-4 py-2.5 bg-orange-50 rounded-lg border border-orange-200 w-full">
-            <Clock className="w-5 h-5 text-orange-600 shrink-0" />
-            <span className="text-sm text-orange-600 font-medium">
-              Expected launch in Q2 2026
-            </span>
-          </div>
-
-          <Button className="mt-4">Explore Other Features</Button>
+    <div className="  px-4  py-8 space-y-10">
+      <PlanOverview />
+      <div className="flex flex-col">
+        <h1>Compare Plans</h1>
+        <div className="flex gap-2 py-4">
+          <Button variant="outline" className="bg-[#E9EAEB]">
+            Silver
+          </Button>
+          <Button variant="outline" className="bg-[#FEDF89]">
+            Gold
+          </Button>
+          <Button variant="outline" className="bg-[#E9EAEB]">
+            Platinum
+          </Button>
+        </div>
+        <div className="flex gap-4 lg:gap-8 items-start justify-center w-full px-4 lg:px-0 lg:max-w-full flex-wrap">
+          {tiers.map((tier) => (
+            <div
+              key={tier.name}
+              className="w-full sm:w-auto flex-1 lg:flex-none min-w-full sm:min-w-fit"
+            >
+              <PricingCard tier={tier} />
+            </div>
+          ))}
         </div>
       </div>
-
-      {/* Feature Preview */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
-        <div className="bg-white border border-[#e9eaeb] rounded-xl p-4 lg:p-6">
-          <div className="w-10 h-10 lg:w-12 lg:h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
-            <Globe className="w-5 h-5 lg:w-6 lg:h-6 text-orange-600" />
-          </div>
-          <h3 className="font-semibold text-[#181d27] mb-2 text-sm lg:text-base">
-            Website Overview
-          </h3>
-          <p className="text-xs lg:text-sm text-[#535862]">
-            View all connected websites and domain metrics in one place.
-          </p>
-        </div>
-
-        <div className="bg-white border border-[#e9eaeb] rounded-xl p-4 lg:p-6">
-          <div className="w-10 h-10 lg:w-12 lg:h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-            <Link className="w-5 h-5 lg:w-6 lg:h-6 text-primary" />
-          </div>
-          <h3 className="font-semibold text-[#181d27] mb-2 text-sm lg:text-base">
-            Domain Analytics
-          </h3>
-          <p className="text-xs lg:text-sm text-[#535862]">
-            Track domain rating, traffic, and performance metrics.
-          </p>
-        </div>
-
-        <div className="bg-white border border-[#e9eaeb] rounded-xl p-4 lg:p-6">
-          <div className="w-10 h-10 lg:w-12 lg:h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-            <Globe className="w-5 h-5 lg:w-6 lg:h-6 text-purple-600" />
-          </div>
-          <h3 className="font-semibold text-[#181d27] mb-2 text-sm lg:text-base">
-            Add Website
-          </h3>
-          <p className="text-xs lg:text-sm text-[#535862]">
-            Easily connect and verify new domains to your profile.
-          </p>
-        </div>
-      </div>
+      <CreditStatement />
     </div>
   );
 }

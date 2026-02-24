@@ -15,8 +15,9 @@ import { Button } from "@/components/ui/Button";
 import { usePathname } from "next/navigation";
 import BuyVisibilityCreditModal from "@/components/dashboard/provider/visivility/Buyvisibilitycreditmodal";
 import RecentOrders from "@/components/dashboard/requester/orders/RecentOrders";
+import type { OrderItem } from "@/components/dashboard/requester/orders/OrderCard";
 
-const recentActivity = [
+const recentActivity: OrderItem[] = [
   {
     name: "High-Authority Backlink Provider",
     id: "#1249",

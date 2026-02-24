@@ -5,7 +5,7 @@ import Link from "next/link";
 export const PricingCard = ({ tier }: { tier: PricingTier }) => {
   return (
     <div
-      className={`flex-1 min-w-full md:min-w-[320px] max-w-90 bg-white rounded-2xl border overflow-hidden shadow-lg flex flex-col justify-between ${
+      className={`flex-1 min-w-full md:min-w-100  bg-white rounded-2xl border overflow-hidden shadow-lg flex flex-col justify-between ${
         tier.highlighted ? "border-primary0" : "border-gray-200"
       }`}
     >

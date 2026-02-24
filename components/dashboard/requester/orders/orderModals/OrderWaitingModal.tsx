@@ -13,6 +13,7 @@ import {
   Hourglass,
 } from "lucide-react";
 import ModalShell from "@/components/dashboard/provider/delivery/modals/ModalShell";
+import { Button } from "@/components/ui/Button";
 import type { OrderItem } from "../OrderCard";
 
 type Tab = "summary" | "applicants" | "timeline";
@@ -92,16 +93,16 @@ export default function OrderWaitingModal({ order, open, onClose }: Props) {
 
         {/* Footer */}
         <div className="shrink-0 px-6 pb-5 pt-4 border-t border-[#e9eaeb] bg-white flex items-center justify-between">
-          <button
-            onClick={handleClose}
-            className="bg-[#f2f4f7] hover:bg-[#e9eaeb] text-[#535862] font-semibold text-sm px-6 py-2.5 rounded-xl transition-colors tracking-wide"
-          >
+          <Button variant="white" onClick={handleClose} className="rounded-xl">
             CLOSE OVERSIGHT
-          </button>
-          <button className="flex items-center gap-2 border border-[#e9eaeb] hover:bg-gray-50 text-[#535862] font-semibold text-sm px-5 py-2.5 rounded-xl transition-colors">
+          </Button>
+          <Button
+            variant="white"
+            className="flex items-center gap-2 rounded-xl"
+          >
             <Pencil className="w-4 h-4" />
             EDIT TASK
-          </button>
+          </Button>
         </div>
       </div>
     </ModalShell>

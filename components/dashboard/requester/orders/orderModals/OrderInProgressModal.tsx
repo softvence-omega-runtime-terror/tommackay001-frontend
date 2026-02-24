@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import ModalShell from "@/components/dashboard/provider/delivery/modals/ModalShell";
 import { StatusBadge } from "@/components/ui/common/StatusBadge";
+import { Button } from "@/components/ui/Button";
 import type { OrderItem } from "../OrderCard";
 
 type Tab = "summary" | "submission" | "timeline";
@@ -146,18 +147,22 @@ export default function OrderInProgressModal({ order, open, onClose }: Props) {
 
           {/* Footer */}
           <div className="shrink-0 px-6 sm:px-16 pb-5 pt-4 border-t border-[#e9eaeb] flex items-center justify-between bg-white">
-            <button className="flex items-center gap-2.5 text-[#535862] hover:text-[#181d27] font-semibold text-base transition">
+            <Button
+              variant="white"
+              className="flex items-center gap-2.5 text-base rounded-lg"
+            >
               <MessageSquare className="w-5 h-5" />
               Open Chat
-            </button>
+            </Button>
 
-            <button
+            <Button
+              variant="secondary"
               onClick={() => setSubModal("approve")}
-              className="flex items-center gap-2 bg-[#F04F23] hover:bg-[#d94118] text-white font-semibold text-sm px-7 py-2.5 rounded-lg transition"
+              className="flex items-center gap-2 rounded-lg"
             >
               <CheckCircle2 className="w-4.5 h-4.5" />
               Approve & Release
-            </button>
+            </Button>
           </div>
         </section>
       </ModalShell>
@@ -472,7 +477,9 @@ function TimelineTab() {
           <UserCheck className="w-5 h-5 text-[#F04F23]" />
         </div>
         <div className="pt-1">
-          <p className="text-sm font-semibold text-[#181d27]">Provider Assigned</p>
+          <p className="text-sm font-semibold text-[#181d27]">
+            Provider Assigned
+          </p>
           <p className="text-xs text-[#9DA4AE] mt-0.5">Oct 08, 11:42 AM</p>
         </div>
       </div>

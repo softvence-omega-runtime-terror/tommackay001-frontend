@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import ModalShell from "@/components/dashboard/provider/delivery/modals/ModalShell";
 import { StatusBadge } from "@/components/ui/common/StatusBadge";
+import { Button } from "@/components/ui/Button";
 import type { OrderItem } from "../OrderCard";
 
 type Tab = "summary" | "proposal" | "timeline";
@@ -101,12 +102,9 @@ export default function OrderAppliedModal({ order, open, onClose }: Props) {
         </div>
 
         <div className="shrink-0 px-10 sm:px-16 pb-5 pt-4 border-t border-[#e9eaeb] flex items-center justify-end bg-white">
-          <button
-            onClick={handleClose}
-            className="cursor-pointer bg-[#f2f4f7] hover:bg-[#e9eaeb] text-[#535862] font-semibold text-base px-8 py-3 rounded-lg transition-colors"
-          >
+          <Button variant="white" onClick={handleClose} className="rounded-lg">
             Close Oversight
-          </button>
+          </Button>
         </div>
       </section>
     </ModalShell>
