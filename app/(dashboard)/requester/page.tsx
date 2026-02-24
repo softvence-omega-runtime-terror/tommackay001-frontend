@@ -34,7 +34,7 @@ const recentActivity = [
   {
     name: "White-Hat Link Building Expert",
     id: "#1249",
-    status: "Waiting for Applicants",
+    status: "WAITING FOR APPLICANTS",
     applicants: 8,
     requester: { name: "Natali Craig", avatar: "/avatar/oli.png" },
   },
@@ -95,7 +95,7 @@ const RequesterDashboardHome = () => {
           <div className="flex flex-col gap-5 items-end">
             <ActionLink
               label="REFER A FRIEND"
-              href={`${basePath}Referrals`}
+              href={`${basePath}/referrals`}
               className="px-5 py-3 bg-indigo text-primary rounded-full text-sm font-medium hover:bg-[#ddd8ff] transition-colors"
             />
             <div className="flex items-center gap-5">

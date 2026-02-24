@@ -218,7 +218,7 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
           {
             icon: RefreshCcw,
             label: "Referrals",
-            path: `${basePath}Referrals`,
+            path: `${basePath}/referrals`,
           },
           {
             icon: Zap,

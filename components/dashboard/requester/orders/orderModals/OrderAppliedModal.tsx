@@ -14,6 +14,7 @@ import {
   UserCheck,
 } from "lucide-react";
 import ModalShell from "@/components/dashboard/provider/delivery/modals/ModalShell";
+import { StatusBadge } from "@/components/ui/common/StatusBadge";
 import type { OrderItem } from "../OrderCard";
 
 type Tab = "summary" | "proposal" | "timeline";
@@ -43,10 +44,10 @@ export default function OrderAppliedModal({ order, open, onClose }: Props) {
   return (
     <ModalShell open={open} onClose={handleClose}>
       <section className="flex flex-col max-h-[88vh]">
-        <div className="pt-6 pb-0 shrink-0">
-          <div className="flex items-start gap-4 px-6 pr-10 py-4">
-            <div className="w-11 h-11 bg-[#EEF2FF] rounded-xl flex items-center justify-center shrink-0">
-              <FileText className="w-6 h-6 text-[#6366f1]" />
+        <div className="pt-6 pb-0 shrink-0 border-b border-[#e9eaeb]">
+          <div className="flex items-start gap-4 px-6 pr-8 py-4">
+            <div className="w-11 h-11 bg-[#FFF4ED] rounded-xl flex items-center justify-center shrink-0">
+              <FileText className="w-6 h-6 text-[#F04F23]" />
             </div>
 
             <div className="flex-1 min-w-0">
@@ -54,9 +55,7 @@ export default function OrderAppliedModal({ order, open, onClose }: Props) {
                 <h2 className="text-2xl font-bold text-[#181d27]">
                   {order.name}
                 </h2>
-                <span className="text-xs font-bold uppercase tracking-wide bg-[#f2f4f7] text-[#535862] px-2.5 py-1 rounded-full">
-                  {order.id}
-                </span>
+                <StatusBadge status={order.id} />
               </div>
               <p className="text-sm text-[#535862] mt-1">
                 1 provider has applied — review their proposal
@@ -64,7 +63,7 @@ export default function OrderAppliedModal({ order, open, onClose }: Props) {
             </div>
           </div>
 
-          <div className="flex mt-4 bg-[#EEF2FF] p-1 gap-1 px-6">
+          <div className="flex mt-4 bg-[#FFF4ED] p-1 gap-1 px-6 pb-4">
             {TABS.map(({ id, label, icon: Icon }) => {
               const isActive = activeTab === id;
               return (
@@ -73,15 +72,15 @@ export default function OrderAppliedModal({ order, open, onClose }: Props) {
                   onClick={() => setActiveTab(id)}
                   className={`flex-1 cursor-pointer flex items-center justify-center gap-2 py-3 px-3 rounded-lg font-semibold transition text-sm sm:text-base ${
                     isActive
-                      ? "text-[#6366f1] bg-white shadow-sm"
-                      : "text-[#535862] hover:text-[#6366f1] hover:bg-white/60"
+                      ? "text-[#F04F23] bg-white shadow-sm"
+                      : "text-[#535862] hover:text-[#F04F23] hover:bg-white/60"
                   }`}
                 >
                   <div
                     className={`p-1.5 rounded-xl ${
                       isActive
-                        ? "bg-[#6366f1] text-white"
-                        : "bg-white text-[#6366f1]/80"
+                        ? "bg-[#F04F23] text-white"
+                        : "bg-white text-[#F04F23]/80"
                     }`}
                   >
                     <Icon className="w-5 h-5" />
@@ -118,15 +117,15 @@ function SummaryTab() {
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div className="border border-[#e9eaeb] rounded-xl p-5 space-y-2 bg-white">
+        <div className="border border-[#e9eaeb] rounded-xl p-5 space-y-2 bg-white hover:shadow-sm transition">
           <p className="text-xs font-semibold uppercase tracking-wide text-[#535862]">
             Status
           </p>
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-full bg-[#EEF2FF] flex items-center justify-center">
-              <CheckCircle2 className="w-5 h-5 text-[#6366f1]" />
+            <div className="w-8 h-8 rounded-full bg-[#FFF4ED] flex items-center justify-center">
+              <CheckCircle2 className="w-5 h-5 text-[#F04F23]" />
             </div>
-            <span className="text-lg font-semibold text-[#6366f1]">
+            <span className="text-lg font-semibold text-[#F04F23]">
               Applied
             </span>
           </div>
@@ -135,12 +134,12 @@ function SummaryTab() {
           </p>
         </div>
 
-        <div className="border border-[#e9eaeb] rounded-xl p-5 space-y-2 bg-white">
+        <div className="border border-[#e9eaeb] rounded-xl p-5 space-y-2 bg-white hover:shadow-sm transition">
           <p className="text-xs font-semibold uppercase tracking-wide text-[#535862]">
             Deadline
           </p>
           <div className="flex items-center gap-2.5">
-            <Clock className="w-5 h-5 text-[#6366f1]" />
+            <Clock className="w-5 h-5 text-[#F04F23]" />
             <span className="text-lg font-semibold text-[#181d27]">
               Oct 24, 2026
             </span>
@@ -148,27 +147,32 @@ function SummaryTab() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 py-5 border-t border-b border-[#e9eaeb]">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-wide text-[#535862] mb-2">
-            Anchor Text
-          </p>
-          <p className="text-sm font-medium text-[#181d27]">
-            “SaaS” Scaling Infrastructure
-          </p>
+      <section>
+        <h3 className="text-xs font-bold uppercase tracking-widest text-[#181d27] mb-4">
+          Placement Requirements
+        </h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 py-5 border-t border-b border-[#e9eaeb]">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wide text-[#535862] mb-2">
+              Anchor Text
+            </p>
+            <p className="text-sm font-medium text-[#181d27]">
+              "SaaS" Scaling Infrastructure
+            </p>
+          </div>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wide text-[#535862] mb-2">
+              Required DR
+            </p>
+            <p className="text-sm font-medium text-[#181d27]">
+              DR 72+ Guaranteed
+            </p>
+          </div>
         </div>
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-wide text-[#535862] mb-2">
-            Required DR
-          </p>
-          <p className="text-sm font-medium text-[#181d27]">
-            DR 72+ Guaranteed
-          </p>
-        </div>
-      </div>
+      </section>
 
       <div>
-        <p className="text-xs font-semibold uppercase tracking-wide text-[#535862] mb-2.5">
+        <p className="text-xs font-bold uppercase tracking-widest text-[#181d27] mb-3">
           Placement Guidelines
         </p>
         <p className="text-sm text-[#535862] leading-relaxed">
@@ -178,9 +182,9 @@ function SummaryTab() {
         </p>
       </div>
 
-      <div className="flex items-center gap-3 bg-[#EEF2FF] border border-[#C7D7FD] rounded-xl px-5 py-3.5">
-        <CheckCircle2 className="w-5 h-5 text-[#6366f1] shrink-0" />
-        <p className="text-sm font-medium text-[#6366f1]">
+      <div className="flex items-center gap-3 bg-[#FFF4ED] border border-[#FDCFBE] rounded-xl px-5 py-3.5">
+        <CheckCircle2 className="w-5 h-5 text-[#F04F23] shrink-0" />
+        <p className="text-sm font-medium text-[#F04F23]">
           Escrow Protection Active — funds held until approval
         </p>
       </div>
@@ -231,7 +235,7 @@ function ProposalTab({
         </div>
         <button
           onClick={() => setDecision(null)}
-          className="cursor-pointer mt-3 text-base font-semibold text-[#6366f1] hover:underline"
+          className="cursor-pointer mt-3 text-base font-semibold text-[#F04F23] hover:underline"
         >
           View proposal again
         </button>
@@ -243,7 +247,7 @@ function ProposalTab({
     <div className="space-y-6">
       <div className="border border-[#e9eaeb] rounded-xl overflow-hidden bg-white">
         <div className="flex items-center gap-4 px-6 py-5 bg-[#f9fafb] border-b border-[#e9eaeb]">
-          <div className="w-14 h-14 rounded-full bg-[#6366f1] flex items-center justify-center text-white font-bold text-xl shrink-0">
+          <div className="w-14 h-14 rounded-full bg-[#F04F23] flex items-center justify-center text-white font-bold text-xl shrink-0">
             V
           </div>
           <div className="flex-1">
@@ -260,7 +264,7 @@ function ProposalTab({
         </div>
 
         <div className="flex items-center gap-3 px-6 py-4 border-b border-[#e9eaeb]">
-          <Globe className="w-5 h-5 text-[#6366f1] shrink-0" />
+          <Globe className="w-5 h-5 text-[#F04F23] shrink-0" />
           <div>
             <p className="text-base font-medium text-[#181d27]">
               techtrends.net
@@ -276,9 +280,9 @@ function ProposalTab({
             Proposal Note
           </p>
           <p className="text-sm text-[#535862] leading-relaxed italic">
-            “I can place this link in a high-traffic SaaS roundup article
+            "I can place this link in a high-traffic SaaS roundup article
             currently ranking on page 1. Turnaround is 3 days. Content is
-            original, 1,200+ words.”
+            original, 1,200+ words."
           </p>
         </div>
 
@@ -308,7 +312,7 @@ function ProposalTab({
         </button>
         <button
           onClick={() => setDecision("accepted")}
-          className="cursor-pointer flex items-center justify-center gap-2.5 bg-[#6366f1] hover:bg-[#4f46e5] text-white font-semibold text-base py-3.5 rounded-lg transition-colors shadow-sm"
+          className="cursor-pointer flex items-center justify-center gap-2.5 bg-[#F04F23] hover:bg-[#d94118] text-white font-semibold text-base py-3.5 rounded-lg transition-colors shadow-sm"
         >
           <ThumbsUp className="w-5 h-5" />
           Accept Provider
@@ -322,8 +326,8 @@ function TimelineTab() {
   return (
     <div className="space-y-6 py-2">
       <div className="flex items-start gap-4">
-        <div className="w-11 h-11 rounded-full border-2 border-[#6366f1] bg-white flex items-center justify-center shrink-0">
-          <Plus className="w-5 h-5 text-[#6366f1]" />
+        <div className="w-11 h-11 rounded-full border-2 border-[#F04F23] bg-white flex items-center justify-center shrink-0">
+          <Plus className="w-5 h-5 text-[#F04F23]" />
         </div>
         <div className="pt-1">
           <p className="text-base font-semibold text-[#181d27]">
@@ -334,8 +338,8 @@ function TimelineTab() {
       </div>
 
       <div className="flex items-start gap-4">
-        <div className="w-11 h-11 rounded-full border-2 border-[#6366f1] bg-white flex items-center justify-center shrink-0">
-          <UserCheck className="w-5 h-5 text-[#6366f1]" />
+        <div className="w-11 h-11 rounded-full border-2 border-[#F04F23] bg-white flex items-center justify-center shrink-0">
+          <UserCheck className="w-5 h-5 text-[#F04F23]" />
         </div>
         <div className="pt-1">
           <p className="text-base font-semibold text-[#181d27]">
