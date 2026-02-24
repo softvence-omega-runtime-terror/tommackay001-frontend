@@ -3,33 +3,32 @@
 import { useState } from "react";
 import {
   Search,
-  Globe,
+  Grid3X3,
   Eye,
   MessageSquare,
   SquarePen,
   Shield,
   Info,
   Plus,
+  Globe,
 } from "lucide-react";
-import ConnectWebsiteModal from "@/components/dashboard/website/Connectwebsitemodal";
-import WebsiteWorkspaceModal from "@/components/dashboard/website/Websiteworkspacemodal";
+import ConnectWebsiteModal from "./Connectwebsitemodal";
 
-// ─── Types (exported so modals can import them) ───────────────────────────────
+// ─── Types & Data ─────────────────────────────────────────────────────────────
 
-export type LifecycleStatus =
+type LifecycleStatus =
   | "VERIFIED"
   | "PENDING VERIFICATION"
   | "REVIEW REQUIRED"
   | "REJECTED";
-
-export type FilterTab =
+type FilterTab =
   | "ALL"
   | "VERIFIED"
   | "PENDING"
   | "REVIEW REQUIRED"
   | "REJECTED";
 
-export interface Website {
+interface Website {
   domain: string;
   host: string;
   status: LifecycleStatus;
@@ -37,8 +36,6 @@ export interface Website {
   category: string;
   connectedSince: string;
 }
-
-// ─── Data ─────────────────────────────────────────────────────────────────────
 
 const WEBSITES: Website[] = [
   {
@@ -75,8 +72,6 @@ const WEBSITES: Website[] = [
   },
 ];
 
-// ─── Style maps ───────────────────────────────────────────────────────────────
-
 const STATUS_STYLES: Record<LifecycleStatus, string> = {
   VERIFIED: "bg-[#ECFDF3] text-[#027A48]",
   "PENDING VERIFICATION": "bg-[#FFF6ED] text-[#B54708]",
@@ -106,11 +101,7 @@ function matchesFilter(status: LifecycleStatus, tab: FilterTab): boolean {
 export default function YourWebsitesPage() {
   const [activeTab, setActiveTab] = useState<FilterTab>("ALL");
   const [search, setSearch] = useState("");
-
-  // Modal states
-  const [connectOpen, setConnectOpen] = useState(false);
-  const [workspaceOpen, setWorkspaceOpen] = useState(false);
-  const [selectedWebsite, setSelectedWebsite] = useState<Website | null>(null);
+  const [connectModalOpen, setConnectModalOpen] = useState(false);
 
   const filtered = WEBSITES.filter(
     (w) =>
@@ -118,28 +109,12 @@ export default function YourWebsitesPage() {
       w.domain.toLowerCase().includes(search.toLowerCase()),
   );
 
-  const openWorkspace = (website: Website) => {
-    setSelectedWebsite(website);
-    setWorkspaceOpen(true);
-  };
-
   return (
     <>
-      {/* ── Modals ────────────────────────────────────────────────── */}
-      {/* 1. Connect Website — opened by "+ CONNECT WEBSITE" button */}
+      {/* ── Connect Website modal ──────────────────────────────────── */}
       <ConnectWebsiteModal
-        open={connectOpen}
-        onClose={() => setConnectOpen(false)}
-      />
-
-      {/* 2. Website Workspace — opened by Eye (👁) on each row */}
-      <WebsiteWorkspaceModal
-        website={selectedWebsite}
-        open={workspaceOpen}
-        onClose={() => {
-          setWorkspaceOpen(false);
-          setSelectedWebsite(null);
-        }}
+        open={connectModalOpen}
+        onClose={() => setConnectModalOpen(false)}
       />
 
       <div className="flex flex-col gap-6 font-inter max-w-[90vw]">
@@ -155,9 +130,9 @@ export default function YourWebsitesPage() {
             </p>
           </div>
 
-          {/* Opens ConnectWebsiteModal */}
+          {/* ── Wired to modal ──────────────────────────────────── */}
           <button
-            onClick={() => setConnectOpen(true)}
+            onClick={() => setConnectModalOpen(true)}
             className="flex items-center gap-2 bg-[#F04F23] hover:bg-[#d94118] text-white font-semibold text-sm px-5 py-2.5 rounded-full transition-colors"
           >
             <Plus className="w-4 h-4" />
@@ -271,14 +246,10 @@ export default function YourWebsitesPage() {
                       {w.connectedSince}
                     </td>
 
-                    {/* Actions — Eye opens WebsiteWorkspaceModal */}
+                    {/* Actions */}
                     <td className="px-6 py-5">
                       <div className="flex items-center gap-4">
-                        <button
-                          onClick={() => openWorkspace(w)}
-                          className="text-[#2AB516] hover:text-[#22a010] transition-colors"
-                          aria-label={`View workspace for ${w.domain}`}
-                        >
+                        <button className="text-[#2AB516] hover:text-[#22a010] transition-colors">
                           <Eye className="w-4 h-4" />
                         </button>
                         <button className="text-[#9DA4AE] hover:text-[#535862] transition-colors">

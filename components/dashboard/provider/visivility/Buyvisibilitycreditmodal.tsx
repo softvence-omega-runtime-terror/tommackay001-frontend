@@ -9,7 +9,7 @@ import {
   CheckCircle2,
   ArrowUpRight,
 } from "lucide-react";
-import ModalShell from "@/components/dashboard/provider/delivery/modals/ModalShell"; 
+import ModalShell from "@/components/dashboard/provider/delivery/modals/ModalShell";
 
 type PaymentMethod = "card" | "bank";
 type Screen = "form" | "success";
@@ -41,7 +41,11 @@ export default function BuyVisibilityCreditModal({ open, onClose }: Props) {
   };
 
   return (
-    <ModalShell open={open} onClose={handleClose}>
+    <ModalShell
+      open={open}
+      onClose={handleClose}
+      widthClass={` ${screen === "form" ? "max-w-3xl" : "max-w-md"}`}
+    >
       {screen === "form" ? (
         <FormScreen
           amount={amount}
@@ -57,8 +61,6 @@ export default function BuyVisibilityCreditModal({ open, onClose }: Props) {
     </ModalShell>
   );
 }
-
-// ─── Screen 1: Form ───────────────────────────────────────────────────────────
 
 type FormProps = {
   amount: string;
@@ -78,11 +80,11 @@ function FormScreen({
   onConfirm,
 }: FormProps) {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col max-w-3xl">
       {/* ── Header ── */}
       <div className="px-6 pt-6 pb-5 border-b border-[#e9eaeb] flex items-start gap-4 pr-12">
         <div className="w-12 h-12 rounded-xl bg-[#FFF4ED] border border-[#FDCFBE] flex items-center justify-center shrink-0">
-          <Database className="w-6 h-6 text-[#F04F23]" />
+          <Database className="w-6 h-6 text-secondary" />
         </div>
         <div>
           <h2 className="text-xl font-bold text-[#181d27]">
@@ -139,8 +141,8 @@ function FormScreen({
                 onClick={() => setAmount(String(qty))}
                 className={`px-4 py-2 rounded-lg border text-sm font-semibold transition-colors ${
                   Number(amount) === qty
-                    ? "border-[#F04F23] bg-[#FFF4ED] text-[#F04F23]"
-                    : "border-[#e9eaeb] text-[#535862] hover:border-[#F04F23] hover:text-[#F04F23]"
+                    ? "border-secondary bg-[#FFF4ED] text-secondary"
+                    : "border-[#e9eaeb] text-[#535862] hover:border-secondary hover:text-secondary"
                 }`}
               >
                 +{qty} CR
@@ -183,7 +185,7 @@ function FormScreen({
         </button>
         <button
           onClick={onConfirm}
-          className="flex-[3] bg-[#F04F23] hover:bg-[#d94118] text-white font-bold text-sm py-3.5 rounded-xl transition-colors flex items-center justify-center gap-2 tracking-wide"
+          className="flex-[3] bg-secondary hover:bg-[#d94118] text-white font-bold text-sm py-3.5 rounded-xl transition-colors flex items-center justify-center gap-2 tracking-wide"
         >
           CONFIRM &amp; ADD CREDITS
           <ArrowUpRight className="w-4 h-4" />
@@ -203,7 +205,7 @@ function SuccessScreen({
   onClose: () => void;
 }) {
   return (
-    <div className="px-8 py-10 flex flex-col items-center text-center">
+    <div className="px-8 py-10 flex flex-col items-center text-center max-w-xl">
       {/* Green check */}
       <div className="w-14 h-14 rounded-full bg-[#ECFDF3] flex items-center justify-center mb-6">
         <CheckCircle2 className="w-8 h-8 text-[#027A48]" />
@@ -248,18 +250,18 @@ function PaymentCard({
   return (
     <button
       onClick={onClick}
-      className={`flex flex-col gap-3 p-5 rounded-xl border-2 text-left transition-colors ${
+      className={`flex flex-col max-w-3xl gap-3 p-5 rounded-xl border-2 text-left transition-colors ${
         active
-          ? "border-[#F04F23] bg-white"
-          : "border-[#e9eaeb] bg-white hover:border-[#F04F23]/40"
+          ? "border-secondary bg-white"
+          : "border-[#e9eaeb] bg-white hover:border-secondary/40"
       }`}
     >
-      <span className={active ? "text-[#F04F23]" : "text-[#9DA4AE]"}>
+      <span className={active ? "text-secondary" : "text-[#9DA4AE]"}>
         {icon}
       </span>
       <span
         className={`text-sm font-bold uppercase tracking-wide ${
-          active ? "text-[#F04F23]" : "text-[#181d27]"
+          active ? "text-secondary" : "text-[#181d27]"
         }`}
       >
         {label}

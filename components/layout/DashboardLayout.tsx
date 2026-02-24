@@ -190,8 +190,8 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
           { icon: Globe, label: "Websites", path: `${basePath}/websites` },
           {
             icon: RefreshCcw,
-            label: "Referred Websites",
-            path: `${basePath}/referred`,
+            label: "Referrals",
+            path: `${basePath}/referrals`,
           },
           {
             icon: Zap,
@@ -217,8 +217,8 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
           { icon: Globe, label: "Websites", path: `${basePath}/websites` },
           {
             icon: RefreshCcw,
-            label: "Referred Websites",
-            path: `${basePath}/referred`,
+            label: "Referrals",
+            path: `${basePath}Referrals`,
           },
           {
             icon: Zap,

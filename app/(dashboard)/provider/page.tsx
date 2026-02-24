@@ -90,7 +90,7 @@ const ProviderDashboardHome = () => {
           <div className="flex flex-col gap-5 items-end">
             <ActionLink
               label="REFER A FRIEND"
-              href={`${basePath}/referred`}
+              href={`${basePath}Referrals`}
               className="px-5 py-3 bg-indigo text-primary rounded-full text-sm font-medium hover:bg-[#ddd8ff] transition-colors"
             />
             <div className="flex items-center gap-5">
