@@ -1,0 +1,74 @@
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import Pagination from "@/components/ui/Pagination";
+import OrderCard, { OrderItem } from "./OrderCard";
+
+type Props = {
+  title: string;
+  role: string;
+  orders: OrderItem[];
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
+};
+
+export default function RecentOrders({
+  title,
+  role,
+  orders,
+  currentPage,
+  totalPages,
+  onPageChange,
+}: Props) {
+  return (
+    <section className="bg-white border border-[#e9eaeb] rounded-2xl">
+      {/* Section Header */}
+      <div className="flex items-center justify-between px-8 py-6">
+        <div>
+          <h2 className="text-2xl font-semibold font-sora text-[#181d27]">
+            {title}
+          </h2>
+          <p className="text-sm font-medium text-[#535862] mt-1">{role}</p>
+        </div>
+
+        <Link
+          href="/requester/tasks"
+          className="flex items-center gap-2 text-sm font-semibold text-[#12b76a]"
+        >
+          View All
+          <ArrowRight className="w-5 h-5" />
+        </Link>
+      </div>
+
+      {/* Table Header */}
+      <div
+        className="grid border-y border-[#e9eaeb] text-sm font-medium text-[#181d27]"
+        style={{ gridTemplateColumns: "2.5fr 1fr 1fr 1.5fr 1fr" }}
+      >
+        {["Sub Name", "Status", "Applicants", "Provider", "Actions"].map(
+          (h) => (
+            <div key={h} className="px-8 py-4 text-center first:text-left">
+              {h}
+            </div>
+          ),
+        )}
+      </div>
+
+      {/* Rows */}
+      <div className="divide-y divide-[#e9eaeb]">
+        {orders.map((order, i) => (
+          <OrderCard key={i} order={order} />
+        ))}
+      </div>
+
+      {/* Pagination */}
+      <div className="px-8 py-6 border-t border-[#e9eaeb]">
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={onPageChange}
+        />
+      </div>
+    </section>
+  );
+}

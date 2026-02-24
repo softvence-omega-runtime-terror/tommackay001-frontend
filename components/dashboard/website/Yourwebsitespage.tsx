@@ -3,7 +3,6 @@
 import { useState } from "react";
 import {
   Search,
-  Grid3X3,
   Eye,
   MessageSquare,
   SquarePen,
@@ -13,8 +12,6 @@ import {
   Globe,
 } from "lucide-react";
 import ConnectWebsiteModal from "./Connectwebsitemodal";
-
-// ─── Types & Data ─────────────────────────────────────────────────────────────
 
 type LifecycleStatus =
   | "VERIFIED"
@@ -111,14 +108,12 @@ export default function YourWebsitesPage() {
 
   return (
     <>
-      {/* ── Connect Website modal ──────────────────────────────────── */}
       <ConnectWebsiteModal
         open={connectModalOpen}
         onClose={() => setConnectModalOpen(false)}
       />
 
       <div className="flex flex-col gap-6 font-inter max-w-[90vw]">
-        {/* ── Page header ─────────────────────────────────────────── */}
         <div className="flex items-start justify-between">
           <div>
             <h1 className="text-[30px] font-semibold font-sora text-[#181d27] leading-none">
@@ -130,7 +125,6 @@ export default function YourWebsitesPage() {
             </p>
           </div>
 
-          {/* ── Wired to modal ──────────────────────────────────── */}
           <button
             onClick={() => setConnectModalOpen(true)}
             className="flex items-center gap-2 bg-[#F04F23] hover:bg-[#d94118] text-white font-semibold text-sm px-5 py-2.5 rounded-full transition-colors"
@@ -140,7 +134,6 @@ export default function YourWebsitesPage() {
           </button>
         </div>
 
-        {/* ── Search + filter bar ─────────────────────────────────── */}
         <div className="flex items-center justify-between gap-4">
           <div className="relative w-56">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#9DA4AE]" />
@@ -170,7 +163,6 @@ export default function YourWebsitesPage() {
           </div>
         </div>
 
-        {/* ── Websites table ──────────────────────────────────────── */}
         <div className="border border-[#e9eaeb] rounded-xl bg-white overflow-hidden">
           <table className="w-full">
             <thead>
@@ -200,7 +192,6 @@ export default function YourWebsitesPage() {
                     key={w.domain}
                     className="hover:bg-[#fafafa] transition-colors"
                   >
-                    {/* Domain */}
                     <td className="px-6 py-5">
                       <div className="flex items-center gap-3">
                         <div className="w-8 h-8 rounded-full border border-[#e9eaeb] flex items-center justify-center bg-[#f9fafb] shrink-0">
@@ -217,7 +208,6 @@ export default function YourWebsitesPage() {
                       </div>
                     </td>
 
-                    {/* Status */}
                     <td className="px-6 py-5">
                       <span
                         className={`inline-block text-[10px] font-bold px-3 py-1.5 rounded-full tracking-wide ${STATUS_STYLES[w.status]}`}
@@ -226,7 +216,6 @@ export default function YourWebsitesPage() {
                       </span>
                     </td>
 
-                    {/* DR */}
                     <td className="px-6 py-5">
                       <p className="text-sm font-bold text-[#181d27]">{w.dr}</p>
                       <p className="text-[10px] font-semibold text-[#9DA4AE] tracking-wide mt-0.5">
@@ -234,19 +223,16 @@ export default function YourWebsitesPage() {
                       </p>
                     </td>
 
-                    {/* Category */}
                     <td className="px-6 py-5">
                       <span className="text-[10px] font-semibold text-[#535862] bg-[#f2f4f7] px-3 py-1.5 rounded-full tracking-wide">
                         {w.category}
                       </span>
                     </td>
 
-                    {/* Connected since */}
                     <td className="px-6 py-5 text-sm text-[#535862]">
                       {w.connectedSince}
                     </td>
 
-                    {/* Actions */}
                     <td className="px-6 py-5">
                       <div className="flex items-center gap-4">
                         <button className="text-[#2AB516] hover:text-[#22a010] transition-colors">
@@ -276,7 +262,6 @@ export default function YourWebsitesPage() {
           </table>
         </div>
 
-        {/* ── Bottom info cards ────────────────────────────────────── */}
         <div className="grid grid-cols-2 gap-4">
           <div className="bg-[#FFF4ED] border border-[#FDCFBE] rounded-xl p-5 space-y-2">
             <Shield className="w-5 h-5 text-[#F04F23]" />

@@ -10,6 +10,7 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 import ModalShell from "@/components/dashboard/provider/delivery/modals/ModalShell";
+import { Button } from "@/components/ui/Button";
 
 type PaymentMethod = "card" | "bank";
 type Screen = "form" | "success";
@@ -81,7 +82,6 @@ function FormScreen({
 }: FormProps) {
   return (
     <div className="flex flex-col max-w-3xl">
-      {/* ── Header ── */}
       <div className="px-6 pt-6 pb-5 border-b border-[#e9eaeb] flex items-start gap-4 pr-12">
         <div className="w-12 h-12 rounded-xl bg-[#FFF4ED] border border-[#FDCFBE] flex items-center justify-center shrink-0">
           <Database className="w-6 h-6 text-secondary" />
@@ -96,9 +96,7 @@ function FormScreen({
         </div>
       </div>
 
-      {/* ── Body ── */}
       <div className="px-6 py-5 space-y-5">
-        {/* Amount input */}
         <div className="flex items-center justify-between border border-[#e9eaeb] rounded-xl px-5 py-4">
           <input
             type="number"
@@ -111,12 +109,11 @@ function FormScreen({
           <span className="text-xl font-semibold text-[#535862] ml-4">CR</span>
         </div>
 
-        {/* Payment method picker */}
         <div>
-          <p className="text-[10px] font-bold uppercase tracking-widest text-[#535862] mb-3">
+          <p className="text-md font-bold uppercase tracking-widest text-[#535862] mb-3">
             Historical Performance
           </p>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-3 cursor-pointer">
             <PaymentCard
               active={paymentMethod === "card"}
               onClick={() => setPaymentMethod("card")}
@@ -132,14 +129,13 @@ function FormScreen({
           </div>
         </div>
 
-        {/* Quick-add pills */}
         <div className="space-y-2">
           <div className="flex gap-2">
             {QUICK_AMOUNTS.map((qty) => (
               <button
                 key={qty}
                 onClick={() => setAmount(String(qty))}
-                className={`px-4 py-2 rounded-lg border text-sm font-semibold transition-colors ${
+                className={`px-4 py-2 cursor-pointer rounded-lg border text-sm font-semibold transition-colors ${
                   Number(amount) === qty
                     ? "border-secondary bg-[#FFF4ED] text-secondary"
                     : "border-[#e9eaeb] text-[#535862] hover:border-secondary hover:text-secondary"
@@ -154,7 +150,6 @@ function FormScreen({
           </p>
         </div>
 
-        {/* Security & Compliance box */}
         <div className="border border-[#e9eaeb] rounded-xl p-5 space-y-3">
           <p className="text-sm font-bold text-[#181d27] uppercase tracking-wide">
             Security &amp; Compliance Protocol
@@ -175,27 +170,22 @@ function FormScreen({
         </div>
       </div>
 
-      {/* ── Footer ── */}
-      <div className="px-6 pb-6 pt-2 flex gap-3">
-        <button
+      <div className="px-6 pb-6 pt-2 flex gap-3 w-full border justify-between">
+        <Button
+          variant="white"
           onClick={onCancel}
-          className="flex-1 text-[#535862] font-semibold text-sm py-3.5 hover:text-[#181d27] transition-colors tracking-wide"
+          className=" text-[#535862] rounded-lg font-semibold text-sm py-3.5 hover:text-[#181d27] transition-colors tracking-wide"
         >
           CANCEL
-        </button>
-        <button
-          onClick={onConfirm}
-          className="flex-[3] bg-secondary hover:bg-[#d94118] text-white font-bold text-sm py-3.5 rounded-xl transition-colors flex items-center justify-center gap-2 tracking-wide"
-        >
+        </Button>
+        <Button variant="secondary" onClick={onConfirm}>
           CONFIRM &amp; ADD CREDITS
           <ArrowUpRight className="w-4 h-4" />
-        </button>
+        </Button>
       </div>
     </div>
   );
 }
-
-// ─── Screen 2: Success ────────────────────────────────────────────────────────
 
 function SuccessScreen({
   amount,
@@ -205,9 +195,8 @@ function SuccessScreen({
   onClose: () => void;
 }) {
   return (
-    <div className="px-8 py-10 flex flex-col items-center text-center max-w-xl">
-      {/* Green check */}
-      <div className="w-14 h-14 rounded-full bg-[#ECFDF3] flex items-center justify-center mb-6">
+    <div className="px-8 py-28 flex flex-col items-center text-center max-w-xl">
+      <div className="w-14 h-14 rounded-full bg-[#ECFDF3] flex items-center justify-center mb-6 cursor-pointer">
         <CheckCircle2 className="w-8 h-8 text-[#027A48]" />
       </div>
 
@@ -221,7 +210,6 @@ function SuccessScreen({
         Your balance Will reflect this change immediately.
       </p>
 
-      {/* Transaction proof */}
       <div className="w-full border border-[#e9eaeb] rounded-xl px-6 py-5 mt-7 text-center">
         <p className="text-xs font-bold uppercase tracking-widest text-[#535862]">
           Transaction Proof
@@ -250,7 +238,7 @@ function PaymentCard({
   return (
     <button
       onClick={onClick}
-      className={`flex flex-col max-w-3xl gap-3 p-5 rounded-xl border-2 text-left transition-colors ${
+      className={`flex flex-col cursor-pointer max-w-3xl gap-3 p-5 rounded-xl border-2 text-left transition-colors ${
         active
           ? "border-secondary bg-white"
           : "border-[#e9eaeb] bg-white hover:border-secondary/40"

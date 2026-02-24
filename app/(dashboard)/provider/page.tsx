@@ -14,19 +14,12 @@ import { useState } from "react";
 import { StatCard } from "@/components/ui/common/StatCard";
 import ActionLink from "@/components/ui/ActionLink";
 import { Button } from "@/components/ui/Button";
-<<<<<<< HEAD
 import checkboxImage from "@/public/dashboard/provider/Checkbox.png";
 import checkboxBaseImage from "@/public/dashboard/provider/_Checkbox base.png";
 import ActiveDeliveries from "@/components/dashboard/provider/delivery/ActiveDeliveries";
 import { DeliveryItem } from "@/components/dashboard/provider/delivery/DeliveryCard";
 import { usePathname } from "next/navigation";
 import BuyVisibilityCreditModal from "@/components/dashboard/provider/visivility/Buyvisibilitycreditmodal";
-=======
-import Pagination from "@/components/ui/Pagination";
-import checkboxImage from "@/public/dashboard/provider/Checkbox.png";
-import checkboxBaseImage from "@/public/dashboard/provider/_Checkbox base.png";
-import Image from "next/image";
->>>>>>> 431dc410af3a4944e0edf571e60eab43d55a800c
 
 const activeDeliveries: DeliveryItem[] = [
   {
@@ -143,7 +136,6 @@ const ProviderDashboardHome = () => {
           />
         </div>
 
-<<<<<<< HEAD
         {/* Recent Activity Table */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-6">
           {/* Left Column - Provider Info / Stats */}
@@ -160,30 +152,6 @@ const ProviderDashboardHome = () => {
                     <h3 className="font-semibold text-[#181d27] text-lg">
                       Sisyphus
                     </h3>
-=======
-          <div className="space-y-4">
-            {activeDeliveries.map((task, i) => (
-              <div
-                key={i}
-                className="bg-white border border-[#e9eaeb] rounded-xl p-5 hover:shadow-sm transition-shadow"
-              >
-                <div className="grid grid-cols-[auto_1fr_auto_auto_auto] sm:grid-cols-6 items-center gap-4">
-                  {/* Placeholder icon / logo */}
-                  <div className="flex col-span-2 gap-4">
-                    <div className="w-12 h-12  rounded-lg bg-gray-100 flex items-center justify-center text-2xl">
-                      <Image
-                        src={task.image}
-                        alt={task.title}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div className="flex flex-col">
-                      <p className="font-medium text-[#181d27]">{task.title}</p>
-                      <p className="text-sm text-[#535862] mt-0.5">
-                        {task.requester}
-                      </p>
-                    </div>
->>>>>>> 431dc410af3a4944e0edf571e60eab43d55a800c
                   </div>
                   <div className="flex items-center gap-1.5 mt-1">
                     <span className="text-xs font-medium text-gray-600">
