@@ -167,7 +167,6 @@ export default function DeliveryInProgressModal({
         minHeightClass="min-h-[70vh]"
         widthClass="max-w-5xl"
       >
-        {/* Header */}
         <div className="px-6 pt-6 pb-4 flex items-start gap-3">
           <div className="w-10 h-10 rounded-xl bg-[#FFF4ED] border border-[#FDCFBE] flex flex-col items-center justify-center shrink-0">
             <ShieldCheck className="w-5 h-5 text-secondary" />
@@ -183,7 +182,6 @@ export default function DeliveryInProgressModal({
         </div>
 
         <div className=" max-w-2xl mx-auto py-6 space-y-5">
-          {/* Project scope */}
           <div className="bg-[#f9fafb] rounded-xl p-4">
             <p className="text-xs font-semibold uppercase tracking-wide text-[#535862] mb-2">
               Project Scope
@@ -200,7 +198,6 @@ export default function DeliveryInProgressModal({
             </p>
           </div>
 
-          {/* Short note */}
           <div>
             <label className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-[#535862] mb-2">
               <MessageSquare className="w-3.5 h-3.5" />
@@ -215,7 +212,6 @@ export default function DeliveryInProgressModal({
             />
           </div>
 
-          {/* Disclaimer */}
           <div className="flex items-start gap-3 bg-[#FFF4ED] border border-[#FDCFBE] rounded-xl px-4 py-3">
             <Info className="w-4 h-4 text-secondary shrink-0 mt-0.5" />
             <p className="text-sm text-secondary">
@@ -223,8 +219,6 @@ export default function DeliveryInProgressModal({
               fulfillment guidelines.
             </p>
           </div>
-
-          {/* Actions */}
         </div>
         <div className="flex justify-between px-12 mt-28 border-t  gap-3 pt-2">
           <button
@@ -244,12 +238,10 @@ export default function DeliveryInProgressModal({
         </div>
       </ModalShell>
 
-      {/* ── Sub-modal: Submission Successful ────────────────────────────── */}
       <ModalShell
         open={subModal === "success"}
         onClose={handleReturnToDashboard}
         minHeightClass="w-md"
-        // heightClass="h-md"
       >
         <div className="px-8 py-10 flex flex-col items-center text-center ">
           <div className="w-14 h-14 rounded-full bg-[#ECFDF3] flex items-center justify-center mb-5">

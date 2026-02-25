@@ -17,8 +17,6 @@ import {
 } from "lucide-react";
 import ModalShell from "@/components/dashboard/provider/delivery/modals/ModalShell"; // adjust path
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 type Step = "info" | "verify" | "success";
 type VerifyMethod = "dns" | "meta" | "html";
 
@@ -40,8 +38,6 @@ const CATEGORIES = [
 ];
 
 const VERIFY_TOKEN = "backlyst-site-verification-bl-hdfysud657567tydhfb";
-
-// ─────────────────────────────────────────────────────────────────────────────
 
 export default function ConnectWebsiteModal({ open, onClose }: Props) {
   const [step, setStep] = useState<Step>("info");
@@ -70,7 +66,6 @@ export default function ConnectWebsiteModal({ open, onClose }: Props) {
   return (
     <ModalShell open={open} onClose={handleClose}>
       <div className="flex flex-col">
-        {/* ── Persistent header ─────────────────────────────────────── */}
         <div className="px-6 pt-6 pb-5 pr-12">
           <h2 className="text-2xl font-bold text-[#181d27]">
             Connect a Website
@@ -80,7 +75,6 @@ export default function ConnectWebsiteModal({ open, onClose }: Props) {
           </p>
         </div>
 
-        {/* ── Step content ──────────────────────────────────────────── */}
         {step === "info" && (
           <StepInfo
             url={url}
@@ -99,7 +93,6 @@ export default function ConnectWebsiteModal({ open, onClose }: Props) {
         )}
         {step === "success" && <StepSuccess url={url} />}
 
-        {/* ── Footer ────────────────────────────────────────────────── */}
         <div className="px-6 pb-6 pt-4 border-t border-[#e9eaeb] flex items-center justify-between">
           {step === "info" && (
             <>
@@ -153,8 +146,6 @@ export default function ConnectWebsiteModal({ open, onClose }: Props) {
   );
 }
 
-// ─── Step 1: Website Information ──────────────────────────────────────────────
-
 function StepInfo({
   url,
   setUrl,
@@ -168,7 +159,6 @@ function StepInfo({
 }) {
   return (
     <div className="px-6 pb-2 space-y-5">
-      {/* Section label */}
       <div className="flex items-center gap-2.5">
         <div className="w-8 h-8 rounded-full bg-[#FFF4ED] flex items-center justify-center shrink-0">
           <Globe className="w-4 h-4 text-secondary" />
@@ -178,7 +168,6 @@ function StepInfo({
         </span>
       </div>
 
-      {/* URL input */}
       <div>
         <label className="block text-[10px] font-bold uppercase tracking-widest text-[#535862] mb-2">
           Website URL (Required)
@@ -201,7 +190,6 @@ function StepInfo({
         </div>
       </div>
 
-      {/* Category selector */}
       <div>
         <label className="block text-[10px] font-bold uppercase tracking-widest text-[#535862] mb-2">
           Website Category
@@ -224,7 +212,6 @@ function StepInfo({
         </div>
       </div>
 
-      {/* Info note */}
       <div className="flex items-start gap-3 bg-[#EFF8FF] border border-[#B2DDFF] rounded-xl px-4 py-3">
         <Info className="w-4 h-4 text-[#175CD3] shrink-0 mt-0.5" />
         <p className="text-sm text-[#175CD3] leading-relaxed">
@@ -235,8 +222,6 @@ function StepInfo({
     </div>
   );
 }
-
-// ─── Step 2: Verify Website Ownership ────────────────────────────────────────
 
 type VerifyMethodConfig = {
   id: VerifyMethod;
@@ -286,7 +271,6 @@ function StepVerify({
 
   return (
     <div className="px-6 pb-2 space-y-5">
-      {/* Section label + badge */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2.5">
           <div className="w-8 h-8 rounded-full bg-[#ECFDF3] flex items-center justify-center shrink-0">
@@ -301,7 +285,6 @@ function StepVerify({
         </span>
       </div>
 
-      {/* Method tabs */}
       <div className="grid grid-cols-3 gap-3">
         {VERIFY_METHODS.map((m) => {
           const active = method === m.id;
@@ -334,7 +317,6 @@ function StepVerify({
         })}
       </div>
 
-      {/* DNS / method config */}
       <div>
         <p className="text-xs font-bold uppercase tracking-widest text-[#181d27] mb-1">
           {content.title}
@@ -358,7 +340,6 @@ function StepVerify({
         </div>
       </div>
 
-      {/* Propagation warning */}
       <div className="flex items-start gap-3 bg-[#FEF3F2] border border-[#FDA29B] rounded-xl px-4 py-3">
         <Info className="w-4 h-4 text-[#B42318] shrink-0 mt-0.5" />
         <p className="text-sm text-[#B42318] leading-relaxed">
@@ -370,8 +351,6 @@ function StepVerify({
   );
 }
 
-// ─── Step 3: Success ──────────────────────────────────────────────────────────
-
 function StepSuccess({ url }: { url: string }) {
   const displayName = url
     ? url.replace(/^https?:\/\//, "").replace(/\/$/, "")
@@ -379,7 +358,6 @@ function StepSuccess({ url }: { url: string }) {
 
   return (
     <div className="px-6 pb-2 space-y-5">
-      {/* Big green check */}
       <div className="flex flex-col items-center text-center py-4 space-y-3">
         <div className="w-16 h-16 rounded-full bg-[#ECFDF3] flex items-center justify-center">
           <CheckCircle2 className="w-9 h-9 text-[#027A48]" />
@@ -395,7 +373,6 @@ function StepSuccess({ url }: { url: string }) {
         </div>
       </div>
 
-      {/* Domain summary card */}
       <div className="border border-[#e9eaeb] rounded-xl px-5 py-4 flex items-center gap-4">
         <div className="w-10 h-10 rounded-full border border-[#e9eaeb] bg-[#f9fafb] flex items-center justify-center shrink-0">
           <Globe className="w-5 h-5 text-[#535862]" />
@@ -428,7 +405,6 @@ function StepSuccess({ url }: { url: string }) {
         </div>
       </div>
 
-      {/* Info note */}
       <div className="flex items-start gap-3 bg-[#ECFDF3] border border-[#6CE9A6] rounded-xl px-4 py-3">
         <Info className="w-4 h-4 text-[#027A48] shrink-0 mt-0.5" />
         <p className="text-sm text-[#027A48] leading-relaxed">

@@ -20,7 +20,6 @@ export default function SubmitDeliveryTab() {
   const [additionalNotes, setAdditionalNotes] = useState("");
   const [files, setFiles] = useState<File[]>([]);
 
-  // Mock active tasks (replace with real data from API/context)
   const activeTasks = [
     { id: "task-001", title: "Guest Post - TechTrends.io (DR 72)" },
     { id: "task-002", title: "Niche Edit - AuthorityBlog.com (DR 85)" },

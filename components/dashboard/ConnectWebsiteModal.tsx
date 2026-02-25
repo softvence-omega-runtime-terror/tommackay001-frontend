@@ -44,7 +44,6 @@ const ConnectWebsiteModal: React.FC<ConnectWebsiteModalProps> = ({
   const handleComplete = () => {
     onSuccess?.();
     onClose();
-    // Reset state
     setStep(1);
     setFormData({ url: "", industry: "", country: "" });
     setSelectedMethod("meta");

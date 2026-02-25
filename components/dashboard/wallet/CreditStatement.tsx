@@ -1,6 +1,4 @@
-// components/CreditStatement.tsx
 import { Button } from "@/components/ui/Button";
-import { ArrowTopRightOnSquareIcon } from "@heroicons/react/16/solid";
 import {
   ArrowDownRight,
   ArrowUpRight,
@@ -55,7 +53,6 @@ export default function CreditStatement() {
 
   return (
     <div className=" overflow-hidden">
-      {/* Header */}
       <div className="border-b border-purple-100 bg-white rounded-xl">
         <div className="px-6 py-5 ">
           <div className="flex items-center justify-between flex-wrap gap-4">
@@ -81,7 +78,6 @@ export default function CreditStatement() {
           </div>
         </div>
 
-        {/* Table */}
         <div className="overflow-x-auto ">
           <table className="w-full text-sm">
             <thead className=" border-b border-gray-200">
@@ -157,7 +153,6 @@ export default function CreditStatement() {
         </div>
       </div>
 
-      {/* Footer */}
       <div className="px-6 py-4 border-t border-gray-200 bg-gray-50 flex items-center justify-end text-sm text-gray-600">
         <div className="flex items-center gap-3">
           <button className="flex items-center gap-1.5 px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 text-gray-700 font-medium transition">

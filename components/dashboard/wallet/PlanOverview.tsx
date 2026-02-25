@@ -8,9 +8,25 @@ import {
   Check,
   ListRestartIcon,
   ShoppingBag,
+  Crown,
+  Globe,
+  Funnel,
+  CirclePlay,
+  Star,
+  Badge,
+  CheckCircle,
 } from "lucide-react";
 import BuyVisibilityCreditModal from "../provider/visivility/Buyvisibilitycreditmodal";
 import { useState } from "react";
+
+const GoldPlan = [
+  { icon: Globe, title: "Up to 5 websites " },
+  { icon: CheckCircle, title: "10 task credits per website / month " },
+  { icon: CirclePlay, title: "Run up to 10 tasks at the same time " },
+  { icon: Star, title: "Priority marketplace matching " },
+  { icon: Funnel, title: "Advanced filters & sorting " },
+  { icon: Badge, title: "Top Contributor badge " },
+];
 
 export default function PlanOverview() {
   const [buyModalOpen, setBuyModalOpen] = useState(false);
@@ -33,8 +49,11 @@ export default function PlanOverview() {
             </p>
           </div>
           <div className="flex items-center gap-3">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-amber-100 text-amber-800 rounded-full font-medium text-sm">
-              <span className="text-amber-600">★</span> Gold Plan
+            <span className="inline-flex items-center gap-1.5 w-full px-3 py-1.5 bg-[#FEDF89] text-[#DC6803] rounded-full font-medium text-sm">
+              <span className="text-amber-600">
+                <Crown className="w-4 h-4" />
+              </span>
+              Gold Plan
             </span>
             <Button className="w-full ">Upgrade Plan</Button>
           </div>
@@ -47,25 +66,26 @@ export default function PlanOverview() {
         <div className="lg:col-span-3 space-y-6">
           {/* Plan Benefits */}
           <div className="bg-white p-6 rounded-2xl border border-gray-200">
-            <h3 className="text-md font-normal text-[#DC6803] mb-4 bg-[#FEDF89] w-fit px-3 py-2 rounded-full">
+            <h3 className="text-sm font-medium text-[#DC6803] mb-4 bg-[#FEDF89] w-fit px-3 py-2 rounded-full">
               Gold Plan Benefits
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {[
-                "Up to 5 websites",
-                "10 task credits per website / month",
-                "Run up to 10 tasks at the same time",
-                "Priority marketplace matching",
-                "Advanced filters & sorting",
-                "Top Contributor badge",
-              ].map((benefit, i) => (
-                <div key={i} className="flex items-start gap-3">
-                  <div className="bg-[#FEDF89] p-1 rounded-sm">
-                    <Check className="text-[#DC6803] mt-0.5" size={24} />
+              {GoldPlan.map((benefit, i) => {
+                const Icon = benefit.icon;
+                return (
+                  <div key={i} className="flex items-start gap-3">
+                    <div className="bg-[#FEDF89] p-1 rounded-sm">
+                      <Check className="text-[#DC6803] mt-0.5" size={24} />
+                    </div>
+                    <div className="flex gap-2 ">
+                      <Icon className="w-5 h-5 text-[#FFB900] mt-2" />
+                      <span className="text-gray-700 mt-1">
+                        {benefit.title}
+                      </span>
+                    </div>
                   </div>
-                  <span className="text-gray-700">{benefit}</span>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 

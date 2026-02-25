@@ -30,36 +30,17 @@ export default function SecuritySettings() {
   ]);
 
   const handleRevoke = (index: number) => {
-    // In real app: API call to revoke session
     alert(`Session revoked: ${sessions[index].device}`);
   };
 
   const handleLogoutAll = () => {
     if (confirm("Are you sure you want to log out from all devices?")) {
-      // In real app: API call to invalidate all sessions
       alert("Logged out from all devices!");
-    }
-  };
-
-  const handleDataExport = () => {
-    // In real app: trigger GDPR export request
-    alert("Data export requested. You'll receive it within 7 days.");
-  };
-
-  const handleDeleteAccount = () => {
-    if (
-      confirm(
-        "Are you sure you want to permanently delete your account? This action cannot be undone.",
-      )
-    ) {
-      // In real app: initiate account deletion flow
-      alert("Account deletion request submitted.");
     }
   };
 
   return (
     <div className=" p-8 bg-white rounded-2xl overflow-hidden">
-      {/* Header */}
       <div className="">
         <h2 className="text-2xl font-semibold text-gray-900 flex items-center gap-2">
           Security
@@ -70,7 +51,6 @@ export default function SecuritySettings() {
       </div>
 
       <div className="py-4 space-y-12">
-        {/* Active Sessions */}
         <div className="space-y-6">
           <h3 className="text-lg font-semibold text-gray-900">
             Active Sessions
@@ -126,14 +106,12 @@ export default function SecuritySettings() {
           </Button>
         </div>
 
-        {/* Privacy & Data */}
         <div className="space-y-6 pt-4 border-t border-gray-200">
           <h3 className="text-lg font-semibold text-gray-900">
             Privacy & Data
           </h3>
 
           <div className="space-y-5">
-            {/* Data Export */}
             <div className="flex items-center justify-between p-5 bg-gray-50 border border-gray-200 rounded-xl">
               <div>
                 <div className="flex items-center gap-2">
@@ -148,7 +126,6 @@ export default function SecuritySettings() {
               </div>
             </div>
 
-            {/* Account Deletion */}
             <div className="flex items-center justify-between p-5 bg-[#FEE4E2] border border-red-200 rounded-xl">
               <div>
                 <div className="flex items-center gap-2">

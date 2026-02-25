@@ -93,7 +93,6 @@ function matchesFilter(status: LifecycleStatus, tab: FilterTab): boolean {
   return true;
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
 
 export default function YourWebsitesPage() {
   const [activeTab, setActiveTab] = useState<FilterTab>("ALL");

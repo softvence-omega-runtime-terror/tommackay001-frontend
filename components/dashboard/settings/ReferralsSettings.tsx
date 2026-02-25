@@ -23,7 +23,6 @@ export default function ReferralProgram() {
 
   return (
     <div className="p-8 bg-white rounded-2xl overflow-hidden">
-      {/* Header */}
       <div className="pb-4">
         <h2 className="text-2xl font-semibold text-gray-900 ">
           Referral Program
@@ -34,7 +33,6 @@ export default function ReferralProgram() {
       </div>
 
       <div className="py-4 space-y-10">
-        {/* Referral Link Section */}
         <div className="space-y-4">
           <label className="block text-sm font-medium text-gray-700">
             Your Referral Link
@@ -58,7 +56,6 @@ export default function ReferralProgram() {
           </p>
         </div>
 
-        {/* Stats Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           {stats.map((stat, index) => (
             <div
@@ -72,12 +69,8 @@ export default function ReferralProgram() {
         </div>
       </div>
 
-      {/* Footer Actions */}
       <div className="px-8 py-6 flex justify-end">
-        <Button
-          // className="bg-indigo-600 hover:bg-indigo-700 text-white px-10 py-3 rounded-xl font-medium shadow-md transition-all flex items-center gap-2"
-          onClick={() => window.open("/referrals/details", "_blank")}
-        >
+        <Button onClick={() => window.open("/referrals/details", "_blank")}>
           View Referral Details
         </Button>
       </div>

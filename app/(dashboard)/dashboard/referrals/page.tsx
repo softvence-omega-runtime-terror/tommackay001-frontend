@@ -99,8 +99,6 @@ const STAGE_BADGE: Record<number, string> = {
   3: "bg-[#ECFDF3] text-[#027A48]",
 };
 
-// ─────────────────────────────────────────────────────────────────────────────
-
 export default function ReferralsPage() {
   const [copied, setCopied] = useState(false);
   const referralLink = "https://backlyst.com/ref/user-abc123";
@@ -113,7 +111,6 @@ export default function ReferralsPage() {
 
   return (
     <div className="flex flex-col gap-6 font-inter max-w-[90vw]">
-      {/* ── Page header ───────────────────────────────────────────────── */}
       <div className="flex items-start justify-between">
         <div>
           <h1 className="text-[30px] font-semibold font-sora text-[#181d27] leading-none">
@@ -140,7 +137,6 @@ export default function ReferralsPage() {
         </div>
       </div>
 
-      {/* ── Stat cards ────────────────────────────────────────────────── */}
       <div className="grid grid-cols-3 gap-0 border border-[#e9eaeb] rounded-xl bg-white overflow-hidden">
         {[
           {
@@ -168,7 +164,6 @@ export default function ReferralsPage() {
         ))}
       </div>
 
-      {/* ── Referral link card ────────────────────────────────────────── */}
       <div className="bg-white border border-[#e9eaeb] rounded-xl p-6 space-y-4">
         <div>
           <p className="text-sm font-bold text-[#181d27]">Your Referral Link</p>
@@ -177,7 +172,6 @@ export default function ReferralsPage() {
           </p>
         </div>
 
-        {/* Input + copy */}
         <div className="flex gap-2">
           <div className="flex-1 border border-[#e9eaeb] rounded-lg px-4 py-2.5 text-sm text-[#535862] bg-[#f9fafb] font-mono truncate">
             {referralLink}
@@ -199,14 +193,12 @@ export default function ReferralsPage() {
           No rewards are granted on signup alone.
         </p>
 
-        {/* Share button */}
         <button className="w-full bg-[#4169E1] hover:bg-[#2952BE] text-white font-semibold text-sm py-3 rounded-xl transition-colors flex items-center justify-center gap-2 tracking-wide">
           <Share2 className="w-4 h-4" />
           SHARE
         </button>
       </div>
 
-      {/* ── How Referral Rewards Unlock ───────────────────────────────── */}
       <div className="bg-white border border-[#e9eaeb] rounded-xl p-6 space-y-5">
         <div>
           <p className="text-sm font-bold text-[#181d27]">
@@ -239,7 +231,6 @@ export default function ReferralsPage() {
         </p>
       </div>
 
-      {/* ── Referral Progress table ───────────────────────────────────── */}
       <div className="bg-white border border-[#e9eaeb] rounded-xl overflow-hidden">
         <div className="px-6 py-5 border-b border-[#e9eaeb]">
           <p className="text-sm font-bold text-[#181d27]">Referral Progress</p>
@@ -271,7 +262,6 @@ export default function ReferralsPage() {
           <tbody className="divide-y divide-[#e9eaeb]">
             {REFERRALS.map((r) => (
               <tr key={r.site} className="hover:bg-[#fafafa] transition-colors">
-                {/* Site */}
                 <td className="px-6 py-4">
                   <p className="text-sm font-semibold text-[#181d27]">
                     {r.site}
@@ -279,7 +269,6 @@ export default function ReferralsPage() {
                   <p className="text-xs text-[#535862] mt-0.5">{r.company}</p>
                 </td>
 
-                {/* Stage badge */}
                 <td className="px-6 py-4">
                   <span
                     className={`inline-block text-[10px] font-bold px-3 py-1 rounded-full ${STAGE_BADGE[r.stage]}`}
@@ -288,7 +277,6 @@ export default function ReferralsPage() {
                   </span>
                 </td>
 
-                {/* Completed actions */}
                 <td className="px-6 py-4">
                   <ul className="space-y-1">
                     {r.completedActions.map((a) => (
@@ -302,17 +290,14 @@ export default function ReferralsPage() {
                   </ul>
                 </td>
 
-                {/* Next requirement */}
                 <td className="px-6 py-4 text-sm text-[#535862]">
                   {r.nextRequirement}
                 </td>
 
-                {/* Rewards */}
                 <td className="px-6 py-4 text-sm font-medium text-[#181d27]">
                   {r.rewardsEarned}
                 </td>
 
-                {/* Status */}
                 <td className="px-6 py-4">
                   <span
                     className={`inline-block text-xs font-semibold px-3 py-1 rounded-full ${
@@ -336,7 +321,6 @@ export default function ReferralsPage() {
         </div>
       </div>
 
-      {/* ── Limits & Rules ────────────────────────────────────────────── */}
       <div className="bg-white border border-[#e9eaeb] rounded-xl p-6 space-y-4">
         <div>
           <p className="text-sm font-bold text-[#181d27]">Limits &amp; Rules</p>
@@ -358,7 +342,6 @@ export default function ReferralsPage() {
         </ul>
       </div>
 
-      {/* ── System & Compliance Notice ────────────────────────────────── */}
       <div className="flex items-start gap-3 border border-[#e9eaeb] rounded-xl p-5 bg-white">
         <Info className="w-4 h-4 text-[#4169E1] shrink-0 mt-0.5" />
         <div>

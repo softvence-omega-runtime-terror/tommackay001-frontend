@@ -8,7 +8,6 @@ import {
   CheckCircle2,
   XCircle,
   Clock,
-  Info,
 } from "lucide-react";
 import ModalShell from "@/components/dashboard/provider/delivery/modals/ModalShell";
 
@@ -30,8 +29,6 @@ type Props = {
   open: boolean;
   onClose: () => void;
 };
-
-// ─── Static content (would be dynamic in production) ─────────────────────────
 
 const AUDIT_ROWS = [
   {
@@ -88,8 +85,6 @@ const SEVERITY_BADGE: Record<string, string> = {
   Error: "bg-[#FEF3F2] text-[#B42318]",
 };
 
-// ─────────────────────────────────────────────────────────────────────────────
-
 export default function ViewTaskModal({ task, open, onClose }: Props) {
   const [activeTab, setActiveTab] = useState<Tab>("overview");
 
@@ -101,12 +96,10 @@ export default function ViewTaskModal({ task, open, onClose }: Props) {
   };
 
   return (
-    <ModalShell open={open} onClose={handleClose}>
-      <div className="flex flex-col max-h-[92vh]">
-        {/* ── Header ──────────────────────────────────────────────── */}
+    <ModalShell open={open} onClose={handleClose} widthClass="max-w-4xl">
+      <div className="flex flex-col max-h-[90vh]">
         <div className="px-6 pt-5 pb-4 border-b border-[#e9eaeb] shrink-0">
           <div className="flex items-start justify-between pr-8">
-            {/* Left — domain */}
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-[#181d27] flex items-center justify-center text-white font-bold text-base shrink-0">
                 {task.domain[0].toUpperCase()}
@@ -119,7 +112,6 @@ export default function ViewTaskModal({ task, open, onClose }: Props) {
               </div>
             </div>
 
-            {/* Center — task title */}
             <div className="flex flex-col items-center gap-1.5">
               <p className="text-sm font-semibold text-[#181d27]">
                 {task.name}
@@ -129,7 +121,6 @@ export default function ViewTaskModal({ task, open, onClose }: Props) {
               </span>
             </div>
 
-            {/* Right — status */}
             <span
               className={`text-xs font-bold px-3 py-1.5 rounded-full ${STATUS_BADGE[task.status]}`}
             >
@@ -137,7 +128,6 @@ export default function ViewTaskModal({ task, open, onClose }: Props) {
             </span>
           </div>
 
-          {/* Meta grid */}
           <div className="grid grid-cols-2 gap-x-10 gap-y-2 mt-4 text-sm">
             <MetaRow label="Task ID" value="TSK-000001" />
             <MetaRow label="Provider Name" value={task.provider} />
@@ -150,7 +140,6 @@ export default function ViewTaskModal({ task, open, onClose }: Props) {
           </div>
         </div>
 
-        {/* ── Tabs ────────────────────────────────────────────────── */}
         <div className="flex border-b border-[#e9eaeb] shrink-0 px-6">
           {(
             [
@@ -163,9 +152,9 @@ export default function ViewTaskModal({ task, open, onClose }: Props) {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`px-4 py-3 text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${
+              className={`px-4 cursor-pointer py-3 text-sm font-medium  transition-colors whitespace-nowrap ${
                 activeTab === tab.id
-                  ? "border-secondary text-secondary"
+                  ? "border-b-secondary text-secondary"
                   : "border-transparent text-[#535862] hover:text-[#181d27]"
               }`}
             >
@@ -174,15 +163,13 @@ export default function ViewTaskModal({ task, open, onClose }: Props) {
           ))}
         </div>
 
-        {/* ── Tab content ─────────────────────────────────────────── */}
-        <div className="flex-1 overflow-y-auto px-6 py-5">
+        <div className="flex-1 overflow-y-auto px-6 py-5 min-h-80 max-h-80">
           {activeTab === "overview" && <TabOverview task={task} />}
           {activeTab === "content" && <TabContent />}
           {activeTab === "messages" && <TabMessages />}
           {activeTab === "audit" && <TabAudit />}
         </div>
 
-        {/* ── Footer ──────────────────────────────────────────────── */}
         <div className="shrink-0 px-6 py-4 border-t border-[#e9eaeb] flex items-center justify-between">
           <p className="text-xs text-[#9DA4AE]">
             This task belongs to the selected website and maintains immutable
@@ -205,12 +192,9 @@ export default function ViewTaskModal({ task, open, onClose }: Props) {
   );
 }
 
-// ─── Tab: Task Overview ───────────────────────────────────────────────────────
-
 function TabOverview({ task }: { task: TaskDetail }) {
   return (
     <div className="space-y-5">
-      {/* Task Description */}
       <div className="border border-[#e9eaeb] rounded-xl p-5">
         <div className="flex items-center gap-2 mb-3">
           <FileText className="w-4 h-4 text-[#535862]" />
@@ -224,7 +208,6 @@ function TabOverview({ task }: { task: TaskDetail }) {
         </p>
       </div>
 
-      {/* Link Placement Details */}
       <div>
         <div className="flex items-center gap-2 mb-4">
           <Link2 className="w-4 h-4 text-[#535862]" />
@@ -261,8 +244,6 @@ function TabOverview({ task }: { task: TaskDetail }) {
   );
 }
 
-// ─── Tab: Content & Requirements ─────────────────────────────────────────────
-
 function TabContent() {
   return (
     <div>
@@ -288,18 +269,14 @@ function TabContent() {
   );
 }
 
-// ─── Tab: Activity & Messages ─────────────────────────────────────────────────
-
 function TabMessages() {
   return (
     <div className="space-y-4">
-      {/* System event */}
       <SystemEvent
         text="Task created and assigned to provider"
         timestamp="2026-01-15 10:30 AM"
       />
 
-      {/* Provider message */}
       <div className="flex items-start gap-3">
         <div className="w-8 h-8 rounded-full bg-[#EDE9FE] flex items-center justify-center text-xs font-bold text-[#7C3AED] shrink-0">
           S
@@ -312,14 +289,13 @@ function TabMessages() {
             <span className="text-[#9DA4AE]">2026-01-15 11:45 AM</span>
           </p>
           <div className="bg-white border border-[#e9eaeb] rounded-2xl rounded-tl-none px-4 py-3 text-sm text-[#535862] leading-relaxed">
-            Hello! I've reviewed your requirements and can have the backlink
-            placed within 3 days. The blog post will be published on our
-            homepage.
+            Hello! I&apos;ve reviewed your requirements and can have the
+            backlink placed within 3 days. The blog post will be published on
+            our homepage.
           </div>
         </div>
       </div>
 
-      {/* You (right-aligned) */}
       <div className="flex items-start gap-3 justify-end">
         <div className="max-w-xs text-right">
           <p className="text-xs text-[#535862] mb-1">
@@ -336,7 +312,6 @@ function TabMessages() {
         </div>
       </div>
 
-      {/* System event */}
       <SystemEvent
         text="Provider marked task as in progress"
         timestamp="2026-01-16 09:15 AM"
@@ -344,8 +319,6 @@ function TabMessages() {
     </div>
   );
 }
-
-// ─── Tab: Audit Trail ─────────────────────────────────────────────────────────
 
 function TabAudit() {
   return (
@@ -399,8 +372,6 @@ function TabAudit() {
     </div>
   );
 }
-
-// ─── Shared primitives ────────────────────────────────────────────────────────
 
 function MetaRow({
   label,

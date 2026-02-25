@@ -1,119 +1,286 @@
-import React from "react";
-import { Bell, Check, Clock, AlertCircle } from "lucide-react";
-import { useRouter } from "next/navigation";
+"use client";
 
-interface NotificationPopoverProps {
+import React, { useState } from "react";
+import { Bell, Check, Clock, ShieldCheck, UserPlus, X } from "lucide-react";
+import { useRouter } from "next/navigation";
+import ProviderProfileModal from "./provider/profile/ProviderProfileModal";
+import SendFeedbackModal from "./Sendfeedbackmodal";
+
+type NotifType = "congratulations" | "completed" | "deadline" | "verified";
+
+interface ProviderData {
+  id: number;
+  name: string;
+  avatar: string;
+  avatarBg: string;
+  verified: boolean;
+  rating: number;
+  reviews: number;
+  website: string;
+  websiteUrl?: string;
+  domainRating: number;
+  industryTag: string;
+  tags: string[];
+}
+
+interface Notification {
+  id: number;
+  type: NotifType;
+  title: string;
+  message: string;
+  time: string;
+
+  read: boolean;
+  cta: "view" | "feedback";
+  partnerName?: string;
+}
+
+const PROVIDER_DATA: ProviderData = {
+  id: 6,
+  name: "GolbalEditor",
+  avatar: "GE",
+  avatarBg: "#f59e0b",
+  verified: true,
+  rating: 2.9,
+  reviews: 124,
+  website: "TECHTRENDS.IO",
+  domainRating: 23,
+  industryTag: "TECHNOLOGY",
+  tags: ["HIGH TRAFFIC", "GUEST POST"],
+};
+
+const INITIAL_NOTIFICATIONS: Notification[] = [
+  {
+    id: 1,
+    type: "congratulations",
+    title: "Congratulations",
+    message: "Sarah J. Applied for backlink.",
+    time: "2 MINS AGO",
+    read: false,
+    cta: "view",
+  },
+  {
+    id: 2,
+    type: "completed",
+    title: "Task Completed",
+    message: 'Your task "Social Media Banner" is now live!',
+    time: "1 HOUR AGO",
+    read: false,
+    cta: "feedback",
+    partnerName: "Alex M. Media",
+  },
+  {
+    id: 3,
+    type: "deadline",
+    title: "Deadline Approaching",
+    message: "Task #3122 is due in 12 hours.",
+    time: "3 HOURS AGO",
+    read: false,
+    cta: "feedback",
+    partnerName: "TechTrends.io",
+  },
+  {
+    id: 4,
+    type: "verified",
+    title: "Domain Verified",
+    message: "startuply.io passed all trust checks.",
+    time: "YESTERDAY",
+    read: true,
+    cta: "feedback",
+    partnerName: "startuply.io",
+  },
+];
+
+const ICON_CONFIG: Record<
+  NotifType,
+  { bg: string; border: string; iconColor: string; icon: React.ElementType }
+> = {
+  congratulations: {
+    bg: "#EEF2FF",
+    border: "#C7D7FD",
+    iconColor: "#6366f1",
+    icon: UserPlus,
+  },
+  completed: {
+    bg: "#ECFDF3",
+    border: "#6CE9A6",
+    iconColor: "#027A48",
+    icon: Check,
+  },
+  deadline: {
+    bg: "#FFF6ED",
+    border: "#FEC84B",
+    iconColor: "#B54708",
+    icon: Clock,
+  },
+  verified: {
+    bg: "#ECFDF3",
+    border: "#6CE9A6",
+    iconColor: "#027A48",
+    icon: ShieldCheck,
+  },
+};
+
+interface Props {
   isOpen: boolean;
   onClose: () => void;
 }
 
-const NotificationPopover: React.FC<NotificationPopoverProps> = ({
-  isOpen,
-  onClose,
-}) => {
+const NotificationPopover: React.FC<Props> = ({ isOpen, onClose }) => {
   const router = useRouter();
+
+  const [notifications, setNotifications] = useState<Notification[]>(
+    INITIAL_NOTIFICATIONS,
+  );
+  const [profileOpen, setProfileOpen] = useState(false);
+  const [feedbackOpen, setFeedbackOpen] = useState(false);
+  const [feedbackPartner, setFeedbackPartner] = useState<string | undefined>();
 
   if (!isOpen) return null;
 
-  const notifications = [
-    {
-      id: 1,
-      title: "Task Approved",
-      message: "Your task 'SEO Article regarding Tech' has been approved.",
-      time: "2 mins ago",
-      type: "success",
-      read: false,
-    },
-    {
-      id: 2,
-      title: "New Application",
-      message: "TechTrends.io applied to 'Backlink for Fintech Startup'.",
-      time: "1 hour ago",
-      type: "info",
-      read: false,
-    },
-    {
-      id: 3,
-      title: "Credits Low",
-      message: "Your credit balance is running low. Top up soon.",
-      time: "5 hours ago",
-      type: "warning",
-      read: true,
-    },
-  ];
+  const unreadCount = notifications.filter((n) => !n.read).length;
+
+  const markAllRead = () =>
+    setNotifications((prev) => prev.map((n) => ({ ...n, read: true })));
+
+  const handleCta = (notif: Notification) => {
+    setNotifications((prev) =>
+      prev.map((n) => (n.id === notif.id ? { ...n, read: true } : n)),
+    );
+
+    if (notif.cta === "view") {
+      setProfileOpen(true);
+    } else {
+      setFeedbackPartner(notif.partnerName);
+      setFeedbackOpen(true);
+    }
+  };
 
   return (
     <>
-      <div
-        className="fixed inset-0 z-40 bg-transparent"
-        onClick={onClose}
-      ></div>
-      <div className="absolute right-0 top-14 w-[380px] bg-white rounded-2xl shadow-xl border border-gray-100 z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
-        <div className="p-4 border-b border-gray-100 flex items-center justify-between bg-gray-50/50">
-          <h3 className="font-bold font-sora text-gray-900">Notifications</h3>
-          <button className="text-xs font-medium text-primary hover:text-brand-indigo-600">
-            Mark all as read
+      <div className="fixed inset-0 z-50 bg-transparent" onClick={onClose} />
+
+      <div className="absolute right-0 top-14 w-105 bg-white rounded-2xl shadow-2xl border border-[#e9eaeb] z-50 overflow-hidden">
+        <div className="flex items-center justify-between px-5 pt-5 pb-4">
+          <div className="flex items-center gap-2.5">
+            <Bell className="w-5 h-5 text-[#6366f1]" />
+            <h3 className="text-xl font-bold font-sora text-[#181d27]">
+              Notifications
+            </h3>
+            {unreadCount > 0 && (
+              <span className="w-5 h-5 rounded-full bg-[#F04F23] text-white text-[10px] font-bold flex items-center justify-center">
+                {unreadCount}
+              </span>
+            )}
+          </div>
+          <button
+            onClick={onClose}
+            className="w-8 h-8 rounded-full border border-[#e9eaeb] flex items-center justify-center text-[#9DA4AE] hover:text-[#535862] hover:bg-gray-50 transition-colors"
+          >
+            <X className="w-4 h-4" />
           </button>
         </div>
-        <div className="max-h-[400px] overflow-y-auto">
-          {notifications.map((notif) => (
-            <div
-              key={notif.id}
-              className={`p-4 border-b border-gray-50 hover:bg-gray-50 transition-colors cursor-pointer ${
-                !notif.read ? "bg-brand-indigo-50/30" : ""
-              }`}
-            >
-              <div className="flex gap-4">
-                <div
-                  className={`mt-1 w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${
-                    notif.type === "success"
-                      ? "bg-green-100 text-green-600"
-                      : notif.type === "warning"
-                        ? "bg-orange-100 text-orange-600"
-                        : "bg-blue-100 text-blue-600"
-                  }`}
-                >
-                  {notif.type === "success" ? (
-                    <Check size={14} strokeWidth={3} />
-                  ) : notif.type === "warning" ? (
-                    <AlertCircle size={14} strokeWidth={3} />
-                  ) : (
-                    <Bell size={14} strokeWidth={3} />
-                  )}
-                </div>
-                <div className="flex-1 space-y-1">
-                  <div className="flex justify-between items-start">
-                    <p
-                      className={`text-sm font-semibold ${
-                        !notif.read ? "text-gray-900" : "text-gray-600"
-                      }`}
-                    >
-                      {notif.title}
-                    </p>
-                    <span className="text-[10px] font-medium text-gray-400 whitespace-nowrap ml-2">
-                      {notif.time}
-                    </span>
+
+        <div className="flex items-center justify-between px-5 pb-3 border-b border-[#e9eaeb]">
+          <span className="text-[10px] font-bold uppercase tracking-widest text-[#9DA4AE]">
+            Recent Activity
+          </span>
+          <button
+            onClick={markAllRead}
+            className="text-[10px] font-bold uppercase tracking-widest text-[#6366f1] hover:text-[#4f46e5] transition-colors"
+          >
+            Mark All As Read
+          </button>
+        </div>
+
+        <div className="max-h-125 overflow-y-auto divide-y divide-[#f2f4f7]">
+          {notifications.map((notif) => {
+            const cfg = ICON_CONFIG[notif.type];
+            const Icon = cfg.icon;
+
+            return (
+              <div
+                key={notif.id}
+                className={`px-5 py-4 transition-colors ${
+                  !notif.read
+                    ? "bg-white hover:bg-[#fafafa]"
+                    : "bg-[#fafafa] hover:bg-[#f2f4f7]"
+                }`}
+              >
+                <div className="flex gap-4">
+                  <div
+                    className="w-11 h-11 rounded-full flex items-center justify-center shrink-0 border"
+                    style={{ backgroundColor: cfg.bg, borderColor: cfg.border }}
+                  >
+                    <Icon
+                      className="w-5 h-5"
+                      style={{ color: cfg.iconColor }}
+                      strokeWidth={2.5}
+                    />
                   </div>
-                  <p className="text-xs text-gray-500 leading-relaxed">
-                    {notif.message}
-                  </p>
+
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-start justify-between gap-2">
+                      <p
+                        className={`text-sm font-bold ${!notif.read ? "text-[#181d27]" : "text-[#535862]"}`}
+                      >
+                        {notif.title}
+                      </p>
+                      {!notif.read && (
+                        <span className="w-2 h-2 rounded-full bg-[#6366f1] shrink-0 mt-1.5" />
+                      )}
+                    </div>
+                    <p className="text-sm text-[#535862] mt-0.5 leading-relaxed">
+                      {notif.message}
+                    </p>
+                    <p className="text-[10px] font-semibold text-[#9DA4AE] uppercase tracking-wider mt-1.5">
+                      {notif.time}
+                    </p>
+
+                    <div className="flex justify-end mt-2">
+                      <button
+                        onClick={() => handleCta(notif)}
+                        className="text-xs cursor-pointer font-bold text-[#F04F23] hover:text-[#d94118] transition-colors"
+                      >
+                        {notif.cta === "view"
+                          ? "Click to View"
+                          : "Send Feedback"}
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
-        <div className="p-3 bg-gray-50 text-center border-t border-gray-100">
+
+        <div className="px-5 py-3 border-t border-[#e9eaeb]">
           <button
             onClick={() => {
-              router.push("/requester/messages"); // Or a dedicate notifications page
+              router.push("/requester/messages");
               onClose();
             }}
-            className="text-xs font-bold text-gray-500 hover:text-gray-900 uppercase tracking-wide transition-colors"
+            className="w-full bg-[#f2f4f7] hover:bg-[#e9eaeb] text-[#535862] font-bold text-xs uppercase tracking-widest py-3 rounded-xl transition-colors"
           >
-            View All Activity
+            Load More Activity
           </button>
         </div>
       </div>
+
+      <ProviderProfileModal
+        open={profileOpen}
+        provider={PROVIDER_DATA}
+        onClose={() => setProfileOpen(false)}
+      />
+
+      <SendFeedbackModal
+        open={feedbackOpen}
+        partnerName={feedbackPartner}
+        onClose={() => {
+          setFeedbackOpen(false);
+          setFeedbackPartner(undefined);
+        }}
+      />
     </>
   );
 };

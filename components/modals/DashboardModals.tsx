@@ -8,13 +8,11 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
-// Base Modal Props
 interface BaseModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-// ============ APPROVE & RELEASE FUNDS MODAL ============
 interface ApproveReleaseModalProps extends BaseModalProps {
   taskTitle: string;
   credits: number;
@@ -33,7 +31,6 @@ export const ApproveReleaseModal: React.FC<ApproveReleaseModalProps> = ({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
       <div className="bg-white rounded-2xl shadow-xl w-full max-w-md mx-4 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
-        {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-100">
           <h2 className="text-lg font-bold font-sora text-gray-900">
             Approve & Release Funds
@@ -46,7 +43,6 @@ export const ApproveReleaseModal: React.FC<ApproveReleaseModalProps> = ({
           </button>
         </div>
 
-        {/* Content */}
         <div className="p-6 space-y-6">
           <div className="flex items-center justify-center">
             <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
@@ -76,7 +72,6 @@ export const ApproveReleaseModal: React.FC<ApproveReleaseModalProps> = ({
           </div>
         </div>
 
-        {/* Footer */}
         <div className="flex gap-3 p-6 border-t border-gray-100">
           <Button variant="outline" onClick={onClose} className="flex-1 h-11">
             Cancel
@@ -96,7 +91,6 @@ export const ApproveReleaseModal: React.FC<ApproveReleaseModalProps> = ({
   );
 };
 
-// ============ REQUEST REVISION MODAL ============
 interface RequestRevisionModalProps extends BaseModalProps {
   taskTitle: string;
   onSubmit: (reason: string) => void;
@@ -115,7 +109,6 @@ export const RequestRevisionModal: React.FC<RequestRevisionModalProps> = ({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
       <div className="bg-white rounded-2xl shadow-xl w-full max-w-md mx-4 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
-        {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-100">
           <h2 className="text-lg font-bold font-sora text-gray-900">
             Request Revision
@@ -128,7 +121,6 @@ export const RequestRevisionModal: React.FC<RequestRevisionModalProps> = ({
           </button>
         </div>
 
-        {/* Content */}
         <div className="p-6 space-y-6">
           <div className="flex items-center justify-center">
             <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center">
@@ -154,7 +146,6 @@ export const RequestRevisionModal: React.FC<RequestRevisionModalProps> = ({
           </div>
         </div>
 
-        {/* Footer */}
         <div className="flex gap-3 p-6 border-t border-gray-100">
           <Button variant="outline" onClick={onClose} className="flex-1 h-11">
             Cancel
@@ -176,7 +167,6 @@ export const RequestRevisionModal: React.FC<RequestRevisionModalProps> = ({
   );
 };
 
-// ============ ADD CREDITS MODAL ============
 interface AddCreditsModalProps extends BaseModalProps {
   onSubmit: (amount: number) => void;
 }
@@ -194,7 +184,6 @@ export const AddCreditsModal: React.FC<AddCreditsModalProps> = ({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
       <div className="bg-white rounded-2xl shadow-xl w-full max-w-md mx-4 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
-        {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-100">
           <h2 className="text-lg font-bold font-sora text-gray-900">
             Add Credits Securely
@@ -207,7 +196,6 @@ export const AddCreditsModal: React.FC<AddCreditsModalProps> = ({
           </button>
         </div>
 
-        {/* Content */}
         <div className="p-6 space-y-6">
           <div className="flex items-center justify-center">
             <div className="w-16 h-16 bg-brand-indigo-100 rounded-full flex items-center justify-center">
@@ -215,7 +203,6 @@ export const AddCreditsModal: React.FC<AddCreditsModalProps> = ({
             </div>
           </div>
 
-          {/* Quick amounts */}
           <div className="grid grid-cols-4 gap-3">
             {presets.map((preset) => (
               <button
@@ -232,7 +219,6 @@ export const AddCreditsModal: React.FC<AddCreditsModalProps> = ({
             ))}
           </div>
 
-          {/* Custom amount */}
           <div className="space-y-2">
             <label className="text-sm font-semibold text-gray-700">
               Or enter custom amount
@@ -262,7 +248,6 @@ export const AddCreditsModal: React.FC<AddCreditsModalProps> = ({
           )}
         </div>
 
-        {/* Footer */}
         <div className="flex gap-3 p-6 border-t border-gray-100">
           <Button variant="outline" onClick={onClose} className="flex-1 h-11">
             Cancel
@@ -284,7 +269,6 @@ export const AddCreditsModal: React.FC<AddCreditsModalProps> = ({
   );
 };
 
-// ============ LOGOUT MODAL ============
 interface LogoutModalProps extends BaseModalProps {
   onLogout: () => void;
 }
@@ -299,7 +283,6 @@ export const LogoutModal: React.FC<LogoutModalProps> = ({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
       <div className="bg-white rounded-2xl shadow-xl w-full max-w-sm mx-4 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
-        {/* Content */}
         <div className="p-6 space-y-6 text-center">
           <div className="flex items-center justify-center">
             <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center">
@@ -317,7 +300,6 @@ export const LogoutModal: React.FC<LogoutModalProps> = ({
           </div>
         </div>
 
-        {/* Footer */}
         <div className="flex gap-3 p-6 border-t border-gray-100">
           <Button variant="outline" onClick={onClose} className="flex-1 h-11">
             Cancel

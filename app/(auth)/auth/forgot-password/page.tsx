@@ -17,13 +17,11 @@ const ForgotPasswordPage = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
-    // Logic to send reset email would go here
   };
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-white px-4">
       <div className="w-full max-w-[400px] flex flex-col gap-8">
-        {/* Header */}
         <div className="flex flex-col items-center text-center gap-6 pt-32">
           <Link href="/" className="flex items-center gap-3">
             <Image
@@ -47,7 +45,6 @@ const ForgotPasswordPage = () => {
           </div>
         </div>
 
-        {/* Form */}
         {!submitted ? (
           <form
             onSubmit={handleSubmit}
@@ -85,7 +82,6 @@ const ForgotPasswordPage = () => {
           </div>
         )}
 
-        {/* Footer Link */}
         <div className="text-center">
           <Link
             href="/login"

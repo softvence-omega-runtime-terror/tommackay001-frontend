@@ -9,7 +9,6 @@ import {
   AlertCircle,
   UserPlus,
   Plus,
-  Pencil,
   Hourglass,
 } from "lucide-react";
 import ModalShell from "@/components/dashboard/provider/delivery/modals/ModalShell";
@@ -37,7 +36,6 @@ export default function OrderWaitingModal({ order, open, onClose }: Props) {
   return (
     <ModalShell open={open} onClose={handleClose}>
       <div className="flex flex-col max-h-[88vh]">
-        {/* Header */}
         <div className="px-6 pt-6 pb-0 shrink-0">
           <div className="flex items-start gap-4 pr-10 pb-4">
             <div className="w-11 h-11 rounded-xl bg-[#FFF4ED] border border-[#FDCFBE] flex items-center justify-center shrink-0">
@@ -58,14 +56,12 @@ export default function OrderWaitingModal({ order, open, onClose }: Props) {
             </div>
           </div>
 
-          {/* Tab bar */}
           <div className="flex mt-4 bg-[#FFF4ED] p-1 gap-1 px-6">
             {TABS.map(({ id, label, icon: Icon }) => {
               const active = activeTab === id;
               return (
                 <button
                   key={id}
-                  // onClick={() => setActiveTab(id)}
                   disabled
                   className={`flex-1 cursor-pointer flex items-center justify-center gap-2 py-3 px-3 rounded-lg font-semibold transition text-sm sm:text-base ${
                     active
@@ -89,32 +85,21 @@ export default function OrderWaitingModal({ order, open, onClose }: Props) {
           </div>
         </div>
 
-        {/* Tab body */}
         <div className="flex-1 overflow-y-auto min-h-100 max-h-100 px-12 py-6">
           {activeTab === "summary" && <SummaryTab />}
           {activeTab === "applicants" && <ApplicantsTab />}
           {activeTab === "timeline" && <TimelineTab />}
         </div>
 
-        {/* Footer */}
         <div className="shrink-0 px-6 pb-5 pt-4 border-t border-[#e9eaeb] bg-white flex items-center justify-between">
           <Button variant="white" onClick={handleClose} className="rounded-xl">
             CLOSE OVERSIGHT
           </Button>
-          {/* <Button
-            variant="white"
-            className="flex items-center gap-2 rounded-xl"
-          >
-            <Pencil className="w-4 h-4" />
-            EDIT TASK
-          </Button> */}
         </div>
       </div>
     </ModalShell>
   );
 }
-
-// ─── Summary ──────────────────────────────────────────────────────────────────
 
 function SummaryTab() {
   return (
@@ -191,8 +176,6 @@ function SummaryTab() {
   );
 }
 
-// ─── Applicants ───────────────────────────────────────────────────────────────
-
 function ApplicantsTab() {
   return (
     <div className="space-y-5">
@@ -244,8 +227,6 @@ function ApplicantsTab() {
     </div>
   );
 }
-
-// ─── Timeline ─────────────────────────────────────────────────────────────────
 
 function TimelineTab() {
   return (

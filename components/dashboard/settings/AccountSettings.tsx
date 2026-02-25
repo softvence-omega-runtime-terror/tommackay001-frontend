@@ -13,20 +13,14 @@ export default function AccountInformation() {
   const [role] = useState<"Requester" | "Provider">("Provider");
 
   const [showChangePasswordModal, setShowChangePasswordModal] = useState(false);
-
-  // Form fields for password change
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
-  // Toggle visibility
   const [showCurrent, setShowCurrent] = useState(false);
   const [showNew, setShowNew] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
 
-  const handleSaveAccount = () => {
-    // Normally: API call to update name etc.
-    console.log("Saving account changes:", { fullName });
+  const handleSaveAccount = () => {    console.log("Saving account changes:", { fullName });
     setIsEditingName(false);
   };
 
@@ -42,14 +36,10 @@ export default function AccountInformation() {
       alert("New password must be at least 8 characters long.");
       return;
     }
-
-    // Normally: API call to change password
     console.log("Changing password:", {
       current: currentPassword,
       new: newPassword,
     });
-
-    // Reset form & close modal
     setCurrentPassword("");
     setNewPassword("");
     setConfirmPassword("");

@@ -45,11 +45,7 @@ const SidebarContent: React.FC<SidebarContentProps> = ({
 }) => (
   <>
     <div className="p-8 pb-12">
-      <Link
-        href="/dashboard"
-        className="flex items-center gap-3"
-        onClick={onLinkClick}
-      >
+      <Link href="/" className="flex items-center gap-3" onClick={onLinkClick}>
         <Image
           src={logo}
           alt="Backlyst"
@@ -240,7 +236,7 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
 
       {isSidebarOpen && (
         <div
-          className="lg:hidden fixed inset-0 bg-black/40 z-30 transition-opacity"
+          className="lg:hidden fixed inset-0 bg-black/40 z-10 transition-opacity"
           onClick={() => setIsSidebarOpen(false)}
           aria-label="Close menu overlay"
         />

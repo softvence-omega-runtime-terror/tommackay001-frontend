@@ -1,18 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/components/ui/Button";
-import { Bell, Info, X } from "lucide-react";
+import { X } from "lucide-react";
 
 export default function NotificationSettings() {
-  // Notification toggles
   const [taskStatusUpdates, setTaskStatusUpdates] = useState(true);
   const [creditBalanceAlerts, setCreditBalanceAlerts] = useState(true);
   const [disputeReviewNotifications, setDisputeReviewNotifications] =
     useState(true);
   const [systemAnnouncements, setSystemAnnouncements] = useState(false);
 
-  // Contact preferences - tags
   const [contactTags, setContactTags] = useState<string[]>([
     "Notification",
     "Advertisement",
@@ -36,17 +33,16 @@ export default function NotificationSettings() {
     setContactTags(contactTags.filter((tag) => tag !== tagToRemove));
   };
 
-  const handleSave = () => {
-    // In real app: send preferences to backend
-    console.log("Saving notification & contact preferences:", {
-      taskStatusUpdates,
-      creditBalanceAlerts,
-      disputeReviewNotifications,
-      systemAnnouncements,
-      contactTags,
-    });
-    alert("Preferences saved successfully!");
-  };
+  // const handleSave = () => {
+  //   console.log("Saving notification & contact preferences:", {
+  //     taskStatusUpdates,
+  //     creditBalanceAlerts,
+  //     disputeReviewNotifications,
+  //     systemAnnouncements,
+  //     contactTags,
+  //   });
+  //   alert("Preferences saved successfully!");
+  // };
 
   return (
     <div className="bg-[#F9FAFB] space-y-12 overflow-hidden">
@@ -59,7 +55,6 @@ export default function NotificationSettings() {
             Control how you receive platform updates.
           </p>
         </div>
-        {/* Notification Toggles */}
         <div className="space-y-8 ">
           <div className="flex items-center justify-between border-b pb-4">
             <div>
@@ -143,8 +138,6 @@ export default function NotificationSettings() {
             </label>
           </div>
         </div>
-
-        {/* Contact Preferences */}
       </div>
       <div className="p-8 space-y-6 bg-white  rounded-xl">
         <div>

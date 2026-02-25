@@ -22,7 +22,6 @@ export default function RecentOrders({
 }: Props) {
   return (
     <section className="bg-white border border-[#e9eaeb] rounded-2xl">
-      {/* Section Header */}
       <div className="flex items-center justify-between px-8 py-6">
         <div>
           <h2 className="text-2xl font-semibold font-sora text-[#181d27]">
@@ -40,7 +39,6 @@ export default function RecentOrders({
         </Link>
       </div>
 
-      {/* Table Header */}
       <div
         className="grid border-y border-[#e9eaeb] text-sm font-medium text-[#181d27]"
         style={{ gridTemplateColumns: "2.5fr 1fr 1fr 1.5fr 1fr" }}
@@ -54,14 +52,12 @@ export default function RecentOrders({
         )}
       </div>
 
-      {/* Rows */}
       <div className="divide-y divide-[#e9eaeb]">
         {orders.map((order, i) => (
           <OrderCard key={i} order={order} />
         ))}
       </div>
 
-      {/* Pagination */}
       <div className="px-8 py-6 border-t border-[#e9eaeb]">
         <Pagination
           currentPage={currentPage}

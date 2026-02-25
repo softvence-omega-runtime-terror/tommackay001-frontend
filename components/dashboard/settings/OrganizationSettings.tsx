@@ -5,14 +5,12 @@ import { Button } from "@/components/ui/Button";
 import { Save, ChevronDown } from "lucide-react";
 
 export default function OrganizationSettings() {
-  // Form state - in real app, load from user profile / API
   const [companyName, setCompanyName] = useState("Acme Corporation");
   const [businessType, setBusinessType] = useState("");
   const [countryRegion, setCountryRegion] = useState("");
   const [taxId, setTaxId] = useState("US123456789");
 
   const handleSave = () => {
-    // In real app: validate + send to backend (billing/compliance update)
     console.log("Saving organization details:", {
       companyName,
       businessType,
@@ -24,7 +22,6 @@ export default function OrganizationSettings() {
 
   return (
     <div className="p-8 bg-white rounded-2xl overflow-hidden">
-      {/* Header */}
       <div className="">
         <h2 className="text-2xl font-semibold text-gray-900 flex items-center gap-2">
           Organization Details
@@ -35,7 +32,6 @@ export default function OrganizationSettings() {
       </div>
 
       <div className="py-8 space-y-10">
-        {/* Company Name */}
         <div className="space-y-3">
           <label className="block text-sm font-medium text-gray-700">
             Company Name
@@ -49,7 +45,6 @@ export default function OrganizationSettings() {
           />
         </div>
 
-        {/* Business Type */}
         <div className="space-y-3">
           <label className="block text-sm font-medium text-gray-700">
             Business Type
@@ -75,7 +70,6 @@ export default function OrganizationSettings() {
           </div>
         </div>
 
-        {/* Country / Region */}
         <div className="space-y-3">
           <label className="block text-sm font-medium text-gray-700">
             Country / Region
@@ -94,7 +88,6 @@ export default function OrganizationSettings() {
               <option value="FR">France</option>
               <option value="BD">Bangladesh</option>
               <option value="IN">India</option>
-              {/* Add more countries as needed */}
               <option value="other">Other</option>
             </select>
             <ChevronDown
@@ -104,7 +97,6 @@ export default function OrganizationSettings() {
           </div>
         </div>
 
-        {/* VAT / Tax ID (optional) */}
         <div className="space-y-3">
           <label className="block text-sm font-medium text-gray-700">
             VAT / Tax ID{" "}
@@ -120,7 +112,6 @@ export default function OrganizationSettings() {
         </div>
       </div>
 
-      {/* Footer Actions */}
       <div className="px-8 py-6  border-t border-gray-100 flex justify-end">
         <Button
           onClick={handleSave}

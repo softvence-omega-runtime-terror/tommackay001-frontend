@@ -3,13 +3,11 @@ import { ChevronDown, Info, Save } from "lucide-react";
 import React, { useState } from "react";
 
 export default function WebsiteSettings() {
-  // State for form fields
   const [defaultLinkType, setDefaultLinkType] = useState("");
   const [autoAcceptTasks, setAutoAcceptTasks] = useState(false);
   const [manualReviewRequired, setManualReviewRequired] = useState(true);
 
   const handleSave = () => {
-    // In real app: send to API / save to user settings
     console.log("Saving website defaults:", {
       defaultLinkType,
       autoAcceptTasks,

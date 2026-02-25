@@ -66,6 +66,10 @@
 .border-secondary {
   border-color: var(--secondary);
 }
+.border-b-secondary {
+  border-bottom: 1px solid;
+  border-color: var(--secondary);
+}
 .bg-secondary-foreground {
   background-color: var(--secondary-foreground);
 }

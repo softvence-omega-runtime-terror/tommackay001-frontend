@@ -4,9 +4,7 @@ import { useState } from "react";
 import { Search, Plus } from "lucide-react";
 import ModalShell from "@/components/dashboard/provider/delivery/modals/ModalShell";
 import ViewTaskModal, { TaskDetail } from "./view/Viewtaskmodal";
-import type { Website } from "@/app/(dashboard)/provider/websites/page";
-
-// ─── Types ────────────────────────────────────────────────────────────────────
+import type { Website } from "@/app/(dashboard)/dashboard/websites/page";
 
 type TaskTab = "requested" | "provided";
 
@@ -70,8 +68,6 @@ const TYPE_STYLES: Record<Task["type"], string> = {
   "No-Follow": "bg-[#f2f4f7] text-[#535862]",
 };
 
-// ─────────────────────────────────────────────────────────────────────────────
-
 type Props = {
   website: Website | null;
   open: boolean;
@@ -119,7 +115,6 @@ export default function WebsiteWorkspaceModal({
 
   return (
     <>
-      {/* ViewTaskModal — nested above workspace */}
       <ViewTaskModal
         task={viewTask}
         open={viewTaskOpen}
@@ -129,9 +124,12 @@ export default function WebsiteWorkspaceModal({
         }}
       />
 
-      <ModalShell open={open && !viewTaskOpen} onClose={handleClose}>
+      <ModalShell
+        open={open && !viewTaskOpen}
+        onClose={handleClose}
+        widthClass="max-w-4xl"
+      >
         <div className="flex flex-col max-h-[90vh]">
-          {/* ── Header ────────────────────────────────────────────── */}
           <div className="px-6 pt-6 pb-4 flex items-start gap-4 pr-14">
             <div className="w-12 h-12 rounded-xl bg-[#181d27] flex items-center justify-center text-white font-bold text-lg shrink-0">
               {website.domain[0].toUpperCase()}
@@ -151,7 +149,6 @@ export default function WebsiteWorkspaceModal({
             </div>
           </div>
 
-          {/* ── Info bar ──────────────────────────────────────────── */}
           <div className="mx-6 bg-[#f9fafb] rounded-xl px-4 py-3 mb-4">
             <p className="text-xs text-[#9DA4AE] font-medium">
               Website Workspace
@@ -166,7 +163,6 @@ export default function WebsiteWorkspaceModal({
             </div>
           </div>
 
-          {/* ── Tab toggle ────────────────────────────────────────── */}
           <div className="mx-6 flex rounded-full bg-[#f2f4f7] p-1 mb-4">
             <button
               onClick={() => setActiveTab("requested")}
@@ -190,7 +186,6 @@ export default function WebsiteWorkspaceModal({
             </button>
           </div>
 
-          {/* ── Search ────────────────────────────────────────────── */}
           <div className="mx-6 mb-3 relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#9DA4AE]" />
             <input
@@ -202,7 +197,6 @@ export default function WebsiteWorkspaceModal({
             />
           </div>
 
-          {/* ── Tasks table ───────────────────────────────────────── */}
           <div className="flex-1 overflow-y-auto mx-6 border border-[#e9eaeb] rounded-xl bg-white">
             <table className="w-full">
               <thead>
@@ -255,7 +249,6 @@ export default function WebsiteWorkspaceModal({
                         {task.created}
                       </td>
                       <td className="px-4 py-4">
-                        {/* ── Opens ViewTaskModal ─────────────────── */}
                         <button
                           onClick={() => openViewTask(task)}
                           className="bg-secondary hover:bg-[#d94118] text-white text-xs font-semibold px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap"
@@ -279,7 +272,6 @@ export default function WebsiteWorkspaceModal({
             </table>
           </div>
 
-          {/* ── Footer ────────────────────────────────────────────── */}
           <div className="px-6 py-4 border-t border-[#e9eaeb] flex items-center justify-between mt-2">
             <p className="text-xs text-[#9DA4AE]">
               Each website maintains its own task history.

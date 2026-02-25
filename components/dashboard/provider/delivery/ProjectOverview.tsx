@@ -40,7 +40,6 @@ export default function ProjectOverview({ status, onClose }: Props) {
 
   return (
     <div className="flex flex-col max-h-[90vh]">
-      {/* Header */}
       <div className="px-6 pt-6 pb-4 border-b border-[#e9eaeb] shrink-0">
         <div className="flex items-start gap-4 pr-8">
           <div className="w-14 h-14 rounded-xl bg-[#EDE9FE] flex items-center justify-center shrink-0">
@@ -79,7 +78,6 @@ export default function ProjectOverview({ status, onClose }: Props) {
           </div>
         </div>
 
-        {/* Status Badge */}
         <div className="flex justify-end mt-3">
           <span
             className={`text-[10px] font-semibold px-2.5 py-0.5 rounded-full border tracking-wide
@@ -90,13 +88,8 @@ export default function ProjectOverview({ status, onClose }: Props) {
         </div>
       </div>
 
-      {/* Body */}
-      <div className="flex-1 overflow-y-auto px-6 py-5 space-y-6">
-        {/* Sections unchanged */}
-        {/* Keep your SectionHeading, SpecField, StatCard components as-is */}
-      </div>
+      <div className="flex-1 overflow-y-auto px-6 py-5 space-y-6"></div>
 
-      {/* Footer */}
       <div className="shrink-0 px-6 pb-6 pt-4 flex justify-between border-t border-[#e9eaeb] gap-3">
         <button
           onClick={onClose}
