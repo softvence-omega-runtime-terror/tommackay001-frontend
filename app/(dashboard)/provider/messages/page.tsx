@@ -29,7 +29,7 @@ export default function ProviderMessagesPage() {
               Messages Coming Soon
             </h2>
             <p className="text-sm lg:text-base text-[#535862] leading-relaxed">
-              We're building a direct messaging system to communicate with
+              We&apos;re building a direct messaging system to communicate with
               requesters about tasks and opportunities.
             </p>
           </div>

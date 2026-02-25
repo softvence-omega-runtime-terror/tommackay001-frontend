@@ -22,7 +22,6 @@ import DashboardHeader from "./DashboardHeader";
 import logo from "@/public/backlyst-logo.png";
 import Image from "next/image";
 import avatarImage from "@/public/avatar/sisyphus.png";
-
 import LogoutModal from "../modals/LogoutModal";
 
 interface SidebarItem {
@@ -46,7 +45,11 @@ const SidebarContent: React.FC<SidebarContentProps> = ({
 }) => (
   <>
     <div className="p-8 pb-12">
-      <Link href="/" className="flex items-center gap-3" onClick={onLinkClick}>
+      <Link
+        href="/dashboard"
+        className="flex items-center gap-3"
+        onClick={onLinkClick}
+      >
         <Image
           src={logo}
           alt="Backlyst"
@@ -120,28 +123,17 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
   const router = useRouter();
   const { role, setRole } = useRole();
 
-  const isProviderRoute = pathname.startsWith("/provider");
-  const currentRole: "requester" | "provider" = isProviderRoute
-    ? "provider"
-    : "requester";
-
-  const basePath = isProviderRoute ? "/provider" : "/requester";
+  /** ✅ SINGLE DASHBOARD ROUTE */
+  const currentRole: "requester" | "provider" = role;
+  const basePath = "/dashboard";
 
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   React.useEffect(() => {
-    if (currentRole !== role) {
-      setRole(currentRole);
-    }
-  }, [currentRole, role, setRole]);
-
-  // Close sidebar on route change (mobile)
-  React.useEffect(() => {
     setIsSidebarOpen(false);
   }, [pathname]);
 
-  // Prevent body scroll when sidebar is open on mobile
   React.useEffect(() => {
     if (isSidebarOpen) {
       document.body.style.overflow = "hidden";
@@ -156,7 +148,6 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
   const handleRoleSwitch = (newRole: "requester" | "provider") => {
     if (newRole === currentRole) return;
     setRole(newRole);
-    router.push(newRole === "provider" ? "/provider" : "/requester");
   };
 
   const handleCreateTask = () => {
@@ -175,7 +166,7 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
     currentRole === "provider"
       ? [
           { icon: Home, label: "Dashboard", path: basePath },
-          { icon: Layout, label: "My Job", path: `${basePath}/tasks` },
+          { icon: Layout, label: "My Job", path: `${basePath}/jobs` },
           {
             icon: Briefcase,
             label: "Opportunity Board",
@@ -202,7 +193,7 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
         ]
       : [
           { icon: Home, label: "Dashboard", path: basePath },
-          { icon: Layout, label: "Tasks", path: `${basePath}/tasks` },
+          { icon: Layout, label: "Tasks", path: `${basePath}/orders` },
           {
             icon: Building2,
             label: "Company Directory",
@@ -237,8 +228,6 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
 
   return (
     <div className="flex min-h-screen bg-[#F9FAFB] font-inter overflow-x-hidden">
-      {/* Sidebar — desktop: fixed, mobile: off-canvas drawer */}
-      {/* Desktop sidebar */}
       <aside className="hidden lg:flex w-70 bg-white border-r border-gray-100 flex-col fixed h-full z-20 shadow-[4px_0_24px_rgba(0,0,0,0.02)]">
         <SidebarContent
           sidebarItems={sidebarItems}
@@ -248,7 +237,6 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
         />
       </aside>
 
-      {/* Mobile sidebar overlay */}
       {isSidebarOpen && (
         <div
           className="lg:hidden fixed inset-0 bg-black/40 z-30 transition-opacity"
@@ -257,7 +245,6 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
         />
       )}
 
-      {/* Mobile sidebar drawer */}
       <aside
         className={`lg:hidden fixed top-0 left-0 h-full w-72 bg-white border-r border-gray-100 flex flex-col z-40 shadow-xl transition-transform duration-300 ease-in-out ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
@@ -271,7 +258,6 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
         />
       </aside>
 
-      {/* Main Content */}
       <div className="flex-1 lg:ml-70 flex flex-col min-h-screen">
         <DashboardHeader
           currentRole={currentRole}
@@ -285,7 +271,6 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
         <main className="flex-1 p-4 lg:p-8">{children}</main>
       </div>
 
-      {/* Logout Confirmation Modal */}
       <LogoutModal
         isOpen={showLogoutModal}
         onClose={() => setShowLogoutModal(false)}
