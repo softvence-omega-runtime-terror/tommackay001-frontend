@@ -1,4 +1,4 @@
-import { Check, CheckCircle } from "lucide-react";
+import { CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
 interface OpportunitySuccessModalProps {
