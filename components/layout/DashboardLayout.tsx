@@ -123,7 +123,6 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
   const router = useRouter();
   const { role, setRole } = useRole();
 
-  /** ✅ SINGLE DASHBOARD ROUTE */
   const currentRole: "requester" | "provider" = role;
   const basePath = "/dashboard";
 
@@ -147,6 +146,8 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
 
   const handleRoleSwitch = (newRole: "requester" | "provider") => {
     if (newRole === currentRole) return;
+    console.log(newRole);
+    router.push(`/dashboard`);
     setRole(newRole);
   };
 

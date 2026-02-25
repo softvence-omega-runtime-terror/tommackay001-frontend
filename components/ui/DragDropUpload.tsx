@@ -48,7 +48,7 @@ export default function DragDropUpload({
       onDrop={handleDrop}
       onClick={() => inputRef.current?.click()}
       className={` p-10 text-center cursor-pointer transition-all
-        border-[#e9eaeb] hover:border-[#F04F23] 
+        border-[#e9eaeb] hover:border-secondary 
         ${className}`}
     >
       <input

@@ -136,8 +136,8 @@ export default function DeliverySubmittedModal({ task, open, onClose }: Props) {
 
                 <div>
                   <div className="flex items-center gap-2 mb-2.5">
-                    <AlertCircle className="w-4 h-4 text-[#F04F23]" />
-                    <span className="text-xs font-bold uppercase tracking-widest text-[#F04F23]">
+                    <AlertCircle className="w-4 h-4 text-secondary" />
+                    <span className="text-xs font-bold uppercase tracking-widest text-secondary">
                       Rejection Conditions
                     </span>
                   </div>

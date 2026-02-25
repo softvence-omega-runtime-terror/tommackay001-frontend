@@ -33,7 +33,6 @@ export default function BuyVisibilityCreditModal({ open, onClose }: Props) {
 
   const handleClose = () => {
     onClose();
-    // reset after close animation (approx 200 ms)
     setTimeout(() => {
       setScreen("form");
       setAmount("500");
@@ -45,7 +44,9 @@ export default function BuyVisibilityCreditModal({ open, onClose }: Props) {
     <ModalShell
       open={open}
       onClose={handleClose}
-      widthClass={` ${screen === "form" ? "max-w-3xl" : "max-w-md"}`}
+      widthClass={` ${screen === "form" ? "max-w-3xl" : "max-w-sm"}`}
+      maxHeightClass={` ${screen === "form" ? "max-w-3xl" : "h-80"}`}
+      minHeightClass={` ${screen === "form" ? "min-h-20" : "h-110"}`}
     >
       {screen === "form" ? (
         <FormScreen
@@ -82,7 +83,7 @@ function FormScreen({
 }: FormProps) {
   return (
     <div className="flex flex-col max-w-3xl">
-      <div className="px-6 pt-6 pb-5 border-b border-[#e9eaeb] flex items-start gap-4 pr-12">
+      <div className="px-6 pt-6 pb-5  flex items-start gap-4 pr-12">
         <div className="w-12 h-12 rounded-xl bg-[#FFF4ED] border border-[#FDCFBE] flex items-center justify-center shrink-0">
           <Database className="w-6 h-6 text-secondary" />
         </div>
@@ -93,6 +94,36 @@ function FormScreen({
           <p className="text-xs font-semibold text-[#535862] uppercase tracking-widest mt-0.5">
             Secure Institutional Funding
           </p>
+        </div>
+      </div>
+
+      <div className="px-8 py-1 space-y-5">
+        <p className=" text-gray-900 mb-3">
+          Credits are used for escrow deployment, task allocation , and
+          automated settlements within the backlyst ecosystem.
+        </p>
+
+        <div className="flex justify-between max-w-sm px-12">
+          <input
+            type="radio"
+            name="option"
+            className="
+      appearance-none w-5 h-5 rounded-full border-2 border-secondary 
+      checked:bg-[#fd751f] 
+      checked:ring-2 checked:ring-inset checked:ring-white
+      focus:outline-none transition-all cursor-pointer
+    "
+          />
+          <input
+            type="radio"
+            name="option"
+            className="
+      appearance-none w-5 h-5 rounded-full border-2 border-secondary 
+      checked:bg-[#fd751f] 
+      checked:ring-2 checked:ring-inset checked:ring-white
+      focus:outline-none transition-all cursor-pointer
+    "
+          />
         </div>
       </div>
 
@@ -150,7 +181,7 @@ function FormScreen({
           </p>
         </div>
 
-        <div className="border border-[#e9eaeb] rounded-xl p-5 space-y-3">
+        <div className="border border-[#e9eaeb] rounded-xl p-5 space-y-3 max-w-md mx-auto">
           <p className="text-sm font-bold text-[#181d27] uppercase tracking-wide">
             Security &amp; Compliance Protocol
           </p>
@@ -171,14 +202,10 @@ function FormScreen({
       </div>
 
       <div className="px-6 pb-6 pt-2 flex gap-3 w-full border justify-between">
-        <Button
-          variant="white"
-          onClick={onCancel}
-          className=" text-[#535862] rounded-lg font-semibold text-sm py-3.5 hover:text-[#181d27] transition-colors tracking-wide"
-        >
+        <Button variant="white" onClick={onCancel} className=" border-none">
           CANCEL
         </Button>
-        <Button variant="secondary" onClick={onConfirm}>
+        <Button variant="secondary" onClick={onConfirm} className="rounded-md">
           CONFIRM &amp; ADD CREDITS
           <ArrowUpRight className="w-4 h-4" />
         </Button>
@@ -195,7 +222,7 @@ function SuccessScreen({
   onClose: () => void;
 }) {
   return (
-    <div className="px-8 py-28 flex flex-col items-center text-center max-w-xl">
+    <div className="px-8 py-8 flex flex-col items-center text-center max-w-md">
       <div className="w-14 h-14 rounded-full bg-[#ECFDF3] flex items-center justify-center mb-6 cursor-pointer">
         <CheckCircle2 className="w-8 h-8 text-[#027A48]" />
       </div>
@@ -221,8 +248,6 @@ function SuccessScreen({
     </div>
   );
 }
-
-// ─── Payment method card ──────────────────────────────────────────────────────
 
 function PaymentCard({
   active,

@@ -81,7 +81,7 @@ export default function DeliveryInProgressModal({
           <div className="pt-6 pb-0 shrink-0">
             <div className="flex items-start gap-3 px-6 pr-8 py-4">
               <div className="w-10 h-10 mt-2 bg-[#FFF4ED] flex items-center justify-center shrink-0">
-                <FileText className="w-6 h-6 text-[#F04F23]" />
+                <FileText className="w-6 h-6 text-secondary" />
               </div>
 
               <div className="flex-1 min-w-0">
@@ -114,8 +114,8 @@ export default function DeliveryInProgressModal({
                     onClick={() => setActiveTab(tab.id)}
                     className={`flex-1 cursor-pointer flex items-center justify-center gap-1.5 py-3 px-2 rounded-lg font-semibold transition ${
                       isActive
-                        ? "text-[#F04F23]"
-                        : "text-black hover:text-[#F04F23]"
+                        ? "text-secondary"
+                        : "text-black hover:text-secondary"
                     }`}
                   >
                     <div
@@ -170,7 +170,7 @@ export default function DeliveryInProgressModal({
         {/* Header */}
         <div className="px-6 pt-6 pb-4 flex items-start gap-3">
           <div className="w-10 h-10 rounded-xl bg-[#FFF4ED] border border-[#FDCFBE] flex flex-col items-center justify-center shrink-0">
-            <ShieldCheck className="w-5 h-5 text-[#F04F23]" />
+            <ShieldCheck className="w-5 h-5 text-secondary" />
           </div>
           <div>
             <h3 className="text-lg font-bold text-[#181d27]">
@@ -211,14 +211,14 @@ export default function DeliveryInProgressModal({
               onChange={(e) => setNote(e.target.value)}
               rows={3}
               placeholder="Optional message to requester (scope, availability, clarification)"
-              className="w-full border border-[#e9eaeb] rounded-xl px-4 py-3 text-sm text-[#181d27] placeholder:text-[#9DA4AE] resize-none focus:outline-none focus:ring-2 focus:ring-[#F04F23]/30 focus:border-[#F04F23] transition"
+              className="w-full border border-[#e9eaeb] rounded-xl px-4 py-3 text-sm text-[#181d27] placeholder:text-[#9DA4AE] resize-none focus:outline-none focus:ring-2 focus:ring-secondary/30 focus:border-secondary transition"
             />
           </div>
 
           {/* Disclaimer */}
           <div className="flex items-start gap-3 bg-[#FFF4ED] border border-[#FDCFBE] rounded-xl px-4 py-3">
-            <Info className="w-4 h-4 text-[#F04F23] shrink-0 mt-0.5" />
-            <p className="text-sm text-[#F04F23]">
+            <Info className="w-4 h-4 text-secondary shrink-0 mt-0.5" />
+            <p className="text-sm text-secondary">
               By submitting, you agree to the platform&apos;s escrow-protected
               fulfillment guidelines.
             </p>

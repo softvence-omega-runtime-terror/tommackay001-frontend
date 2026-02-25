@@ -112,7 +112,7 @@ export default function ConnectWebsiteModal({ open, onClose }: Props) {
               <button
                 onClick={() => setStep("verify")}
                 disabled={!url.trim()}
-                className="flex items-center gap-2 bg-[#F04F23] hover:bg-[#d94118] disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold text-sm px-6 py-3 rounded-xl transition-colors tracking-wide"
+                className="flex items-center gap-2 bg-secondary hover:bg-[#d94118] disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold text-sm px-6 py-3 rounded-xl transition-colors tracking-wide"
               >
                 CONTINUE TO VERIFICATION
                 <ArrowRight className="w-4 h-4" />
@@ -131,7 +131,7 @@ export default function ConnectWebsiteModal({ open, onClose }: Props) {
               </button>
               <button
                 onClick={() => setStep("success")}
-                className="flex items-center gap-2 bg-[#F04F23] hover:bg-[#d94118] text-white font-bold text-sm px-6 py-3 rounded-xl transition-colors tracking-wide"
+                className="flex items-center gap-2 bg-secondary hover:bg-[#d94118] text-white font-bold text-sm px-6 py-3 rounded-xl transition-colors tracking-wide"
               >
                 VERIFY WEBSITE
                 <ShieldCheck className="w-4 h-4" />
@@ -142,7 +142,7 @@ export default function ConnectWebsiteModal({ open, onClose }: Props) {
           {step === "success" && (
             <button
               onClick={handleClose}
-              className="w-full bg-[#F04F23] hover:bg-[#d94118] text-white font-bold text-sm py-3 rounded-xl transition-colors tracking-wide"
+              className="w-full bg-secondary hover:bg-[#d94118] text-white font-bold text-sm py-3 rounded-xl transition-colors tracking-wide"
             >
               DONE
             </button>
@@ -171,7 +171,7 @@ function StepInfo({
       {/* Section label */}
       <div className="flex items-center gap-2.5">
         <div className="w-8 h-8 rounded-full bg-[#FFF4ED] flex items-center justify-center shrink-0">
-          <Globe className="w-4 h-4 text-[#F04F23]" />
+          <Globe className="w-4 h-4 text-secondary" />
         </div>
         <span className="text-xs font-bold uppercase tracking-widest text-[#181d27]">
           Website Information
@@ -186,11 +186,11 @@ function StepInfo({
         <div
           className={`flex items-center gap-3 border-2 rounded-xl px-4 py-3 transition-colors ${
             url
-              ? "border-[#F04F23]"
-              : "border-[#F04F23]/40 focus-within:border-[#F04F23]"
+              ? "border-secondary"
+              : "border-secondary/40 focus-within:border-secondary"
           }`}
         >
-          <Globe className="w-4 h-4 text-[#F04F23] shrink-0" />
+          <Globe className="w-4 h-4 text-secondary shrink-0" />
           <input
             type="url"
             value={url}
@@ -423,7 +423,7 @@ function StepSuccess({ url }: { url: string }) {
             <p className="text-[10px] font-bold uppercase tracking-wider text-[#535862]">
               Visibility
             </p>
-            <p className="text-sm font-bold text-[#F04F23] mt-0.5">Inactive</p>
+            <p className="text-sm font-bold text-secondary mt-0.5">Inactive</p>
           </div>
         </div>
       </div>

@@ -48,7 +48,7 @@ export default function OrderCompletedModal({ order, open, onClose }: Props) {
         <div className="pt-6 pb-0 shrink-0">
           <div className="flex items-start gap-4 px-6 pr-10 py-4">
             <div className="w-11 h-11 bg-[#FFF4ED] rounded-xl flex items-center justify-center shrink-0">
-              <FileText className="w-6 h-6 text-[#F04F23]" />
+              <FileText className="w-6 h-6 text-secondary" />
             </div>
 
             <div className="flex-1 min-w-0">
@@ -79,15 +79,15 @@ export default function OrderCompletedModal({ order, open, onClose }: Props) {
                   onClick={() => setActiveTab(id)}
                   className={`flex-1 cursor-pointer flex items-center justify-center gap-2 py-3 px-3 rounded-lg font-semibold transition text-sm sm:text-base ${
                     isActive
-                      ? "text-[#F04F23] bg-white shadow-sm"
-                      : "text-[#535862] hover:text-[#F04F23] hover:bg-white/60"
+                      ? "text-secondary  "
+                      : "text-[#535862] hover:text-secondary "
                   }`}
                 >
                   <div
                     className={`p-1.5 rounded-xl ${
                       isActive
-                        ? "bg-[#F04F23] text-white"
-                        : "bg-white text-[#F04F23]/80"
+                        ? "bg-secondary text-white"
+                        : "bg-white text-secondary/80"
                     }`}
                   >
                     <Icon className="w-5 h-5" />
@@ -100,7 +100,7 @@ export default function OrderCompletedModal({ order, open, onClose }: Props) {
         </div>
 
         {/* Tab Content */}
-        <div className="flex-1 overflow-y-auto px-6 py-6">
+        <div className="flex-1 overflow-y-auto min-h-100 max-h-100 px-12 py-6">
           {activeTab === "summary" && <SummaryTab />}
           {activeTab === "submission" && <SubmissionTab />}
           {activeTab === "timeline" && <TimelineTab />}
@@ -208,14 +208,14 @@ function SubmissionTab() {
         <p className="text-xs font-semibold uppercase tracking-wide text-[#535862] mb-2.5">
           Live Link
         </p>
-        <div className="border border-[#e9eaeb] rounded-xl overflow-hidden hover:border-[#F04F23]/40 transition-colors">
+        <div className="border border-[#e9eaeb] rounded-xl overflow-hidden hover:border-secondary/40 transition-colors">
           <a
             href="https://techtrends.io/blog/s-calling-saas-infra"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-3 px-4 py-4 cursor-pointer"
           >
-            <ExternalLink className="w-5 h-5 text-[#F04F23] shrink-0" />
+            <ExternalLink className="w-5 h-5 text-secondary shrink-0" />
             <div className="flex-1 min-w-0">
               <p className="text-sm font-medium text-[#181d27] truncate">
                 https://techtrends.io/blog/s-calling-saas-infra
@@ -264,8 +264,8 @@ function TimelineTab() {
     <div className="space-y-5 py-2">
       {TIMELINE_EVENTS.map(({ icon: Icon, label, time }) => (
         <div key={label} className="flex items-start gap-4">
-          <div className="w-10 h-10 rounded-full border-2 border-[#F04F23] bg-white flex items-center justify-center shrink-0">
-            <Icon className="w-5 h-5 text-[#F04F23]" />
+          <div className="w-10 h-10 rounded-full border-2 border-secondary bg-white flex items-center justify-center shrink-0">
+            <Icon className="w-5 h-5 text-secondary" />
           </div>
           <div className="pt-1">
             <p className="text-sm font-semibold text-[#181d27]">{label}</p>

@@ -30,7 +30,7 @@ export default function DeliveryCompletedModal({ task, open, onClose }: Props) {
   };
   return (
     <>
-      <ModalShell open={open} onClose={onClose}>
+      <ModalShell open={open} onClose={onClose} widthClass="max-w-4xl">
         <div className="flex flex-col max-h-[90vh]">
           <div className="px-6 pt-6 pb-4 border-b border-[#e9eaeb] shrink-0 ">
             <div className="flex items-start gap-4 pr-8">
@@ -136,8 +136,8 @@ export default function DeliveryCompletedModal({ task, open, onClose }: Props) {
 
                 <div>
                   <div className="flex items-center gap-2 mb-2.5">
-                    <AlertCircle className="w-4 h-4 text-[#F04F23]" />
-                    <span className="text-xs font-bold uppercase tracking-widest text-[#F04F23]">
+                    <AlertCircle className="w-4 h-4 text-secondary" />
+                    <span className="text-xs font-bold uppercase tracking-widest text-secondary">
                       Rejection Conditions
                     </span>
                   </div>

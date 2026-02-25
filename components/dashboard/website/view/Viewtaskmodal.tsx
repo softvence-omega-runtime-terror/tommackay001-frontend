@@ -165,7 +165,7 @@ export default function ViewTaskModal({ task, open, onClose }: Props) {
               onClick={() => setActiveTab(tab.id)}
               className={`px-4 py-3 text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${
                 activeTab === tab.id
-                  ? "border-[#F04F23] text-[#F04F23]"
+                  ? "border-secondary text-secondary"
                   : "border-transparent text-[#535862] hover:text-[#181d27]"
               }`}
             >
@@ -195,7 +195,7 @@ export default function ViewTaskModal({ task, open, onClose }: Props) {
             >
               Back to Website
             </button>
-            <button className="bg-[#F04F23] hover:bg-[#d94118] text-white font-semibold text-sm px-5 py-2 rounded-lg transition-colors">
+            <button className="bg-secondary hover:bg-[#d94118] text-white font-semibold text-sm px-5 py-2 rounded-lg transition-colors">
               Mark as Review
             </button>
           </div>
@@ -326,12 +326,12 @@ function TabMessages() {
             <span className="font-semibold text-[#181d27]">You</span>{" "}
             <span className="text-[#9DA4AE]">2026-01-15 02:20 PM</span>
           </p>
-          <div className="bg-[#F04F23] rounded-2xl rounded-tr-none px-4 py-3 text-sm text-white leading-relaxed text-left">
+          <div className="bg-secondary rounded-2xl rounded-tr-none px-4 py-3 text-sm text-white leading-relaxed text-left">
             Perfect! Please make sure the anchor text is exactly as specified
             and the link is do-follow.
           </div>
         </div>
-        <div className="w-8 h-8 rounded-full bg-[#F04F23] flex items-center justify-center text-xs font-bold text-white shrink-0">
+        <div className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center text-xs font-bold text-white shrink-0">
           Y
         </div>
       </div>

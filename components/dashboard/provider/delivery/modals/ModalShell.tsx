@@ -69,7 +69,7 @@ export default function ModalShell({
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-[#f2f4f7] hover:bg-[#e9eaeb] text-[#535862] transition-colors"
+          className="absolute cursor-pointer top-4 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-[#f2f4f7] hover:bg-[#e9eaeb] text-[#535862] transition-colors"
         >
           <X className="w-4 h-4" />
         </button>

@@ -1,4 +1,3 @@
-import React from "react";
 import { Search, Bell, Menu } from "lucide-react";
 import { motion } from "framer-motion";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";

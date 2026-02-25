@@ -28,7 +28,7 @@ export default function SuccessModal({
 
       <Link
         href={role}
-        className="mt-8 bg-[#F04F23] hover:bg-[#d94118] text-white font-bold text-sm px-8 py-3 rounded-lg tracking-wide transition-colors"
+        className="mt-8 bg-secondary hover:bg-[#d94118] text-white font-bold text-sm px-8 py-3 rounded-lg tracking-wide transition-colors"
       >
         {buttonText}
       </Link>

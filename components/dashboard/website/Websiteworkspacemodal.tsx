@@ -172,7 +172,7 @@ export default function WebsiteWorkspaceModal({
               onClick={() => setActiveTab("requested")}
               className={`flex-1 py-2.5 rounded-full text-sm font-semibold transition-all ${
                 activeTab === "requested"
-                  ? "bg-[#F04F23] text-white shadow-sm"
+                  ? "bg-secondary text-white shadow-sm"
                   : "text-[#535862] hover:text-[#181d27]"
               }`}
             >
@@ -182,7 +182,7 @@ export default function WebsiteWorkspaceModal({
               onClick={() => setActiveTab("provided")}
               className={`flex-1 py-2.5 rounded-full text-sm font-semibold transition-all ${
                 activeTab === "provided"
-                  ? "bg-[#F04F23] text-white shadow-sm"
+                  ? "bg-secondary text-white shadow-sm"
                   : "text-[#535862] hover:text-[#181d27]"
               }`}
             >
@@ -198,7 +198,7 @@ export default function WebsiteWorkspaceModal({
               placeholder="Search tasks..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-9 pr-4 py-2.5 border border-[#e2e2e2] rounded-full text-sm text-[#535862] focus:outline-none focus:border-[#F04F23] placeholder:text-[#9DA4AE] bg-white"
+              className="w-full pl-9 pr-4 py-2.5 border border-[#e2e2e2] rounded-full text-sm text-[#535862] focus:outline-none focus:border-secondary placeholder:text-[#9DA4AE] bg-white"
             />
           </div>
 
@@ -258,7 +258,7 @@ export default function WebsiteWorkspaceModal({
                         {/* ── Opens ViewTaskModal ─────────────────── */}
                         <button
                           onClick={() => openViewTask(task)}
-                          className="bg-[#F04F23] hover:bg-[#d94118] text-white text-xs font-semibold px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap"
+                          className="bg-secondary hover:bg-[#d94118] text-white text-xs font-semibold px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap"
                         >
                           View Task
                         </button>
@@ -291,7 +291,7 @@ export default function WebsiteWorkspaceModal({
               >
                 Close
               </button>
-              <button className="flex items-center gap-1.5 bg-[#F04F23] hover:bg-[#d94118] text-white font-semibold text-sm px-5 py-2 rounded-lg transition-colors">
+              <button className="flex items-center gap-1.5 bg-secondary hover:bg-[#d94118] text-white font-semibold text-sm px-5 py-2 rounded-lg transition-colors">
                 <Plus className="w-4 h-4" />
                 Create Task
               </button>

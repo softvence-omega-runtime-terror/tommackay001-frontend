@@ -16,28 +16,28 @@ const STAGES = [
     title: "Signup",
     desc: "User joins via your referral link",
     reward: "None",
-    color: "bg-[#FFF4ED] text-[#F04F23] border-[#FDCFBE]",
+    color: "bg-[#FFF4ED] text-secondary border-[#FDCFBE]",
   },
   {
     stage: "Stage 1",
     title: "Website Verified",
     desc: "At least one website verified",
     reward: "+1 Task Credit",
-    color: "bg-[#FFF4ED] text-[#F04F23] border-[#FDCFBE]",
+    color: "bg-[#FFF4ED] text-secondary border-[#FDCFBE]",
   },
   {
     stage: "Stage 2",
     title: "First Backlink Accepted",
     desc: "First backlink accepted and verified",
     reward: "+2 Task Credits",
-    color: "bg-[#FFF4ED] text-[#F04F23] border-[#FDCFBE]",
+    color: "bg-[#FFF4ED] text-secondary border-[#FDCFBE]",
   },
   {
     stage: "Stage 3",
     title: "Subscription",
     desc: "Any paid subscription activated",
     reward: "+3 Task Credits, +1 Visibility Credit",
-    color: "bg-[#FFF4ED] text-[#F04F23] border-[#FDCFBE]",
+    color: "bg-[#FFF4ED] text-secondary border-[#FDCFBE]",
   },
 ];
 
@@ -94,7 +94,7 @@ const LIMITS = [
 
 const STAGE_BADGE: Record<number, string> = {
   0: "bg-[#f2f4f7] text-[#535862]",
-  1: "bg-[#FFF4ED] text-[#F04F23]",
+  1: "bg-[#FFF4ED] text-secondary",
   2: "bg-[#EFF8FF] text-[#175CD3]",
   3: "bg-[#ECFDF3] text-[#027A48]",
 };

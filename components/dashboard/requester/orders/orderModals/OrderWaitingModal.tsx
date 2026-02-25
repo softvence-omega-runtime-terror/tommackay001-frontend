@@ -41,7 +41,7 @@ export default function OrderWaitingModal({ order, open, onClose }: Props) {
         <div className="px-6 pt-6 pb-0 shrink-0">
           <div className="flex items-start gap-4 pr-10 pb-4">
             <div className="w-11 h-11 rounded-xl bg-[#FFF4ED] border border-[#FDCFBE] flex items-center justify-center shrink-0">
-              <FileText className="w-5 h-5 text-[#F04F23]" />
+              <FileText className="w-5 h-5 text-secondary" />
             </div>
             <div>
               <div className="flex items-center gap-3 flex-wrap">
@@ -59,23 +59,28 @@ export default function OrderWaitingModal({ order, open, onClose }: Props) {
           </div>
 
           {/* Tab bar */}
-          <div className="flex bg-[#FFF4ED]">
+          <div className="flex mt-4 bg-[#FFF4ED] p-1 gap-1 px-6">
             {TABS.map(({ id, label, icon: Icon }) => {
               const active = activeTab === id;
               return (
                 <button
                   key={id}
-                  onClick={() => setActiveTab(id)}
-                  className={`flex-1 flex items-center justify-center gap-2 py-3.5 font-bold text-sm transition-colors ${
+                  // onClick={() => setActiveTab(id)}
+                  disabled
+                  className={`flex-1 cursor-pointer flex items-center justify-center gap-2 py-3 px-3 rounded-lg font-semibold transition text-sm sm:text-base ${
                     active
-                      ? "text-[#F04F23]"
-                      : "text-[#535862] hover:text-[#F04F23]"
+                      ? "text-secondary  "
+                      : "text-[#535862] hover:text-secondary "
                   }`}
                 >
                   <div
-                    className={`p-1.5 rounded-lg ${active ? "bg-[#F04F23] text-white" : "bg-white text-[#535862]"}`}
+                    className={`p-1.5 rounded-xl ${
+                      active
+                        ? "bg-secondary text-white"
+                        : "bg-white text-secondary/80"
+                    }`}
                   >
-                    <Icon className="w-4 h-4" />
+                    <Icon className="w-5 h-5" />
                   </div>
                   {label}
                 </button>
@@ -85,7 +90,7 @@ export default function OrderWaitingModal({ order, open, onClose }: Props) {
         </div>
 
         {/* Tab body */}
-        <div className="flex-1 overflow-y-auto px-6 py-5">
+        <div className="flex-1 overflow-y-auto min-h-100 max-h-100 px-12 py-6">
           {activeTab === "summary" && <SummaryTab />}
           {activeTab === "applicants" && <ApplicantsTab />}
           {activeTab === "timeline" && <TimelineTab />}
@@ -96,13 +101,13 @@ export default function OrderWaitingModal({ order, open, onClose }: Props) {
           <Button variant="white" onClick={handleClose} className="rounded-xl">
             CLOSE OVERSIGHT
           </Button>
-          <Button
+          {/* <Button
             variant="white"
             className="flex items-center gap-2 rounded-xl"
           >
             <Pencil className="w-4 h-4" />
             EDIT TASK
-          </Button>
+          </Button> */}
         </div>
       </div>
     </ModalShell>
@@ -120,8 +125,8 @@ function SummaryTab() {
             Lifecycle Status
           </p>
           <div className="flex items-center gap-2">
-            <CheckCircle2 className="w-4 h-4 text-[#F04F23]" />
-            <span className="text-sm font-bold text-[#F04F23]">
+            <CheckCircle2 className="w-4 h-4 text-secondary" />
+            <span className="text-sm font-bold text-secondary">
               WAITING FOR APPLICANTS
             </span>
           </div>
@@ -177,8 +182,8 @@ function SummaryTab() {
       </div>
 
       <div className="flex items-center gap-2 bg-[#FFF4ED] border border-[#FDCFBE] rounded-xl px-4 py-3">
-        <CheckCircle2 className="w-4 h-4 text-[#F04F23] shrink-0" />
-        <p className="text-xs font-semibold text-[#F04F23] uppercase tracking-wide">
+        <CheckCircle2 className="w-4 h-4 text-secondary shrink-0" />
+        <p className="text-xs font-semibold text-secondary uppercase tracking-wide">
           Escrow Protection Active
         </p>
       </div>
@@ -193,7 +198,7 @@ function ApplicantsTab() {
     <div className="space-y-5">
       <div className="flex flex-col items-center justify-center py-10 text-center gap-4">
         <div className="w-16 h-16 rounded-full bg-[#FFF4ED] border border-[#FDCFBE] flex items-center justify-center">
-          <Hourglass className="w-8 h-8 text-[#F04F23]" />
+          <Hourglass className="w-8 h-8 text-secondary" />
         </div>
         <div>
           <p className="text-base font-bold text-[#181d27]">
@@ -246,8 +251,8 @@ function TimelineTab() {
   return (
     <div className="space-y-5 py-2">
       <div className="flex items-start gap-4">
-        <div className="w-10 h-10 rounded-full border-2 border-[#F04F23] flex items-center justify-center shrink-0 bg-white">
-          <Plus className="w-4 h-4 text-[#F04F23]" />
+        <div className="w-10 h-10 rounded-full border-2 border-secondary flex items-center justify-center shrink-0 bg-white">
+          <Plus className="w-4 h-4 text-secondary" />
         </div>
         <div className="pt-1">
           <p className="text-sm font-semibold text-[#181d27]">

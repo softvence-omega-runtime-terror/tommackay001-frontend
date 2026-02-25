@@ -46,7 +46,7 @@ export default function SubmitDeliveryTab() {
           <select
             value={selectedTask}
             onChange={(e) => setSelectedTask(e.target.value)}
-            className="w-full px-4 py-3.5 bg-white border border-[#e9eaeb] rounded-xl appearance-none focus:ring-2 focus:ring-[#F04F23]/30 focus:border-[#F04F23] outline-none transition-all cursor-pointer text-sm text-gray-900"
+            className="w-full px-4 py-3.5 bg-white border border-[#e9eaeb] rounded-xl appearance-none focus:ring-2 focus:ring-secondary/30 focus:border-secondary outline-none transition-all cursor-pointer text-sm text-gray-900"
           >
             <option value="">Choose an active task...</option>
             {activeTasks.map((task) => (
@@ -72,7 +72,7 @@ export default function SubmitDeliveryTab() {
           onChange={(e) => setDeliveryMessage(e.target.value)}
           placeholder="Write a brief submission note to the requester..."
           rows={4}
-          className="w-full px-4 py-3.5 border border-[#e9eaeb] rounded-xl resize-none focus:ring-2 focus:ring-[#F04F23]/30 focus:border-[#F04F23] outline-none transition-all text-sm"
+          className="w-full px-4 py-3.5 border border-[#e9eaeb] rounded-xl resize-none focus:ring-2 focus:ring-secondary/30 focus:border-secondary outline-none transition-all text-sm"
         />
       </div>
 
@@ -103,7 +103,7 @@ export default function SubmitDeliveryTab() {
                   className="flex items-center justify-between bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5"
                 >
                   <div className="flex items-center gap-3">
-                    <FolderOpen className="w-5 h-5 text-[#F04F23]" />
+                    <FolderOpen className="w-5 h-5 text-secondary" />
                     <div>
                       <p className="text-sm font-medium truncate max-w-xs">
                         {file.name}
@@ -143,7 +143,7 @@ export default function SubmitDeliveryTab() {
               value={proofUrl}
               onChange={(e) => setProofUrl(e.target.value)}
               placeholder="https://google.drive.link / live link..."
-              className="w-full pl-11 pr-4 py-3.5 border border-[#e9eaeb] rounded-xl focus:ring-2 focus:ring-[#F04F23]/30 focus:border-[#F04F23] outline-none transition-all text-sm"
+              className="w-full pl-11 pr-4 py-3.5 border border-[#e9eaeb] rounded-xl focus:ring-2 focus:ring-secondary/30 focus:border-secondary outline-none transition-all text-sm"
             />
           </div>
         </div>
@@ -158,7 +158,7 @@ export default function SubmitDeliveryTab() {
             onChange={(e) => setAdditionalNotes(e.target.value)}
             placeholder="Password for archives, special instructions, etc..."
             rows={1}
-            className="w-full px-4 py-2.5 border border-[#e9eaeb] rounded-xl resize-none focus:ring-2 focus:ring-[#F04F23]/30 focus:border-[#F04F23] outline-none transition-all text-sm"
+            className="w-full px-4 py-2.5 border border-[#e9eaeb] rounded-xl resize-none focus:ring-2 focus:ring-secondary/30 focus:border-secondary outline-none transition-all text-sm"
           />
         </div>
       </div>

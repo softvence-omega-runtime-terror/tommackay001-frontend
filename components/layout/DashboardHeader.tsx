@@ -30,9 +30,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
   return (
     <>
       <header className="h-16 lg:h-20 bg-white border-b border-gray-200 flex items-center justify-between px-4 lg:px-8 sticky top-0 z-10">
-        {/* Mobile: Hamburger + Logo area | Desktop: Search */}
-        <div className="flex items-center gap-3 flex-1 lg:flex-none lg:w-[457px]">
-          {/* Hamburger — mobile only */}
+        <div className="flex items-center gap-3 flex-1 lg:flex-none lg:w-114.25">
           <button
             onClick={onMenuToggle}
             className="lg:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors shrink-0"
@@ -45,7 +43,6 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
             )}
           </button>
 
-          {/* Search bar — desktop only */}
           <div className="hidden lg:flex items-center gap-3 bg-white border border-gray-200 rounded-lg px-5 py-3 w-full">
             <Search className="w-5 h-5 text-gray-400" />
             <input
@@ -56,9 +53,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
           </div>
         </div>
 
-        {/* Right Section */}
         <div className="flex items-center gap-2 lg:gap-4">
-          {/* Mobile search icon */}
           <button
             onClick={() => setIsSearchOpen((p) => !p)}
             className="lg:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -67,10 +62,8 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
             <Search className="w-5 h-5 text-gray-600" />
           </button>
 
-          {/* Role Toggle */}
           <div className="flex items-center gap-1 bg-gray-100 rounded-full p-1">
             <div className="relative flex items-center gap-1 bg-gray-100 rounded-full p-1">
-              {/* Sliding active indicator */}
               <span
                 className={`absolute top-1 bottom-1 w-[calc(50%-4px)] rounded-full bg-primary shadow-md transition-all duration-300 ease-in-out ${
                   currentRole === "requester"
@@ -99,7 +92,6 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
                     <Check className="w-3 h-3 lg:w-4 lg:h-4" />
                   </span>
 
-                  {/* Full label on desktop, abbreviated on mobile */}
                   <span className="hidden sm:inline">
                     {role.charAt(0).toUpperCase() + role.slice(1)}
                   </span>
@@ -111,7 +103,6 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
             </div>
           </div>
 
-          {/* Wallet — icon only on mobile, full on desktop */}
           <Button
             variant="white"
             className="bg-indigo text-primary"
@@ -123,7 +114,6 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
             </span>
           </Button>
 
-          {/* Create / Find Task — icon only on mobile */}
           <Button onClick={onCreateTask} className="px-2 lg:px-4">
             <Plus className="w-4 h-4" />
             <span className="hidden sm:inline">
@@ -131,7 +121,6 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
             </span>
           </Button>
 
-          {/* Notifications */}
           <div className="relative">
             <button
               onClick={() => setIsNotificationsOpen((p) => !p)}
@@ -149,7 +138,6 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
         </div>
       </header>
 
-      {/* Mobile expandable search bar */}
       {isSearchOpen && (
         <div className="lg:hidden bg-white border-b border-gray-200 px-4 py-3 sticky top-16 z-10">
           <div className="flex items-center gap-3 bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5">

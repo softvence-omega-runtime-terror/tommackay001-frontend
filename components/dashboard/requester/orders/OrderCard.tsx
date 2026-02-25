@@ -6,14 +6,14 @@ import { Eye, MessageSquare, Users } from "lucide-react";
 import { StatusBadge } from "@/components/ui/common/StatusBadge";
 
 import OrderInProgressModal from "./orderModals/OrderInProgressModal";
-import OrderAppliedModal from "./orderModals/OrderAppliedModal";
 import OrderWaitingModal from "./orderModals/OrderWaitingModal";
 import OrderCompletedModal from "./orderModals/OrderCompletedModal";
+import ProviderProfileModal from "../../provider/profile/ProviderProfileModal";
 
 export type OrderItem = {
   name: string;
   id: string;
-  status: "In Progress" | "Completed" | "WAITING FOR APPLICANTS" | "Applied";
+  status: string;
   applicants: number;
   requester?: {
     name: string;
@@ -32,18 +32,15 @@ export default function OrderCard({ order }: Props) {
         className="grid items-center px-8 py-5 text-sm hover:bg-[#fafafa] transition-colors"
         style={{ gridTemplateColumns: "2.5fr 1fr 1fr 1.5fr 1fr" }}
       >
-        {/* Name + ID */}
         <div className="space-y-1">
           <p className="font-semibold text-[#181d27]">{order.name}</p>
           <p className="text-[#535862]">{order.id}</p>
         </div>
 
-        {/* Status */}
         <div className="flex justify-center">
           <StatusBadge status={order.status} />
         </div>
 
-        {/* Applicants */}
         <div className="flex justify-center">
           <div className="flex items-center gap-2 bg-[#f5f5f5] px-4 py-2 rounded-full">
             <Users className="w-4 h-4 text-[#535862]" />
@@ -53,7 +50,6 @@ export default function OrderCard({ order }: Props) {
           </div>
         </div>
 
-        {/* Provider */}
         <div className="flex items-center gap-3">
           {order.requester ? (
             <>
@@ -73,17 +69,16 @@ export default function OrderCard({ order }: Props) {
           )}
         </div>
 
-        {/* Actions */}
         <div className="flex justify-center gap-5">
           <button
             onClick={() => setOpen(true)}
-            className="text-[#2AB516] hover:text-[#22a010] transition-colors"
+            className="text-[#2AB516] hover:text-[#22a010] cursor-pointer transition-colors"
             aria-label="View order details"
           >
             <Eye className="w-5 h-5" />
           </button>
           <button
-            className="text-[#9E77ED] hover:text-[#6366f1] transition-colors"
+            className="text-[#9E77ED] hover:text-[#6366f1] cursor-pointer transition-colors"
             aria-label="Open chat"
           >
             <MessageSquare className="w-5 h-5" />
@@ -108,9 +103,14 @@ export default function OrderCard({ order }: Props) {
       )}
 
       {order.status === "Applied" && (
-        <OrderAppliedModal
-          order={order}
+        // <DeliveryAppliedModal
+        //   task={task}
+        //   open={open}
+        //   onClose={() => setOpen(false)}
+        // />
+        <ProviderProfileModal
           open={open}
+          provider={order}
           onClose={() => setOpen(false)}
         />
       )}

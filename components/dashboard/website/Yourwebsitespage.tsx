@@ -127,7 +127,7 @@ export default function YourWebsitesPage() {
 
           <button
             onClick={() => setConnectModalOpen(true)}
-            className="flex items-center gap-2 bg-[#F04F23] hover:bg-[#d94118] text-white font-semibold text-sm px-5 py-2.5 rounded-full transition-colors"
+            className="flex items-center gap-2 bg-secondary hover:bg-[#d94118] text-white font-semibold text-sm px-5 py-2.5 rounded-full transition-colors"
           >
             <Plus className="w-4 h-4" />
             CONNECT WEBSITE
@@ -142,7 +142,7 @@ export default function YourWebsitesPage() {
               placeholder="Search domains..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-9 pr-4 py-2.5 border border-[#e2e2e2] rounded-full text-sm text-[#535862] focus:outline-none focus:border-[#F04F23] placeholder:text-[#9DA4AE] bg-white"
+              className="w-full pl-9 pr-4 py-2.5 border border-[#e2e2e2] rounded-full text-sm text-[#535862] focus:outline-none focus:border-secondary placeholder:text-[#9DA4AE] bg-white"
             />
           </div>
 
@@ -153,8 +153,8 @@ export default function YourWebsitesPage() {
                 onClick={() => setActiveTab(tab)}
                 className={`px-4 py-2 rounded-full text-xs font-semibold border transition-colors whitespace-nowrap ${
                   activeTab === tab
-                    ? "bg-[#F04F23] text-white border-[#F04F23]"
-                    : "bg-white text-[#535862] border-[#e2e2e2] hover:border-[#F04F23] hover:text-[#F04F23]"
+                    ? "bg-secondary text-white border-secondary"
+                    : "bg-white text-[#535862] border-[#e2e2e2] hover:border-secondary hover:text-secondary"
                 }`}
               >
                 {tab}
@@ -264,8 +264,8 @@ export default function YourWebsitesPage() {
 
         <div className="grid grid-cols-2 gap-4">
           <div className="bg-[#FFF4ED] border border-[#FDCFBE] rounded-xl p-5 space-y-2">
-            <Shield className="w-5 h-5 text-[#F04F23]" />
-            <p className="text-sm font-bold text-[#F04F23]">
+            <Shield className="w-5 h-5 text-secondary" />
+            <p className="text-sm font-bold text-secondary">
               Domain Trust Index
             </p>
             <p className="text-xs text-[#B54708] leading-relaxed">
