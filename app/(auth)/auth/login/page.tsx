@@ -131,7 +131,7 @@ const LoginPage = () => {
               w-full h-12 rounded-xl
               bg-primary hover:bg-brand-indigo-600 focus-visible:none
               text-white font-semibold text-sm
-              shadow-lg shadow-brand-indigo-500/20
+              shadow-lg shadow-primary/20
               transition-all active:scale-[0.98]
               border-gray-100
               cursor-pointer

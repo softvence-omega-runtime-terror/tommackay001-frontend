@@ -31,7 +31,6 @@ const SignupPage = () => {
       return;
     }
 
-    // Static flow for demo
     router.push("/auth/verify");
 
     /* Backend Integration Example:
@@ -46,8 +45,7 @@ const SignupPage = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-white px-4">
-      <div className="w-full max-w-[520px] flex flex-col gap-8 py-8">
-        {/* Header */}
+      <div className="w-full max-w-130 flex flex-col gap-8 py-8">
         <div className="flex flex-col items-center text-center gap-6 pt-20 md:pt-32">
           <Link href="/" className="flex items-center gap-3">
             <Image
@@ -77,12 +75,10 @@ const SignupPage = () => {
           </div>
         </div>
 
-        {/* Form */}
         <form
           onSubmit={handleSubmit}
           className="flex flex-col gap-5 font-inter"
         >
-          {/* Email */}
           <div className="space-y-2">
             <Label htmlFor="email" className="text-sm font-bold text-gray-700">
               Email
@@ -100,7 +96,6 @@ const SignupPage = () => {
             />
           </div>
 
-          {/* Password */}
           <div className="space-y-2 relative">
             <Label
               htmlFor="password"
@@ -128,7 +123,6 @@ const SignupPage = () => {
             </button>
           </div>
 
-          {/* Confirm Password */}
           <div className="space-y-2 relative">
             <Label
               htmlFor="confirmPassword"
@@ -156,7 +150,6 @@ const SignupPage = () => {
             </button>
           </div>
 
-          {/* Referral Code */}
           <div className="space-y-2">
             <Label
               htmlFor="referralCode"
@@ -176,7 +169,6 @@ const SignupPage = () => {
             />
           </div>
 
-          {/* Terms */}
           <p className="text-[10px] text-gray-400 font-medium text-center px-4 leading-relaxed">
             I agree to the{" "}
             <span className="text-brand-orange font-bold cursor-pointer underline">
@@ -189,7 +181,6 @@ const SignupPage = () => {
             .
           </p>
 
-          {/* Submit */}
           <Button
             type="submit"
             className="w-full cursor-pointer bg-primary hover:bg-primary/90 text-white h-12 rounded-xl font-black text-sm uppercase tracking-widest shadow-lg shadow-primary/20 transition-all active:scale-[0.98]"
@@ -198,7 +189,6 @@ const SignupPage = () => {
           </Button>
         </form>
 
-        {/* OR Divider */}
         <div className="relative py-4 ">
           <div className="absolute inset-0 flex items-center">
             <div className="w-full border-t border-gray-200" />
@@ -211,13 +201,11 @@ const SignupPage = () => {
           </div>
         </div>
 
-        {/* Social Buttons */}
         <div className="flex gap-3">
           <Button
             variant="outline"
             className="flex-1 cursor-pointer h-12 rounded-xl border-gray-200 font-bold text-xs text-gray-700 flex items-center justify-center gap-2 hover:bg-gray-50 transition-all px-0"
           >
-            {/* Google Icon */}
             <svg className="w-5 h-5" viewBox="0 0 24 24">
               <path
                 fill="#4285F4"
@@ -242,7 +230,6 @@ const SignupPage = () => {
             variant="outline"
             className="flex-1 h-12 cursor-pointer rounded-xl border-gray-200 font-bold text-xs text-gray-700 flex items-center justify-center gap-2 hover:bg-gray-50 transition-all px-0"
           >
-            {/* Apple Icon */}
             <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
               <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z" />
             </svg>
@@ -250,7 +237,6 @@ const SignupPage = () => {
           </Button>
         </div>
 
-        {/* Footer Link */}
         <div className="text-center">
           <p className="text-sm text-gray-500 font-medium font-inter">
             Already have an account?{" "}

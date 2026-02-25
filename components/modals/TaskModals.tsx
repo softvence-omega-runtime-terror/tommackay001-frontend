@@ -2,13 +2,11 @@ import React, { useState } from "react";
 import { X, Star, Award, Sparkles, Trophy, ThumbsUp } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
-// Base Modal Props
 interface BaseModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-// ============ CONGRATS MODAL ============
 interface CongratsModalProps extends BaseModalProps {
   title: string;
   message: string;
@@ -27,8 +25,7 @@ export const CongratsModal: React.FC<CongratsModalProps> = ({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
       <div className="bg-white rounded-2xl shadow-xl w-full max-w-sm mx-4 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
-        {/* Confetti background */}
-        <div className="relative bg-gradient-to-br from-brand-orange-400 to-primary p-8 text-center">
+        <div className="relative bg-linear-to-br from-brand-orange-400 to-primary p-8 text-center">
           <div className="absolute inset-0 overflow-hidden">
             <Sparkles className="absolute top-4 left-4 w-6 h-6 text-yellow-300 animate-pulse" />
             <Sparkles className="absolute top-8 right-8 w-4 h-4 text-yellow-200 animate-pulse delay-100" />
@@ -43,7 +40,6 @@ export const CongratsModal: React.FC<CongratsModalProps> = ({
           </div>
         </div>
 
-        {/* Content */}
         <div className="p-6 space-y-4 text-center">
           <p className="text-gray-600">{message}</p>
 
@@ -55,7 +51,6 @@ export const CongratsModal: React.FC<CongratsModalProps> = ({
           )}
         </div>
 
-        {/* Footer */}
         <div className="p-6 pt-0">
           <Button
             onClick={onClose}
@@ -69,7 +64,6 @@ export const CongratsModal: React.FC<CongratsModalProps> = ({
   );
 };
 
-// ============ LEAVE REVIEW MODAL ============
 interface LeaveReviewModalProps extends BaseModalProps {
   providerName: string;
   taskTitle: string;
@@ -98,7 +92,6 @@ export const LeaveReviewModal: React.FC<LeaveReviewModalProps> = ({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
       <div className="bg-white rounded-2xl shadow-xl w-full max-w-md mx-4 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
-        {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-100">
           <h2 className="text-lg font-bold font-sora text-gray-900">
             Leave a Review
@@ -111,7 +104,6 @@ export const LeaveReviewModal: React.FC<LeaveReviewModalProps> = ({
           </button>
         </div>
 
-        {/* Content */}
         <div className="p-6 space-y-6">
           <div className="text-center">
             <p className="text-gray-600">How was your experience with</p>
@@ -119,7 +111,6 @@ export const LeaveReviewModal: React.FC<LeaveReviewModalProps> = ({
             <p className="text-sm text-gray-500 mt-1">for {taskTitle}</p>
           </div>
 
-          {/* Star Rating */}
           <div className="flex items-center justify-center gap-2">
             {[1, 2, 3, 4, 5].map((star) => (
               <button
@@ -154,7 +145,6 @@ export const LeaveReviewModal: React.FC<LeaveReviewModalProps> = ({
             </p>
           )}
 
-          {/* Comment */}
           <div className="space-y-2">
             <label className="text-sm font-semibold text-gray-700">
               Your feedback (optional)
@@ -168,7 +158,6 @@ export const LeaveReviewModal: React.FC<LeaveReviewModalProps> = ({
           </div>
         </div>
 
-        {/* Footer */}
         <div className="flex gap-3 p-6 border-t border-gray-100">
           <Button
             variant="outline"
@@ -197,7 +186,6 @@ export const LeaveReviewModal: React.FC<LeaveReviewModalProps> = ({
   );
 };
 
-// ============ TASK ACCEPTED MODAL (for Providers) ============
 interface TaskAcceptedModalProps extends BaseModalProps {
   taskTitle: string;
   credits: number;
@@ -216,7 +204,6 @@ export const TaskAcceptedModal: React.FC<TaskAcceptedModalProps> = ({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
       <div className="bg-white rounded-2xl shadow-xl w-full max-w-sm mx-4 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
-        {/* Header */}
         <div className="bg-green-500 p-6 text-center">
           <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-4">
             <ThumbsUp className="w-8 h-8 text-white" />
@@ -226,7 +213,6 @@ export const TaskAcceptedModal: React.FC<TaskAcceptedModalProps> = ({
           </h2>
         </div>
 
-        {/* Content */}
         <div className="p-6 space-y-4">
           <div className="text-center">
             <p className="font-semibold text-gray-900">{taskTitle}</p>
@@ -251,7 +237,6 @@ export const TaskAcceptedModal: React.FC<TaskAcceptedModalProps> = ({
           </div>
         </div>
 
-        {/* Footer */}
         <div className="p-6 pt-0">
           <Button
             onClick={onClose}

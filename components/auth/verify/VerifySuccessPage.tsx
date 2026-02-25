@@ -31,7 +31,7 @@ const VerifySuccessPage = () => {
         {/* Success Card Content */}
         <div className="flex flex-col items-center gap-8 text-center w-full">
           {/* Decorative Top Card */}
-          <div className=" flex justify-center items-center w-full h-39.25 bg-[#ebe9ff] border-b border-[#d5d7da] rounded-[22px] relative overflow-hidden shrink-0">
+          <div className=" flex justify-center items-center w-full h-39.25 bg-indigo border-b border-[#d5d7da] rounded-[22px] relative overflow-hidden shrink-0">
             <ShieldCheck
               size={64}
               className="text-primary w-18 bg-white p-4 rounded-2xl"

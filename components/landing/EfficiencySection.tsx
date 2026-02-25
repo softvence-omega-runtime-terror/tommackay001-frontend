@@ -1,4 +1,5 @@
 import { X } from "lucide-react";
+import Image from "next/image";
 import React from "react";
 
 const comparisonItems = [
@@ -83,8 +84,10 @@ const EfficiencySection = () => {
                         the Backlyst marketplace&quot;
                       </p>
                       <div className="flex items-center gap-4 w-full">
-                        <img
-                          src="/avatar-sisyphus.svg"
+                        <Image
+                          width={400}
+                          height={400}
+                          src="/avatar/marcus.png"
                           alt="Marcus Throne"
                           className="w-12 h-12 rounded-full object-cover ring-2 ring-white/10"
                         />
