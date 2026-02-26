@@ -74,6 +74,20 @@ export default function ProviderProfileModal({
     "WEBSITE LIST": <Globe className="w-4 h-4" />,
   };
 
+  const handleCreateTask = () => {
+    setShowCreateTask(true);
+    // onClose();
+  };
+  const handleApproveTask = () => {
+    setShowCreateTask(false);
+    onClose();
+  };
+  const handleExplore = () => {
+    // onClose();
+    setShowCreateTask(false);
+    setShowCapabilities(true);
+  };
+
   return (
     <>
       <ModalShell open={open} onClose={onClose}>
@@ -139,7 +153,7 @@ export default function ProviderProfileModal({
             </div>
           </div>
 
-          <div className="flex-1 overflow-y-auto">
+          <div className="flex-1 overflow-y-auto min-h-100 max-h-100">
             {activeTab === "OVERVIEW" && <ProfileOverviewTab />}
 
             {activeTab === "PLACEMENT FORMATS" && <ProfilePaymentTab />}
@@ -156,13 +170,13 @@ export default function ProviderProfileModal({
                 <AlertCircle className="w-4 h-4" /> ASK A QUESTION
               </button>
               <button
-                onClick={() => setShowCapabilities(true)}
+                onClick={handleExplore}
                 className="flex  cursor-pointer items-center gap-1.5 text-sm font-semibold text-[#535862] hover:text-[#181d27] transition-colors"
               >
                 <Eye className="w-4 h-4" /> EXPLORE CAPABILITY
               </button>
             </div>
-            <Button variant="secondary" onClick={() => setShowCreateTask(true)}>
+            <Button variant="secondary" onClick={handleCreateTask}>
               <Plus className="w-4 h-4" /> CREATE TASK TO INVITE
             </Button>
           </div>
@@ -172,15 +186,14 @@ export default function ProviderProfileModal({
       {showCapabilities && (
         <PublisherCapabilitiesModal
           onClose={() => setShowCapabilities(false)}
+          handleApproveTask={handleApproveTask}
           onCreateTask={() => {
             setShowCapabilities(false);
             setShowCreateTask(true);
           }}
         />
       )}
-      {showCreateTask && (
-        <CreateTaskModal onClose={() => setShowCreateTask(false)} />
-      )}
+      {showCreateTask && <CreateTaskModal onClose={handleApproveTask} />}
     </>
   );
 }

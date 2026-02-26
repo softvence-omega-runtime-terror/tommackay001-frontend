@@ -13,6 +13,8 @@ import {
 } from "lucide-react";
 import ConnectWebsiteModal from "@/components/dashboard/website/Connectwebsitemodal";
 import WebsiteWorkspaceModal from "@/components/dashboard/website/Websiteworkspacemodal";
+import { useRouter } from "next/navigation";
+
 
 export type LifecycleStatus =
   | "VERIFIED"
@@ -98,6 +100,7 @@ function matchesFilter(status: LifecycleStatus, tab: FilterTab): boolean {
 export default function YourWebsitesPage() {
   const [activeTab, setActiveTab] = useState<FilterTab>("ALL");
   const [search, setSearch] = useState("");
+  const router = useRouter();
 
   const [connectOpen, setConnectOpen] = useState(false);
   const [workspaceOpen, setWorkspaceOpen] = useState(false);
@@ -259,7 +262,10 @@ export default function YourWebsitesPage() {
                         >
                           <Eye className="w-4 h-4" />
                         </button>
-                        <button className="text-[#9DA4AE] hover:text-[#535862] transition-colors cursor-pointer">
+                        <button
+                          onClick={() => router.push("/dashboard/messages")}
+                          className="text-[#9DA4AE] hover:text-[#535862] transition-colors cursor-pointer"
+                        >
                           <MessageSquare className="w-4 h-4" />
                         </button>
                         <button className="text-[#9DA4AE] hover:text-[#535862] transition-colors cursor-pointer ">

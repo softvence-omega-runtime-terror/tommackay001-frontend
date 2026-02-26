@@ -257,7 +257,7 @@ const NotificationPopover: React.FC<Props> = ({ isOpen, onClose }) => {
         <div className="px-5 py-3 border-t border-[#e9eaeb]">
           <button
             onClick={() => {
-              router.push("/requester/messages");
+              router.push("/dashboard/messages");
               onClose();
             }}
             className="w-full bg-[#f2f4f7] hover:bg-[#e9eaeb] text-[#535862] font-bold text-xs uppercase tracking-widest py-3 rounded-xl transition-colors"

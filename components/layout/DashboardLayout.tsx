@@ -150,7 +150,7 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
   const handleCreateTask = () => {
     router.push(
       currentRole === "requester"
-        ? `${basePath}/tasks/new`
+        ? `${basePath}/providers`
         : `${basePath}/opportunities`,
     );
   };

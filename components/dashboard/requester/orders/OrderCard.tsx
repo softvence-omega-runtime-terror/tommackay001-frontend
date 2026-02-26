@@ -9,6 +9,7 @@ import OrderInProgressModal from "./orderModals/OrderInProgressModal";
 import OrderWaitingModal from "./orderModals/OrderWaitingModal";
 import OrderCompletedModal from "./orderModals/OrderCompletedModal";
 import ProviderProfileModal from "../../provider/profile/ProviderProfileModal";
+import { useRouter } from "next/navigation";
 
 export type OrderItem = {
   name: string;
@@ -25,6 +26,7 @@ type Props = { order: OrderItem };
 
 export default function OrderCard({ order }: Props) {
   const [open, setOpen] = useState(false);
+  const router = useRouter();
 
   return (
     <>
@@ -78,6 +80,7 @@ export default function OrderCard({ order }: Props) {
             <Eye className="w-5 h-5" />
           </button>
           <button
+            onClick={() => router.push("/dashboard/messages")}
             className="text-[#9E77ED] hover:text-[#6366f1] cursor-pointer transition-colors"
             aria-label="Open chat"
           >

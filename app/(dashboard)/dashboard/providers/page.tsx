@@ -134,14 +134,6 @@ const industries: Industry[] = [
   { name: "Business", checked: false },
 ];
 
-const TABS: string[] = [
-  "OVERVIEW",
-  "PLACEMENT FORMATS",
-  "VERIFIED SAMPLES",
-  "AUTHORITY",
-  "WEBSITE LIST",
-];
-
 export default function CompanyDirectory() {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [selectedCountries, setSelectedCountries] =
@@ -368,6 +360,11 @@ export default function CompanyDirectory() {
       </div>
 
       {selectedProvider && (
+        // <ProviderProfileModal
+        //   open={selectedProvider ? true : false}
+        //   provider={selectedProvider}
+        //   onClose={() => setSelectedProvider(null)}
+        // />
         <ProviderProfileModal
           open={selectedProvider ? true : false}
           provider={selectedProvider}

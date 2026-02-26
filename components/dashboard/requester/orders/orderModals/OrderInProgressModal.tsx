@@ -21,6 +21,7 @@ import type { OrderItem } from "../OrderCard";
 import SummaryTab from "./orderTabs/SummaryTab";
 import SubmissionTab from "./orderTabs/SubmissionTab";
 import TimelineTab from "./orderTabs/TimelineTab";
+import RequestStatusModal from "@/components/dashboard/modal/RequestStatusModal";
 
 type Tab = "summary" | "submission" | "timeline";
 type SubModal = "revision" | "approve" | null;
@@ -57,6 +58,8 @@ export default function OrderInProgressModal({ order, open, onClose }: Props) {
   const [issues, setIssues] = useState<string[]>([]);
   const [instructions, setInstructions] = useState("");
   const [checklist, setChecklist] = useState<string[]>([]);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [requestType, setRequestType] = useState<string | null>(null);
 
   const toggleIssue = (issue: string) =>
     setIssues((prev) =>
@@ -70,13 +73,22 @@ export default function OrderInProgressModal({ order, open, onClose }: Props) {
 
   const handleClose = () => {
     onClose();
+
     setTimeout(() => {
       setActiveTab("summary");
       setSubModal(null);
+      setShowSuccessModal(false);
       setIssues([]);
       setInstructions("");
       setChecklist([]);
     }, 200);
+  };
+
+  const handleApproveAndRelease = (type: string) => {
+    onClose();
+    setSubModal(null);
+    setRequestType(type);
+    setShowSuccessModal(true);
   };
 
   return (
@@ -234,7 +246,6 @@ export default function OrderInProgressModal({ order, open, onClose }: Props) {
             </div>
           </div>
 
-          {/* Instructions */}
           <div>
             <label className="block text-xs font-bold uppercase tracking-widest text-gray-600 mb-2.5">
               Detailed Instructions <span className="text-secondary">*</span>
@@ -248,7 +259,6 @@ export default function OrderInProgressModal({ order, open, onClose }: Props) {
             />
           </div>
 
-          {/* Actions */}
           <div className="flex justify-between pt-4 border-t border-[#e9eaeb] mt-2">
             <button
               onClick={() => setSubModal(null)}
@@ -256,7 +266,12 @@ export default function OrderInProgressModal({ order, open, onClose }: Props) {
             >
               Cancel
             </button>
-            <Button variant="secondary" onClick={() => handleClose()}>
+            <Button
+              onClick={() => handleApproveAndRelease("rejected")}
+              variant="secondary"
+              // onClick={() => handleClose()}
+              className="rounded-lg"
+            >
               Send Revision Request
               <ArrowUpRight className="w-4 h-4" />
             </Button>
@@ -354,6 +369,7 @@ export default function OrderInProgressModal({ order, open, onClose }: Props) {
               Return to Summery
             </Button>
             <Button
+              onClick={() => handleApproveAndRelease("accepted")}
               variant="secondary"
               className="rounded-lg"
               disabled={checklist.length < CHECKLIST.length}
@@ -364,6 +380,12 @@ export default function OrderInProgressModal({ order, open, onClose }: Props) {
           </div>
         </div>
       </ModalShell>
+      <RequestStatusModal
+        type="accepted"
+        isOpen={showSuccessModal}
+        onClose={handleClose}
+        autoCloseDelay={2000}
+      />
     </div>
   );
 }

@@ -31,7 +31,7 @@ export default function RecentOrders({
         </div>
 
         <Link
-          href="/requester/tasks"
+          href="/dashboard/tasks"
           className="flex items-center gap-2 text-sm font-semibold text-[#12b76a]"
         >
           View All

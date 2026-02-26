@@ -53,7 +53,7 @@ export default function ModalShell({
     <div
       ref={overlayRef}
       onClick={(e) => e.target === overlayRef.current && onClose()}
-      className={`fixed inset-0 z-99999 flex  items-center justify-center bg-black/40 backdrop-blur-sm p-4 ${overlayClassName}`}
+      className={`fixed inset-0 z-90 flex  items-center justify-center bg-black/40 backdrop-blur-sm p-4 ${overlayClassName}`}
     >
       <div
         className={`relative bg-white  rounded-2xl shadow-2xl w-full overflow-y-auto

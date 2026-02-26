@@ -12,7 +12,6 @@ import logo from "@/public/backlyst-logo.png";
 
 const LoginPage = () => {
   const router = useRouter();
-
   const [email, setEmail] = useState("admin@intervo.com");
   const [password, setPassword] = useState("password");
   const [showPassword, setShowPassword] = useState(false);
@@ -21,12 +20,12 @@ const LoginPage = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
-    router.push("/requester");
+    router.push("dashboard");
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-white px-4">
-      <div className="w-full max-w-[520px] flex flex-col gap-8">
+      <div className="w-full max-w-130 flex flex-col gap-8">
         {/* Header */}
         <div className="flex flex-col items-center text-center gap-6">
           <Link href="/" className="flex items-center gap-3">

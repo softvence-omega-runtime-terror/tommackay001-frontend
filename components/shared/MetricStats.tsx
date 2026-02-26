@@ -20,7 +20,7 @@ const MetricStats: React.FC<MetricStatsProps> = ({ stats }) => {
       {stats.map((stat, i) => (
         <Card
           key={i}
-          className="p-8 border border-gray-100 bg-white rounded-[32px] shadow-sm hover:shadow-xl hover:shadow-gray-900/5 transition-all duration-500 group overflow-hidden relative"
+          className="p-8 border border-gray-100 bg-white rounded-4xl shadow-sm hover:shadow-xl hover:shadow-gray-900/5 transition-all duration-500 group overflow-hidden relative"
         >
           <div className="absolute top-0 right-0 w-24 h-24 bg-brand-indigo/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-700" />
           <div className="flex flex-col gap-6 relative z-10">

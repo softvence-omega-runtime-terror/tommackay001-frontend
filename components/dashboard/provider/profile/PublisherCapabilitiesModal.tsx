@@ -14,15 +14,17 @@ import { Button } from "@/components/ui/Button";
 interface PublisherCapabilitiesModalProps {
   onClose: () => void;
   onCreateTask: () => void;
+  handleApproveTask: () => void;
 }
 
 export default function PublisherCapabilitiesModal({
   onClose,
   onCreateTask,
+  handleApproveTask,
 }: PublisherCapabilitiesModalProps) {
   return (
     <div
-      className="fixed inset-0 z-60 flex items-center justify-center bg-black/50 backdrop-blur-sm"
+      className="fixed inset-0 z-90 flex items-center justify-center bg-black/10 backdrop-blur-sm"
       onClick={onClose}
     >
       <div

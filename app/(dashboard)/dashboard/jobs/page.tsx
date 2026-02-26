@@ -15,6 +15,7 @@ import DeliveryAvailableModal from "@/components/dashboard/provider/delivery/mod
 import DeliverySubmittedModal from "@/components/dashboard/provider/delivery/modals/DeliverySubmittedModal";
 import DeliveryInProgressModal from "@/components/dashboard/provider/delivery/modals/DeliveryInProgressModal";
 import DeliveryCompletedModal from "@/components/dashboard/provider/delivery/modals/DeliveryCompletedModal";
+import { useRouter } from "next/navigation";
 
 type JobStatus =
   | "AVAILABLE TO APPLY"
@@ -142,10 +143,10 @@ const TAG_STYLE =
 const NOTES_STYLE =
   "px-3 py-1 bg-emerald-100 text-emerald-700 text-xs font-medium rounded-full";
 
-/** Renders a single table row and owns the modal state for that row */
 function JobRow({ job }: { job: Job }) {
   const [open, setOpen] = useState(false);
   const task = toDeliveryItem(job);
+  const router = useRouter();
 
   return (
     <>
@@ -208,6 +209,7 @@ function JobRow({ job }: { job: Job }) {
               <Eye className="w-5 h-5" />
             </button>
             <button
+              onClick={() => router.push("/dashboard/messages")}
               className="text-[#9E77ED] hover:text-[#6366f1] transition-colors cursor-pointer"
               aria-label="Open chat"
             >
@@ -384,7 +386,7 @@ const ProviderMyJobs = () => {
         <Shield className="w-6 h-6 text-[#f59e0b] mt-0.5 shrink-0" />
         <div>
           <div className="uppercase text-[#f59e0b] text-xs font-semibold tracking-widest">
-            Marketplace Governance &amp; Fulfilment
+            Marketplace Governance &amp; Fulfillment
           </div>
           <p className="text-sm text-[#854d0e] mt-2 leading-relaxed">
             Earnings is issued to your ledger strictly after Requester Approval.
