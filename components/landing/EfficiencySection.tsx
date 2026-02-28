@@ -1,6 +1,5 @@
-import { X } from "lucide-react";
+import { CheckCheck, X } from "lucide-react";
 import Image from "next/image";
-import React from "react";
 
 const comparisonItems = [
   {
@@ -24,20 +23,16 @@ const comparisonItems = [
 const EfficiencySection = () => {
   return (
     <section className="py-10 md:py-25 px-6 bg-white">
-      <div className="max-w-[1320px] mx-auto">
+      <div className="max-w-330 mx-auto">
         <div className="flex flex-col gap-20 items-start w-full">
-          {/* Section Heading */}
-          <h2 className="font-sora font-semibold text-3xl md:text-5xl leading-10 md:leading-15 tracking-[-0.96px] text-gray-900 w-[584px] max-w-full">
+          <h2 className="font-sora font-semibold text-3xl md:text-5xl leading-10 md:leading-15 tracking-[-0.96px] text-gray-900 w-146 max-w-full">
             Why build links manually when you can{" "}
             <span className="text-primary">Backlyst?</span>
           </h2>
 
-          {/* Content Row */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 w-full">
-            {/* Left: Efficiency Comparison Card */}
-            <div className="lg:col-span-7 bg-[#535862] rounded-[20px] p-8 md:p-[50px] shadow-2xl flex flex-col gap-10 overflow-hidden relative">
-              {/* Decorative Circle */}
-              <div className="absolute -top-20 left-1/2 md:left-[60%] w-[400px] h-[400px] bg-white/5 rounded-full blur-3xl pointer-events-none" />
+            <div className="lg:col-span-7 bg-[#535862] rounded-[20px] p-8 md:p-12.5 shadow-2xl flex flex-col gap-10 overflow-hidden relative">
+              <div className="absolute -top-20 left-1/2 md:left-[60%] w-100 h-100 bg-white/5 rounded-full blur-3xl pointer-events-none" />
 
               <div className="relative z-10 flex flex-col gap-6">
                 <div>
@@ -50,10 +45,8 @@ const EfficiencySection = () => {
                   </h3>
                 </div>
 
-                {/* Progress Bars */}
                 <div className="flex flex-col gap-8 w-full mt-4">
                   <div className="flex flex-col gap-6">
-                    {/* Manual Outreach Bar */}
                     <div className="flex flex-col gap-3">
                       <div className="flex items-center justify-between text-sm md:text-base text-white font-medium">
                         <span>MANUAL OUTREACH</span>
@@ -63,7 +56,6 @@ const EfficiencySection = () => {
                         <div className="w-[75%] h-full bg-[#fd751f] rounded-full" />
                       </div>
                     </div>
-                    {/* Backlyst Workflow Bar */}
                     <div className="flex flex-col gap-3">
                       <div className="flex items-center justify-between text-sm md:text-base text-white font-medium">
                         <span>BACKLYST WORKFLOW</span>
@@ -75,10 +67,9 @@ const EfficiencySection = () => {
                     </div>
                   </div>
 
-                  {/* Testimonial Card */}
                   <div className="bg-[#717680] rounded-[10px] p-6 md:p-8 flex items-center w-full">
                     <div className="flex flex-col gap-6 items-start w-full">
-                      <p className="text-[14px] font-medium font-inter text-white leading-[20px]">
+                      <p className="text-[14px] font-medium font-inter text-white leading-5">
                         &quot;We&apos;ve reduced our link building operational
                         costs by 74% since migrating our entire outreach team to
                         the Backlyst marketplace&quot;
@@ -106,20 +97,17 @@ const EfficiencySection = () => {
               </div>
             </div>
 
-            {/* Right: Comparison Cards */}
             <div className="lg:col-span-5 flex flex-col gap-6 h-full justify-between">
-              {/* Old Way Column */}
               <div className="grid grid-cols-1 gap-4">
                 {comparisonItems.map((item, index) => (
                   <div
                     key={`compare-${index}`}
                     className="grid md:grid-cols-2 gap-4"
                   >
-                    {/* Old Way Card */}
                     <div className="bg-white border border-[#fed4ba] rounded-[10px] p-4 flex flex-col gap-2 shadow-sm h-full">
                       <div className="flex items-center gap-2 text-[#fd751f]">
-                        <span className="text-auto leading-none font-extrabold rotate-90 border-2 rounded-full p-1 border-[#FD751F]!">
-                          <X size={16} className="text-[#FD751F]" />
+                        <span className="text-auto leading-none font-extrabold  border-2 rounded-full p-1 border-[#FD751F]!">
+                          <CheckCheck size={16} className="text-[#FD751F]" />
                         </span>
                         <span className="text-[16px] font-semibold font-inter uppercase tracking-wide">
                           THE OLD WAY
@@ -130,11 +118,10 @@ const EfficiencySection = () => {
                       </p>
                     </div>
 
-                    {/* New Way Card */}
                     <div className="bg-[#fff1e9] border border-[#fea369] rounded-[10px] p-4 flex flex-col gap-2 shadow-sm h-full">
                       <div className="flex items-center gap-2 text-[#fd751f]">
                         <span className="text-auto leading-none font-extrabold rotate-90 border-2 rounded-full p-1 border-[#FD751F]!">
-                          <X size={16} className="text-[#FD751F]" />
+                          <CheckCheck size={16} className="text-[#FD751F]" />
                         </span>
                         <span className="text-[16px] font-semibold font-inter uppercase tracking-wide">
                           BACKLYST

@@ -5,7 +5,6 @@ import EfficiencySection from "../../components/landing/EfficiencySection";
 import FAQSection from "../../components/landing/FAQSection";
 import Features from "../../components/landing/Features";
 import CTASection from "../../components/landing/FinalCTA";
-import FinalCTA from "../../components/landing/FinalCTA";
 import Hero from "../../components/landing/Hero";
 import Pricing from "../../components/landing/Pricing";
 import ProcessSection from "../../components/landing/ProcessSection";

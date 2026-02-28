@@ -298,8 +298,9 @@ const ProviderMyJobs = () => {
   });
 
   return (
-    <div className="flex flex-col gap-6 font-inter">
-      <div className="flex items-start justify-between gap-4">
+    <div className="flex flex-col gap-6 font-inter w-full min-w-0 max-w-[90vw]">
+      {/* Header */}
+      <div className="flex items-start justify-between gap-4 flex-wrap">
         <div>
           <h1 className="text-[30px] font-semibold font-sora text-[#181d27] leading-none">
             My Jobs
@@ -310,7 +311,7 @@ const ProviderMyJobs = () => {
           </p>
         </div>
 
-        <div className="relative w-96 shrink-0">
+        <div className="relative w-96 max-w-full shrink-0">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#535862]" />
           <input
             type="text"
@@ -322,7 +323,9 @@ const ProviderMyJobs = () => {
         </div>
       </div>
 
-      <div className="border border-[#e9eaeb] rounded-2xl bg-white overflow-hidden">
+      {/* Table Card */}
+      <div className="border border-[#e9eaeb] rounded-2xl bg-white overflow-hidden w-full">
+        {/* Tabs */}
         <div className="flex border-b border-[#e2e2e2] overflow-x-auto py-1">
           {TABS.map((tab) => (
             <button
@@ -339,39 +342,49 @@ const ProviderMyJobs = () => {
           ))}
         </div>
 
-        <table className="w-full bg-white">
-          <thead>
-            <tr className="border-b border-[#e2e2e2]">
-              {[
-                "Placement Requirements",
-                "Requirements Snapshot",
-                "Earnings (CR)",
-                "Work Status",
-                "Action",
-              ].map((h) => (
-                <th
-                  key={h}
-                  className="py-6 px-6 text-left text-xs font-semibold text-[#535862] uppercase tracking-wider"
-                >
-                  {h}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-[#e9eaeb]">
-            {filteredJobs.length > 0 ? (
-              filteredJobs.map((job) => <JobRow key={job.id} job={job} />)
-            ) : (
-              <tr>
-                <td colSpan={5} className="py-20 text-center text-[#535862]">
-                  No jobs found matching your criteria.
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+        {/* SCROLL WRAPPER — THIS IS THE IMPORTANT PART */}
+        <div className="w-full overflow-x-auto">
+          <div className="min-w-[1100px]">
+            <table className="w-full bg-white">
+              <thead>
+                <tr className="border-b border-[#e2e2e2]">
+                  {[
+                    "Placement Requirements",
+                    "Requirements Snapshot",
+                    "Earnings (CR)",
+                    "Work Status",
+                    "Action",
+                  ].map((h) => (
+                    <th
+                      key={h}
+                      className="py-6 px-6 text-left text-xs font-semibold text-[#535862] uppercase tracking-wider whitespace-nowrap"
+                    >
+                      {h}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+
+              <tbody className="divide-y divide-[#e9eaeb]">
+                {filteredJobs.length > 0 ? (
+                  filteredJobs.map((job) => <JobRow key={job.id} job={job} />)
+                ) : (
+                  <tr>
+                    <td
+                      colSpan={5}
+                      className="py-20 text-center text-[#535862]"
+                    >
+                      No jobs found matching your criteria.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
 
+      {/* Pagination */}
       <div className="w-full">
         <Pagination
           currentPage={currentPage}
@@ -381,6 +394,7 @@ const ProviderMyJobs = () => {
         />
       </div>
 
+      {/* Info Box */}
       <div className="bg-[#fff9ed] border border-[#ffe4b3] rounded-2xl p-6 flex gap-4">
         <Shield className="w-6 h-6 text-[#f59e0b] mt-0.5 shrink-0" />
         <div>

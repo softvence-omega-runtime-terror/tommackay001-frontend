@@ -78,7 +78,7 @@ export default function OrderWaitingModal({ order, open, onClose }: Props) {
                   >
                     <Icon className="w-5 h-5" />
                   </div>
-                  {label}
+                  <span className="hidden sm:inline">{label}</span>
                 </button>
               );
             })}

@@ -34,11 +34,13 @@ export default function DeliveryCard({ task }: Props) {
 
   return (
     <>
-      {/* Card row */}
       <div className="bg-white border border-[#e9eaeb] rounded-xl p-5 hover:shadow-sm transition-shadow">
-        <div className="grid grid-cols-[auto_1fr_auto_auto_auto] sm:grid-cols-6 items-center gap-4">
+        <div
+          className="grid items-center"
+          style={{ gridTemplateColumns: "2.5fr 1fr 1fr 1.5fr 1fr" }}
+        >
           {/* Title + requester */}
-          <div className="flex col-span-2 gap-4">
+          <div className="flex items-center gap-4 px-6">
             <div className="w-12 h-12 rounded-lg bg-gray-100 overflow-hidden shrink-0">
               <Image
                 src={task.image}
@@ -61,7 +63,7 @@ export default function DeliveryCard({ task }: Props) {
           </div>
 
           {/* Time left */}
-          <div className="text-center text-sm">
+          <div className="text-center text-sm px-6">
             <div className="flex pb-1 justify-center text-[#535862] items-center gap-1">
               <Clock className="w-6 h-6" />
               <p className="font-medium text-[#181d27]">{task.timeLeft}</p>
@@ -69,24 +71,21 @@ export default function DeliveryCard({ task }: Props) {
             TIME LEFT
           </div>
 
-          {/* Status badge */}
-          <div className="flex items-center justify-end gap-4">
+          {/* Status */}
+          <div className="flex items-center justify-center px-6">
             <StatusBadge status={task.status} />
           </div>
 
-          {/* Action buttons */}
-          <div className="flex items-center justify-center gap-4">
+          {/* Actions */}
+          <div className="flex items-center justify-center gap-4 px-6">
             <button
               onClick={() => setOpen(true)}
               className="text-[#2AB516] hover:text-[#2fe912] cursor-pointer"
-              aria-label="View delivery details"
             >
               <Eye className="w-5 h-5" />
             </button>
-            <button
-              className="text-[#9E77ED] hover:text-primary cursor-pointer"
-              aria-label="Open chat"
-            >
+
+            <button className="text-[#9E77ED] hover:text-primary cursor-pointer">
               <MessageSquare className="w-5 h-5" />
             </button>
           </div>
