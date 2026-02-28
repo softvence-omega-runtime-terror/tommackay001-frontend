@@ -3,23 +3,22 @@
 import { useState, useEffect, useRef } from "react";
 import {
   Search,
-  MoreHorizontal,
   Check,
   Paperclip,
   Mic,
   Send,
   ArrowRight,
   ChevronRight,
-  Shield,
   RotateCcw,
   AlertCircle,
   FileText,
+  Menu,
+  X,
 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
 import saraAvatar from "@/public/avatar/you.png";
 import Image, { StaticImageData } from "next/image";
-import { StatusBadge } from "@/components/ui/common/StatusBadge";
 
 interface TeamMember {
   id: string;
@@ -162,6 +161,7 @@ export default function ActiveTasksPage() {
   const [inputMessage, setInputMessage] = useState("");
   const [chatMessages, setChatMessages] =
     useState<ChatMessage[]>(initialMessages);
+  const [showSidebarOnMobile, setShowSidebarOnMobile] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const filteredMembers = teamMembers.filter((member) => {
@@ -204,12 +204,32 @@ export default function ActiveTasksPage() {
   };
 
   return (
-    <div className="flex h-[80vh] bg-gray-50 font-sans overflow-hidden  rounded-2xl">
+    <div className="flex h-[90vh] md:h-[85vh] bg-gray-50 font-sans overflow-hidden rounded-2xl relative">
+      {/* Mobile Sidebar Overlay */}
+      {showSidebarOnMobile && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40 md:hidden"
+          onClick={() => setShowSidebarOnMobile(false)}
+        />
+      )}
+
       {/* LEFT – Active Tasks List */}
-      <div className="w-full lg:w-96 xl:w-120 bg-white border-r border-gray-200 flex flex-col">
+      <div
+        className={`absolute md:relative z-50 md:z-auto inset-y-0 left-0 w-full md:w-96 lg:w-96 xl:w-120 bg-white border-r border-gray-200 flex flex-col transition-transform duration-300 md:transition-none ${
+          showSidebarOnMobile
+            ? "translate-x-0"
+            : "-translate-x-full md:translate-x-0"
+        }`}
+      >
         {/* Header */}
         <div className="px-4 py-3 border-b flex items-center justify-between">
           <h1 className="text-lg font-bold text-gray-900">Active Tasks</h1>
+          <button
+            onClick={() => setShowSidebarOnMobile(false)}
+            className="md:hidden text-gray-500 hover:text-gray-700"
+          >
+            <X size={20} />
+          </button>
         </div>
 
         {/* Search */}
@@ -259,7 +279,10 @@ export default function ActiveTasksPage() {
             filteredMembers.map((member) => (
               <div
                 key={member.id}
-                onClick={() => setSelectedMember(member)}
+                onClick={() => {
+                  // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+                  (setSelectedMember(member), setShowSidebarOnMobile(false));
+                }}
                 className={`px-4 py-3 border-b cursor-pointer ${member.unread ? "bg-accent" : ""} hover:bg-accent/40 transition-colors m-4 rounded-lg ${
                   selectedMember?.id === member.id ? "bg-[#fd751f50]   " : ""
                 }`}
@@ -311,12 +334,25 @@ export default function ActiveTasksPage() {
       </div>
 
       {/* RIGHT – Chat Area */}
-      <div className="flex-1 flex flex-col bg-white min-w-0">
+      <div className="flex-1 flex flex-col bg-white min-w-0 md:min-w-0">
         {selectedMember ? (
           <>
+            {/* Mobile Menu Button */}
+            <div className="md:hidden flex items-center gap-2 px-4 py-3 border-b border-gray-200 bg-white">
+              <button
+                onClick={() => setShowSidebarOnMobile(true)}
+                className="text-gray-700 hover:text-gray-900"
+              >
+                <Menu size={20} />
+              </button>
+              <span className="text-sm font-medium text-gray-700 truncate">
+                {selectedMember.name}
+              </span>
+            </div>
+
             {/* Top Task Info Banner */}
-            <div className="bg-white   py-4">
-              <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 px-6 border-b border-orange-200 pb-4">
+            <div className="bg-white py-4">
+              <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 px-4 md:px-6 border-b border-orange-200 pb-4">
                 <div className="flex items-start gap-4">
                   <div className="flex items-center gap-3">
                     <div className="flex items-center gap-2">
@@ -325,7 +361,7 @@ export default function ActiveTasksPage() {
                         alt={selectedMember.name}
                         height={60}
                         width={60}
-                        className="w-12 mt-3 h-12 object-cover rounded-full"
+                        className="w-12 h-12 object-cover rounded-full shrink-0"
                       />
                       <div>
                         <p className="text-sm font-medium leading-tight">
@@ -338,93 +374,67 @@ export default function ActiveTasksPage() {
                 </div>
               </div>
 
-              <div className="mt-4 pt-4 bg-accent border-t border-orange-200  items-center gap-6 flex-wrap text-sm m-6 rounded-2xl p-4 grid grid-cols-7">
-                <div className="flex gap-6 col-span-3">
-                  <div className=" h-10 bg-white rounded-lg border border-orange-200 flex items-center justify-center ">
-                    <FileText size={20} className="text-secondary" />
-                  </div>
-                  <div className=" ">
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <span className="text-sm font-bold uppercase tracking-wider text-secondary">
-                        TASK {taskDetails.taskNumber}
-                      </span>
-                      <span className="text-xs bg-white border-1 border-secondary text-secondary px-3 py-1 rounded-full font-medium">
-                        {taskDetails.status}
-                      </span>
+              <div className="mt-4 pt-4 bg-accent border-t border-orange-200 text-sm m-4 md:m-6 rounded-2xl p-4">
+                <div className="flex flex-col gap-4">
+                  <div className="hidden md:flex gap-4 items-start">
+                    <div className="h-10 w-10 bg-white rounded-lg border border-orange-200 flex items-center justify-center shrink-0">
+                      <FileText size={20} className="text-secondary" />
                     </div>
-                    <h2 className="text-xs   text-gray-500 mt-1">
-                      {taskDetails.title}
-                    </h2>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="text-sm font-bold uppercase tracking-wider text-secondary">
+                          TASK {taskDetails.taskNumber}
+                        </span>
+                        <span className="text-xs bg-white border border-secondary text-secondary px-3 py-1 rounded-full font-medium">
+                          {taskDetails.status}
+                        </span>
+                      </div>
+                      <h2 className="text-xs text-gray-500 mt-1">
+                        {taskDetails.title}
+                      </h2>
+                    </div>
+                  </div>
+
+                  {/* Task Info - Second Row (Responsive Grid) */}
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                      <p className="text-xs font-semibold text-secondary uppercase tracking-wide">
+                        Placement Domain
+                      </p>
+                      <p className="font-semibold text-gray-900 text-sm mt-0.5">
+                        {taskDetails.domain}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-xs font-semibold text-secondary uppercase tracking-wide">
+                        Authority
+                      </p>
+                      <p className="font-semibold text-gray-900 text-sm mt-0.5">
+                        {taskDetails.authority}
+                      </p>
+                    </div>
+                    <div className="flex items-end">
+                      <Button
+                        variant="white"
+                        className="rounded-lg w-full md:w-auto text-secondary border border-secondary!"
+                      >
+                        <span className="text-xs md:text-sm">
+                          VIEW TASK BRIEF
+                        </span>{" "}
+                        <ChevronRight size={16} />
+                      </Button>
+                    </div>
                   </div>
                 </div>
-                <div className="flex items-center gap-6 flex-wrap justify-end lg:flex-nowrap col-span-4 ">
-                  <div>
-                    <p className="text-xs font-semibold text-secondary uppercase tracking-wide">
-                      Placement Domain
-                    </p>
-                    <p className="font-semibold text-gray-900 text-sm mt-0.5">
-                      {taskDetails.domain}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-xs font-semibold text-secondary uppercase tracking-wide">
-                      Authority
-                    </p>
-                    <p className="font-semibold text-gray-900 text-sm mt-0.5">
-                      {taskDetails.authority}
-                    </p>
-                  </div>
-                  <Button
-                    variant="white"
-                    className="rounded-lg  text-secondary border border-secondary!"
-                  >
-                    VIEW TASK BRIEF <ChevronRight size={16} />
-                  </Button>
-                </div>
-                {/* <div className="flex items-center gap-2.5">
-                  <Shield size={18} className="text-emerald-500 shrink-0" />
-                  <span className="font-semibold text-gray-800 uppercase tracking-wide text-xs">
-                    Platform Escrow & Compliance Active
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-xs text-gray-700 font-medium uppercase tracking-wide">
-                    {taskDetails.complianceTime}
-                  </span>
-                </div>
-
-                <div className="flex items-center gap-2">
-                  <span className="text-xs text-gray-700 font-medium uppercase tracking-wide">
-                    TASK REQUIREMENTS SHARED BY REQUESTER
-                  </span>
-                </div>
-
-                <div className="flex items-center gap-2">
-                  <span className="text-xs text-gray-700 font-medium uppercase tracking-wide">
-                    SAT 18, 08:30AM
-                  </span>
-                </div>
-
-                <div className="flex items-center gap-2">
-                  <span className="text-xs text-gray-700 font-medium uppercase tracking-wide">
-                    PROVIDER ACCEPTED TASK - ESCROW ACTIVE
-                  </span>
-                </div>
-
-                <div className="flex items-center gap-2">
-                  <span className="text-xs text-gray-700 font-medium uppercase tracking-wide">
-                    SAT 18, 08:30AM
-                  </span>
-                </div> */}
               </div>
             </div>
 
             {/* Chat Messages */}
-            <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-white">
-              {chatMessages.map((msg, idx) => (
+            <div className="flex-1 overflow-y-auto p-3 md:p-6 space-y-4 bg-white">
+              {chatMessages.map((msg) => (
                 <div
                   key={msg.id}
-                  className={`flex gap-3 ${
+                  className={`flex gap-2 md:gap-3 ${
                     msg.sender === "you" ? "justify-end" : "justify-start"
                   }`}
                 >
@@ -434,13 +444,15 @@ export default function ActiveTasksPage() {
                       alt={selectedMember.name}
                       height={60}
                       width={60}
-                      className="w-12 mt-3 h-12 object-cover rounded-full"
+                      className="w-10 md:w-12 h-10 md:h-12 object-cover rounded-full shrink-0"
                     />
                   )}
                   <div
-                    className={`max-w-md rounded-xl px-4 py-3 bg-accent text-gray-900 border border-orange-100`}
+                    className={`max-w-xs md:max-w-md rounded-xl px-3 md:px-4 py-2 md:py-3 bg-accent text-gray-900 border border-orange-100`}
                   >
-                    <p className="text-sm leading-relaxed">{msg.text}</p>
+                    <p className="text-xs md:text-sm leading-relaxed">
+                      {msg.text}
+                    </p>
                     <div className="flex items-center justify-end gap-1 mt-2">
                       <span className="text-xs opacity-70">{msg.time}</span>
                       {msg.sender === "you" && (
@@ -454,7 +466,7 @@ export default function ActiveTasksPage() {
                       alt={selectedMember.name}
                       height={60}
                       width={60}
-                      className="w-8 mt-3 h-8 object-cover rounded-full"
+                      className="w-8 md:w-8 h-8 md:h-8 object-cover rounded-full shrink-0"
                     />
                   )}
                 </div>
@@ -462,22 +474,23 @@ export default function ActiveTasksPage() {
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Approval Console + Input */}
             <div className="border-t border-gray-200">
-              {/* Requester Approval Console */}
-              <div className="bg-accent border-b border-orange-200 px-6 py-4">
-                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+              <div className="hidden md:block bg-accent border-b border-orange-200 px-4 md:px-6 py-3 md:py-4">
+                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 md:gap-4">
                   <div className="flex items-center gap-3">
                     <AlertCircle className="text-accent shrink-0" size={20} />
-                    <span className="font-bold text-secondary uppercase text-sm tracking-wide">
+                    <span className="font-bold text-secondary uppercase text-xs md:text-sm tracking-wide">
                       Requester Approval Console
                     </span>
                   </div>
-                  <div className="flex items-center gap-3 flex-wrap lg:flex-nowrap">
-                    <Button variant="white">
+                  <div className="flex items-center gap-2 md:gap-3 flex-wrap lg:flex-nowrap">
+                    <Button variant="white" className="text-xs md:text-sm">
                       <RotateCcw size={16} /> REQUEST REVISION
                     </Button>
-                    <Button variant="secondary" className="rounded-lg">
+                    <Button
+                      variant="secondary"
+                      className="rounded-lg text-xs md:text-sm"
+                    >
                       APPROVE & RELEASE ESCROW <ArrowRight size={16} />
                     </Button>
                   </div>
@@ -485,9 +498,9 @@ export default function ActiveTasksPage() {
               </div>
 
               {/* Message Input */}
-              <div className="p-4 bg-white">
-                <div className="flex items-center gap-3 bg-gray-100 rounded-xl px-4 py-3 border border-gray-200 focus-within:border-secondary focus-within:ring-1 focus-within:ring-secondary/20 transition-all">
-                  <button className="text-gray-500 hover:text-secondary shrink-0 transition-colors">
+              <div className="p-3 md:p-4 bg-white">
+                <div className="flex items-center gap-2 md:gap-3 bg-gray-100 rounded-xl px-3 md:px-4 py-2 md:py-3 border border-gray-200 focus-within:border-secondary focus-within:ring-1 focus-within:ring-secondary/20 transition-all">
+                  <button className="text-gray-500 hover:text-secondary shrink-0 transition-colors hidden md:block">
                     <Paperclip size={20} />
                   </button>
                   <input
@@ -496,9 +509,9 @@ export default function ActiveTasksPage() {
                     value={inputMessage}
                     onChange={(e) => setInputMessage(e.target.value)}
                     onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
-                    className="flex-1 bg-transparent outline-none text-sm placeholder-gray-500"
+                    className="flex-1 bg-transparent outline-none text-xs md:text-sm placeholder-gray-500"
                   />
-                  <button className="text-gray-500 hover:text-secondary shrink-0 transition-colors">
+                  <button className="text-gray-500 hover:text-secondary shrink-0 transition-colors hidden md:block">
                     <Mic size={20} />
                   </button>
                   <button
@@ -512,7 +525,7 @@ export default function ActiveTasksPage() {
             </div>
           </>
         ) : (
-          <div className="flex-1 flex items-center justify-center text-gray-500">
+          <div className="flex-1 flex items-center justify-center text-gray-500 px-4">
             Select a task to view conversation
           </div>
         )}

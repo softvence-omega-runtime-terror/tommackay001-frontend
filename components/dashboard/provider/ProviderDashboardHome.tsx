@@ -18,7 +18,6 @@ import checkboxImage from "@/public/dashboard/provider/Checkbox.png";
 import checkboxBaseImage from "@/public/dashboard/provider/_Checkbox base.png";
 import ActiveDeliveries from "@/components/dashboard/provider/delivery/ActiveDeliveries";
 import { DeliveryItem } from "@/components/dashboard/provider/delivery/DeliveryCard";
-import { usePathname } from "next/navigation";
 import BuyVisibilityCreditModal from "@/components/dashboard/provider/visivility/Buyvisibilitycreditmodal";
 
 const activeDeliveries: DeliveryItem[] = [
@@ -49,10 +48,6 @@ const activeDeliveries: DeliveryItem[] = [
 ];
 
 const ProviderDashboardHome = () => {
-  const pathname = usePathname();
-  const isProviderRoute = pathname.startsWith("/provider");
-  const basePath = isProviderRoute ? "/provider" : "/requester";
-
   const [buyModalOpen, setBuyModalOpen] = useState(false);
 
   return (
@@ -90,7 +85,7 @@ const ProviderDashboardHome = () => {
           <div className="flex flex-col gap-5 items-end">
             <ActionLink
               label="REFER A FRIEND"
-              href={`${basePath}/referrals`}
+              href={`/dashboard/referrals`}
               className="px-5 py-3 bg-indigo text-primary rounded-full text-sm font-medium hover:bg-[#ddd8ff] transition-colors"
             />
             <div className="flex items-center gap-5">

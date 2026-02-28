@@ -14,7 +14,7 @@ import {
 import ConnectWebsiteModal from "@/components/dashboard/website/Connectwebsitemodal";
 import WebsiteWorkspaceModal from "@/components/dashboard/website/Websiteworkspacemodal";
 import { useRouter } from "next/navigation";
-
+import { Button } from "@/components/ui/Button";
 
 export type LifecycleStatus =
   | "VERIFIED"
@@ -134,9 +134,9 @@ export default function YourWebsitesPage() {
       />
 
       <div className="flex flex-col gap-6 font-inter max-w-[90vw]">
-        <div className="flex items-start justify-between">
+        <div className="flex flex-col md:flex-row space-y-2 items-start justify-between">
           <div>
-            <h1 className="text-[30px] font-semibold font-sora text-[#181d27] leading-none">
+            <h1 className="text-xl md:text-[30px] font-semibold font-sora text-[#181d27] leading-none">
               Your Websites
             </h1>
             <p className="text-sm font-medium text-[#535862] mt-1">
@@ -145,16 +145,13 @@ export default function YourWebsitesPage() {
             </p>
           </div>
 
-          <button
-            onClick={() => setConnectOpen(true)}
-            className="flex items-center gap-2 bg-secondary hover:bg-[#d94118] text-white font-semibold text-sm px-5 py-2.5 rounded-full transition-colors"
-          >
+          <Button variant="secondary" onClick={() => setConnectOpen(true)}>
             <Plus className="w-4 h-4" />
             CONNECT WEBSITE
-          </button>
+          </Button>
         </div>
 
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="relative w-56">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#9DA4AE]" />
             <input
@@ -166,12 +163,12 @@ export default function YourWebsitesPage() {
             />
           </div>
 
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-1.5 w-full overflow-x-scroll ">
             {FILTER_TABS.map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`px-4 py-2 rounded-full text-xs font-semibold border transition-colors whitespace-nowrap ${
+                className={`px-4 py-2 rounded-full text-xs cursor-pointer font-semibold border transition-colors whitespace-nowrap ${
                   activeTab === tab
                     ? "bg-secondary text-white border-secondary"
                     : "bg-white text-[#535862] border-[#e2e2e2] hover:border-secondary hover:text-secondary"
@@ -183,7 +180,7 @@ export default function YourWebsitesPage() {
           </div>
         </div>
 
-        <div className="border border-[#e9eaeb] rounded-xl bg-white overflow-hidden">
+        <div className="border border-[#e9eaeb] rounded-xl bg-white overflow-hidden overflow-x-scroll">
           <table className="w-full">
             <thead>
               <tr className="border-b border-[#e9eaeb]">
@@ -289,7 +286,7 @@ export default function YourWebsitesPage() {
           </table>
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid md:grid-cols-2 gap-4">
           <div className="bg-[#FFF4ED] border border-[#FDCFBE] rounded-xl p-5 space-y-2">
             <Shield className="w-5 h-5 text-secondary" />
             <p className="text-sm font-bold text-secondary">

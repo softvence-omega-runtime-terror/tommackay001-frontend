@@ -17,10 +17,10 @@ export default function ProfileVerifiedTab() {
         </div>
       </div>
 
-      <div className="bg-[#f6f7f9] p-8 rounded-2xl">
+      <div className="bg-[#f6f7f9] p-2 md:p-8 rounded-2xl">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="relative bg-white rounded-2xl p-6 shadow-[0_10px_30px_rgba(240,79,35,0.08)] border border-[#f3d6cd]">
-            <div className="absolute top-5 right-5 text-gray-400">
+            <div className="absolute top-7 md:top-5 right-5 text-gray-400">
               <Lock className="w-5 h-5" />
             </div>
 
@@ -59,7 +59,7 @@ export default function ProfileVerifiedTab() {
           </div>
 
           <div className="relative bg-white rounded-2xl p-6 shadow-[0_10px_30px_rgba(240,79,35,0.08)] border border-[#f3d6cd]">
-            <div className="absolute top-5 right-5 text-gray-400">
+            <div className="absolute top-7 md:top-5 right-5 text-gray-400">
               <Lock className="w-5 h-5" />
             </div>
 

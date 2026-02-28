@@ -16,7 +16,7 @@ export default function LogoutModal({ isOpen, onClose }: LogoutModalProps) {
 
   const handleLogout = () => {
     console.log("User logged out");
-    router.push("/login");
+    router.push("/auth/login");
   };
 
   return (

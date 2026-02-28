@@ -22,7 +22,8 @@ export default function RecentOrders({
 }: Props) {
   return (
     <section className="bg-white border border-[#e9eaeb] rounded-2xl">
-      <div className="flex items-center justify-between px-8 py-6">
+      {/* Header */}
+      <div className="flex items-center justify-between px-6 md:px-8 py-6">
         <div>
           <h2 className="text-2xl font-semibold font-sora text-[#181d27]">
             {title}
@@ -39,26 +40,32 @@ export default function RecentOrders({
         </Link>
       </div>
 
-      <div
-        className="grid border-y border-[#e9eaeb] text-sm font-medium text-[#181d27]"
-        style={{ gridTemplateColumns: "2.5fr 1fr 1fr 1.5fr 1fr" }}
-      >
-        {["Sub Name", "Status", "Applicants", "Provider", "Actions"].map(
-          (h) => (
-            <div key={h} className="px-8 py-4 text-center first:text-left">
-              {h}
-            </div>
-          ),
-        )}
+      {/* Scroll Wrapper */}
+      <div className="w-full overflow-x-auto">
+        <div className="min-w-[900px]">
+          <div
+            className="grid border-y border-[#e9eaeb] text-sm font-medium text-[#181d27]"
+            style={{ gridTemplateColumns: "2.5fr 1fr 1fr 1.5fr 1fr" }}
+          >
+            {["Sub Name", "Status", "Applicants", "Provider", "Actions"].map(
+              (h) => (
+                <div key={h} className="px-8 py-4 text-center first:text-left">
+                  {h}
+                </div>
+              ),
+            )}
+          </div>
+
+          <div className="divide-y divide-[#e9eaeb]">
+            {orders.map((order, i) => (
+              <OrderCard key={i} order={order} />
+            ))}
+          </div>
+        </div>
       </div>
 
-      <div className="divide-y divide-[#e9eaeb]">
-        {orders.map((order, i) => (
-          <OrderCard key={i} order={order} />
-        ))}
-      </div>
-
-      <div className="px-8 py-6 border-t border-[#e9eaeb]">
+      {/* Pagination */}
+      <div className="px-6 md:px-8 py-6 border-t border-[#e9eaeb] ">
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}

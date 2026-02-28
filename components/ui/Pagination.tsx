@@ -19,88 +19,70 @@ const Pagination: React.FC<PaginationProps> = ({
 }) => {
   const getPages = () => {
     const pages: (number | string)[] = [];
-    if (totalPages <= 7) {
+
+    const maxVisible = 8;
+
+    if (totalPages <= maxVisible) {
       for (let i = 1; i <= totalPages; i++) pages.push(i);
     } else {
-      if (currentPage <= 4) {
-        pages.push(1, 2, 3, 4, 5, "...", totalPages);
-      } else if (currentPage >= totalPages - 3) {
-        pages.push(
-          1,
-          "...",
-          totalPages - 4,
-          totalPages - 3,
-          totalPages - 2,
-          totalPages - 1,
-          totalPages,
-        );
-      } else {
-        pages.push(
-          1,
-          "...",
-          currentPage - 1,
-          currentPage,
-          currentPage + 1,
-          "...",
-          totalPages,
-        );
+      let start = Math.max(1, currentPage - 3);
+      const end = Math.min(totalPages, start + maxVisible - 1);
+
+      if (end - start < maxVisible - 1) {
+        start = Math.max(1, end - maxVisible + 1);
+      }
+
+      for (let i = start; i <= end; i++) {
+        pages.push(i);
       }
     }
+
     return pages;
   };
 
   const pages = getPages();
 
   return (
-    <div className={`flex justify-center mt-6  ${className || ""}`}>
-      <div className="flex items-center gap-2 w-full max-w-full bg-white  rounded-lg px-4 py-2 justify-between">
+    <div className={`flex justify-center mt-6 ${className || ""}`}>
+      <div className="flex items-center gap-2 w-full max-w-full bg-white rounded-lg px-2 sm:px-4 py-2 justify-between">
         {/* Previous Button */}
         <Button
           variant="outline"
           onClick={() => onPageChange(Math.max(1, currentPage - 1))}
-          className={`p-1.5 px-2 hover:bg-gray-100  border border-[#e9eaeb] flex gap-2 rounded-lg justify-center items-center ${
+          className={`p-1.5 hover:bg-gray-100 border border-[#e9eaeb] flex gap-2 rounded-lg px-3 justify-center items-center ${
             currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
           }`}
         >
           <ChevronLeft className="w-5 h-5 text-[#535862]" />
-          Previous
+          <span className="hidden sm:inline">Previous</span>
         </Button>
 
         {/* Page Numbers */}
-        <div className="flex gap-1 px-3">
-          {pages.map((item, i) =>
-            typeof item === "string" ? (
-              <span
-                key={i}
-                className="px-3 cursor-pointer py-1.5 text-sm font-medium text-gray-400 cursor-default"
-              >
-                {item}
-              </span>
-            ) : (
-              <button
-                key={i}
-                onClick={() => onPageChange(item)}
-                className={`px-3 py-1.5 text-sm  cursor-pointer font-medium rounded ${
-                  item === currentPage
-                    ? "bg-[#f9f5ff] text-primary"
-                    : "text-[#414651] hover:bg-gray-50"
-                }`}
-              >
-                {item}
-              </button>
-            ),
-          )}
+        <div className="flex gap-1 overflow-x-auto">
+          {pages.map((item, i) => (
+            <button
+              key={i}
+              onClick={() => onPageChange(item as number)}
+              className={`px-3 py-1.5 text-sm font-medium rounded whitespace-nowrap ${
+                item === currentPage
+                  ? "bg-[#f9f5ff] text-primary"
+                  : "text-[#414651] hover:bg-gray-50"
+              }`}
+            >
+              {item}
+            </button>
+          ))}
         </div>
 
         {/* Next Button */}
         <Button
           variant="outline"
           onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
-          className={`p-1.5 hover:bg-gray-100 cursor-pointer  border border-[#e9eaeb] flex gap-2 rounded-lg px-4 justify-center items-center ${
+          className={`p-1.5 hover:bg-gray-100 border border-[#e9eaeb] flex gap-2 rounded-lg px-3 justify-center items-center ${
             currentPage === totalPages ? "opacity-50 cursor-not-allowed" : ""
           }`}
         >
-          Next
+          <span className="hidden sm:inline">Next</span>
           <ChevronRight className="w-5 h-5 text-[#535862]" />
         </Button>
       </div>

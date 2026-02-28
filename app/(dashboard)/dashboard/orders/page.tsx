@@ -47,12 +47,12 @@ const RequesterOrderPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   return (
-    <div className="flex flex-col gap-6 font-inter">
+    <div className="flex flex-col gap-6 font-inter max-w-[98vw]">
       {/* Header */}
-      <div className="flex flex-col gap-1">
-        <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-4 md:gap-1">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>
-            <h1 className="text-[30px] font-semibold font-sora text-[#181d27] leading-none">
+            <h1 className="text-[24px] md:text-[30px] font-semibold font-sora text-[#181d27] leading-none">
               My Orders
             </h1>
             <p className="text-sm font-medium text-[#535862] mt-1">
@@ -62,20 +62,21 @@ const RequesterOrderPage = () => {
           </div>
 
           {/* Search */}
-          <div className="relative w-96">
+          <div className="relative w-full md:w-80">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#535862]" />
             <input
               type="text"
               placeholder="Search by site, ID, or title..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-11 pr-4 py-3 bg-white border border-[#e2e2e2] rounded-full text-sm focus:outline-none focus:border-[#6366f1] placeholder:text-[#535862]"
+              className=" pl-11 pr-4 py-3 w-[90vw] md:w-full bg-white border border-[#e2e2e2] rounded-full text-sm focus:outline-none focus:border-[#6366f1] placeholder:text-[#535862]"
             />
           </div>
         </div>
       </div>
 
-      <div className="lg:col-span-9 flex flex-col h-full gap-5 bg-white p-4 rounded-2xl">
+      {/* Orders Section */}
+      <div className="flex flex-col gap-5 bg-white  rounded-2xl max-w-[90vw]">
         <RecentOrders
           title="Recent Activity"
           role="PROVIDER"

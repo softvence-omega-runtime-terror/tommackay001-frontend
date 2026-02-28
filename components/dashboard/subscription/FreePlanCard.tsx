@@ -32,7 +32,7 @@ export const FreePlanCard = () => {
       {/* CTA */}
       <Link
         href="/auth/register"
-        className="bg-primary hover:bg-brand-indigo-600 text-white px-10 py-4 rounded-xl font-inter font-semibold text-base transition-all"
+        className="bg-primary w-full text-center hover:bg-brand-indigo-600 text-white px-10 py-4 rounded-xl font-inter font-semibold text-base transition-all"
       >
         Get started
       </Link>

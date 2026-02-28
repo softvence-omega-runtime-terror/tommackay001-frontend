@@ -31,24 +31,23 @@ const GoldPlan = [
 export default function PlanOverview() {
   const [buyModalOpen, setBuyModalOpen] = useState(false);
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 max-w-[90vw]">
       <BuyVisibilityCreditModal
         open={buyModalOpen}
         onClose={() => setBuyModalOpen(false)}
       />
-      {/* Header */}
-      <div className="px-6 py-4 bg-white rounded-2xl border border-gray-200">
+      <div className="px-2 md:px-6 py-4 bg-white rounded-2xl border border-gray-200 w-full">
         <div className="flex flex-wrap justify-between items-center gap-4">
           <div>
             <h2 className="text-xl font-bold text-gray-900">
               Your Plan Overview
             </h2>
-            <p className="text-sm text-gray-600 mt-1">
+            <p className="text-xs md:text-sm text-gray-600 mt-1">
               Your plan defines how many websites, credits, and tasks you can
               run each month.
             </p>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex flex-col md:flex-row  items-center gap-3">
             <span className="inline-flex items-center gap-1.5 w-full px-3 py-1.5 bg-[#FEDF89] text-[#DC6803] rounded-full font-medium text-sm">
               <span className="text-amber-600">
                 <Crown className="w-4 h-4" />
@@ -60,11 +59,8 @@ export default function PlanOverview() {
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 ">
-        {/* Left Section: Plan Benefits */}
         <div className="lg:col-span-3 space-y-6">
-          {/* Plan Benefits */}
           <div className="bg-white p-6 rounded-2xl border border-gray-200">
             <h3 className="text-sm font-medium text-[#DC6803] mb-4 bg-[#FEDF89] w-fit px-3 py-2 rounded-full">
               Gold Plan Benefits
@@ -89,15 +85,14 @@ export default function PlanOverview() {
             </div>
           </div>
 
-          {/* How Credits Work */}
           <div className="bg-white p-6 rounded-2xl border border-gray-200">
             <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
               <Info size={20} className="text-indigo-600" />
               How Credits Work
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:px-12">
               <div className="space-y-4">
-                <div className="flex items-center gap-3 border border-gray-50! p-4 rounded-md">
+                <div className="flex items-center gap-3 border border-gray-50! p-4 rounded-md ">
                   <div className="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center text-green-600">
                     <CreditCard size={20} />
                   </div>
@@ -108,7 +103,7 @@ export default function PlanOverview() {
                     <p className="text-sm text-gray-600">1 credit</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-3 border border-gray-50! p-4 rounded-md">
+                <div className="flex items-center gap-3 border border-gray-50! p-4 rounded-md ">
                   <div className="w-10 h-10 rounded-lg bg-[#51A2FF]/20 flex items-center justify-center text-[#51A2FF]">
                     <ListRestartIcon size={20} />
                   </div>
@@ -121,7 +116,7 @@ export default function PlanOverview() {
                 </div>
               </div>
               <div className="space-y-4">
-                <div className="flex items-center gap-3 border border-gray-50! p-4 rounded-md">
+                <div className="flex items-center gap-3 border border-gray-50! p-4 rounded-md ">
                   <div className="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center text-purple-600">
                     <FileText size={20} />
                   </div>
@@ -133,7 +128,7 @@ export default function PlanOverview() {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 border border-gray-50! p-4 rounded-md">
+                <div className="flex items-center gap-3 border border-gray-50! p-4 rounded-md ">
                   <div className="w-10 h-10 rounded-lg bg-[#FFB900]/20 flex items-center justify-center text-[#FFB900]">
                     <ShoppingBag size={20} />
                   </div>
@@ -149,13 +144,12 @@ export default function PlanOverview() {
           </div>
         </div>
 
-        {/* Right Section: Credits Summary */}
         <div className="bg-white p-6 rounded-2xl border border-gray-200 space-y-4 h-fit">
           <h3 className="text-lg font-semibold text-gray-800 mb-4">
             Credits Summary
           </h3>
 
-          <div className="space-y-4">
+          <div className="space-y-4 overflow-x-scroll">
             <div className="border border-gray-50! p-3 rounded-lg">
               <p className="text-sm text-gray-600">Available Credits</p>
               <div className="text-3xl font-bold text-green-600 mt-1">12</div>

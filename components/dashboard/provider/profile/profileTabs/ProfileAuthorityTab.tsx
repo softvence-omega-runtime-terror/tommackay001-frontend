@@ -21,7 +21,7 @@ export default function ProfileAuthorityTab() {
           prevention protocols.
         </p>
       </div>
-      <div className="w-full grid grid-cols-3 gap-3">
+      <div className="w-full grid md:grid-cols-3 gap-3">
         {label.map((stat) => (
           <div
             key={stat.label}

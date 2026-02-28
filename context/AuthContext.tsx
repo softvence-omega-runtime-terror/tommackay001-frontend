@@ -51,7 +51,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     const mockUser = {
       id: "USR-MOCK-001",
       email: credentials.email || "demo@example.com",
-      role: credentials.email?.includes("admin") ? "ADMIN" : "REQUESTER",
+      role: credentials.email?.includes("admin") ? "ADMIN" : "USER",
       fullName: "Demo User",
     };
 
@@ -64,7 +64,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     const mockUser = {
       id: "USR-MOCK-" + Math.floor(Math.random() * 1000),
       email: data.email,
-      role: "REQUESTER",
+      role: "USER",
       fullName: data.fullName,
     };
 

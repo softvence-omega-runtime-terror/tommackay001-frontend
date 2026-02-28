@@ -164,14 +164,14 @@ export default function ProviderProfileModal({
             {activeTab === "WEBSITE LIST" && <ProfileWebsite />}
           </div>
 
-          <div className="px-6 py-4 border-t border-[#f0f0f0] flex items-center justify-between bg-[#fafafa] rounded-b-2xl">
-            <div className="flex items-center gap-4">
-              <button className="flex items-center gap-1.5 text-sm font-semibold text-[#535862] hover:text-[#181d27] transition-colors">
+          <div className="px-6 py-4 border-t border-[#f0f0f0] flex flex-col md:flex-row  items-center justify-between bg-[#fafafa] rounded-b-2xl space-y-3">
+            <div className="flex flex-col md:flex-row  items-center gap-4 space-y-1">
+              <button className="flex items-center gap-1.5 text-sm font-semibold text-[#535862] hover:text-[#181d27] transition-colors ">
                 <AlertCircle className="w-4 h-4" /> ASK A QUESTION
               </button>
               <button
                 onClick={handleExplore}
-                className="flex  cursor-pointer items-center gap-1.5 text-sm font-semibold text-[#535862] hover:text-[#181d27] transition-colors"
+                className="flex  cursor-pointer  items-center gap-1.5 text-sm font-semibold text-[#535862] hover:text-[#181d27] transition-colors"
               >
                 <Eye className="w-4 h-4" /> EXPLORE CAPABILITY
               </button>

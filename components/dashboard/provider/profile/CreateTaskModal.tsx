@@ -86,13 +86,13 @@ export default function CreateTaskModal({ onClose }: CreateTaskModalProps) {
 
         {/* Step Bar */}
         <div className="px-6 py-3 bg-[#fff7ed] border-b border-[#fed7aa]">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2  w-full overflow-x-scroll">
             {[
               { n: 1, label: "PREFERENCE" },
               { n: 2, label: "REQUIREMENTS" },
               { n: 3, label: "REVIEW" },
             ].map(({ n, label }, i) => (
-              <div key={n} className="flex items-center gap-2 w-1/3 ">
+              <div key={n} className="flex items-center gap-2 md:w-1/3 ">
                 <div className="flex items-center gap-1.5 mx-auto">
                   <div
                     className={`w-7 h-7 rounded-full flex items-center justify-center text-base font-bold transition-colors ${step >= n ? "bg-[#fd751f] text-white" : "bg-white border-2 border-[#e9eaeb] text-secondary"}`}
@@ -117,14 +117,16 @@ export default function CreateTaskModal({ onClose }: CreateTaskModalProps) {
 
         {/* Invited Banner */}
         <div className="px-6 py-2.5 bg-[#f0f4ff] border-b border-[#c7d2fe] flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-5 h-5 bg-[#6366f1] rounded-full flex items-center justify-center">
-              <span className="text-white text-[9px] font-bold">S</span>
+          <div className="flex flex-col items-center gap-2">
+            <div className="flex gap-4">
+              <div className="w-5 h-5 bg-[#6366f1] rounded-full flex items-center justify-center">
+                <span className="text-white text-[9px] font-bold">S</span>
+              </div>
+              <Users className="w-4 h-4 text-[#6366f1]" />
             </div>
-            <Users className="w-4 h-4 text-[#6366f1]" />
-            <span className="text-sm font-semibold text-[#414651]">
+            <div className="text-sm font-semibold text-[#414651]">
               TASK INVITED TO: MARKETINGGURU
-            </span>
+            </div>
           </div>
           <span className="text-sm font-bold text-[#6366f1] border border-[#c7d2fe] px-2 py-0.5 rounded">
             PRIVATE INVITE

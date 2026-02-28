@@ -52,7 +52,7 @@ export default function CreditStatement() {
   ];
 
   return (
-    <div className=" overflow-hidden">
+    <div className=" overflow-hidden max-w-[90vw] ">
       <div className="border-b border-purple-100 bg-white rounded-xl">
         <div className="px-6 py-5 ">
           <div className="flex items-center justify-between flex-wrap gap-4">
@@ -61,7 +61,7 @@ export default function CreditStatement() {
               <span className="">Credit Statement</span>
             </h2>
 
-            <div className="flex items-center gap-2 border  p-2 rounded-full border-secondary bg-amber-600/20">
+            <div className="flex  max-w-[90vw] overflow-x-scroll gap-2 border  p-2 rounded-2xl md:rounded-full border-secondary bg-amber-600/20">
               {["ALL", "PAYMENTS", "RECEIVED", "REFUNDS"].map((tab) => (
                 <button
                   key={tab}
@@ -165,7 +165,7 @@ export default function CreditStatement() {
           </Button>
         </div>
       </div>
-      <p className="max-w-3xl text-center mx-auto text-[#A4A7AE]">
+      <p className="max-w-3xl text-xs lowercase md:uppercase md:text-md text-center mx-auto text-[#A4A7AE]">
         CAPITAL SETTLEMENTS AND ESCROW DEPLOYMENTS ARE GOVERNED BY BACKLYST.
         INSTITUTIONAL FULFILLMENT PROTOCOLS AND AUTOMATED FINANCIAL GOVERNANCE
         POLICIES.

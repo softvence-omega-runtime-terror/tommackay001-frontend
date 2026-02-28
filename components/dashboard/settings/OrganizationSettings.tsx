@@ -112,7 +112,7 @@ export default function OrganizationSettings() {
         </div>
       </div>
 
-      <div className="px-8 py-6  border-t border-gray-100 flex justify-end">
+      <div className="px-8 py-6   border-t border-gray-100 flex justify-center md:justify-end">
         <Button
           onClick={handleSave}
           className="bg-indigo-600 hover:bg-indigo-700 text-white px-10 py-3 rounded-xl font-medium shadow-md transition-all flex items-center gap-2"

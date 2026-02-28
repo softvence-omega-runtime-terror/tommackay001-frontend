@@ -55,10 +55,6 @@ const recentActivity: OrderItem[] = [
   },
 ];
 const RequesterDashboardHome = () => {
-  const pathname = usePathname();
-  const isProviderRoute = pathname.startsWith("/provider");
-  const basePath = isProviderRoute ? "/provider" : "/requester";
-
   const [buyModalOpen, setBuyModalOpen] = useState(false);
 
   return (
@@ -70,17 +66,17 @@ const RequesterDashboardHome = () => {
 
       <div className="flex flex-col gap-6 font-inter max-w-[90vw]">
         {/* Header Section */}
-        <div className="flex items-end justify-between">
+        <div className="md:flex items-end justify-between">
           <div className="flex flex-col gap-5">
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-3 w-full  ">
               <div className="flex items-center gap-1.5 px-4 py-2 bg-white border border-[#e2e2e2] rounded-full w-fit">
-                <Award className="w-5 h-5 text-[#6366f1]" />
+                <Award className="w-5 h-5 text-[#6366f1] " />
                 <span className="text-xs font-semibold text-[#0f0f0f]">
                   LEVEL - 2
                 </span>
               </div>
-              <div className="flex items-center gap-5">
-                <h1 className="text-[30px] font-semibold font-sora text-[#181d27] leading-9.5">
+              <div className="md:flex md:items-center gap-5 ">
+                <h1 className="pb-2 text-2xl  md:text-[30px] font-semibold font-sora text-[#181d27] md:leading-9.5">
                   Welcome back, Alex
                 </h1>
                 <span className="px-5 py-2.5 bg-indigo text-primary rounded-full text-sm font-medium">
@@ -96,18 +92,23 @@ const RequesterDashboardHome = () => {
           <div className="flex flex-col gap-5 items-end">
             <ActionLink
               label="REFER A FRIEND"
-              href={`${basePath}/referrals`}
-              className="px-5 py-3 bg-indigo text-primary rounded-full text-sm font-medium hover:bg-[#ddd8ff] transition-colors"
+              href={`/dashboard/referrals`}
+              className="px-5 py-3 bg-indigo text-primary rounded-full text-sm font-medium hover:bg-[#ddd8ff] transition-colors "
             />
-            <div className="flex items-center gap-5">
+            <div className="md:flex items-center gap-5 w-full space-y-2">
               <ActionLink
                 variant="outline"
                 href="/how-it-works"
                 label="HOW IT WORKS"
                 icon={<PlayCircle className="w-6 h-6" />}
                 iconPosition="left"
+                className="w-full"
               />
-              <Button variant="secondary" onClick={() => setBuyModalOpen(true)}>
+              <Button
+                variant="secondary"
+                onClick={() => setBuyModalOpen(true)}
+                className="w-full"
+              >
                 BUY VISIBILITY CREDIT
               </Button>
             </div>
@@ -115,7 +116,7 @@ const RequesterDashboardHome = () => {
         </div>
 
         {/* Stats Grid */}
-        <div className="flex gap-4 mt-8">
+        <div className="grid grid-cols-1  md:flex  gap-4 mt-8">
           <StatCard
             icon={Layers}
             label="Active Tasks"

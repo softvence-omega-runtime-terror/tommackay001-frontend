@@ -20,7 +20,7 @@ const LoginPage = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
-    router.push("dashboard");
+    router.push("/dashboard");
   };
 
   return (

@@ -111,9 +111,9 @@ export default function ReferralsPage() {
 
   return (
     <div className="flex flex-col gap-6 font-inter max-w-[90vw]">
-      <div className="flex items-start justify-between">
+      <div className="flex flex-col gap-4 md:flex-row items-start justify-between">
         <div>
-          <h1 className="text-[30px] font-semibold font-sora text-[#181d27] leading-none">
+          <h1 className="text-xl md:text-[30px] font-semibold font-sora text-[#181d27] leading-none">
             Referrals
           </h1>
           <p className="text-sm font-medium text-[#535862] mt-1">
@@ -231,7 +231,7 @@ export default function ReferralsPage() {
         </p>
       </div>
 
-      <div className="bg-white border border-[#e9eaeb] rounded-xl overflow-hidden">
+      <div className="bg-white border border-[#e9eaeb] rounded-xl overflow-x-scroll">
         <div className="px-6 py-5 border-b border-[#e9eaeb]">
           <p className="text-sm font-bold text-[#181d27]">Referral Progress</p>
           <p className="text-xs text-[#535862] mt-0.5">
@@ -239,7 +239,7 @@ export default function ReferralsPage() {
           </p>
         </div>
 
-        <table className="w-full">
+        <table className="w-full ">
           <thead>
             <tr className="border-b border-[#e9eaeb]">
               {[

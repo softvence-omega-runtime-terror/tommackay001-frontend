@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Calendar,
   Eye,
@@ -34,7 +34,6 @@ interface Job {
   notes: boolean;
   earnings: number;
   status: JobStatus;
-  /** Maps to DeliveryItem for modal compatibility */
   requester?: string;
   reward?: string;
   timeLeft?: string;

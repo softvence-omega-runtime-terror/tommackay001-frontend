@@ -37,13 +37,13 @@ export default function ReferralProgram() {
           <label className="block text-sm font-medium text-gray-700">
             Your Referral Link
           </label>
-          <div className="flex items-center gap-3">
+          <div className="flex flex-col md:flex-row items-center gap-3">
             <div className="flex-1 px-4 py-3.5 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 font-medium break-all">
               {referralLink}
             </div>
             <Button
               variant="outline"
-              className="border-indigo-600 text-indigo-600 hover:bg-indigo-50 min-w-[100px]"
+              className="border-indigo-600 text-indigo-600 hover:bg-indigo-50 min-w-25 w-full md:w-fit"
               onClick={handleCopy}
             >
               {copied ? "Copied!" : "Copy"}

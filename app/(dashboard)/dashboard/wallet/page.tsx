@@ -5,7 +5,7 @@ import { PricingTier } from "@/components/landing/Pricing";
 import { Button } from "@/components/ui/Button";
 import { Globe2, ShieldCheck, Star } from "lucide-react";
 
-export default function PlanPage() {
+export default function WalletPage() {
   const tiers: PricingTier[] = [
     {
       name: "Silver",
@@ -50,7 +50,7 @@ export default function PlanPage() {
   ];
 
   return (
-    <div className="  px-4  py-8 space-y-10">
+    <div className="  md:px-4  md:py-8 space-y-10 max-w-[90vw]">
       <PlanOverview />
       <div className="flex flex-col">
         <h1>Compare Plans</h1>
