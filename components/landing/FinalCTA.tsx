@@ -26,8 +26,8 @@ const CTASection: React.FC<CTASectionProps> = ({
   className = "md:max-w-330",
 }) => {
   return (
-    <section className={`py-12.5 px-1 md:px-6 `}>
-      <div className={` mx-auto ${className}`}>
+    <section className={`py-12.5 px-1 md:px-6 max-w-[92vw]`}>
+      <div className={` mx-auto max-w-[92vw]`}>
         <div className="bg-[#FFF1E9] rounded-2xl p-6 md:p-12 flex flex-col gap-5 items-center text-center relative overflow-hidden">
           {/* Decorative Circles */}
           <div className="absolute -bottom-20 -left-15 w-40 h-40 rounded-full border border-white/20 pointer-events-none bg-[#FED4BA]" />

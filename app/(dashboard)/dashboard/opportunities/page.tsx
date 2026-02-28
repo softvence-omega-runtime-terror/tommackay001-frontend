@@ -92,7 +92,7 @@ const ProviderOpportunityBoard = () => {
   };
 
   return (
-    <div className="flex flex-col gap-8 lg:gap-17.5">
+    <div className="flex flex-col gap-8 lg:gap-17.5 max-w-[92vw]">
       {/* Header */}
       <div className="flex flex-col gap-4 lg:gap-5">
         <div className="flex flex-col lg:flex-row items-start lg:items-center lg:justify-between gap-4">
@@ -233,15 +233,12 @@ const ProviderOpportunityBoard = () => {
             </div>
           </div>
 
-          {/* Apply Button */}
           <button className="w-full bg-[#fd751f] text-white font-semibold text-base py-2.5 rounded-lg">
             APPLY FILTER
           </button>
         </div>
 
-        {/* Opportunities Grid */}
         <div className="flex-1 flex flex-col gap-5">
-          {/* Search Bar */}
           <div className="bg-white rounded-xl p-2 lg:p-3 flex flex-col lg:flex-row items-start lg:items-center lg:justify-between gap-3">
             <div className="w-full lg:flex-1 bg-[#f5f5f5] border border-[#e9eaeb] rounded p-2 lg:p-3 flex items-center gap-2">
               <Search className="w-5 h-5 lg:w-6 lg:h-6 text-[#a4a7ae] shrink-0" />
@@ -264,13 +261,11 @@ const ProviderOpportunityBoard = () => {
             </div>
           </div>
 
-          {/* Cards Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-3 lg:gap-4">
             {opportunities.map((opp) => (
               <div key={opp.id} className="bg-white rounded-[20px] p-3 lg:p-5">
                 <div className="flex flex-col gap-4 lg:gap-7.5">
                   <div className="flex flex-col gap-3 lg:gap-5">
-                    {/* Header */}
                     <div className="flex items-start justify-between gap-2">
                       <div className="flex items-center gap-2">
                         <div className="w-9 h-9 lg:w-11 lg:h-11 rounded-lg overflow-hidden bg-gray-200 shrink-0">
@@ -307,7 +302,6 @@ const ProviderOpportunityBoard = () => {
                       </div>
                     </div>
 
-                    {/* Tags */}
                     <div className="flex gap-2 flex-wrap">
                       <span className="bg-[#ebffe9] text-[#196b0d] text-xs px-2 py-1 rounded-lg truncate">
                         {opp.type}

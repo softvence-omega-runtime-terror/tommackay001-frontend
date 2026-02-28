@@ -201,7 +201,7 @@ function FormScreen({
         </div>
       </div>
 
-      <div className="px-6 pb-6 pt-2 flex gap-3 w-full border justify-between">
+      <div className="px-6 pb-6 pt-2 flex flex-col md:flex-row gap-3 w-full border justify-between">
         <Button variant="white" onClick={onCancel} className=" border-none">
           CANCEL
         </Button>

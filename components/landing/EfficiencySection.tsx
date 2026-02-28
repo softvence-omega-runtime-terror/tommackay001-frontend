@@ -106,8 +106,11 @@ const EfficiencySection = () => {
                   >
                     <div className="bg-white border border-[#fed4ba] rounded-[10px] p-4 flex flex-col gap-2 shadow-sm h-full">
                       <div className="flex items-center gap-2 text-[#fd751f]">
-                        <span className="text-auto leading-none font-extrabold  border-2 rounded-full p-1 border-[#FD751F]!">
-                          <CheckCheck size={16} className="text-[#FD751F]" />
+                        <span className="text-auto leading-none font-extrabold  border-2 rounded-full p-1 border-green-500!">
+                          <CheckCheck
+                            size={16}
+                            className="text-green-500 font-bold"
+                          />
                         </span>
                         <span className="text-[16px] font-semibold font-inter uppercase tracking-wide">
                           THE OLD WAY
@@ -120,8 +123,8 @@ const EfficiencySection = () => {
 
                     <div className="bg-[#fff1e9] border border-[#fea369] rounded-[10px] p-4 flex flex-col gap-2 shadow-sm h-full">
                       <div className="flex items-center gap-2 text-[#fd751f]">
-                        <span className="text-auto leading-none font-extrabold rotate-90 border-2 rounded-full p-1 border-[#FD751F]!">
-                          <CheckCheck size={16} className="text-[#FD751F]" />
+                        <span className="text-auto leading-none font-extrabold border-2 rounded-full p-1 border-green-500!">
+                          <CheckCheck size={16} className="text-green-600!" />
                         </span>
                         <span className="text-[16px] font-semibold font-inter uppercase tracking-wide">
                           BACKLYST

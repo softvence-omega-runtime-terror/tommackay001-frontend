@@ -160,7 +160,7 @@ const NotificationPopover: React.FC<Props> = ({ isOpen, onClose }) => {
     <>
       <div className="fixed inset-0 z-50 bg-transparent" onClick={onClose} />
 
-      <div className="absolute right-0 top-14 w-105 bg-white rounded-2xl shadow-2xl border border-[#e9eaeb] z-50 overflow-hidden">
+      <div className="absolute right-0 top-14 md:w-105 bg-white rounded-2xl shadow-2xl border border-[#e9eaeb] z-50 overflow-hidden">
         <div className="flex items-center justify-between px-5 pt-5 pb-4">
           <div className="flex items-center gap-2.5">
             <Bell className="w-5 h-5 text-[#6366f1]" />
