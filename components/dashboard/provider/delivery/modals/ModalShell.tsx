@@ -53,10 +53,10 @@ export default function ModalShell({
     <div
       ref={overlayRef}
       onClick={(e) => e.target === overlayRef.current && onClose()}
-      className={`fixed inset-0 z-90 flex  items-center justify-center bg-black/40 backdrop-blur-sm p-4 ${overlayClassName}`}
+      className={`fixed inset-0 z-90 flex items-center justify-center bg-black/40 backdrop-blur-sm p-3 md:p-4 ${overlayClassName}`}
     >
       <div
-        className={`relative bg-white  rounded-2xl shadow-2xl w-full overflow-y-auto
+        className={`relative bg-white rounded-2xl shadow-2xl w-full overflow-y-auto max-h-[90vh] md:max-h-[92vh]
           ${widthClass}
           ${minHeightClass}
           ${maxHeightClass}
@@ -67,7 +67,7 @@ export default function ModalShell({
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute cursor-pointer top-4 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-[#f2f4f7] hover:bg-[#e9eaeb] text-[#535862] transition-colors"
+          className="absolute cursor-pointer top-3 md:top-4 right-3 md:right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-[#f2f4f7] hover:bg-[#e9eaeb] text-[#535862] transition-colors"
         >
           <X className="w-4 h-4" />
         </button>

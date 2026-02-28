@@ -93,7 +93,7 @@ export default function ConnectWebsiteModal({ open, onClose }: Props) {
         )}
         {step === "success" && <StepSuccess url={url} />}
 
-        <div className="px-6 pb-6 pt-4 border-t border-[#e9eaeb] flex items-center justify-between">
+        <div className="px-6 pb-6 mt-18 pt-4 border-t border-[#e9eaeb] flex flex-col gap-4 md:flex-row items-center justify-between">
           {step === "info" && (
             <>
               <button

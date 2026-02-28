@@ -92,21 +92,21 @@ export default function ProviderProfileModal({
     <>
       <ModalShell open={open} onClose={onClose}>
         <div
-          className="bg-white rounded-2xl  w-full max-w-5xl  max-h-[90vh] flex flex-col"
+          className="bg-white rounded-2xl w-full max-w-sm md:max-w-5xl max-h-[90vh] flex flex-col"
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="px-6 pt-5 pb-0 border-b border-[#f0f0f0]">
+          <div className="px-4 md:px-6 pt-4 md:pt-5 pb-0 border-b border-[#f0f0f0]">
             <div className="flex items-start justify-between mb-4">
-              <div className="flex items-center gap-3 py-4">
+              <div className="flex items-center gap-3 py-3 md:py-4">
                 <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-md shrink-0"
+                  className="w-10 md:w-12 h-10 md:h-12 rounded-xl flex items-center justify-center text-white font-bold text-sm md:text-base shrink-0"
                   style={{ backgroundColor: provider?.avatarBg }}
                 >
                   {provider?.avatar}
                 </div>
                 <div>
                   <div className="flex items-center gap-2 flex-wrap">
-                    <p className="text-lg font-bold text-[#181d27]">
+                    <p className="text-base md:text-lg font-bold text-[#181d27]">
                       {provider?.name}
                     </p>
                     {provider?.verified && (
@@ -145,7 +145,7 @@ export default function ProviderProfileModal({
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`flex items-center cursor-pointer  gap-1.5 px-5 py-2.5 text-sm font-semibold whitespace-nowrap border-b-3 transition-colors ${activeTab === tab ? "border-primary  text-[#181d27]" : "border-transparent text-[#717680] hover:text-[#414651]"}`}
+                  className={`flex items-center cursor-pointer gap-1 md:gap-1.5 px-3 md:px-5 py-2 md:py-2.5 text-xs md:text-sm font-semibold whitespace-nowrap border-b-3 transition-colors ${activeTab === tab ? "border-primary text-[#181d27]" : "border-transparent text-[#717680] hover:text-[#414651]"}`}
                 >
                   {tabIcons[tab]} {tab}
                 </button>
@@ -164,20 +164,27 @@ export default function ProviderProfileModal({
             {activeTab === "WEBSITE LIST" && <ProfileWebsite />}
           </div>
 
-          <div className="px-6 py-4 border-t border-[#f0f0f0] flex flex-col md:flex-row  items-center justify-between bg-[#fafafa] rounded-b-2xl space-y-3">
-            <div className="flex flex-col md:flex-row  items-center gap-4 space-y-1">
-              <button className="flex items-center gap-1.5 text-sm font-semibold text-[#535862] hover:text-[#181d27] transition-colors ">
-                <AlertCircle className="w-4 h-4" /> ASK A QUESTION
+          <div className="px-4 md:px-6 py-3 md:py-4 border-t border-[#f0f0f0] flex flex-col md:flex-row items-center justify-between bg-[#fafafa] rounded-b-2xl gap-3">
+            <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4 w-full md:w-auto">
+              <button className="flex items-center gap-1.5 text-xs md:text-sm font-semibold text-[#535862] hover:text-[#181d27] transition-colors whitespace-nowrap">
+                <AlertCircle className="w-3.5 md:w-4 h-3.5 md:h-4 shrink-0" />{" "}
+                ASK A QUESTION
               </button>
               <button
                 onClick={handleExplore}
-                className="flex  cursor-pointer  items-center gap-1.5 text-sm font-semibold text-[#535862] hover:text-[#181d27] transition-colors"
+                className="flex cursor-pointer items-center gap-1.5 text-xs md:text-sm font-semibold text-[#535862] hover:text-[#181d27] transition-colors whitespace-nowrap"
               >
-                <Eye className="w-4 h-4" /> EXPLORE CAPABILITY
+                <Eye className="w-3.5 md:w-4 h-3.5 md:h-4 shrink-0" /> EXPLORE
+                CAPABILITY
               </button>
             </div>
-            <Button variant="secondary" onClick={handleCreateTask}>
-              <Plus className="w-4 h-4" /> CREATE TASK TO INVITE
+            <Button
+              variant="secondary"
+              onClick={handleCreateTask}
+              className="w-full md:w-auto h-10 md:h-11 text-xs md:text-sm"
+            >
+              <Plus className="w-3.5 md:w-4 h-3.5 md:h-4" /> CREATE TASK TO
+              INVITE
             </Button>
           </div>
         </div>

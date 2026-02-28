@@ -45,22 +45,22 @@ export default function OrderCompletedModal({ order, open, onClose }: Props) {
     <ModalShell open={open} onClose={handleClose}>
       <section className="flex flex-col max-h-[88vh]">
         {/* Header */}
-        <div className="pt-6 pb-0 shrink-0">
-          <div className="flex items-start gap-4 px-6 pr-10 py-4">
-            <div className="w-11 h-11 bg-[#FFF4ED] rounded-xl flex items-center justify-center shrink-0">
-              <FileText className="w-6 h-6 text-secondary" />
+        <div className="pt-4 md:pt-6 pb-0 shrink-0">
+          <div className="flex items-start gap-3 md:gap-4 px-3 md:px-6 pr-4 md:pr-10 py-3 md:py-4">
+            <div className="w-9 md:w-11 h-9 md:h-11 bg-[#FFF4ED] rounded-xl flex items-center justify-center shrink-0">
+              <FileText className="w-5 md:w-6 h-5 md:h-6 text-secondary" />
             </div>
 
             <div className="flex-1 min-w-0">
-              <div className="flex flex-wrap items-center gap-3">
-                <h2 className="text-2xl font-bold text-[#181d27]">
+              <div className="flex flex-wrap items-center gap-2 md:gap-3">
+                <h2 className="text-lg md:text-2xl font-bold text-[#181d27]">
                   {order.name}
                 </h2>
-                <span className="text-xs font-bold uppercase tracking-wide bg-[#f2f4f7] text-[#535862] px-2.5 py-1 rounded-full">
+                <span className="text-[9px] md:text-xs font-bold uppercase tracking-wide bg-[#f2f4f7] text-[#535862] px-2 py-0.5 rounded-full">
                   {order.id}
                 </span>
               </div>
-              <p className="text-sm text-[#535862] mt-1">
+              <p className="text-xs md:text-sm text-[#535862] mt-1 md:mt-2">
                 Completed for{" "}
                 <span className="font-semibold text-[#181d27]">
                   {order.requester?.name ?? "Sarah J."}
@@ -70,14 +70,14 @@ export default function OrderCompletedModal({ order, open, onClose }: Props) {
           </div>
 
           {/* Tabs – all cursor-pointer */}
-          <div className="flex mt-4 bg-[#FFF4ED] p-1 gap-1 px-6">
+          <div className="flex mt-4 bg-[#FFF4ED] p-1 gap-1 px-3 md:px-6">
             {TABS.map(({ id, label, icon: Icon }) => {
               const isActive = activeTab === id;
               return (
                 <button
                   key={id}
                   onClick={() => setActiveTab(id)}
-                  className={`flex-1 cursor-pointer flex items-center justify-center gap-2 py-3 px-3 rounded-lg font-semibold transition text-sm sm:text-base ${
+                  className={`flex-1 cursor-pointer flex items-center justify-center gap-2 py-2 md:py-3 px-2 md:px-3 rounded-lg font-semibold transition text-xs sm:text-sm ${
                     isActive
                       ? "text-secondary  "
                       : "text-[#535862] hover:text-secondary "
@@ -100,15 +100,19 @@ export default function OrderCompletedModal({ order, open, onClose }: Props) {
         </div>
 
         {/* Tab Content */}
-        <div className="flex-1 overflow-y-auto min-h-100 max-h-100 px-12 py-6">
+        <div className="flex-1 overflow-y-auto min-h-100 max-h-100 px-6 md:px-12 py-4 md:py-6">
           {activeTab === "summary" && <SummaryTab />}
           {activeTab === "submission" && <SubmissionTab />}
           {activeTab === "timeline" && <TimelineTab />}
         </div>
 
         {/* Footer – only close button */}
-        <div className="shrink-0 px-10 sm:px-16 pb-5 pt-4 border-t border-[#e9eaeb] flex items-center justify-end bg-white">
-          <Button variant="white" onClick={handleClose} className="rounded-lg">
+        <div className="shrink-0 px-6 md:px-10 lg:px-16 pb-4 md:pb-5 pt-3 md:pt-4 border-t border-[#e9eaeb] flex items-center justify-end bg-white">
+          <Button
+            variant="white"
+            onClick={handleClose}
+            className="rounded-lg text-xs md:text-sm"
+          >
             Close Oversight
           </Button>
         </div>
@@ -119,33 +123,33 @@ export default function OrderCompletedModal({ order, open, onClose }: Props) {
 
 function SummaryTab() {
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div className="space-y-4 md:space-y-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
         {/* Status – COMPLETED */}
-        <div className="border border-[#e9eaeb] rounded-xl p-5 space-y-2 bg-white">
-          <p className="text-xs font-semibold uppercase tracking-wide text-[#535862]">
+        <div className="border border-[#e9eaeb] rounded-xl p-3 md:p-5 space-y-2 bg-white">
+          <p className="text-[10px] md:text-xs font-semibold uppercase tracking-wide text-[#535862]">
             Status
           </p>
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-full bg-[#ECFDF3] flex items-center justify-center">
-              <CheckCircle2 className="w-5 h-5 text-[#027A48]" />
+          <div className="flex items-center gap-2">
+            <div className="w-7 md:w-8 h-7 md:h-8 rounded-full bg-[#ECFDF3] flex items-center justify-center">
+              <CheckCircle2 className="w-4 md:w-5 h-4 md:h-5 text-[#027A48]" />
             </div>
-            <span className="text-lg font-semibold text-[#027A48]">
+            <span className="text-base md:text-lg font-semibold text-[#027A48]">
               Completed
             </span>
           </div>
         </div>
 
         {/* Target Placement */}
-        <div className="border border-[#e9eaeb] rounded-xl p-5 space-y-2 bg-white">
-          <p className="text-xs font-semibold uppercase tracking-wide text-[#535862]">
+        <div className="border border-[#e9eaeb] rounded-xl p-3 md:p-5 space-y-2 bg-white">
+          <p className="text-[10px] md:text-xs font-semibold uppercase tracking-wide text-[#535862]">
             Placement
           </p>
-          <div className="flex items-center gap-2.5">
-            <Globe className="w-5 h-5 text-[#6366f1]" />
+          <div className="flex items-center gap-2">
+            <Globe className="w-4 md:w-5 h-4 md:h-5 text-[#6366f1]" />
             <a
               href="#"
-              className="text-base font-semibold text-[#6366f1] hover:underline"
+              className="text-sm md:text-base font-semibold text-[#6366f1] hover:underline"
               target="_blank"
               rel="noopener noreferrer"
             >

@@ -41,23 +41,23 @@ export default function RequestStatusModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-3 md:p-4"
       onClick={onClose}
     >
       <div
-        className={`relative w-full max-w-xl rounded-2xl ${bgColor} ${borderColor} border shadow-xl overflow-hidden`}
+        className={`relative w-full max-w-sm md:max-w-xl rounded-2xl ${bgColor} ${borderColor} border shadow-xl overflow-hidden`}
         onClick={(e) => e.stopPropagation()}
       >
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 transition-colors"
+          className="absolute top-3 md:top-4 right-3 md:right-4 text-gray-500 hover:text-gray-800 transition-colors"
           aria-label="Close modal"
         >
-          <X className="w-6 h-6" />
+          <X className="w-5 md:w-6 h-5 md:h-6" />
         </button>
 
-        <div className="px-8 pt-10 pb-9 text-center">
-          <div className="mx-auto mb-6 w-20 h-20 rounded-2xl bg-linear-to-br from-purple-500 to-indigo-600 flex items-center justify-center shadow-md">
+        <div className="px-4 md:px-8 pt-6 md:pt-10 pb-5 md:pb-9 text-center">
+          <div className="mx-auto mb-4 md:mb-6 w-16 md:w-20 h-16 md:h-20 rounded-2xl bg-linear-to-br from-purple-500 to-indigo-600 flex items-center justify-center shadow-md">
             <Image
               src={alphaImage}
               alt="image"
@@ -65,11 +65,15 @@ export default function RequestStatusModal({
             />
           </div>
 
-          <h2 className={`text-2xl font-bold ${titleColor} mb-4`}>
+          <h2
+            className={`text-lg md:text-2xl font-bold ${titleColor} mb-3 md:mb-4`}
+          >
             {isAccepted ? "Request Accepted" : "Request Rejected"}
           </h2>
 
-          <p className={`text-base leading-relaxed ${textColor} opacity-90`}>
+          <p
+            className={`text-xs md:text-base leading-relaxed ${textColor} opacity-90`}
+          >
             {isAccepted ? (
               <>
                 You&apos;ve successfully accepted this provider&apos;s request.
