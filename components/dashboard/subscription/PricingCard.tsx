@@ -35,7 +35,7 @@ export const PricingCard = ({ tier }: { tier: PricingTier }) => {
             </span>
           </div>
           <span className="font-inter font-normal text-base leading-6 text-gray-600 text-center">
-            Billed annually.
+            Billed monthly.
           </span>
         </div>
       </div>

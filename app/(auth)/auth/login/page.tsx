@@ -13,7 +13,7 @@ import logo from "@/public/backlyst-logo.png";
 const LoginPage = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("password");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
 
@@ -21,7 +21,7 @@ const LoginPage = () => {
     e.preventDefault();
     setError("");
 
-    if (email === "user@gmail.com" && password === "password") {
+    if (email === "user@gmail.com" && password === "password123") {
       router.push("/dashboard");
     } else {
       setError("Invalid email or password. Please try again.");
