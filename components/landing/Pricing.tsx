@@ -1,6 +1,5 @@
 import React from "react";
-import Link from "next/link";
-import { Check, CheckCircle, Globe2, ShieldCheck, Star } from "lucide-react";
+import { Check, Globe2, ShieldCheck, Star } from "lucide-react";
 import { PricingCard } from "../dashboard/subscription/PricingCard";
 import { FreePlanCard } from "../dashboard/subscription/FreePlanCard";
 
@@ -12,45 +11,51 @@ export interface PricingTier {
   highlighted?: boolean;
 }
 
-const tiers: PricingTier[] = [
+export const tiers: PricingTier[] = [
   {
     name: "Silver",
     price: "44.99",
     icon: Globe2,
     features: [
-      "5 task credits included",
-      "1 active website",
-      "Basic visibility options",
-      "Standard support",
-      "Task history for 30 days",
-      "Email notifications",
+      "5 task credits included (monthly refresh)",
+      "Max 10 total task credit capacity",
+      "Max 5 visibility credits capacity",
+      "Earn credits via verified backlinks",
+      "Milestone rewards (every 10 backlinks)",
+      "Referral credit rewards",
+      "Weekly backlink required for visibility",
+      "DA affects ranking only (not credit cost)",
     ],
   },
   {
     name: "Gold",
     price: "79.99",
     icon: Star,
-    features: [
-      "15 task credits included",
-      "3 active websites",
-      "Enhanced visibility options",
-      "Priority support",
-      "Task history for 90 days",
-      "Advanced analytics",
-    ],
     highlighted: true,
+    features: [
+      "10 task credits included (monthly refresh)",
+      "Max 50 total task credit capacity",
+      "Max 10 visibility credits capacity",
+      "Earn credits via verified backlinks",
+      "Milestone rewards (every 10 backlinks)",
+      "Referral credit rewards",
+      "Weekly backlink required for visibility",
+      "Higher ranking potential via contribution + DA",
+    ],
   },
   {
     name: "Platinum",
     price: "139.99",
     icon: ShieldCheck,
     features: [
-      "40 task credits included",
-      "10 active websites",
-      "Maximum visibility options",
-      "Dedicated account manager",
-      "Unlimited task history",
-      "Custom reporting",
+      "25 task credits included (monthly refresh)",
+      "Max 100 total task credit capacity",
+      "Max 20 visibility credits capacity",
+      "Earn credits via verified backlinks",
+      "Milestone rewards (every 10 backlinks)",
+      "Referral credit rewards",
+      "Weekly backlink required for visibility",
+      "Maximum scaling potential",
     ],
   },
 ];

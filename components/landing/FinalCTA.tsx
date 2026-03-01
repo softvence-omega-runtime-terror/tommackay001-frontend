@@ -26,10 +26,11 @@ const CTASection: React.FC<CTASectionProps> = ({
   className = "md:max-w-330",
 }) => {
   return (
-    <section className={`py-12.5 px-1 md:px-6 max-w-[92vw]`}>
+    <section
+      className={`py-12.5 px-1 md:px-6 min-w-[82vw] max-w-[92vw] mx-auto`}
+    >
       <div className={` mx-auto max-w-[92vw]`}>
         <div className="bg-[#FFF1E9] rounded-2xl p-6 md:p-12 flex flex-col gap-5 items-center text-center relative overflow-hidden">
-          {/* Decorative Circles */}
           <div className="absolute -bottom-20 -left-15 w-40 h-40 rounded-full border border-white/20 pointer-events-none bg-[#FED4BA]" />
           <div className="absolute -top-20 -right-15 w-40 h-40 rounded-full border border-white/20 pointer-events-none bg-[#FED4BA]" />
 
@@ -42,7 +43,6 @@ const CTASection: React.FC<CTASectionProps> = ({
           </p>
 
           <div className="relative z-10 flex gap-5 items-center mt-4 flex-wrap justify-center w-full">
-            {/* Primary CTA */}
             <Link
               href={primaryAction.href}
               className="flex gap-2.5 items-center justify-center bg-secondary hover:bg-gray-50 text-white px-7.5 py-3.5 rounded-2xl font-semibold font-inter text-xs md:text-base leading-6 shadow-[0_3px_7px_0_rgba(0,0,0,0.1)] transition-all"
@@ -51,7 +51,6 @@ const CTASection: React.FC<CTASectionProps> = ({
               <span>{primaryAction.label}</span>
             </Link>
 
-            {/* Secondary CTA */}
             {secondaryAction && (
               <Link
                 href={secondaryAction.href}

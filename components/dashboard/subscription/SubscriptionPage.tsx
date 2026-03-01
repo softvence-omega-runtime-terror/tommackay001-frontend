@@ -1,58 +1,8 @@
-import React from "react";
-import { Globe2, Info, ShieldCheck, Star } from "lucide-react";
+import { Info } from "lucide-react";
 import { PricingCard } from "./PricingCard";
 import { FreePlanCard } from "./FreePlanCard";
+import { tiers } from "@/components/landing/Pricing";
 
-interface PricingTier {
-  name: string;
-  icon: React.ElementType;
-  price: string;
-  features: string[];
-  highlighted?: boolean;
-}
-
-const tiers: PricingTier[] = [
-  {
-    name: "Silver",
-    price: "44.99",
-    icon: Globe2,
-    features: [
-      "5 task credits included",
-      "1 active website",
-      "Basic visibility options",
-      "Standard support",
-      "Task history for 30 days",
-      "Email notifications",
-    ],
-  },
-  {
-    name: "Gold",
-    price: "79.99",
-    icon: Star,
-    features: [
-      "15 task credits included",
-      "3 active websites",
-      "Enhanced visibility options",
-      "Priority support",
-      "Task history for 90 days",
-      "Advanced analytics",
-    ],
-    highlighted: true,
-  },
-  {
-    name: "Platinum",
-    price: "139.99",
-    icon: ShieldCheck,
-    features: [
-      "40 task credits included",
-      "10 active websites",
-      "Maximum visibility options",
-      "Dedicated account manager",
-      "Unlimited task history",
-      "Custom reporting",
-    ],
-  },
-];
 export default function SubscriptionPage() {
   return (
     <div className="w-full flex flex-col gap-12 lg:gap-20 items-center justify-center">
@@ -65,7 +15,6 @@ export default function SubscriptionPage() {
           tracking
         </p>
 
-        {/* Note Banner */}
         <div className="mt-6 inline-flex items-start lg:items-center text-left gap-2 px-3 lg:px-5 py-2.5 bg-white rounded-xl text-sm lg:text-base text-gray-500">
           <Info className="w-4 h-4 lg:w-5 lg:h-5 shrink-0 mt-0.5 lg:mt-0" />
           <span>
@@ -75,7 +24,6 @@ export default function SubscriptionPage() {
           </span>
         </div>
       </div>
-      {/* Pricing Cards */}
       <div className="flex gap-4 lg:gap-8 items-start justify-center w-full px-4 lg:px-0 lg:max-w-full flex-wrap">
         {tiers.map((tier) => (
           <div
@@ -87,7 +35,6 @@ export default function SubscriptionPage() {
         ))}
       </div>
 
-      {/* Free Plan */}
       <FreePlanCard />
     </div>
   );

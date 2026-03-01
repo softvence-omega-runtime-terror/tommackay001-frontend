@@ -12,7 +12,7 @@ import logo from "@/public/backlyst-logo.png";
 
 const LoginPage = () => {
   const router = useRouter();
-  const [email, setEmail] = useState("admin@intervo.com");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("password");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
@@ -20,7 +20,12 @@ const LoginPage = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
-    router.push("/dashboard");
+
+    if (email === "user@gmail.com" && password === "password") {
+      router.push("/dashboard");
+    } else {
+      setError("Invalid email or password. Please try again.");
+    }
   };
 
   return (

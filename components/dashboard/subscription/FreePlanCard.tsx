@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export const FreePlanCard = () => {
   return (
-    <div className="w-full max-w-285  bg-white rounded-2xl border border-gray-200 shadow-md px-12 py-5 flex items-center justify-between flex-wrap gap-6">
+    <div className="w-full max-w-300  bg-white rounded-2xl border border-gray-200 shadow-md px-12 py-5 flex items-center justify-between flex-wrap gap-6">
       {/* Left Section */}
       <div className="flex items-center gap-4">
         <div className="w-12 h-12 rounded-full bg-success flex items-center justify-center">
@@ -25,14 +25,16 @@ export const FreePlanCard = () => {
 
       {/* Features */}
       <div className="flex flex-col gap-2">
-        <FeatureItem text="1 Credit Per Month" />
         <FeatureItem text="Visible For 7 Days" />
+        <FeatureItem text="1 Task Credit Per Month" />
+        <FeatureItem text="5 Task & 2 Visibility credits Capacity" />
+        <FeatureItem text="Weekly backlink required for visibility" />
       </div>
 
       {/* CTA */}
       <Link
         href="/auth/register"
-        className="bg-primary w-full text-center hover:bg-brand-indigo-600 text-white px-10 py-4 rounded-xl font-inter font-semibold text-base transition-all"
+        className="bg-primary w-fit text-center hover:bg-brand-indigo-600 text-white px-10 py-4 rounded-xl font-inter font-semibold text-base transition-all"
       >
         Get started
       </Link>

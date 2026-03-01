@@ -26,7 +26,7 @@ export default function ActiveDeliveries({
 
       {/* Scroll Wrapper */}
       <div className="w-full overflow-x-auto mt-4">
-        <div className="min-w-[900px] space-y-4">
+        <div className="min-w-225 space-y-4">
           {deliveries.map((task, i) => (
             <DeliveryCard key={i} task={task} />
           ))}

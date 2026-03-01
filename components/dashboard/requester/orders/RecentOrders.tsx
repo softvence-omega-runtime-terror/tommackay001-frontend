@@ -42,7 +42,7 @@ export default function RecentOrders({
 
       {/* Scroll Wrapper */}
       <div className="w-full overflow-x-auto">
-        <div className="min-w-[900px]">
+        <div className="min-w-225">
           <div
             className="grid border-y border-[#e9eaeb] text-sm font-medium text-[#181d27]"
             style={{ gridTemplateColumns: "2.5fr 1fr 1fr 1.5fr 1fr" }}
