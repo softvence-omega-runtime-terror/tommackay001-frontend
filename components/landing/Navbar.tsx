@@ -45,7 +45,7 @@ const Navbar = () => {
             ))}
           {isHidden && (
             <Link
-              href="/home"
+              href="/"
               onClick={() => setOpen(false)}
               className="text-base font-inter text-gray-900 hover:text-primary"
             >
@@ -97,7 +97,7 @@ const Navbar = () => {
               ))}
             {isHidden && (
               <Link
-                href="/home"
+                href="/"
                 onClick={() => setOpen(false)}
                 className="text-base font-inter text-gray-900 hover:text-primary"
               >

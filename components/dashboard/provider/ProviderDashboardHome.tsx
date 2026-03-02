@@ -57,7 +57,7 @@ const ProviderDashboardHome = () => {
         onClose={() => setBuyModalOpen(false)}
       />
 
-      <div className="flex flex-col gap-6 font-inter max-w-[90vw]">
+      <div className="flex flex-col gap-6 font-inter max-w-[90vw] lg:max-w-[65vw] xl:max-w-[85vw] 2xl:max-w-[90vw] md:mx-auto lg:mx-0">
         {/* Header Section */}
         <div className="md:flex items-end justify-between">
           <div className="flex flex-col gap-5">
@@ -109,7 +109,7 @@ const ProviderDashboardHome = () => {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1  md:flex  gap-4 mt-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4  gap-4 mt-8">
           <StatCard
             icon={Database}
             label="TOTAL CREDITS EARNED"
@@ -137,8 +137,8 @@ const ProviderDashboardHome = () => {
         </div>
 
         {/* Recent Activity Table */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-6">
-          <div className="lg:col-span-3 flex flex-col gap-6 h-full">
+        <div className="grid grid-cols-1 xl:grid-cols-12 gap-6 mt-6">
+          <div className="xl:col-span-3 flex flex-col gap-6 h-full">
             <div className="border border-[#e9eaeb] rounded-xl p-6 shadow-sm bg-white">
               <div className="flex items-center gap-3">
                 <div className="w-14 h-14 rounded-full bg-linear-to-br from-[#6366f1] to-[#a78bfa] flex items-center justify-center text-white text-2xl font-bold">
@@ -203,7 +203,7 @@ const ProviderDashboardHome = () => {
           </div>
 
           {/* Right Column - Active Deliveries */}
-          <div className="lg:col-span-9 flex flex-col h-full gap-5 bg-white p-4 rounded-2xl">
+          <div className="xl:col-span-9 flex flex-col h-full gap-5 bg-white p-4 rounded-2xl">
             <ActiveDeliveries
               deliveries={activeDeliveries}
               currentPage={1}

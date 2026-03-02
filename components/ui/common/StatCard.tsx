@@ -11,10 +11,10 @@ export const StatCard = ({
   label,
   value,
   subtext,
-  width = "md:w-95",
+  width = " lg:w-95",
 }: StatCardProps) => (
   <div
-    className={`bg-white border border-[#e9eaeb] rounded-xl p-5 flex items-center gap-5 ${width}`}
+    className={`bg-white border border-[#e9eaeb] rounded-xl p-5 flex items-center gap-5 `}
   >
     <div className="w-13.5 h-13.5 bg-[#f5f5f5] rounded-full flex items-center justify-center shrink-0">
       <Icon className="w-6 h-6 text-[#535862]" />

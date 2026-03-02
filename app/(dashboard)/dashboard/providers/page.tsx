@@ -165,7 +165,7 @@ export default function CompanyDirectory() {
   });
 
   return (
-    <div className="min-h-screen bg-[#f7f7f7] font-sans">
+    <div className="min-h-screen bg-[#f7f7f7] font-sans w-full max-w-[90vw] lg:max-w-[65vw] xl:max-w-[85vw] 2xl:max-w-[90vw] md:mx-auto lg:mx-0">
       <div className=" flex flex-col gap-8">
         <div className="flex flex-col gap-4">
           <div>
@@ -334,7 +334,7 @@ export default function CompanyDirectory() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-3 gap-4">
               {filtered.map((p) => (
                 <ProviderCard
                   key={p.id}

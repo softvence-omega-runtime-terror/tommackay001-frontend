@@ -110,7 +110,7 @@ export default function ReferralsPage() {
   };
 
   return (
-    <div className="flex flex-col gap-6 font-inter max-w-[90vw]">
+    <div className="flex flex-col gap-6 font-inter w-full max-w-[90vw] lg:max-w-[65vw] xl:max-w-[85vw] 2xl:max-w-[90vw] md:mx-auto lg:mx-0">
       <div className="flex flex-col gap-4 md:flex-row items-start justify-between">
         <div>
           <h1 className="text-xl md:text-[30px] font-semibold font-sora text-[#181d27] leading-none">

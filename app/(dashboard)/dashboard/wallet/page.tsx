@@ -50,7 +50,7 @@ export default function WalletPage() {
   ];
 
   return (
-    <div className="  md:px-4  md:py-8 space-y-10 max-w-[90vw]">
+    <div className="  md:px-4  md:py-8 space-y-10 w-full max-w-[90vw] lg:max-w-[65vw] xl:max-w-[85vw] 2xl:max-w-[90vw] md:mx-auto lg:mx-0">
       <PlanOverview />
       <div className="flex flex-col">
         <h1>Compare Plans</h1>

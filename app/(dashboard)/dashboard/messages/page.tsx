@@ -204,7 +204,7 @@ export default function ActiveTasksPage() {
   };
 
   return (
-    <div className="flex h-[90vh] md:h-[85vh] bg-gray-50 font-sans overflow-hidden rounded-2xl relative">
+    <div className="flex h-[90vh] md:h-[85vh] bg-gray-50 font-sans overflow-hidden rounded-2xl relative w-full max-w-[90vw] lg:max-w-[65vw] xl:max-w-[85vw] 2xl:max-w-[90vw] md:mx-auto lg:mx-0">
       {/* Mobile Sidebar Overlay */}
       {showSidebarOnMobile && (
         <div
@@ -215,10 +215,10 @@ export default function ActiveTasksPage() {
 
       {/* LEFT – Active Tasks List */}
       <div
-        className={`absolute md:relative z-50 md:z-auto inset-y-0 left-0 w-full md:w-96 lg:w-96 xl:w-120 bg-white border-r border-gray-200 flex flex-col transition-transform duration-300 md:transition-none ${
+        className={`absolute md:relative z-50 md:z-auto inset-y-0 left-0 w-full  md:w-72  xl:w-96 bg-white border-r border-gray-200 flex flex-col transition-transform duration-300 md:transition-none ${
           showSidebarOnMobile
             ? "translate-x-0"
-            : "-translate-x-full md:translate-x-0"
+            : "-translate-x-full md:translate-x-0 "
         }`}
       >
         {/* Header */}
@@ -349,7 +349,6 @@ export default function ActiveTasksPage() {
                 {selectedMember.name}
               </span>
             </div>
-
             {/* Top Task Info Banner */}
             <div className="bg-white py-4">
               <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 px-4 md:px-6 border-b border-orange-200 pb-4">
@@ -374,61 +373,62 @@ export default function ActiveTasksPage() {
                 </div>
               </div>
 
-              <div className="mt-4 pt-4 bg-accent border-t border-orange-200 text-sm m-4 md:m-6 rounded-2xl p-4">
-                <div className="flex flex-col gap-4">
-                  <div className="hidden md:flex gap-4 items-start">
-                    <div className="h-10 w-10 bg-white rounded-lg border border-orange-200 flex items-center justify-center shrink-0">
-                      <FileText size={20} className="text-secondary" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <span className="text-sm font-bold uppercase tracking-wider text-secondary">
-                          TASK {taskDetails.taskNumber}
-                        </span>
-                        <span className="text-xs bg-white border border-secondary text-secondary px-3 py-1 rounded-full font-medium">
-                          {taskDetails.status}
-                        </span>
+              {selectedMember.id == "1" && (
+                <div className="mt-4 pt-4 bg-accent border-t border-orange-200 text-sm m-4 md:m-6 rounded-2xl p-4">
+                  <div className="flex flex-col gap-4">
+                    <div className="hidden md:flex gap-4 items-start">
+                      <div className="h-10 w-10 bg-white rounded-lg border border-orange-200 flex items-center justify-center shrink-0">
+                        <FileText size={20} className="text-secondary" />
                       </div>
-                      <h2 className="text-xs text-gray-500 mt-1">
-                        {taskDetails.title}
-                      </h2>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span className="text-sm font-bold uppercase tracking-wider text-secondary">
+                            TASK {taskDetails.taskNumber}
+                          </span>
+                          <span className="text-xs bg-white border border-secondary text-secondary px-3 py-1 rounded-full font-medium">
+                            {taskDetails.status}
+                          </span>
+                        </div>
+                        <h2 className="text-xs text-gray-500 mt-1">
+                          {taskDetails.title}
+                        </h2>
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Task Info - Second Row (Responsive Grid) */}
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div>
-                      <p className="text-xs font-semibold text-secondary uppercase tracking-wide">
-                        Placement Domain
-                      </p>
-                      <p className="font-semibold text-gray-900 text-sm mt-0.5">
-                        {taskDetails.domain}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-xs font-semibold text-secondary uppercase tracking-wide">
-                        Authority
-                      </p>
-                      <p className="font-semibold text-gray-900 text-sm mt-0.5">
-                        {taskDetails.authority}
-                      </p>
-                    </div>
-                    <div className="flex items-end">
-                      <Button
-                        variant="white"
-                        className="rounded-lg w-full md:w-auto text-secondary border border-secondary!"
-                      >
-                        <span className="text-xs md:text-sm">
-                          VIEW TASK BRIEF
-                        </span>{" "}
-                        <ChevronRight size={16} />
-                      </Button>
+                    {/* Task Info - Second Row (Responsive Grid) */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                      <div>
+                        <p className="text-xs font-semibold text-secondary uppercase tracking-wide">
+                          Placement Domain
+                        </p>
+                        <p className="font-semibold text-gray-900 text-sm mt-0.5">
+                          {taskDetails.domain}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-xs font-semibold text-secondary uppercase tracking-wide">
+                          Authority
+                        </p>
+                        <p className="font-semibold text-gray-900 text-sm mt-0.5">
+                          {taskDetails.authority}
+                        </p>
+                      </div>
+                      <div className="flex items-end">
+                        <Button
+                          variant="white"
+                          className="rounded-lg w-full md:w-auto text-secondary border border-secondary!"
+                        >
+                          <span className="text-xs md:text-sm">
+                            VIEW TASK BRIEF
+                          </span>{" "}
+                          <ChevronRight size={16} />
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              )}
             </div>
-
             {/* Chat Messages */}
             <div className="flex-1 overflow-y-auto p-3 md:p-6 space-y-4 bg-white">
               {chatMessages.map((msg) => (
@@ -473,29 +473,30 @@ export default function ActiveTasksPage() {
               ))}
               <div ref={messagesEndRef} />
             </div>
-
             <div className="border-t border-gray-200">
-              <div className="hidden md:block bg-accent border-b border-orange-200 px-4 md:px-6 py-3 md:py-4">
-                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 md:gap-4">
-                  <div className="flex items-center gap-3">
-                    <AlertCircle className="text-accent shrink-0" size={20} />
-                    <span className="font-bold text-secondary uppercase text-xs md:text-sm tracking-wide">
-                      Requester Approval Console
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2 md:gap-3 flex-wrap lg:flex-nowrap">
-                    <Button variant="white" className="text-xs md:text-sm">
-                      <RotateCcw size={16} /> REQUEST REVISION
-                    </Button>
-                    <Button
-                      variant="secondary"
-                      className="rounded-lg text-xs md:text-sm"
-                    >
-                      APPROVE & RELEASE ESCROW <ArrowRight size={16} />
-                    </Button>
+              {selectedMember.id == "1" && (
+                <div className="hidden lg:block bg-accent border-b border-orange-200 px-4 md:px-6 py-3 md:py-4">
+                  <div className="flex flex-col lg:flex-row flex-wrap lg:items-center justify-between gap-3 md:gap-4">
+                    <div className="flex items-center gap-3">
+                      <AlertCircle className="text-accent shrink-0" size={20} />
+                      <span className="font-bold text-secondary uppercase text-xs md:text-sm tracking-wide">
+                        Requester Approval Console
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2 md:gap-3 flex-wrap ">
+                      <Button variant="white" className="text-xs md:text-sm">
+                        <RotateCcw size={16} /> REQUEST REVISION
+                      </Button>
+                      <Button
+                        variant="secondary"
+                        className="rounded-lg text-xs md:text-sm"
+                      >
+                        APPROVE & RELEASE ESCROW <ArrowRight size={16} />
+                      </Button>
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
 
               {/* Message Input */}
               <div className="p-3 md:p-4 bg-white">

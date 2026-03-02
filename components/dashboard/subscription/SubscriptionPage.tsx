@@ -5,7 +5,7 @@ import { tiers } from "@/components/landing/Pricing";
 
 export default function SubscriptionPage() {
   return (
-    <div className="w-full flex flex-col gap-12 lg:gap-20 items-center justify-center">
+    <div className=" flex flex-col gap-12 lg:gap-20 items-center justify-center w-full max-w-[90vw] lg:max-w-[65vw] xl:max-w-[85vw] 2xl:max-w-[90vw] md:mx-auto lg:mx-0">
       <div className="px-4 lg:px-8 py-8 lg:py-10 text-center max-w-5xl">
         <h2 className="text-3xl lg:text-5xl font-semibold text-gray-900">
           Membership Tiers
@@ -24,7 +24,7 @@ export default function SubscriptionPage() {
           </span>
         </div>
       </div>
-      <div className="flex gap-4 lg:gap-8 items-start justify-center w-full px-4 lg:px-0 lg:max-w-full flex-wrap">
+      <div className="flex gap-4 lg:gap-8 items-start justify-center w-full px-4 lg :px-0 lg:max-w-full flex-wrap">
         {tiers.map((tier) => (
           <div
             key={tier.name}

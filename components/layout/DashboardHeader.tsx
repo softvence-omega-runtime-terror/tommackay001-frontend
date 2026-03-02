@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Search, Plus, Bell, Wallet, Check, X, Menu, Send } from "lucide-react";
 import NotificationPopover from "../dashboard/NotificationPopover";
 import { Button } from "../ui/Button";
@@ -24,13 +24,24 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
   isSidebarOpen,
 }) => {
   const router = useRouter();
+  const pathname = usePathname();
+
+  const toggleRoutes = [
+    "/dashboard/providers",
+    "/dashboard/orders",
+    "/dashboard/jobs",
+    "/dashboard/opportunities",
+    "/dashboard",
+  ];
+  const isToggle = toggleRoutes.includes(pathname);
+
   const [isNotificationsOpen, setIsNotificationsOpen] = React.useState(false);
   const [isSearchOpen, setIsSearchOpen] = React.useState(false);
 
   return (
     <>
       <header className="h-16 lg:h-20 bg-white border-b border-gray-200 flex items-center justify-between px-4 lg:px-8 sticky top-0 z-10">
-        <div className="flex items-center gap-3 flex-1 lg:flex-none lg:w-114.25">
+        <div className="flex items-center gap-3 flex-1 lg:flex-none 2xl:w-114.25">
           <button
             onClick={onMenuToggle}
             className="lg:hidden p-2 cursor-pointer hover:bg-gray-100 rounded-lg transition-colors shrink-0"
@@ -43,7 +54,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
             )}
           </button>
 
-          <div className="hidden lg:flex items-center gap-3 bg-white border border-gray-200 rounded-lg px-5 py-3 w-full">
+          <div className="hidden 2xl:flex items-center gap-3 bg-white border border-gray-200 rounded-lg px-5 py-3 w-fit">
             <Search className="w-5 h-5 text-gray-400" />
             <input
               type="text"
@@ -62,46 +73,48 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
             <Search className="w-5 h-5 text-gray-600" />
           </button>
 
-          <div className="flex items-center gap-1 bg-gray-100 rounded-full p-1">
-            <div className="relative flex items-center gap-1 bg-gray-100 rounded-full p-1">
-              <span
-                className={`absolute top-1 bottom-1 w-[calc(50%-4px)] rounded-full bg-primary shadow-md transition-all duration-300 ease-in-out ${
-                  currentRole === "requester"
-                    ? "left-1"
-                    : "left-[calc(50%+2px)]"
-                }`}
-              />
-
-              {(["requester", "provider"] as const).map((role) => (
-                <button
-                  key={role}
-                  onClick={() => onRoleSwitch(role)}
-                  className={`relative z-10 flex items-center gap-1 lg:gap-2 cursor-pointer px-2 lg:px-4 py-2 rounded-full text-xs lg:text-sm font-medium transition-all duration-300 ease-out ${
-                    currentRole === role
-                      ? "text-white"
-                      : "text-gray-600 hover:text-gray-900"
+          {isToggle && (
+            <div className="flex items-center gap-1 bg-gray-100 rounded-full p-1">
+              <div className="relative flex items-center gap-1 bg-gray-100 rounded-full p-1">
+                <span
+                  className={`absolute top-1 bottom-1 w-[calc(50%-4px)] rounded-full bg-primary shadow-md transition-all duration-300 ease-in-out ${
+                    currentRole === "requester"
+                      ? "left-1"
+                      : "left-[calc(50%+2px)]"
                   }`}
-                >
-                  <span
-                    className={`transition-all duration-300 ${
+                />
+
+                {(["requester", "provider"] as const).map((role) => (
+                  <button
+                    key={role}
+                    onClick={() => onRoleSwitch(role)}
+                    className={`relative z-10 flex items-center gap-1 lg:gap-2 cursor-pointer px-2 lg:px-4 py-2 rounded-full text-xs lg:text-sm font-medium transition-all duration-300 ease-out ${
                       currentRole === role
-                        ? "opacity-100 scale-100"
-                        : "opacity-0 scale-90 w-0 overflow-hidden"
+                        ? "text-white"
+                        : "text-gray-600 hover:text-gray-900"
                     }`}
                   >
-                    <Check className="w-3 h-3 lg:w-4 lg:h-4" />
-                  </span>
+                    <span
+                      className={`transition-all duration-300 ${
+                        currentRole === role
+                          ? "opacity-100 scale-100"
+                          : "opacity-0 scale-90 w-0 overflow-hidden"
+                      }`}
+                    >
+                      <Check className="w-3 h-3 lg:w-4 lg:h-4" />
+                    </span>
 
-                  <span className="hidden sm:inline">
-                    {role.charAt(0).toUpperCase() + role.slice(1)}
-                  </span>
-                  <span className="sm:hidden">
-                    {role === "requester" ? "Req" : "Pro"}
-                  </span>
-                </button>
-              ))}
+                    <span className="hidden sm:inline">
+                      {role.charAt(0).toUpperCase() + role.slice(1)}
+                    </span>
+                    <span className="sm:hidden">
+                      {role === "requester" ? "Req" : "Pro"}
+                    </span>
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
 
           <Button
             variant="white"
@@ -114,16 +127,20 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
             </span>
           </Button>
 
-          <Button onClick={onCreateTask} className="px-2 lg:px-4">
-            {currentRole === "requester" ? (
-              <Plus className="w-4 h-4" />
-            ) : (
-              <Send className="w-4 h-4" />
-            )}
-            <span className="hidden sm:inline">
-              {currentRole === "requester" ? "Create Task" : "Submit Delivery"}
-            </span>
-          </Button>
+          {isToggle && (
+            <Button onClick={onCreateTask} className="px-2 lg:px-4">
+              {currentRole === "requester" ? (
+                <Plus className="w-4 h-4" />
+              ) : (
+                <Send className="w-4 h-4" />
+              )}
+              <span className="hidden sm:inline">
+                {currentRole === "requester"
+                  ? "Create Task"
+                  : "Submit Delivery"}
+              </span>
+            </Button>
+          )}
 
           <div className="relative">
             <button
@@ -143,7 +160,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
       </header>
 
       {isSearchOpen && (
-        <div className="lg:hidden bg-white border-b border-gray-200 px-4 py-3 sticky top-16 z-10">
+        <div className="2xl:hidden bg-white border-b border-gray-200 px-4 py-3 sticky top-16 z-10">
           <div className="flex items-center gap-3 bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5">
             <Search className="w-4 h-4 text-gray-400 shrink-0" />
             <input

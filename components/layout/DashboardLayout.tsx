@@ -261,7 +261,7 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
 
       {/* Mobile Sidebar */}
       <aside
-        className={`lg:hidden fixed top-0 left-0 h-full w-72 bg-white border-r border-gray-100 flex flex-col z-40 shadow-xl transition-transform duration-300 ease-in-out ${
+        className={`xl:hidden fixed top-0 left-0 h-full w-72 bg-white border-r border-gray-100 flex flex-col z-40 shadow-xl transition-transform duration-300 ease-in-out ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -274,7 +274,7 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
       </aside>
 
       {/* Main Content */}
-      <div className="flex-1 lg:ml-70 flex flex-col min-h-screen">
+      <div className="flex-1 lg:ml-70 xl:ml-65 flex flex-col min-h-screen">
         <DashboardHeader
           currentRole={currentRole}
           basePath={basePath}

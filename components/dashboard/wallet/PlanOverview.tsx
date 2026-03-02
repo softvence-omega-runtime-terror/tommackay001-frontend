@@ -31,7 +31,7 @@ const GoldPlan = [
 export default function PlanOverview() {
   const [buyModalOpen, setBuyModalOpen] = useState(false);
   return (
-    <div className="space-y-8 max-w-[90vw]">
+    <div className="space-y-8 w-full max-w-[90vw] lg:max-w-[65vw] xl:max-w-[85vw] 2xl:max-w-[90vw] md:mx-auto lg:mx-0">
       <BuyVisibilityCreditModal
         open={buyModalOpen}
         onClose={() => setBuyModalOpen(false)}
@@ -59,8 +59,8 @@ export default function PlanOverview() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 ">
-        <div className="lg:col-span-3 space-y-6">
+      <div className="grid grid-cols-1 xl:grid-cols-4 gap-6 ">
+        <div className="xl:col-span-3 space-y-6">
           <div className="bg-white p-6 rounded-2xl border border-gray-200">
             <h3 className="text-sm font-medium text-[#DC6803] mb-4 bg-[#FEDF89] w-fit px-3 py-2 rounded-full">
               Gold Plan Benefits

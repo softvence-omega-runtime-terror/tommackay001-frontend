@@ -64,7 +64,7 @@ const RequesterDashboardHome = () => {
         onClose={() => setBuyModalOpen(false)}
       />
 
-      <div className="flex flex-col gap-6 font-inter max-w-[90vw]">
+      <div className="flex flex-col gap-6 font-inter max-w-[90vw] lg:max-w-[65vw] xl:max-w-[85vw] 2xl:max-w-[90vw] md:mx-auto lg:mx-0">
         {/* Header Section */}
         <div className="md:flex items-end justify-between">
           <div className="flex flex-col gap-5">
@@ -116,7 +116,7 @@ const RequesterDashboardHome = () => {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1  md:flex  gap-4 mt-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4  gap-4 mt-8">
           <StatCard
             icon={Layers}
             label="Active Tasks"

@@ -67,7 +67,7 @@ const SettingsPage = () => {
   };
 
   return (
-    <div className="space-y-8 font-inter">
+    <div className="space-y-8 font-inter w-full max-w-[90vw] lg:max-w-[65vw] xl:max-w-[85vw] 2xl:max-w-[90vw] md:mx-auto lg:mx-0">
       <div className="space-y-2">
         <h1 className="text-3xl font-bold font-sora text-gray-900">Settings</h1>
         <p className="text-gray-500 font-medium text-sm">
@@ -75,9 +75,9 @@ const SettingsPage = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 xl:grid-cols-4 gap-8">
         {/* Sidebar Tabs */}
-        <div className="lg:col-span-1 space-y-2 bg-white">
+        <div className="xl:col-span-1 space-y-2 bg-white">
           {tabs.map((tab) => (
             <button
               key={tab.id}
@@ -95,7 +95,7 @@ const SettingsPage = () => {
         </div>
 
         {/* Content Pane */}
-        <div className="lg:col-span-3">
+        <div className="xl:col-span-3">
           <Card className="  border-none">{renderTabContent()}</Card>
         </div>
       </div>
