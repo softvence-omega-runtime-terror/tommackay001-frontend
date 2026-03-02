@@ -17,7 +17,7 @@ const buttonVariants = cva(
         outline:
           "border border-input cursor-pointer bg-background hover:bg-accent hover:text-accent-foreground",
         secondary:
-          "px-5 py-3 bg-[#fd751f] hover:bg-[#e06211] text-white rounded-full text-sm font-medium transition-colors",
+          "px-5 py-3 bg-[#fd751f] hover:bg-[#e06211] text-white rounded-xl text-sm font-medium transition-colors",
         ghost: "hover:bg-accent hover:text-accent-foreground cursor-pointer",
         link: "text-primary underline-offset-4 hover:underline cursor-pointer",
         brand:

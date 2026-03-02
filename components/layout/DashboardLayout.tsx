@@ -14,7 +14,7 @@ import {
   Settings,
   LogOut,
   Briefcase,
-  LucideIcon,
+  type LucideIcon,
   RefreshCcw,
 } from "lucide-react";
 import { useRole } from "@/context/RoleContext";
@@ -23,6 +23,8 @@ import logo from "@/public/backlyst-logo.png";
 import Image from "next/image";
 import avatarImage from "@/public/avatar/sisyphus.png";
 import LogoutModal from "../modals/LogoutModal";
+import CreateTaskModal from "../dashboard/provider/profile/CreateTaskModal";
+import { InstantDeliveryModal } from "../dashboard/modal/InstantDeliveryModal";
 
 interface SidebarItem {
   icon: LucideIcon;
@@ -119,11 +121,14 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
   const router = useRouter();
   const { role, setRole } = useRole();
 
+  const [showCreateTask, setShowCreateTask] = useState<boolean>(false);
+  const [showDeliveryTask, setShowDeliveryTask] = useState<boolean>(false);
+  const [showLogoutModal, setShowLogoutModal] = useState<boolean>(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
+  const [showSuccess, setShowSuccess] = useState<boolean>(false);
+
   const currentRole: "requester" | "provider" = role;
   const basePath = "/dashboard";
-
-  const [showLogoutModal, setShowLogoutModal] = useState(false);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   React.useEffect(() => {
     setIsSidebarOpen(false);
@@ -142,7 +147,6 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
 
   const handleRoleSwitch = (newRole: "requester" | "provider") => {
     if (newRole === currentRole) return;
-    console.log(newRole);
     router.push(`/dashboard`);
     setRole(newRole);
   };
@@ -153,13 +157,25 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
         ? `${basePath}/providers`
         : `${basePath}/opportunities`,
     );
+
+    if (currentRole === "requester") {
+      setShowCreateTask(true);
+      setShowDeliveryTask(false);
+    } else {
+      setShowCreateTask(false);
+      setShowDeliveryTask(true);
+    }
   };
 
-  const handleLogoutClick = () => {
-    setShowLogoutModal(true);
-  };
+  const handleCloseCreateTask = () => setShowCreateTask(false);
+  const handleCloseDeliveryTask = () => setShowDeliveryTask(false);
+  const handleLogoutClick = () => setShowLogoutModal(true);
+  const handleCloseLogout = () => setShowLogoutModal(false);
+  const handleMenuToggle = () => setIsSidebarOpen((p) => !p);
+  const handleOverlayClick = () => setIsSidebarOpen(false);
+  const handleLinkClick = () => setIsSidebarOpen(false);
 
-  const sidebarItems =
+  const sidebarItems: SidebarItem[] =
     currentRole === "provider"
       ? [
           { icon: Home, label: "Dashboard", path: basePath },
@@ -216,7 +232,7 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
           { icon: Settings, label: "Settings", path: `${basePath}/settings` },
         ];
 
-  const activeItem =
+  const activeItem: SidebarItem =
     sidebarItems.find(
       (item) =>
         pathname === item.path ||
@@ -225,23 +241,26 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
 
   return (
     <div className="flex min-h-screen bg-[#F9FAFB] font-inter overflow-x-hidden">
+      {/* Desktop Sidebar */}
       <aside className="hidden lg:flex w-70 bg-white border-r border-gray-100 flex-col fixed h-full z-20 shadow-[4px_0_24px_rgba(0,0,0,0.02)]">
         <SidebarContent
           sidebarItems={sidebarItems}
           activeLabel={activeItem.label}
-          onLinkClick={() => setIsSidebarOpen(false)}
+          onLinkClick={handleLinkClick}
           onLogoutClick={handleLogoutClick}
         />
       </aside>
 
+      {/* Mobile Overlay */}
       {isSidebarOpen && (
         <div
           className="lg:hidden fixed inset-0 bg-black/40 z-10 transition-opacity"
-          onClick={() => setIsSidebarOpen(false)}
+          onClick={handleOverlayClick}
           aria-label="Close menu overlay"
         />
       )}
 
+      {/* Mobile Sidebar */}
       <aside
         className={`lg:hidden fixed top-0 left-0 h-full w-72 bg-white border-r border-gray-100 flex flex-col z-40 shadow-xl transition-transform duration-300 ease-in-out ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
@@ -250,28 +269,33 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
         <SidebarContent
           sidebarItems={sidebarItems}
           activeLabel={activeItem.label}
-          onLinkClick={() => setIsSidebarOpen(false)}
+          onLinkClick={handleLinkClick}
           onLogoutClick={handleLogoutClick}
         />
       </aside>
 
+      {/* Main Content */}
       <div className="flex-1 lg:ml-70 flex flex-col min-h-screen">
         <DashboardHeader
           currentRole={currentRole}
           basePath={basePath}
           onRoleSwitch={handleRoleSwitch}
           onCreateTask={handleCreateTask}
-          onMenuToggle={() => setIsSidebarOpen((p) => !p)}
+          onMenuToggle={handleMenuToggle}
           isSidebarOpen={isSidebarOpen}
         />
 
         <main className="flex-1 p-4 lg:p-8">{children}</main>
       </div>
 
-      <LogoutModal
-        isOpen={showLogoutModal}
-        onClose={() => setShowLogoutModal(false)}
-      />
+      {/* Modals */}
+      <LogoutModal isOpen={showLogoutModal} onClose={handleCloseLogout} />
+
+      {showCreateTask && <CreateTaskModal onClose={handleCloseCreateTask} />}
+
+      {showDeliveryTask && (
+        <InstantDeliveryModal onClose={handleCloseDeliveryTask} />
+      )}
     </div>
   );
 };

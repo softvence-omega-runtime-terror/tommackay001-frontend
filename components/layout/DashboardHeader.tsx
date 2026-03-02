@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useRouter } from "next/navigation";
-import { Search, Plus, Bell, Wallet, Check, X, Menu } from "lucide-react";
+import { Search, Plus, Bell, Wallet, Check, X, Menu, Send } from "lucide-react";
 import NotificationPopover from "../dashboard/NotificationPopover";
 import { Button } from "../ui/Button";
 
@@ -115,9 +115,13 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
           </Button>
 
           <Button onClick={onCreateTask} className="px-2 lg:px-4">
-            <Plus className="w-4 h-4" />
+            {currentRole === "requester" ? (
+              <Plus className="w-4 h-4" />
+            ) : (
+              <Send className="w-4 h-4" />
+            )}
             <span className="hidden sm:inline">
-              {currentRole === "requester" ? "Create Task" : "Find Task"}
+              {currentRole === "requester" ? "Create Task" : "Submit Delivery"}
             </span>
           </Button>
 
