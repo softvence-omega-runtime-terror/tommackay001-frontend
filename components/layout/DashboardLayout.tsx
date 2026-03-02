@@ -125,7 +125,6 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
   const [showDeliveryTask, setShowDeliveryTask] = useState<boolean>(false);
   const [showLogoutModal, setShowLogoutModal] = useState<boolean>(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
-  const [showSuccess, setShowSuccess] = useState<boolean>(false);
 
   const currentRole: "requester" | "provider" = role;
   const basePath = "/dashboard";
