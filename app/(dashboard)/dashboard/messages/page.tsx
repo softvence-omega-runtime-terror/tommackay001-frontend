@@ -215,7 +215,7 @@ export default function ActiveTasksPage() {
 
       {/* LEFT – Active Tasks List */}
       <div
-        className={`absolute md:relative z-50 md:z-auto inset-y-0 left-0 w-full  md:w-72  xl:w-96 bg-white border-r border-gray-200 flex flex-col transition-transform duration-300 md:transition-none ${
+        className={`absolute md:relative z-50 md:z-auto inset-y-0 left-0 w-full md:w-72 xl:w-96 bg-white border-r border-gray-200 flex flex-col transition-transform duration-300 md:transition-none ${
           showSidebarOnMobile
             ? "translate-x-0"
             : "-translate-x-full md:translate-x-0 "

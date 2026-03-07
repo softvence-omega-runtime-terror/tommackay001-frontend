@@ -67,7 +67,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
         <div className="flex items-center gap-2 lg:gap-4">
           <button
             onClick={() => setIsSearchOpen((p) => !p)}
-            className="lg:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            className="hidden md:block lg:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors"
             aria-label="Search"
           >
             <Search className="w-5 h-5 text-gray-600" />
@@ -104,7 +104,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
                       <Check className="w-3 h-3 lg:w-4 lg:h-4" />
                     </span>
 
-                    <span className="hidden sm:inline">
+                    <span className="hidden sm:inline px-1">
                       {role.charAt(0).toUpperCase() + role.slice(1)}
                     </span>
                     <span className="sm:hidden">
@@ -118,7 +118,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
 
           <Button
             variant="white"
-            className="bg-indigo text-primary"
+            className="bg-indigo text-primary p-3"
             onClick={() => router.push(`${basePath}/wallet`)}
           >
             <Wallet className="w-4 h-4 text-primary" />
@@ -128,11 +128,11 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
           </Button>
 
           {isToggle && (
-            <Button onClick={onCreateTask} className="px-2 lg:px-4">
+            <Button onClick={onCreateTask} className="p-3 lg:px-4 rounded-full">
               {currentRole === "requester" ? (
-                <Plus className="w-4 h-4" />
+                <Plus className="w-5 h-5 md:w-4 md:h-4" />
               ) : (
-                <Send className="w-4 h-4" />
+                <Send className="w-5 h-5 md:-4 md:h-4" />
               )}
               <span className="hidden sm:inline">
                 {currentRole === "requester"

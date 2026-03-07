@@ -7,12 +7,14 @@ import {
   PlayCircle,
   Award,
   Shield,
+  Globe,
+  ShieldCheck,
+  ChevronRight,
 } from "lucide-react";
 import { useState } from "react";
 import { StatCard } from "@/components/ui/common/StatCard";
 import ActionLink from "@/components/ui/ActionLink";
 import { Button } from "@/components/ui/Button";
-import { usePathname } from "next/navigation";
 import BuyVisibilityCreditModal from "@/components/dashboard/provider/visivility/Buyvisibilitycreditmodal";
 import RecentOrders from "@/components/dashboard/requester/orders/RecentOrders";
 import type { OrderItem } from "@/components/dashboard/requester/orders/OrderCard";
@@ -152,6 +154,114 @@ const RequesterDashboardHome = () => {
             totalPages={10}
             onPageChange={(page) => console.log(page)}
           />
+        </div>
+
+        <div className="grid grid-cols-1 xl:grid-cols-3 gap-5 mt-6">
+          {/* Website Overview */}
+          <div className="bg-white border border-[#e2e2e2] rounded-2xl p-6 shadow-sm">
+            <div className="flex items-center justify-between mb-5">
+              <h3 className="text-lg font-semibold text-[#181d27] flex items-center gap-2">
+                Website Overview
+              </h3>
+              <Globe className="w-5 h-5 text-indigo-600" />
+            </div>
+
+            <div className="space-y-4">
+              <div className="flex items-center justify-between bg-gray-100 px-2 rounded-sm">
+                <span className="text-sm font-medium text-[#535862] py-2">
+                  Websites Connected
+                </span>
+                <span className="text-lg font-semibold text-[#181d27]">4</span>
+              </div>
+              <div className="flex items-center justify-between bg-orange-50 border border-orange-200 rounded-sm px-2">
+                <div className="inline-flex items-center gap-2 px-3 py-2  text-xs font-medium text-secondary">
+                  <ShieldCheck className="w-5 h-5 text-primary" />
+                  Verified
+                </div>
+                <span className=" font-semibold text-secondary text-sm">
+                  ALL ACTIVE
+                </span>
+              </div>
+
+              <Button variant="white" className="rounded-md w-full">
+                <ActionLink
+                  label="Manage Websites"
+                  href="/dashboard/websites"
+                  className=" text-sm font-medium flex items-center gap-1 "
+                  icon={<ChevronRight className="w-4 h-4" />}
+                  iconPosition="right"
+                />
+              </Button>
+            </div>
+          </div>
+
+          {/* Task Control */}
+          <div className="bg-white border border-[#e2e2e2] rounded-2xl p-6 shadow-sm">
+            <div className="flex items-center justify-between mb-5">
+              <h3 className="text-lg font-semibold text-[#181d27] flex items-center gap-2">
+                Task Control
+              </h3>
+            </div>
+
+            <div className=" gap-4 text-center space-y-1">
+              <div className="flex items-center justify-between bg-gray-100 px-4 py-1 rounded-sm">
+                <span className="text-sm font-medium text-primary">All</span>
+                <div className="px-3 py-1 bg-primary text-white rounded-full text-xs font-medium">
+                  24
+                </div>
+              </div>
+              <div className="flex items-center justify-between px-4 py-1 rounded-sm">
+                <span className="text-sm font-medium text-[#535862]">
+                  Active
+                </span>
+                <div className="px-3 py-1 bg-gray-300 text-[#535862] rounded-full text-xs font-medium">
+                  12
+                </div>
+              </div>
+              <div className="flex items-center justify-between px-4 py-1 rounded-sm">
+                <span className="text-sm font-medium text-[#535862]">
+                  Submitted
+                </span>
+                <div className="px-3 py-1 bg-gray-300 text-[#535862] rounded-full text-xs font-medium">
+                  15
+                </div>
+              </div>
+              <div className="flex items-center justify-between px-4 py-1 rounded-sm">
+                <span className="text-sm font-medium text-[#535862]">
+                  Review
+                </span>
+                <div className="px-3 py-1 bg-gray-300 text-[#535862] rounded-full text-xs font-medium">
+                  7
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* BRACKLYST PRO Promotion */}
+          <div className="bg-[#FFF1E9] border border-[#fd751f]! rounded-2xl p-6 shadow-sm relative overflow-hidden">
+            <div className="absolute -top-20 -right-15 w-40 h-40 rounded-full border border-white/20 pointer-events-none bg-[#FED4BA]" />
+
+            <div className="relative z-10">
+              <div className="inline-block px-4 bg-secondary text-white text-xs font-normal tracking-wide rounded-md py-2 mb-4">
+                BACKLYST PRO
+              </div>
+
+              <h3 className="text-xl font-semibold text-[#181d27] mb-3">
+                Elevate Your Strategy
+              </h3>
+
+              <p className="text-md max-w-xs text-black mb-6 leading-relaxed">
+                Unlock high-authority domains and dedicated account managers.
+              </p>
+
+              <Button
+                variant="secondary"
+                className="w-full  text-white font-medium py-3 rounded-xl shadow-md"
+              >
+                Go Platinum
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
     </>

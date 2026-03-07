@@ -1,5 +1,5 @@
 import React from "react";
-import { Check, Globe2, ShieldCheck, Star } from "lucide-react";
+import { Check, ShieldCheck, Star, Globe } from "lucide-react";
 import { PricingCard } from "../dashboard/subscription/PricingCard";
 import { FreePlanCard } from "../dashboard/subscription/FreePlanCard";
 
@@ -15,9 +15,9 @@ export const tiers: PricingTier[] = [
   {
     name: "Silver",
     price: "44.99",
-    icon: Globe2,
+    icon: Globe,
     features: [
-      "5 task credits included (monthly refresh)",
+      "5 task credits included ",
       "Max 10 total task credit capacity",
       "Max 5 visibility credits capacity",
       "Earn credits via verified backlinks",
@@ -32,7 +32,7 @@ export const tiers: PricingTier[] = [
     icon: Star,
     highlighted: true,
     features: [
-      "10 task credits included (monthly refresh)",
+      "10 task credits included ",
       "Max 50 total task credit capacity",
       "Max 10 visibility credits capacity",
       "Earn credits via verified backlinks",
@@ -46,13 +46,13 @@ export const tiers: PricingTier[] = [
     price: "139.99",
     icon: ShieldCheck,
     features: [
-      "25 task credits included (monthly refresh)",
+      "25 task credit included",
       "Max 100 total task credit capacity",
       "Max 20 visibility credits capacity",
       "Earn credits via verified backlinks",
       "Milestone rewards (every 10 backlinks)",
       "Referral credit rewards",
-      "Maximum scaling potential",
+      "Maximum scaling potential  ",
     ],
   },
 ];

@@ -23,7 +23,6 @@ const CTASection: React.FC<CTASectionProps> = ({
   description,
   primaryAction,
   secondaryAction,
-  className = "md:max-w-330",
 }) => {
   return (
     <section

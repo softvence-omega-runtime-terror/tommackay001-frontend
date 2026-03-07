@@ -4,7 +4,7 @@ import { FileCheck, PlayCircle } from "lucide-react";
 import EfficiencySection from "../../components/landing/EfficiencySection";
 import FAQSection from "../../components/landing/FAQSection";
 import Features from "../../components/landing/Features";
-import CTASection from "../../components/landing/FinalCTA";
+import CTASection from "../../components/landing/CtaSection";
 import Hero from "../../components/landing/Hero";
 import Pricing from "../../components/landing/Pricing";
 import ProcessSection from "../../components/landing/ProcessSection";

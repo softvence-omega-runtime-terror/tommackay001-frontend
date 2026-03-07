@@ -20,7 +20,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { OpportunityDetailModal } from "@/components/dashboard/provider/opportunity/OpportunityDetailModal";
 import OpportunitySuccessModal from "@/components/dashboard/provider/opportunity/OpportunitySuccessModal";
-import CTASection from "@/components/landing/FinalCTA";
+import CTASection from "@/components/landing/CtaSection";
 
 const opportunities = [
   {

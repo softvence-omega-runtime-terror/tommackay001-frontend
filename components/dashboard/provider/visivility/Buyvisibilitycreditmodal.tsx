@@ -88,46 +88,52 @@ function FormScreen({
           <Database className="w-6 h-6 text-secondary" />
         </div>
         <div>
-          <h2 className="text-xl font-bold text-[#181d27]">
+          <h2 className="md:text-xl font-bold text-[#181d27]">
             Add Credits to Wallet
           </h2>
-          <p className="text-xs font-semibold text-[#535862] uppercase tracking-widest mt-0.5">
+          <p className="text-xs font-semibold text-[#535862] uppercase md:tracking-widest mt-0.5">
             Secure Institutional Funding
           </p>
         </div>
       </div>
 
-      <div className="px-8 py-1 space-y-5">
+      <div className="px-4 md:px-8 py-1 space-y-5">
         <p className=" text-gray-900 mb-3">
           Credits are used for escrow deployment, task allocation , and
           automated settlements within the backlyst ecosystem.
         </p>
 
-        <div className="flex justify-between max-w-sm px-12">
-          <input
-            type="radio"
-            name="option"
-            className="
-      appearance-none w-5 h-5 rounded-full border-2 border-secondary 
-      checked:bg-[#fd751f] 
-      checked:ring-2 checked:ring-inset checked:ring-white
-      focus:outline-none transition-all cursor-pointer
-    "
-          />
-          <input
-            type="radio"
-            name="option"
-            className="
-      appearance-none w-5 h-5 rounded-full border-2 border-secondary 
-      checked:bg-[#fd751f] 
-      checked:ring-2 checked:ring-inset checked:ring-white
-      focus:outline-none transition-all cursor-pointer
-    "
-          />
+        <div className="space-y-4 md:space-y-0 md:flex justify-between max-w-md px-8 py-4">
+          {/* Option 1 */}
+          <label className="flex items-center space-x-2 cursor-pointer">
+            <input
+              type="radio"
+              name="option"
+              className="appearance-none w-5 h-5 rounded-full border-2 border-secondary 
+                 checked:bg-[#fd751f] checked:ring-2 checked:ring-inset 
+                 checked:ring-white focus:outline-none transition-all cursor-pointer"
+            />
+            <span className="text-sm font-medium">Credits</span>
+          </label>
+
+          {/* Option 2 */}
+          <label className="flex items-center space-x-2 cursor-pointer ">
+            <input
+              type="radio"
+              name="option"
+              className="appearance-none w-5 h-5 rounded-full border-2 border-secondary 
+                 checked:bg-[#fd751f] checked:ring-2 checked:ring-inset 
+                 checked:ring-white focus:outline-none transition-all cursor-pointer"
+            />
+            <span className="text-sm font-medium">Visibility Credits</span>
+          </label>
         </div>
       </div>
 
-      <div className="px-6 py-5 space-y-5">
+      <div className="px-6 py-5 space-y-3">
+        <div className="text-sm font-medium text-[#535862] uppercase tracking-wide">
+          ENTER CREDIT AMOUNT
+        </div>
         <div className="flex items-center justify-between border border-[#e9eaeb] rounded-xl px-5 py-4">
           <input
             type="number"
@@ -144,7 +150,7 @@ function FormScreen({
           <p className="text-md font-bold uppercase tracking-widest text-[#535862] mb-3">
             Historical Performance
           </p>
-          <div className="grid grid-cols-2 gap-3 cursor-pointer">
+          <div className="grid md:grid-cols-2 gap-3 cursor-pointer">
             <PaymentCard
               active={paymentMethod === "card"}
               onClick={() => setPaymentMethod("card")}
@@ -161,7 +167,7 @@ function FormScreen({
         </div>
 
         <div className="space-y-2">
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             {QUICK_AMOUNTS.map((qty) => (
               <button
                 key={qty}
@@ -216,13 +222,13 @@ function FormScreen({
 
 function SuccessScreen({
   amount,
-  onClose,
+  // onClose,
 }: {
   amount: string;
   onClose: () => void;
 }) {
   return (
-    <div className="px-8 py-8 flex flex-col items-center text-center max-w-md">
+    <div className="px-8 py-16 flex flex-col items-center text-center max-w-md">
       <div className="w-14 h-14 rounded-full bg-[#ECFDF3] flex items-center justify-center mb-6 cursor-pointer">
         <CheckCircle2 className="w-8 h-8 text-[#027A48]" />
       </div>
@@ -231,13 +237,13 @@ function SuccessScreen({
         Capital Ledger Updated
       </h3>
 
-      <p className="text-sm text-[#535862] mt-3 leading-relaxed max-w-xs">
+      <p className="text-xs  text-[#535862] mt-3 md:leading-relaxed max-w-sm">
         Credits successfully added to your Capital Ledger.
         <br />
         Your balance Will reflect this change immediately.
       </p>
 
-      <div className="w-full border border-[#e9eaeb] rounded-xl px-6 py-5 mt-7 text-center">
+      <div className="w-full border  border-[#e9eaeb] rounded-xl px-6 py-5  mt-10 text-center">
         <p className="text-xs font-bold uppercase tracking-widest text-[#535862]">
           Transaction Proof
         </p>
