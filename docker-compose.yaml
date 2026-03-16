@@ -1,0 +1,22 @@
+services:
+  web:
+    container_name: tommackay
+    image: softvence/tommackay:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      platforms:
+        - linux/amd64
+    env_file:
+      - .env.production
+    environment:
+      - NODE_ENV=production
+      - NEXT_TELEMETRY_DISABLED=1
+    ports:
+      - "3000:3000"
+    networks:
+      - tommackay
+
+networks:
+  tommackay:
+    external: true
