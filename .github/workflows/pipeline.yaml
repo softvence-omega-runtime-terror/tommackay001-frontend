@@ -52,4 +52,6 @@ jobs:
           host: ${{ secrets.VPS_IP }}
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_PASSWORD }}
-          script: make deploy
+          script: |
+            cd ~/frontend
+            make deploy
