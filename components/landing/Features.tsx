@@ -96,7 +96,7 @@ const FeatureCard = ({ title, desc, Icon, highlight }: FeatureCardProps) => {
         <h3 className="font-inter font-semibold text-base leading-6 text-gray-900">
           {title}
         </h3>
-        <p className="font-inter font-normal text-xs leading-[18px] text-gray-900">
+        <p className="font-inter font-normal text-xs leading-4.5 text-gray-900">
           {desc}
         </p>
       </div>

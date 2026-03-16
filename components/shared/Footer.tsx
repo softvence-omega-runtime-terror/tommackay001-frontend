@@ -5,8 +5,8 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#EBE9FF] py-12 px-6 border-t border-gray-200">
-      <div className="max-w-[1320px] mx-auto flex flex-col gap-14">
+    <footer className="bg-indigo py-12 px-6 border-t border-gray-200">
+      <div className="max-w-330 mx-auto flex flex-col gap-14">
         {/* Main Content */}
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-12">
           {/* Brand & Socials */}
@@ -52,7 +52,7 @@ const Footer = () => {
           </div>
 
           {/* Newsletter */}
-          <div className="flex flex-col gap-5 w-full sm:max-w-[360px] mx-auto lg:mx-0">
+          <div className="flex flex-col gap-5 w-full sm:max-w-90 mx-auto lg:mx-0">
             <div className="flex flex-col gap-2 text-center lg:text-left">
               <h4 className="font-inter font-semibold text-base text-gray-900">
                 About us

@@ -12,21 +12,25 @@ import logo from "@/public/backlyst-logo.png";
 
 const LoginPage = () => {
   const router = useRouter();
-
-  const [email, setEmail] = useState("admin@intervo.com");
-  const [password, setPassword] = useState("password");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
-    router.push("/requester");
+
+    if (email === "user@gmail.com" && password === "password123") {
+      router.push("/dashboard");
+    } else {
+      setError("Invalid email or password. Please try again.");
+    }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-white px-4">
-      <div className="w-full max-w-[520px] flex flex-col gap-8">
+      <div className="w-full max-w-130 flex flex-col gap-8">
         {/* Header */}
         <div className="flex flex-col items-center text-center gap-6">
           <Link href="/" className="flex items-center gap-3">
@@ -131,7 +135,7 @@ const LoginPage = () => {
               w-full h-12 rounded-xl
               bg-primary hover:bg-brand-indigo-600 focus-visible:none
               text-white font-semibold text-sm
-              shadow-lg shadow-brand-indigo-500/20
+              shadow-lg shadow-primary/20
               transition-all active:scale-[0.98]
               border-gray-100
               cursor-pointer

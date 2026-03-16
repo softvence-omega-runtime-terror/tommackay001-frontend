@@ -44,7 +44,6 @@ const ConnectWebsiteModal: React.FC<ConnectWebsiteModalProps> = ({
   const handleComplete = () => {
     onSuccess?.();
     onClose();
-    // Reset state
     setStep(1);
     setFormData({ url: "", industry: "", country: "" });
     setSelectedMethod("meta");
@@ -60,23 +59,23 @@ const ConnectWebsiteModal: React.FC<ConnectWebsiteModalProps> = ({
 
   const renderStep1 = () => (
     <>
-      <div className="w-12 h-12 bg-[#e0eaff] border-8 border-[#ebe9ff] rounded-xl flex items-center justify-center mx-auto">
+      <div className="w-10 md:w-12 h-10 md:h-12 bg-[#e0eaff] border-8 border-[#ebe9ff] rounded-xl flex items-center justify-center mx-auto">
         <ShieldCheck size={24} className="text-primary" />
       </div>
 
-      <div className="text-center space-y-2">
-        <h2 className="text-2xl font-semibold font-sora text-gray-900">
+      <div className="text-center space-y-2 md:space-y-3">
+        <h2 className="text-lg md:text-2xl font-semibold font-sora text-gray-900">
           Connect your website
         </h2>
-        <p className="text-sm text-gray-500">
+        <p className="text-xs md:text-sm text-gray-500">
           To begin building or offering placements, we need to index your
           domain&apos;s authority metrics.
         </p>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-3 md:space-y-4">
         <div className="space-y-2">
-          <Label className="text-sm font-medium text-gray-700 uppercase">
+          <Label className="text-xs md:text-sm font-medium text-gray-700 uppercase">
             Website URL
           </Label>
           <div className="relative">
@@ -86,7 +85,7 @@ const ConnectWebsiteModal: React.FC<ConnectWebsiteModalProps> = ({
             />
             <Input
               placeholder="https://example.com"
-              className="pl-10 h-11 rounded-lg border-gray-200"
+              className="pl-10 h-10 md:h-11 rounded-lg border-gray-200 text-xs md:text-sm"
               value={formData.url}
               onChange={(e) =>
                 setFormData({ ...formData, url: e.target.value })
@@ -96,9 +95,9 @@ const ConnectWebsiteModal: React.FC<ConnectWebsiteModalProps> = ({
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4">
           <div className="space-y-2">
-            <Label className="text-sm font-medium text-gray-700 uppercase">
+            <Label className="text-xs md:text-sm font-medium text-gray-700 uppercase">
               Industry
             </Label>
             <div className="relative">
@@ -159,13 +158,13 @@ const ConnectWebsiteModal: React.FC<ConnectWebsiteModalProps> = ({
         <Button
           onClick={handleContinue}
           disabled={!formData.url || !formData.industry || !formData.country}
-          className="w-full h-11 bg-[#331ffd] hover:bg-[#2815d6] text-white font-semibold rounded-lg flex items-center justify-center gap-2"
+          className="w-full h-10 md:h-11 bg-[#331ffd] hover:bg-[#2815d6] text-white font-semibold rounded-lg flex items-center justify-center gap-2 text-xs md:text-sm"
         >
           CONTINUE TO VERIFICATION <ArrowRight size={18} />
         </Button>
         <button
           onClick={onClose}
-          className="w-full text-sm font-medium text-gray-500 hover:text-gray-700 uppercase tracking-wide"
+          className="w-full text-xs md:text-sm font-medium text-gray-500 hover:text-gray-700 uppercase tracking-wide"
         >
           Cancel
         </button>
@@ -175,25 +174,25 @@ const ConnectWebsiteModal: React.FC<ConnectWebsiteModalProps> = ({
 
   const renderStep2 = () => (
     <>
-      <div className="w-12 h-12 bg-[#e0eaff] border-8 border-[#ebe9ff] rounded-xl flex items-center justify-center mx-auto">
+      <div className="w-10 md:w-12 h-10 md:h-12 bg-[#e0eaff] border-8 border-[#ebe9ff] rounded-xl flex items-center justify-center mx-auto">
         <ShieldCheck size={24} className="text-primary" />
       </div>
 
-      <div className="text-center space-y-2">
-        <h2 className="text-2xl font-semibold font-sora text-gray-900">
+      <div className="text-center space-y-2 md:space-y-3">
+        <h2 className="text-lg md:text-2xl font-semibold font-sora text-gray-900">
           Verify your website
         </h2>
-        <p className="text-sm text-gray-500">
+        <p className="text-xs md:text-sm text-gray-500">
           Choose a verification method to prove ownership and activate your
           placement.
         </p>
       </div>
 
-      <div className="space-y-3">
+      <div className="space-y-3 md:space-y-4">
         {/* HTML Meta Tag */}
         <div
           onClick={() => setSelectedMethod("meta")}
-          className={`flex items-start gap-3 p-3 rounded-lg border cursor-pointer transition-all ${
+          className={`flex items-start gap-2 md:gap-3 p-2 md:p-3 rounded-lg border cursor-pointer transition-all ${
             selectedMethod === "meta"
               ? "border-[#7a5af8] bg-white"
               : "border-gray-200 bg-white hover:border-gray-300"
@@ -206,7 +205,9 @@ const ConnectWebsiteModal: React.FC<ConnectWebsiteModalProps> = ({
             }
           />
           <div className="flex-1">
-            <p className="text-sm font-semibold text-gray-900">HTML Meta Tag</p>
+            <p className="text-xs md:text-sm font-semibold text-gray-900">
+              HTML Meta Tag
+            </p>
             <p className="text-xs text-gray-500">
               Add a meta tag to the head section of your homepage.
             </p>
@@ -217,8 +218,8 @@ const ConnectWebsiteModal: React.FC<ConnectWebsiteModalProps> = ({
         </div>
 
         {selectedMethod === "meta" && (
-          <div className="bg-gray-900 rounded-lg p-4">
-            <p className="text-xs font-semibold text-gray-400 mb-2 uppercase">
+          <div className="bg-gray-900 rounded-lg p-3 md:p-4">
+            <p className="text-[10px] md:text-xs font-semibold text-gray-400 mb-2 uppercase">
               Copy and paste this code:
             </p>
             <code className="text-xs text-white break-all">
@@ -231,7 +232,7 @@ const ConnectWebsiteModal: React.FC<ConnectWebsiteModalProps> = ({
         {/* DNS TXT */}
         <div
           onClick={() => setSelectedMethod("dns")}
-          className={`flex items-start gap-3 p-3 rounded-lg border cursor-pointer transition-all ${
+          className={`flex items-start gap-2 md:gap-3 p-2 md:p-3 rounded-lg border cursor-pointer transition-all ${
             selectedMethod === "dns"
               ? "border-[#7a5af8] bg-white"
               : "border-gray-200 bg-white hover:border-gray-300"
@@ -244,7 +245,7 @@ const ConnectWebsiteModal: React.FC<ConnectWebsiteModalProps> = ({
             }
           />
           <div className="flex-1">
-            <p className="text-sm font-semibold text-gray-900">
+            <p className="text-xs md:text-sm font-semibold text-gray-900">
               DNS TXT Record
             </p>
             <p className="text-xs text-gray-500">
@@ -257,8 +258,8 @@ const ConnectWebsiteModal: React.FC<ConnectWebsiteModalProps> = ({
         </div>
 
         {selectedMethod === "dns" && (
-          <div className="bg-gray-900 rounded-lg p-4">
-            <p className="text-xs font-semibold text-gray-400 mb-2 uppercase">
+          <div className="bg-gray-900 rounded-lg p-3 md:p-4">
+            <p className="text-[10px] md:text-xs font-semibold text-gray-400 mb-2 uppercase">
               Add this TXT record:
             </p>
             <code className="text-xs text-white break-all">
@@ -270,7 +271,7 @@ const ConnectWebsiteModal: React.FC<ConnectWebsiteModalProps> = ({
         {/* Screenshot */}
         <div
           onClick={() => setSelectedMethod("screenshot")}
-          className={`flex items-start gap-3 p-3 rounded-lg border cursor-pointer transition-all ${
+          className={`flex items-start gap-2 md:gap-3 p-2 md:p-3 rounded-lg border cursor-pointer transition-all ${
             selectedMethod === "screenshot"
               ? "border-[#7a5af8] bg-white"
               : "border-gray-200 bg-white hover:border-gray-300"
@@ -285,7 +286,7 @@ const ConnectWebsiteModal: React.FC<ConnectWebsiteModalProps> = ({
             }
           />
           <div className="flex-1">
-            <p className="text-sm font-semibold text-gray-900">
+            <p className="text-xs md:text-sm font-semibold text-gray-900">
               Screenshot Proof
             </p>
             <p className="text-xs text-gray-500">
@@ -298,9 +299,9 @@ const ConnectWebsiteModal: React.FC<ConnectWebsiteModalProps> = ({
         </div>
 
         {selectedMethod === "screenshot" && (
-          <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center bg-gray-50 cursor-pointer hover:bg-gray-100 transition-colors">
+          <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 md:p-6 text-center bg-gray-50 cursor-pointer hover:bg-gray-100 transition-colors">
             <FileImage size={24} className="text-[#7a5af8] mx-auto mb-2" />
-            <p className="text-sm font-medium text-gray-900">
+            <p className="text-xs md:text-sm font-medium text-gray-900">
               Click to upload or drag and drop
             </p>
             <p className="text-xs text-gray-500 mt-1">
@@ -313,13 +314,13 @@ const ConnectWebsiteModal: React.FC<ConnectWebsiteModalProps> = ({
       <div className="pt-4 space-y-3">
         <Button
           onClick={handleContinue}
-          className="w-full h-11 bg-[#331ffd] hover:bg-[#2815d6] text-white font-semibold rounded-lg"
+          className="w-full h-10 md:h-11 bg-[#331ffd] hover:bg-[#2815d6] text-white font-semibold rounded-lg text-xs md:text-sm"
         >
           VERIFY WEBSITE
         </Button>
         <button
           onClick={handleBack}
-          className="w-full text-sm font-medium text-gray-500 hover:text-gray-700 uppercase tracking-wide"
+          className="w-full text-xs md:text-sm font-medium text-gray-500 hover:text-gray-700 uppercase tracking-wide"
         >
           Back to Details
         </button>
@@ -329,32 +330,32 @@ const ConnectWebsiteModal: React.FC<ConnectWebsiteModalProps> = ({
 
   const renderStep3 = () => (
     <>
-      <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
+      <div className="w-14 md:w-16 h-14 md:h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
         <CheckCircle2 size={32} className="text-green-500" />
       </div>
 
-      <div className="text-center space-y-2">
-        <h2 className="text-2xl font-semibold font-sora text-gray-900">
+      <div className="text-center space-y-2 md:space-y-3">
+        <h2 className="text-lg md:text-2xl font-semibold font-sora text-gray-900">
           Website Connected!
         </h2>
-        <p className="text-sm text-gray-500">
+        <p className="text-xs md:text-sm text-gray-500">
           Your website <span className="font-semibold">{formData.url}</span> has
           been successfully added and is pending verification.
         </p>
       </div>
 
-      <div className="bg-gray-50 rounded-xl p-4 space-y-3">
-        <div className="flex items-center justify-between text-sm">
+      <div className="bg-gray-50 rounded-xl p-3 md:p-4 space-y-3">
+        <div className="flex items-center justify-between text-xs md:text-sm">
           <span className="text-gray-500">Domain</span>
           <span className="font-medium text-gray-900">{formData.url}</span>
         </div>
-        <div className="flex items-center justify-between text-sm">
+        <div className="flex items-center justify-between text-xs md:text-sm">
           <span className="text-gray-500">Status</span>
-          <span className="bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded text-xs font-medium">
+          <span className="bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded text-[10px] md:text-xs font-medium">
             PENDING VERIFICATION
           </span>
         </div>
-        <div className="flex items-center justify-between text-sm">
+        <div className="flex items-center justify-between text-xs md:text-sm">
           <span className="text-gray-500">Verification Method</span>
           <span className="font-medium text-gray-900 capitalize">
             {selectedMethod === "meta"
@@ -366,14 +367,14 @@ const ConnectWebsiteModal: React.FC<ConnectWebsiteModalProps> = ({
         </div>
       </div>
 
-      <p className="text-xs text-gray-500 text-center">
+      <p className="text-[10px] md:text-xs text-gray-500 text-center">
         Verification usually takes 24-48 hours. You&apos;ll receive an email
         once your website is verified.
       </p>
 
       <Button
         onClick={handleComplete}
-        className="w-full h-11 bg-[#331ffd] hover:bg-[#2815d6] text-white font-semibold rounded-lg"
+        className="w-full h-10 md:h-11 bg-[#331ffd] hover:bg-[#2815d6] text-white font-semibold rounded-lg text-xs md:text-sm"
       >
         DONE
       </Button>
@@ -381,7 +382,7 @@ const ConnectWebsiteModal: React.FC<ConnectWebsiteModalProps> = ({
   );
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 md:p-4">
       {/* Backdrop */}
       <div
         className="absolute inset-0 bg-black/50 backdrop-blur-sm"
@@ -389,14 +390,14 @@ const ConnectWebsiteModal: React.FC<ConnectWebsiteModalProps> = ({
       />
 
       {/* Modal */}
-      <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-md mx-4 max-h-[90vh] overflow-y-auto">
+      <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-sm md:max-w-md max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-gray-100">
-          <div className="flex items-center gap-2">
-            <span className="bg-[#fff1e9] text-[#fd751f] text-xs font-medium px-2 py-1 rounded-full">
+        <div className="flex items-center justify-between p-3 md:p-4 border-b border-gray-100 gap-2">
+          <div className="flex items-center gap-2 min-w-0">
+            <span className="bg-[#fff1e9] text-[#fd751f] text-[10px] md:text-xs font-medium px-2 py-1 rounded-full whitespace-nowrap">
               STEP {step} OF 3
             </span>
-            <span className="text-sm font-medium text-gray-600">
+            <span className="text-xs md:text-sm font-medium text-gray-600">
               {step === 1
                 ? "Website Details"
                 : step === 2
@@ -406,7 +407,7 @@ const ConnectWebsiteModal: React.FC<ConnectWebsiteModalProps> = ({
           </div>
           <button
             onClick={onClose}
-            className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
+            className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors shrink-0"
           >
             <X size={18} className="text-gray-500" />
           </button>
@@ -421,7 +422,7 @@ const ConnectWebsiteModal: React.FC<ConnectWebsiteModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="p-6 space-y-6">
+        <div className="p-4 md:p-6 space-y-4 md:space-y-6">
           {step === 1 && renderStep1()}
           {step === 2 && renderStep2()}
           {step === 3 && renderStep3()}

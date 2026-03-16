@@ -6,20 +6,19 @@ type StatusVariant = "default" | "success" | "warning";
 
 interface StatusBadgeProps {
   status: string;
-  variant?: StatusVariant; // optional, computed if not provided
+  variant?: StatusVariant;
 }
 
 const statusStyles: Record<StatusVariant, { bg: string; text: string }> = {
-  default: { bg: "#f9f5ff", text: "#331ffd" }, // In Progress
-  success: { bg: "#ecfdf3", text: "#12b76a" }, // Completed
-  warning: { bg: "#fff1e9", text: "#fd751f" }, // Waiting / Available
+  default: { bg: "#f9f5ff", text: "#331ffd" },
+  success: { bg: "#ecfdf3", text: "#12b76a" },
+  warning: { bg: "#fff1e9", text: "#fd751f" },
 };
 
 export const StatusBadge: React.FC<StatusBadgeProps> = ({
   status,
   variant,
 }) => {
-  // Auto-compute variant if not passed
   const computedVariant: StatusVariant =
     variant ||
     (status.includes("IN PROGRESS")

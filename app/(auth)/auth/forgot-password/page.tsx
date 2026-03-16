@@ -17,13 +17,11 @@ const ForgotPasswordPage = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
-    // Logic to send reset email would go here
   };
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-white px-4">
       <div className="w-full max-w-[400px] flex flex-col gap-8">
-        {/* Header */}
         <div className="flex flex-col items-center text-center gap-6 pt-32">
           <Link href="/" className="flex items-center gap-3">
             <Image
@@ -47,7 +45,6 @@ const ForgotPasswordPage = () => {
           </div>
         </div>
 
-        {/* Form */}
         {!submitted ? (
           <form
             onSubmit={handleSubmit}
@@ -64,7 +61,7 @@ const ForgotPasswordPage = () => {
                 id="email"
                 type="email"
                 placeholder="Enter your email"
-                className="h-12 rounded-xl bg-brand-indigo-50 border-transparent focus:ring-brand-indigo-500 focus:border-brand-indigo-500"
+                className="h-12 rounded-xl bg-brand-indigo-50 border-transparent focus:ring-primary focus:border-primary"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -73,7 +70,7 @@ const ForgotPasswordPage = () => {
 
             <Button
               type="submit"
-              className="w-full bg-primary cursor-pointer hover:bg-brand-indigo-600 text-white h-12 rounded-xl font-semibold text-sm shadow-lg shadow-brand-indigo-500/20 transition-all active:scale-[0.98]"
+              className="w-full bg-primary cursor-pointer hover:bg-brand-indigo-600 text-white h-12 rounded-xl font-semibold text-sm shadow-lg shadow-primary/20 transition-all active:scale-[0.98]"
             >
               Send reset link
             </Button>
@@ -85,10 +82,9 @@ const ForgotPasswordPage = () => {
           </div>
         )}
 
-        {/* Footer Link */}
         <div className="text-center">
           <Link
-            href="/login"
+            href="/auth/login"
             className="text-gray-500 font-semibold hover:text-gray-900 transition-colors flex items-center justify-center gap-2"
           >
             <ArrowLeft className="w-4 h-4" />

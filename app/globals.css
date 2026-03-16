@@ -33,6 +33,8 @@
   --success: #d1fadf;
   --success-foreground: #027a48;
 
+  --indigo: #ebe9ff;
+
   --accent: #fff1e9;
   --accent-foreground: #181d27;
 
@@ -61,8 +63,18 @@
 .bg-secondary {
   background-color: var(--secondary);
 }
+.border-secondary {
+  border-color: var(--secondary);
+}
+.border-b-secondary {
+  border-bottom: 1px solid;
+  border-color: var(--secondary);
+}
 .bg-secondary-foreground {
   background-color: var(--secondary-foreground);
+}
+.bg-indigo {
+  background-color: var(--indigo);
 }
 .bg-success {
   background-color: var(--success);
@@ -175,6 +187,8 @@ h4,
 .animate-scroll {
   animation: scroll 30s linear infinite;
 }
+
+
 
 @keyframes fadeIn {
   from {

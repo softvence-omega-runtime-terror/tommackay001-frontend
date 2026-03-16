@@ -1,25 +1,25 @@
 "use client";
 
-import React from "react";
-import Link from "next/link";
+import React, { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import {
-  Home,
-  Layout,
-  Building2,
   MessageSquare,
   Wallet,
   Globe,
-  Zap,
   Settings,
-  LogOut,
-  Briefcase,
+  RefreshCcw,
+  SquareCheckBig,
+  StretchHorizontal,
+  ShoppingBag,
+  CreditCard,
 } from "lucide-react";
 import { useRole } from "@/context/RoleContext";
 import DashboardHeader from "./DashboardHeader";
-import logo from "@/public/backlyst-logo.png";
-import Image from "next/image";
-import avatarImage from "@/public/avatar/sisyphus.png";
+
+import LogoutModal from "../modals/LogoutModal";
+import CreateTaskModal from "../dashboard/provider/profile/CreateTaskModal";
+import { InstantDeliveryModal } from "../dashboard/modal/InstantDeliveryModal";
+import { SidebarContent, SidebarItem } from "./SidebarContent";
 
 const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -28,44 +28,66 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
   const router = useRouter();
   const { role, setRole } = useRole();
 
-  const isProviderRoute = pathname.startsWith("/provider");
-  const currentRole: "requester" | "provider" = isProviderRoute
-    ? "provider"
-    : "requester";
+  const [showCreateTask, setShowCreateTask] = useState<boolean>(false);
+  const [showDeliveryTask, setShowDeliveryTask] = useState<boolean>(false);
+  const [showLogoutModal, setShowLogoutModal] = useState<boolean>(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
 
-  const basePath = isProviderRoute ? "/provider" : "/requester";
+  const currentRole: "requester" | "provider" = role;
+  const basePath = "/dashboard";
 
   React.useEffect(() => {
-    if (currentRole !== role) {
-      setRole(currentRole);
+    setIsSidebarOpen(false);
+  }, [pathname]);
+
+  React.useEffect(() => {
+    if (isSidebarOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
     }
-  }, [currentRole, role, setRole]);
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isSidebarOpen]);
 
   const handleRoleSwitch = (newRole: "requester" | "provider") => {
     if (newRole === currentRole) return;
+    router.push(`/dashboard`);
     setRole(newRole);
-    router.push(newRole === "provider" ? "/provider" : "/requester");
   };
 
   const handleCreateTask = () => {
     router.push(
       currentRole === "requester"
-        ? `${basePath}/tasks/new`
+        ? `${basePath}/providers`
         : `${basePath}/opportunities`,
     );
+
+    if (currentRole === "requester") {
+      setShowCreateTask(true);
+      setShowDeliveryTask(false);
+    } else {
+      setShowCreateTask(false);
+      setShowDeliveryTask(true);
+    }
   };
 
-  const handleLogout = () => {
-    router.push("/auth/login");
-  };
+  const handleCloseCreateTask = () => setShowCreateTask(false);
+  const handleCloseDeliveryTask = () => setShowDeliveryTask(false);
+  const handleLogoutClick = () => setShowLogoutModal(true);
+  const handleCloseLogout = () => setShowLogoutModal(false);
+  const handleMenuToggle = () => setIsSidebarOpen((p) => !p);
+  const handleOverlayClick = () => setIsSidebarOpen(false);
+  const handleLinkClick = () => setIsSidebarOpen(false);
 
-  const sidebarItems =
+  const sidebarItems: SidebarItem[] =
     currentRole === "provider"
       ? [
-          { icon: Home, label: "Dashboard", path: basePath },
-          { icon: Layout, label: "My Job", path: `${basePath}/tasks` },
+          { icon: StretchHorizontal, label: "Dashboard", path: basePath },
+          { icon: SquareCheckBig, label: "My Job", path: `${basePath}/jobs` },
           {
-            icon: Briefcase,
+            icon: ShoppingBag,
             label: "Opportunity Board",
             path: `${basePath}/opportunities`,
           },
@@ -77,17 +99,26 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
           { icon: Wallet, label: "Wallet", path: `${basePath}/wallet` },
           { icon: Globe, label: "Websites", path: `${basePath}/websites` },
           {
-            icon: Zap,
+            icon: RefreshCcw,
+            label: "Referrals",
+            path: `${basePath}/referrals`,
+          },
+          {
+            icon: CreditCard,
             label: "Subscription",
             path: `${basePath}/subscription`,
           },
           { icon: Settings, label: "Settings", path: `${basePath}/settings` },
         ]
       : [
-          { icon: Home, label: "Dashboard", path: basePath },
-          { icon: Layout, label: "Tasks", path: `${basePath}/tasks` },
+          { icon: StretchHorizontal, label: "Dashboard", path: basePath },
           {
-            icon: Building2,
+            icon: SquareCheckBig,
+            label: "Tasks",
+            path: `${basePath}/orders`,
+          },
+          {
+            icon: ShoppingBag,
             label: "Company Directory",
             path: `${basePath}/providers`,
           },
@@ -99,14 +130,19 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
           { icon: Wallet, label: "Wallet", path: `${basePath}/wallet` },
           { icon: Globe, label: "Websites", path: `${basePath}/websites` },
           {
-            icon: Zap,
+            icon: RefreshCcw,
+            label: "Referrals",
+            path: `${basePath}/referrals`,
+          },
+          {
+            icon: CreditCard,
             label: "Subscription",
             path: `${basePath}/subscription`,
           },
           { icon: Settings, label: "Settings", path: `${basePath}/settings` },
         ];
 
-  const activeItem =
+  const activeItem: SidebarItem =
     sidebarItems.find(
       (item) =>
         pathname === item.path ||
@@ -115,87 +151,61 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
 
   return (
     <div className="flex min-h-screen bg-[#F9FAFB] font-inter overflow-x-hidden">
-      {/* Sidebar */}
-      <aside className="w-70 bg-white border-r border-gray-100 flex flex-col fixed h-full z-20 shadow-[4px_0_24px_rgba(0,0,0,0.02)]">
-        <div className="p-8 pb-12">
-          <Link href="/" className="flex items-center gap-3">
-            <Image
-              src={logo}
-              alt="Backlyst"
-              className="w-10 h-9 object-contain"
-              priority
-            />
-            <span className="text-2xl font-semibold font-sora text-gray-900">
-              backlyst
-            </span>
-          </Link>
-        </div>
-
-        <nav className="flex-1 px-4 space-y-1">
-          {sidebarItems.map((item) => (
-            <Link
-              key={item.label}
-              href={item.path}
-              className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-sm  transition-all duration-300 group ${
-                activeItem.label === item.label
-                  ? "bg-[#EBE9FF] text-primary/90 font-semibold border-l-4 border-primary transition-all duration-200"
-                  : "text-gray-500 hover:bg-gray-50 hover:text-gray-700 pl-2 transition-all duration-200"
-              }`}
-            >
-              <item.icon
-                size={20}
-                className={
-                  activeItem.label === item.label
-                    ? "text-primary"
-                    : "text-gray-400 group-hover:text-gray-600"
-                }
-              />
-              <span className="text-sm">{item.label}</span>
-            </Link>
-          ))}
-        </nav>
-
-        <div className="p-6 border-t border-gray-100 mt-auto">
-          <div
-            onClick={handleLogout}
-            className="flex items-center gap-4 bg-gray-50 p-4 rounded-2xl hover:bg-red-50 transition-colors cursor-pointer group border border-transparent hover:border-red-100"
-          >
-            <div className="w-12 h-12  flex items-center justify-center">
-              <Image
-                width={200}
-                height={200}
-                src={avatarImage}
-                alt="User"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-sm font-semibold text-gray-900 leading-tight truncate">
-                Sisyphus
-              </p>
-              <p className="text-xs font-medium text-gray-500 mt-0.5">
-                Pro Member
-              </p>
-            </div>
-            <LogOut
-              size={16}
-              className="text-gray-400 group-hover:text-red-500 transition-colors shrink-0"
-            />
-          </div>
-        </div>
+      {/* Desktop Sidebar */}
+      <aside className="hidden lg:flex w-70 bg-white border-r border-gray-100 flex-col fixed h-full z-20 shadow-[4px_0_24px_rgba(0,0,0,0.02)]">
+        <SidebarContent
+          sidebarItems={sidebarItems}
+          activeLabel={activeItem.label}
+          onLinkClick={handleLinkClick}
+          onLogoutClick={handleLogoutClick}
+        />
       </aside>
 
-      {/* Main */}
-      <div className="flex-1 ml-70 flex flex-col min-h-screen">
+      {/* Mobile Overlay */}
+      {isSidebarOpen && (
+        <div
+          className="lg:hidden fixed inset-0 bg-black/40 z-10 transition-opacity"
+          onClick={handleOverlayClick}
+          aria-label="Close menu overlay"
+        />
+      )}
+
+      {/* Mobile Sidebar */}
+      <aside
+        className={`xl:hidden fixed top-0 left-0 h-full w-72 bg-white border-r border-gray-100 flex flex-col z-40 shadow-xl transition-transform duration-300 ease-in-out ${
+          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        <SidebarContent
+          sidebarItems={sidebarItems}
+          activeLabel={activeItem.label}
+          onLinkClick={handleLinkClick}
+          onLogoutClick={handleLogoutClick}
+        />
+      </aside>
+
+      {/* Main Content */}
+      <div className="flex-1 lg:ml-70 xl:ml-65 flex flex-col min-h-screen">
         <DashboardHeader
           currentRole={currentRole}
           basePath={basePath}
           onRoleSwitch={handleRoleSwitch}
           onCreateTask={handleCreateTask}
+          onMenuToggle={handleMenuToggle}
+          isSidebarOpen={isSidebarOpen}
         />
 
-        <main className="flex-1 p-8">{children}</main>
+        <main className="flex-1 p-4 lg:p-8">{children}</main>
       </div>
+
+      {/* Modals */}
+      <LogoutModal isOpen={showLogoutModal} onClose={handleCloseLogout} />
+
+      {showCreateTask && <CreateTaskModal onClose={handleCloseCreateTask} />}
+
+      {showDeliveryTask && (
+        <InstantDeliveryModal onClose={handleCloseDeliveryTask} />
+      )}
     </div>
   );
 };

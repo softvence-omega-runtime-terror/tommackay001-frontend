@@ -34,7 +34,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // Check for stored token/user on load
   useEffect(() => {
     const checkAuth = async () => {
       const token = localStorage.getItem("token");
@@ -42,7 +41,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
       if (token && storedUser) {
         setUser(JSON.parse(storedUser));
-        // Optional: Verify token with backend /me endpoint here
       }
       setLoading(false);
     };
@@ -50,38 +48,29 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   }, []);
 
   const login = async (credentials: LoginCredentials) => {
-    // const response = await api.post("/auth/auth/login", credentials);
-    // const { access_token, user } = response.data;
-
-    // Mock Login Logic: Accept any login for demo
     const mockUser = {
       id: "USR-MOCK-001",
       email: credentials.email || "demo@example.com",
-      role: credentials.email?.includes("admin") ? "ADMIN" : "REQUESTER",
+      role: credentials.email?.includes("admin") ? "ADMIN" : "USER",
       fullName: "Demo User",
     };
 
     localStorage.setItem("token", "MOCK_JWT_TOKEN");
     localStorage.setItem("user", JSON.stringify(mockUser));
     setUser(mockUser);
-    // api.defaults.headers.Authorization = `Bearer MOCK_JWT_TOKEN`;
   };
 
   const register = async (data: RegisterData) => {
-    // const response = await api.post("/auth/register", data);
-    // const { access_token, user } = response.data;
-
     const mockUser = {
       id: "USR-MOCK-" + Math.floor(Math.random() * 1000),
       email: data.email,
-      role: "REQUESTER",
+      role: "USER",
       fullName: data.fullName,
     };
 
     localStorage.setItem("token", "MOCK_JWT_TOKEN");
     localStorage.setItem("user", JSON.stringify(mockUser));
     setUser(mockUser);
-    // api.defaults.headers.Authorization = `Bearer MOCK_JWT_TOKEN`;
   };
 
   const logout = () => {
