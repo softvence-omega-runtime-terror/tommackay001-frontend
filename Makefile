@@ -14,6 +14,7 @@ prod-up:
 	@echo "Starting production..."
 	cd ~/frontend
 	docker compose --profile prod up -d
+
 deploy:
 	@echo "Deploying..."
 	cd ~/frontend
